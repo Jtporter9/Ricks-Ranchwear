@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Notify from './bigcommerce/Notify';
-import './all.sass';
+import './all.scss';
 import './Layout.css';
 import useSiteMetadata from './SiteMetadata';
 

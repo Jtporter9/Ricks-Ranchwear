@@ -50,7 +50,7 @@
     "clean": "gatsby clean",
     "start:app": "npm run develop",
     "start:lambda": "netlify-lambda serve src/lambda",
-    "start": "concurrently \"yarn start:lambda\" \"yarn develop\"",
+    "start": "concurrently \"npm run start:lambda\" \"npm run develop\"",
     "build:app": "npm run clean && gatsby build",
     "build:lambda": "netlify-lambda build src/lambda",
     "build": "run-p build:**",
