@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import github from '../img/github-icon.svg';
 import logo from '../assets/logo.svg';
 import closeIcon from '../assets/x-icon.svg';
+import cartIcon from '../assets/cart-icon.svg';
 
 import CartContext from '../context/CartProvider';
 
@@ -50,7 +51,7 @@ const Navbar = class extends React.Component {
           <div className="container">
             <div className="navbar-brand">
               <Link to="/" className="navbar-item" title="Logo">
-                <img src={logo} alt="My Store" />
+                <img src={logo} alt="JB Dillon" />
               </Link>
               {/* Hamburger menu */}
               <div
@@ -65,7 +66,7 @@ const Navbar = class extends React.Component {
             <div
               id="navMenu"
               className={`navbar-menu ${this.state.navBarActiveClass}`}>
-              <div className="navbar-start has-text-centered">
+              <div className="navbar-menu has-text-centered">
               <Link className="navbar-item" to="/mens">
                   Mens
                 </Link>
@@ -93,8 +94,7 @@ const Navbar = class extends React.Component {
                   {value => {
                     return (
                       <Link className="navbar-item menu-item-bigcommerce-cart" to="/cart">
-                        Cart
-                        
+                        <img src={cartIcon} alt="Cart" />
                         {value &&
                           value.state.cart &&
                           value.state.cart.numberItems > 0 && (
