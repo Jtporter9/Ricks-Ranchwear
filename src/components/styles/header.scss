@@ -1,7 +1,9 @@
 header {
     .navbar-menu {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        width:100%;
+        padding: 0 55px;
         a {
             display: block;
             padding: 1rem;
@@ -26,10 +28,14 @@ header {
         line-height: 20px;
         padding: 0;
         margin: 0;
-        position: relative;
-        bottom: 6px;
         background-color: transparent;
         color: $stone-dark;
+    }
+
+    .cart-icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 

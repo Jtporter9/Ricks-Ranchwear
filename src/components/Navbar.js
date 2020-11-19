@@ -45,10 +45,9 @@ const Navbar = class extends React.Component {
             <a id="closeAnnouncement" className="announcement-bar-close-icon" href="#announementBar"><img src={closeIcon} /></a>
         </div>
         <nav
-          className="navbar is-transparent"
           role="navigation"
           aria-label="main-navigation">
-          <div className="container">
+          <div className="container navbar-menu">
             <div className="navbar-brand">
               <Link to="/" className="navbar-item" title="Logo">
                 <img src={logo} alt="JB Dillon" />
@@ -76,9 +75,12 @@ const Navbar = class extends React.Component {
                 <Link className="navbar-item" to="/accessories">
                   Accessories
                 </Link>
-                <Link className="navbar-item" to="/about">
-                  About
+                <Link className="navbar-item" to="/stores">
+                  Stores
                 </Link>
+                {/* <Link className="navbar-item" to="/about">
+                  About
+                </Link> */}
                 {/* <Link className="navbar-item" to="/products">
                   Products
                 </Link>
@@ -90,10 +92,19 @@ const Navbar = class extends React.Component {
                 </Link> */}
               </div>
               <div className="navbar-end has-text-centered">
+                <Link className="navbar-item" to="/search">
+                  Search
+                </Link>
+                <Link className="navbar-item" to="/help">
+                  About
+                </Link>
+                <Link className="navbar-item" to="/login">
+                  Login/Register
+                </Link>
                 <CartContext.Consumer>
                   {value => {
                     return (
-                      <Link className="navbar-item menu-item-bigcommerce-cart" to="/cart">
+                      <Link className="navbar-item menu-item-bigcommerce-cart cart-icon-container" to="/cart">
                         <img src={cartIcon} alt="Cart" />
                         {value &&
                           value.state.cart &&
