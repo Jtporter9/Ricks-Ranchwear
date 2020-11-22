@@ -81,6 +81,7 @@ mark,
 audio,
 video {
     font-family: 'Archivo', sans-serif !important;
+    color: $functional-darkest;
 }
 
 h1,
@@ -90,4 +91,5 @@ h4,
 h5,
 h6 {
     letter-spacing: normal !important;
+    color: $functional-darkest;
 }

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
-@import 'styles/typography.scss';
 @import 'styles/variables.scss';
+@import 'styles/typography.scss';
 @import 'styles/header.scss';
 @import 'styles/footer.scss';
 
@@ -86,4 +86,14 @@
             text-transform: uppercase;
         }
     }
+}
+
+.one-third {
+    width: 33%;
+}
+.one-quarter {
+    width: 25%;
+}
+.one-half {
+    width: 50%;
 }

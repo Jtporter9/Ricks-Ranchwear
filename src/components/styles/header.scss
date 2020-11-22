@@ -4,23 +4,51 @@ header {
         justify-content: space-between;
         width:100%;
         padding: 0 55px;
-        a {
+        align-items: center;
+
+        .logo-container {
+            a {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .menu-link {
             display: block;
             padding: 1rem;
             color: $functional-darkest;
             font-size: 14px;
             text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
             &:hover {
                 color: $link-hover-gray;
                 text-decoration: none;
                 padding-bottom: .75rem;
-                border-bottom: .25rem solid $rock-dark;
+                border-bottom: .25rem solid $red-mid;
             }
+        }
+        .p-0 {
+            padding: 0;
+        }
+        .logo {
+            height: 40px;
         }
         img {
             max-width: 100px;
+            width: auto;
         }
     }
+    .navbar-end {
+        text-align: right;
+        align-items: center;
+        .menu-link {
+            font-size: 12px;
+            text-transform: none; 
+            font-weight: 500;
+        }
+    }
+    
     .bigcommerce-cart__item-count {
         width: 20px;
         height: 20px;
@@ -36,24 +64,6 @@ header {
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-}
-
-.announcement-bar {
-    background-color: $rock-dark;
-    color: white;
-    z-index: 10;
-    position: relative;
-    text-align: center;
-    .announcement-bar-message {
-        font-weight: normal;
-        padding: .5rem 22px;
-        margin: 0px;
-    }
-    .announcement-bar-close-icon {
-        position: absolute;
-        top: 8px;
-        right: 10px;
     }
 }
 
