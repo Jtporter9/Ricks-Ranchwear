@@ -1,34 +1,65 @@
 footer {
-    background: $stone-darkest;
+    background: $functional-darkest;
     color: white;
     margin-top: 55px;
-    padding-top: 1rem;
     .footer-container {
-        padding: 4rem 5rem;
+        padding: 2rem 4rem;
         display: flex;
         justify-content: space-between;
-        > div {
+        h2 {
+            font-size: 32px;
+            letter-spacing: 0.01em;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .footer-message {
+            font-size: 20px;
+            line-height: 32px;
+            letter-spacing: 0.01em;
             margin-bottom: 2rem;
         }
-        p {
+        > div {
+            margin-bottom: 2rem;
+            width: 33%;
+            padding: 4rem 3rem;
+        }
+        .footer-label {
             font-size: 24px;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             font-weight: bold;
+            letter-spacing: 0.04em;
         }
         ul {
             padding: 0;
             list-style: none;
             li {
                 margin-bottom: 10px;
-                padding: .5rem 0;
             }
             a {
-                color: white;
+                color: $white;
                 font-size: 16px;
+            }
+        }
+        .footer-logo-container {
+            display: flex;
+            align-self: flex-end;
+            padding: 0;
+            .block-logo-container {
+                display: block;
+            }
+            .split-logos {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: .5rem 0;
+            }
+            .sub-text {
+                font-size: 12px;
             }
         }
     }
     form {
+        position: relative;
         input[type=text],
         input[type=email] {
             width: 100%;
@@ -44,9 +75,20 @@ footer {
             -webkit-box-shadow: none;
             -moz-box-shadow: none;
             box-shadow: none;
+            padding-right: 4px;
         }
         input[type=submit] {
-            width: 100%;
+            margin-left: -50px;
+            width: 44px;
+            color: $white;
+            background-color: $red-mid;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            border: none;
+            background-repeat: no-repeat;
+            background-position: center;
         }
     }
     .footer-social-row {
@@ -61,43 +103,54 @@ footer {
     }
 }
 
-
 @media (max-width: 1100px) {
-    .footer-logo-container {
-        display: none;
-    }
-}
-
-// Desktop and up
-@media (min-width: $desktop-bp) {
-    .cool-border-top {
-        display: none;
-    }
-}
-
-// Desktop and down
-@media (max-width: $desktop-bp) {
-    .cool-border-bottom {
-        display: none;
-    }
-    .footer-logo-container {
-        display: block;
-        text-align: center;
-        margin-bottom: 0 !important;
-    }
     footer {
         .footer-container {
-            flex-direction: column-reverse;
-            padding: 3rem;
+            display: block;
+            > div {
+                width: 100%;
+            }
         }
     }
 }
 
-// Mobile and down
+@media (max-width: $tablet-bp) {
+    footer {
+        .footer-container {
+            padding: 1rem;
+        }
+    }
+}
+
+
 @media (max-width: $mobile-bp) {
     footer {
         .footer-container {
-            padding: 3rem 1rem;
+            > div {
+                padding: 2rem 1rem;
+                margin-bottom: 0;
+            }
+            > div:last-child {
+                margin-bottom: 2rem;
+            }
+            .footer-logo-container .split-logos {
+                flex-direction: column;
+                a {
+                    padding: 1rem 0;
+                }
+            }
+            .footer-message {
+                font-size: 16px;
+            }
         }
     }
 }
+// Desktop and up
+// @media (min-width: $desktop-bp) {
+// }
+
+// Desktop and down
+// @media (max-width: $desktop-bp) {
+// }
+
+// Mobile and down
