@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import logo from '../assets/logo.svg';
-import caret from '../assets/caret-right.svg';
-import bootCountryLogo from '../assets/boot-country-logo.svg';
+import logo from '../../assets/logo.svg';
+import caret from '../../assets/caret-right.svg';
+import bootCountryLogo from '../../assets/boot-country-logo.svg';
 
 // import facebook from '../img/social/facebook.svg'
 // import instagram from '../img/social/instagram.svg'

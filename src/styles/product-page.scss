@@ -1,0 +1,142 @@
+.product-page {
+    .hero {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        height: 480px;
+        position: relative;
+        h2 {
+            color: white;
+            font-weight: bold;
+            font-size: 48px;
+            line-height: 56px;
+            letter-spacing: 0.04em;
+            z-index: 9999;
+        }
+        .opaque-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+    }
+    
+    .products-container {
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .products-header-split {
+                width: 33%;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                padding: 1rem 0;
+                &:first-child {
+                    justify-content: start;
+                }
+                &:last-child {
+                    justify-content: end;
+                }
+            }
+
+            .numbered-products-results {
+                font-size: 20px;
+                letter-spacing: 0.01rem;
+            }
+            .above-filter-button {
+                width: 294px;
+                height: 40px;
+                background: $red-mid;
+                padding: .5rem 2rem;
+                outline: none;
+                border: none;
+                text-transform: uppercase;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                span {
+                    color: white;
+                    font-size: 14px;
+                    letter-spacing: 0.2em;
+                }
+                img {
+                    width: 50px;
+                }
+            }
+            .products-quick-filter {
+                color: $functional-dark;
+                background: $white;
+                border: 1px solid $functional-light;
+                padding: .5rem 1rem;
+                font-size: 16px;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                -webkit-border-radius: 0px;
+                appearance: none;
+                outline-width: 0;
+                width: 220px;
+            }
+        }
+        .products-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            .bc-product-grid {
+                width: auto;
+                padding: 0;
+            }
+        }
+        .products-filter-container {
+            width: 25%;
+            .products-filter-head {
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                border-top: 1px solid $functional-light;
+                border-bottom: 1px solid $functional-light;
+                padding: .5rem;
+                img {
+                    padding: 0 .5rem;
+                }
+            }
+            .selected-filters {
+                border: 1px solid $functional-light;
+                font-size: 16px;
+                letter-spacing: 0.01em;
+                color: $functional-dark;
+                padding: .5rem;
+                margin: .5rem 0;
+            }
+            .filter-dropdown {
+                color: $functional-dark;
+                background: $white;
+                width: 100%;
+                text-transform: uppercase;
+                border: none;
+                border-bottom: 1px solid $functional-light;
+                padding: .5rem 1rem;
+                font-size: 16px;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                -webkit-border-radius: 0px;
+                appearance: none;
+                outline-width: 0;
+            }
+        }
+    }
+}
+
+// PRODUCT CARD
+.bc-product-card {
+    img {
+        border: 1px solid $functional-light;
+        padding: 1rem 0;
+        background-color: white;
+    }
+}

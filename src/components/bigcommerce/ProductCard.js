@@ -30,11 +30,11 @@ class ProductCard extends React.Component {
           <ProductPrices product={product} />
         </div>
 
-        <AddToCartButton
+        {/* <AddToCartButton
           productId={product.variants[0].product_id}
           variantId={product.variants[0].id}>
           Add to Cart
-        </AddToCartButton>
+        </AddToCartButton> */}
       </div>
     )
   }

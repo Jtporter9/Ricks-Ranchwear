@@ -1,15 +1,14 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import logo from '../assets/logo.svg';
-import hamburgerLogo from '../assets/hamburger.svg';
-import searchLogo from '../assets/search.svg';
-import cartIcon from '../assets/cart-icon.svg';
-import caretDown from '../assets/caret-down.svg';
-import upArrowWhite from '../assets/up-arrow-white.svg';
+import logo from '../../assets/logo.svg';
+import hamburgerLogo from '../../assets/hamburger.svg';
+import searchLogo from '../../assets/search.svg';
+import cartIcon from '../../assets/cart-icon.svg';
+import caretDown from '../../assets/caret-down.svg';
+import upArrowWhite from '../../assets/up-arrow-white.svg';
+import CartContext from '../../context/CartProvider';
 
-import CartContext from '../context/CartProvider';
-
-const Navbar = class extends React.Component {
+const Header = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,11 +28,11 @@ const Navbar = class extends React.Component {
         // set the class in state for the navbar accordingly
         this.state.active
           ? this.setState({
-              navBarActiveClass: 'is-active'
-            })
+            navBarActiveClass: 'is-active'
+          })
           : this.setState({
-              navBarActiveClass: ''
-            });
+            navBarActiveClass: ''
+          });
       }
     );
   };
@@ -41,10 +40,10 @@ const Navbar = class extends React.Component {
   render() {
     return (
       <header>
-        <div className="navbar-menu" role="navigation" aria-label="main-navigation"> 
+        <div className="navbar-menu" role="navigation" aria-label="main-navigation">
           <div className="logo-container">
             <div className="mobile-menu">
-              <img src={hamburgerLogo} alt="Mobile Menu" 
+              <img src={hamburgerLogo} alt="Mobile Menu"
                 className={`pointer ${this.state.navBarActiveClass}`}
                 data-target="navMenu"
                 onClick={() => this.toggleHamburger()} />
@@ -100,16 +99,19 @@ const Navbar = class extends React.Component {
                 <div className="mobile-menu-checkout-container">
                   <CartContext.Consumer>
                     {value => {
-                    return (
-                          <Link className="navbar-item menu-item-bigcommerce-cart cart-icon-container" to="/cart">
-                            <button>
-                              <img src={upArrowWhite} />
-                              <span>View Cart</span> 
+                      return (
+                        <Link className="navbar-item menu-item-bigcommerce-cart cart-icon-container" to="/cart">
+                          <button>
+                            <img src={upArrowWhite} />
+                            <span>View Cart</span>
+                            {value &&
+                            value.state.cart && (
                               <span>( {value.state.cart.numberItems} )</span>
-                            </button>
-                          </Link>
-                          );
-                        }}
+                              )}
+                                </button>
+                        </Link>
+                      );
+                    }}
                   </CartContext.Consumer>
                 </div>
               </div>
@@ -120,19 +122,22 @@ const Navbar = class extends React.Component {
               </Link>
             </div>
             <div className="mobile-cart">
-              <img src={searchLogo} alt="Search" 
+              <img src={searchLogo} alt="Search"
                 className={`search-icon pointer ${this.state.navBarActiveClass}`}
                 data-target=""
                 onClick={() => this.toggleHamburger()} />
               <CartContext.Consumer>
                 {value => {
-                return (
-                      <Link className="navbar-item menu-item-bigcommerce-cart cart-icon-container" to="/cart">
-                        <img src={cartIcon} alt="Cart" />
+                  return (
+                    <Link className="navbar-item menu-item-bigcommerce-cart cart-icon-container" to="/cart">
+                      <img src={cartIcon} alt="Cart" />
+                      {value &&
+                      value.state.cart && (
                         <span className="bigcommerce-cart__item-count full">{value.state.cart.numberItems}</span>
-                      </Link>
-                      );
-                    }}
+                      )}
+                    </Link>
+                  );
+                }}
               </CartContext.Consumer>
             </div>
           </div>
@@ -168,28 +173,29 @@ const Navbar = class extends React.Component {
             </div>
           </nav>
           <div className="navbar-right">
-            <Link className="menu-link" to="/search">
-              Search
-            </Link>
+            <img src={searchLogo} alt="Search"
+              className={`search-icon pointer ${this.state.navBarActiveClass}`}
+              data-target=""
+              onClick={() => this.toggleHamburger()} />
             <Link className="menu-link" to="/help">
-              About
+              Help
             </Link>
             <Link className="menu-link" to="/login">
               Login/Register
             </Link>
             <CartContext.Consumer>
               {value => {
-              return (
-                    <Link className="navbar-item menu-item-bigcommerce-cart cart-icon-container" to="/cart">
-                      <img src={cartIcon} alt="Cart" />
-                      {value &&
-                        value.state.cart &&
-                        value.state.cart.numberItems > 0 && (
-                          <span className="bigcommerce-cart__item-count full">{value.state.cart.numberItems}</span>
-                        )}
-                    </Link>
-                    );
-                  }}
+                return (
+                  <Link className="navbar-item menu-item-bigcommerce-cart cart-icon-container" to="/cart">
+                    <img src={cartIcon} alt="Cart" />
+                    {value &&
+                      value.state.cart &&
+                      value.state.cart.numberItems > 0 && (
+                        <span className="bigcommerce-cart__item-count full">{value.state.cart.numberItems}</span>
+                      )}
+                  </Link>
+                );
+              }}
             </CartContext.Consumer>
           </div>
         </div>
@@ -198,4 +204,4 @@ const Navbar = class extends React.Component {
   }
 };
 
-export default Navbar;
+export default Header;

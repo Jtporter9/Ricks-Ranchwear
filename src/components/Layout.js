@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Footer from './Footer';
-import Navbar from './Navbar';
+import Footer from './footer/Footer';
+import Navbar from './header/Header';
 import Notify from './bigcommerce/Notify';
 import './all.scss';
 import './Layout.css';

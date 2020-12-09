@@ -80,7 +80,7 @@ time,
 mark,
 audio,
 video {
-    font-family: 'Archivo', sans-serif !important;
+    font-family: 'Rubik', sans-serif !important;
     color: $functional-darkest;
 }
 
@@ -92,4 +92,12 @@ h5,
 h6 {
     letter-spacing: normal !important;
     color: $functional-darkest;
+}
+
+button {
+    font-family: 'Archivo', sans-serif !important;
+}
+
+.subtitle_2 {
+    font-family: 'Playfair Display', serif !important;
 }

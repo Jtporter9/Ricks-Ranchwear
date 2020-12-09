@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
-@import 'styles/variables.scss';
-@import 'styles/typography.scss';
-@import 'styles/header.scss';
-@import 'styles/footer.scss';
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import './variables.scss';
+@import './typography.scss';
+@import 'header/header.scss';
+@import 'footer/footer.scss';
+@import './product-page.scss';
 
 
 #hero {
