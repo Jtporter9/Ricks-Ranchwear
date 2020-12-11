@@ -3,7 +3,7 @@ heading: Testing
 path: /products
 templateKey: product-page
 title: Mens Boots
-image: /img/boutique-bright-business.jpg
+image: /img/man-motorcycle.jpg
 description: testing
 intro:
   heading: Testing
