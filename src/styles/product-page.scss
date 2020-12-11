@@ -5,7 +5,7 @@
         text-align: center;
         height: 480px;
         position: relative;
-        h2 {
+        .hero-title {
             color: white;
             font-weight: bold;
             font-size: 48px;
@@ -20,7 +20,7 @@
             left: 0;
             bottom: 0;
             background-color: rgba(0,0,0,0.2);
-            z-index: 999;
+            z-index: 990;
         }
     }
     
@@ -40,6 +40,26 @@
                 }
                 &:last-child {
                     justify-content: end;
+                }
+                .toggle-filters {
+                    display: none;
+                    color: $functional-dark;
+                    background: $white;
+                    border: 1px solid $functional-light;
+                    padding: .5rem 1rem;
+                    font-size: 16px;
+                    -moz-appearance: none;
+                    -webkit-appearance: none;
+                    -webkit-border-radius: 0px;
+                    appearance: none;
+                    outline-width: 0;
+                    font-size: 16px;
+                    justify-content: space-around;
+                    align-items: center;
+                    cursor: pointer;
+                    img, span {
+                        padding: 0 .5rem;
+                    }
                 }
             }
 
@@ -88,6 +108,9 @@
             .bc-product-grid {
                 width: auto;
                 padding: 0;
+            }
+            .mobile-opaque-background { 
+                display: none;
             }
         }
         .products-filter-container {
@@ -138,5 +161,92 @@
         border: 1px solid $functional-light;
         padding: 1rem 0;
         background-color: white;
+    }
+}
+
+@media (max-width: 1215px) {
+    .product-page {
+        .container {
+            max-width: auto !important;
+        }
+        .products-container {
+            margin: 0 1rem !important;
+            .products-filter-container {
+                display: none;
+                height: 100%;
+                position: fixed;
+                background-color: white;
+                left: 0;
+                top: 0;
+                min-width: 80%;
+                z-index: 9999;
+            }
+            .filter-drawer-open {
+                display: block;
+            }
+            .products-section {
+                .mobile-opaque-background {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    left: 0;
+                    bottom: 0;
+                    background-color: rgba(0,0,0,0.5);
+                    z-index: 999;
+                    &.filter-drawer-open {
+                        display: block;
+                    }
+                }
+                .bc-product-grid {
+                    width: 100%;
+                }
+            }
+            .products-header .products-header-split {
+                .toggle-filters {
+                    display: flex;
+                }
+                .above-filter-button {
+                    display: none
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $tablet-bp) {
+    .product-page {
+        .hero {
+            height: 200px;
+            justify-content: end;
+            .hero-title {
+                font-size: 20px;
+                line-height: 24px;
+                letter-spacing: 0.04em;
+                padding: .5rem;
+                background: $functional-darkest
+            }
+        }
+        .products-container {
+            .products-header .products-header-split {
+                width: 50%;
+                &:nth-child(2) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $mobile-bp) {
+    .product-page {
+        .products-container {
+            .products-header .products-header-split {
+                .toggle-filters, .products-quick-filter {
+                    width: 95%;
+                    margin: 0;
+                }
+            }
+        }
     }
 }

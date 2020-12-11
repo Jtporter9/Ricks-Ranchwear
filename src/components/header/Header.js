@@ -13,7 +13,8 @@ const Header = class extends React.Component {
     super(props);
     this.state = {
       active: false,
-      navBarActiveClass: ''
+      navBarActiveClass: '',
+      navBarActiveHelperClasses: ''
     };
   }
 
@@ -28,10 +29,14 @@ const Header = class extends React.Component {
         // set the class in state for the navbar accordingly
         this.state.active
           ? this.setState({
-            navBarActiveClass: 'is-active'
+            navBarActiveClass: 'is-active',
+            navBarActiveHelperClasses: 'animated fadeInLeft'
+
           })
           : this.setState({
-            navBarActiveClass: ''
+            navBarActiveClass: '',
+            navBarActiveHelperClasses: ''
+
           });
       }
     );
@@ -47,8 +52,8 @@ const Header = class extends React.Component {
                 className={`pointer ${this.state.navBarActiveClass}`}
                 data-target="navMenu"
                 onClick={() => this.toggleHamburger()} />
-              <div className={`opqaque-background ${this.state.navBarActiveClass}`} onClick={() => this.toggleHamburger()}></div>
-              <div className={`mobile-menu-drawer ${this.state.navBarActiveClass}`}>
+              <div className={`opaque-background ${this.state.navBarActiveClass}`} onClick={() => this.toggleHamburger()}></div>
+              <div className={`mobile-menu-drawer ${this.state.navBarActiveClass} ${this.state.navBarActiveHelperClasses}`}>
                 <div className="mobile-search-container">
                   <input className="mobile-search" placeholder="Search" />
                 </div>
@@ -177,10 +182,10 @@ const Header = class extends React.Component {
               className={`search-icon pointer ${this.state.navBarActiveClass}`}
               data-target=""
               onClick={() => this.toggleHamburger()} />
-            <Link className="menu-link" to="/help">
+            <Link to="/help">
               Help
             </Link>
-            <Link className="menu-link" to="/login">
+            <Link to="/login">
               Login/Register
             </Link>
             <CartContext.Consumer>

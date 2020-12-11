@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import Footer from './footer/Footer';
-import Navbar from './header/Header';
+import Header from './header/Header';
 import Notify from './bigcommerce/Notify';
 import './all.scss';
 import './Layout.css';
@@ -48,7 +48,7 @@ const TemplateWrapper = ({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       </Helmet>
       <Notify />
-      <Navbar />
+      <Header />
       <div>{children}</div>
       <Footer />
     </div>

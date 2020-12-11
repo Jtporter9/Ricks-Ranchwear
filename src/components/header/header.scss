@@ -58,12 +58,12 @@ header {
         .mobile-menu-drawer {
             visibility: hidden;
             height: 100%;
-            position: absolute;
+            position: fixed;
             background-color: white;
             left: 0;
             top: 0;
             min-width: 80%;
-            z-index: 999;
+            z-index: 9999;
             .mobile-search-container {
                 box-shadow: inset 0px -1px 0px rgba(51, 51, 51, 0.25);
             }
@@ -121,9 +121,9 @@ header {
                 }
             }
         }
-        .opqaque-background {
+        .opaque-background {
             visibility: hidden;
-            position: absolute;
+            position: fixed;
             top: 0;
             right: 0;
             left: 0;
@@ -138,10 +138,12 @@ header {
         text-align: right;
         align-items: center;
         width: 25%;
-        .menu-link {
+        >a {
             font-size: 12px;
             text-transform: none; 
             font-weight: 500;
+            color: $functional-darkest;
+            text-decoration: none;
         }
     }
     
