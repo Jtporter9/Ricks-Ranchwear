@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductCard from '../bigcommerce/ProductCard';
+import Dropdown from '../dropdown/dropdown.js';
 import logo from '../../assets/logo.svg';
 import caretDownLight from '../../assets/caret-down-light.svg';
 import hamburgerLogo from '../../assets/hamburger.svg';
@@ -13,9 +14,12 @@ export default function ProductPageContainer({
     products
 }) {
 
+    const optionsList = ["Best Selling", "Price: Low to High", "Price: High to Low"];
     // STATES
     const [filterDrawerOpen, setfilterDrawerOpen] = useState(false);
     const [filterDrawerActiveClass, setFilterDrawerActiveClass] = useState('');
+    const [filter, setFilter] = useState(optionsList[0]);
+
 
     function toggleFilterDrawer() {
         setfilterDrawerOpen(!filterDrawerOpen);
@@ -23,6 +27,10 @@ export default function ProductPageContainer({
         ? setFilterDrawerActiveClass('filter-drawer-open') 
         : setFilterDrawerActiveClass('')
     }
+
+    // FILTER PRODUCTS
+    filter === optionsList[1] && products.sort((a, b) => (a.price > b.price) ? 1 : -1)
+    filter === optionsList[2] && products.sort((a, b) => (a.price < b.price) ? 1 : -1)
 
     return (
         <div className="product-page">
@@ -54,12 +62,14 @@ export default function ProductPageContainer({
                             <span className="numbered-products-results">{products.length} Resuts</span>
                         </div>
                         <div className="products-header-split">
-                            <select className="products-quick-filter" style={{ background: `url(${caretDownLight}) no-repeat 95% 50%` }}>
-                                <option value="">Best Selling</option>
-                                <option value="">Price: Low to High</option>
-                                <option value="">Price: High to Low</option>
-                                <option value="">Most Relevent</option>
-                            </select>
+                            <Dropdown
+                                dropDownHeadClass="products-quick-filter"
+                                placeholder="Best Selling"
+                                value={filter}
+                                onChange={v => setFilter(v)}
+                                options={optionsList}
+                            />
+
                         </div>
                     </div>
                     <div className="products-section">
