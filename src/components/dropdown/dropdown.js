@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import caretDownLight from '../../assets/caret-down-light.svg';
 
-const Dropdown = ({ dropDownHeadClass, value, options, placeholder = "Select", onChange }) => {
+const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onChange }) => {
   const node = useRef();
 
   const [open, setOpen] = useState(false);
@@ -30,12 +30,12 @@ const Dropdown = ({ dropDownHeadClass, value, options, placeholder = "Select", o
 
   return (
     <div ref={node} className="filter-drop-down">
-        <div className={`${dropDownHeadClass}`} onClick={e => setOpen(!open)}>
+        <div className={`${dropDownClasses.head}`} onClick={e => setOpen(!open)}>
             <span>{value || placeholder}</span>
             <img src={caretDownLight} alt="Dropdown" />
         </div>
         {open && (
-            <ul className={`dropdown-options-container`}>
+            <ul className={`${dropDownClasses.optionContainer}`}>
             {options.map(opt => (
                 <li key={opt} className="dropdown-option" onClick={e => handleChange(opt)}>
                 {opt}

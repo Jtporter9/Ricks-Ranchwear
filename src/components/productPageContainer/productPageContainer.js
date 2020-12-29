@@ -15,6 +15,7 @@ export default function ProductPageContainer({
 }) {
 
     const optionsList = ["Best Selling", "Price: Low to High", "Price: High to Low"];
+    const categoryList = ["Category 1", "Category 2", "Category 3"]
     // STATES
     const [filterDrawerOpen, setfilterDrawerOpen] = useState(false);
     const [filterDrawerActiveClass, setFilterDrawerActiveClass] = useState('');
@@ -29,6 +30,7 @@ export default function ProductPageContainer({
     }
 
     // FILTER PRODUCTS
+    filter === optionsList[0] && products.sort((a, b) => (a.bigcommerce_id > b.bigcommerce_id) ? 1 : -1)
     filter === optionsList[1] && products.sort((a, b) => (a.price > b.price) ? 1 : -1)
     filter === optionsList[2] && products.sort((a, b) => (a.price < b.price) ? 1 : -1)
 
@@ -63,13 +65,12 @@ export default function ProductPageContainer({
                         </div>
                         <div className="products-header-split">
                             <Dropdown
-                                dropDownHeadClass="products-quick-filter"
+                                dropDownClasses={{head: 'products-quick-filter', optionContainer: 'dropdown-options-container'}}
                                 placeholder="Best Selling"
                                 value={filter}
                                 onChange={v => setFilter(v)}
                                 options={optionsList}
                             />
-
                         </div>
                     </div>
                     <div className="products-section">
@@ -82,22 +83,28 @@ export default function ProductPageContainer({
                             <div className="selected-filters">
                                 <span>No Filters Selected</span>
                             </div>
-                            <div>
-                                <select className="filter-dropdown" style={{ background: `url(${caretDownLight}) no-repeat 95% 50%` }}>
-                                    <option value="">Best Selling</option>
-                                    <option value="">Price: Low to High</option>
-                                    <option value="">Price: High to Low</option>
-                                    <option value="">Most Relevent</option>
-                                </select>
-                            </div>
-                            <div>
-                                <select className="filter-dropdown" style={{ background: `url(${caretDownLight}) no-repeat 95% 50%` }}>
-                                    <option value="">Best Selling</option>
-                                    <option value="">Price: Low to High</option>
-                                    <option value="">Price: High to Low</option>
-                                    <option value="">Most Relevent</option>
-                                </select>
-                            </div>
+                            <Dropdown
+                                dropDownClasses={{head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container'}}
+                                placeholder="Category"
+                                value="Category"
+                                onChange={v => setFilter(v)}
+                                options={categoryList}
+                            />
+                            <Dropdown
+                                dropDownClasses={{head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container'}}
+                                placeholder="Category"
+                                value="Category"
+                                onChange={v => setFilter(v)}
+                                options={categoryList}
+                            />
+                            <Dropdown
+                                dropDownClasses={{head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container'}}
+                                placeholder="Category"
+                                value="Category"
+                                onChange={v => setFilter(v)}
+                                options={categoryList}
+                            />
+     
                         </div>
                         <div className="bc-product-grid bc-product-grid--archive bc-product-grid--3col">
                             {products.map(product => (
