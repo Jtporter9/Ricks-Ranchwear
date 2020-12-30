@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 
 import AddToCartButton from '../components/bigcommerce/AddToCartButton';
 import ProductPrices from '../components/bigcommerce/ProductPrices';
 import Layout from '../components/Layout';
+import groupedBoots from '../assets/grouped-boots.svg';
+import infoIcon from '../assets/info-icon.svg';
+
 
 export default ({
   data: {
@@ -58,6 +61,26 @@ export default ({
     bigcommerce_id
   };
 
+  // FIND PRODUCTS OPTIONS
+  let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+  
+  let colorOptions = [];
+  let sizeOptions = [];
+  let widthOptions = [];
+
+  variants.map(variant => variant.option_values.map(option => {
+    option.option_display_name === "Color" && colorOptions.push(option.label)
+    option.option_display_name === "Size" && sizeOptions.push(option.label)
+    option.option_display_name === "Width" && widthOptions.push(option.label)
+  }))
+
+
+  colorOptions = [...new Set(findDuplicates(colorOptions))]; // Unique duplicates
+  sizeOptions = [...new Set(findDuplicates(sizeOptions))]; // Unique duplicates
+  widthOptions = [...new Set(findDuplicates(widthOptions))]; // Unique duplicates
+  sizeOptions = sizeOptions.sort(function(a, b){return a-b});
+  // FIND PRODUCTS OPTIONS
+
   return (
     <Layout>
       <div className="product-details">
@@ -99,16 +122,46 @@ export default ({
               Some kind of rating system :)
             </div>
 
-            <span>
-              <span>SKU:</span>{' '}
-              {sku}
-            </span>
+            <div className="swatch-container">
+                <label>Color</label>
+                <div className="color-swatches">
+                  {colorOptions.map(color => (
+                    <div className="swatch">{color}</div>
+                  ))}
+                </div>
+            </div>
+
+            <div className="swatch-container">
+              <label>Width</label>
+              <div className="width-swatches">
+                {widthOptions.map(width => (
+                  <div className="swatch">{width}</div>
+                ))}
+              </div>
+            </div>
+
+            <div className="swatch-container">
+              <label>Size</label>
+              <div className="size-swatches">
+                {sizeOptions.map(size => (
+                  <div className="swatch">{size}</div>
+                ))}
+                <Link to="/">Size Chart</Link>
+              </div>
+            </div>
+
 
             <AddToCartButton
               productId={bigcommerce_id}
               variantId={variants[0].id}>
               Add to Cart
-                </AddToCartButton>
+            </AddToCartButton>
+
+            <div className="coupon-banner">
+              <img src={groupedBoots} />
+              <strong>Buy 1 and get 2, free!</strong>
+              <img src={infoIcon} />
+            </div>
           </div>
         </section>
         <section className="bc-single-product__description">
@@ -117,7 +170,12 @@ export default ({
               </h4>
           <div
             className="bc-product__description"
-            dangerouslySetInnerHTML={{ __html: description }}></div>
+            dangerouslySetInnerHTML={{ __html: description }}>
+          </div>
+          <p>
+            <span>SKU:</span>{' '}
+            {sku}
+          </p>
         </section>
         <section className="bc-single-product__specifications">
           <h4 className="bc-single-product__section-title">
