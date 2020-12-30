@@ -1,0 +1,445 @@
+// HERO
+.homepage {
+    .homepage-hero {
+        background-color: $red-mid;
+        min-height: 200px;
+        max-height: 550px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .half-hero {
+            width: 50%;
+            text-align: center;
+                img {
+                    width: 200px;
+                }
+                h1 {
+                    color: $white;
+                    font-size: 48px;
+                    line-height: 56px;
+                    letter-spacing: 0.04em;
+                    font-weight: bold;
+                    padding-bottom: 1rem;
+                }
+                p {
+                    color: $white;
+                    padding-bottom: 2rem;
+                }
+                a {
+                    color: $white;
+                    border: 1px solid $white;
+                    font-size: 14px;
+                    letter-spacing: 0.2em;
+                    text-transform: uppercase;
+                    background-color: transparent;
+                    padding: .5rem 2rem;
+                    cursor: pointer;
+                }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .homepage {
+        .homepage-hero {
+            padding: 4rem 1rem;
+            .half-hero {
+                width: 100%;
+            }
+            .hero-right-image{
+                display: none;
+            }
+        } 
+    }
+}
+
+// FIRST CONTENT BLOCK 
+
+.first-content-block {
+    .head {
+        display: flex;
+        justify-content: center;
+        .head-content {
+            text-align: center;
+            padding: 4rem;
+            width: 700px;
+            img {
+                width: 200px;
+                padding-bottom: 2rem;
+            }
+            h2 {
+                font-weight: 900;
+                font-size: 24px;
+                line-height: 32px;
+                text-align: center;
+                letter-spacing: 0.04em;
+                padding-bottom: 1rem;
+            }
+            .subtitle {
+                font-size: 14px;
+                line-height: 24px;
+                text-align: center;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: $red-mid;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .lower {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 75%;
+        margin: auto;
+        .boot-block-link {
+            margin: 1rem;
+            width: 100%;
+            div {
+                height: 300px;
+                width: 100%;
+            }
+            h2 {
+                font-weight: 900;
+                font-size: 48px;
+                line-height: 56px;
+                letter-spacing: 0.04em;
+                padding: 1rem 1rem 0 1rem;
+            }
+            a {
+                text-transform: uppercase;
+                color: $red-mid;
+                padding-left: 1rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .first-content-block {
+        .lower {
+            width: 90%;
+        }
+    }
+}
+
+@media (max-width: 925px) {
+    .first-content-block {
+        .lower {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 815px) {
+    .first-content-block {
+        .lower {
+            display: block;
+            .boot-block-link {
+                margin: 1rem auto;
+                width: 500px;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .first-content-block {
+        .lower {
+            .boot-block-link {
+                width: 100%;
+            }
+        }
+    }
+}
+
+// 2ND HERO 
+
+.homepage {
+    .homepage-hero-2 {
+        background-color: $functional-lightest;
+        min-height: 200px;
+        max-height: 550px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 6rem 0;
+        .half-hero {
+            width: 50%;
+            text-align: center;
+                h2 {
+                    font-size: 48px;
+                    line-height: 56px;
+                    letter-spacing: 0.04em;
+                    font-weight: bold;
+                    padding-bottom: 1rem;
+                }
+                .subtitle {
+                    font-size: 14px;
+                    line-height: 24px;
+                    text-align: center;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: $red-mid;
+                    font-weight: bold;
+                }
+                .description {
+                    padding-bottom: 2rem;
+                    width: 400px;
+                    margin: auto;
+                }
+                a {
+                    color: $white;
+                    border: 1px solid $white;
+                    font-size: 14px;
+                    letter-spacing: 0.2em;
+                    text-transform: uppercase;
+                    background-color: $blue-darkest;
+                    padding: .5rem 2rem;
+                    cursor: pointer;
+                }
+        }
+        .half-hero-right {
+            padding: 1rem;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .homepage {
+        .homepage-hero-2 {
+            display: block;
+            max-height: none;
+            .half-hero {
+                width: 100%;
+            }
+            .half-hero-right {
+                padding: 4rem 1rem;
+            }
+        } 
+    }
+}
+
+@media (max-width: $mobile-bp) {
+    .homepage {
+        .homepage-hero-2 {
+            .half-hero-right {
+                .description {
+                    width: auto;
+                }
+            }
+        } 
+    }
+}
+
+// SECOND CONTENT BLOCK 
+.second-content-block {
+    .head {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 75%;
+        margin: auto;
+        .boot-block-link {
+            margin: 1rem;
+            width: 100%;
+            div {
+                height: 300px;
+                width: 100%;
+            }
+            h2 {
+                font-weight: 900;
+                font-size: 48px;
+                line-height: 56px;
+                letter-spacing: 0.04em;
+                padding: 1rem 1rem 0 1rem;
+            }
+            a {
+                text-transform: uppercase;
+                color: $red-mid;
+                padding-left: 1rem;
+            }
+        }
+    }
+    .top-selling-boots-block {
+        padding-top: 4rem;
+        text-align: center;
+        .top-selling-boots-container {
+            padding: 1rem;
+        }
+        h2 {
+            font-weight: 900;
+            font-size: 24px;
+            line-height: 32px;
+            text-align: center;
+            letter-spacing: 0.04em;
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .second-content-block {
+        .head {
+            width: 90%;
+        }
+    }
+}
+
+@media (max-width: 925px) {
+    .second-content-block {
+        .head {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 815px) {
+    .second-content-block {
+        .head {
+            display: block;
+            .boot-block-link {
+                margin: 1rem auto;
+                width: 500px;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .second-content-block {
+        .head {
+            .boot-block-link {
+                width: 100%;
+            }
+        }
+    }
+}
+
+// 3RD HERO 
+
+.homepage {
+    .homepage-hero-3 {
+        background-color: $functional-lightest;
+        min-height: 200px;
+        max-height: 550px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 4rem 0;
+        .half-hero {
+            width: 50%;
+            text-align: center;
+                h2 {
+                    font-size: 48px;
+                    line-height: 56px;
+                    letter-spacing: 0.04em;
+                    font-weight: bold;
+                    padding-bottom: 1rem;
+                }
+                .subtitle {
+                    font-size: 14px;
+                    line-height: 24px;
+                    text-align: center;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: $red-mid;
+                    font-weight: bold;
+                }
+                .description {
+                    padding-bottom: 2rem;
+                    width: 400px;
+                    margin: auto;
+                }
+                a {
+                    color: $white;
+                    border: 1px solid $white;
+                    font-size: 14px;
+                    letter-spacing: 0.2em;
+                    text-transform: uppercase;
+                    background-color: $blue-darkest;
+                    padding: .5rem 2rem;
+                    cursor: pointer;
+                }
+        }
+        .half-hero-left {
+            padding: 1rem;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .homepage {
+        .homepage-hero-3 {
+            flex-direction: column-reverse;
+            max-height: none;
+            .half-hero {
+                width: 100%;
+            }
+            .half-hero-left {
+                padding: 4rem 1rem;
+            }
+        } 
+    }
+}
+
+@media (max-width: $mobile-bp) {
+    .homepage {
+        .homepage-hero-3 {
+            .half-hero-left {
+                .description {
+                    width: auto;
+                }
+            }
+        } 
+    }
+}
+
+.homepage-cards-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+        width: 33%;
+        padding: 1rem;
+        img {
+            width:100%;
+        }
+        h3 {
+            font-weight: 900;
+            font-size: 24px;
+            line-height: 32px;
+            letter-spacing: 0.04em;
+            padding-bottom: 1rem;
+        }
+        p {
+            padding-bottom: 1rem;
+        }
+        a {
+            text-transform: uppercase;
+            color: $red-mid;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .homepage-cards-section {
+        display: block;
+        div {
+            width: 500px;
+            margin: auto;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .homepage-cards-section {
+        div {
+            width: 100%;
+            padding: 1rem;
+        }
+    }
+}

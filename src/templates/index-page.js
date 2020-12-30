@@ -16,7 +16,8 @@ export const IndexPageTemplate = ({
   bigimage,
   description,
   intro,
-  post
+  post,
+  products
 }) => (
   <HomePageContainer 
     image={image}
@@ -28,6 +29,7 @@ export const IndexPageTemplate = ({
     description={description}
     intro={intro}
     post={post}
+    products={products}
   />
 );
 
@@ -42,11 +44,13 @@ IndexPageTemplate.propTypes = {
   intro: PropTypes.shape({
     blurbs: PropTypes.array
   }),
-  post: PropTypes.object
+  post: PropTypes.object,
+  products: PropTypes.array
 };
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
+  const products = data.allBigCommerceProducts.nodes;
 
   return (
     <Layout>
@@ -60,6 +64,7 @@ const IndexPage = ({ data }) => {
         description={frontmatter.description}
         intro={frontmatter.intro}
         post={data.allMarkdownRemark.edges[0].node}
+        products={products}
       />
     </Layout>
   );
@@ -72,6 +77,9 @@ IndexPage.propTypes = {
     }),
     allMarkdownRemark: PropTypes.shape({
       edges: PropTypes.array,
+    }),
+    allBigCommerceProducts: PropTypes.shape({
+      nodes: PropTypes.array
     })
   })
 };
@@ -80,6 +88,36 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexPageTemplate {
+    allBigCommerceProducts {
+      nodes {
+        id
+        brand_id
+        name
+        sku
+        price
+        calculated_price
+        retail_price
+        sale_price
+        map_price
+        bigcommerce_id
+        custom_url {
+          url
+        }
+        images {
+          url_thumbnail
+          url_standard
+        }
+        variants {
+          product_id
+          id
+          option_values {
+            label
+            option_display_name
+          }
+          sku
+        }
+      }
+    }
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
         title
