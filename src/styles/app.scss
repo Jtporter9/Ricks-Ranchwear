@@ -7,6 +7,7 @@
 @import 'footer/footer.scss';
 @import './product-page.scss';
 @import './homepage.scss';
+@import './product-details.scss';
 
 
 #hero {
@@ -130,3 +131,9 @@
  -webkit-animation-name: fadeInLeft;
  animation-name: fadeInLeft;
  } 
+
+ @media (max-width: $mobile-bp) {
+    .bc-product-grid > .bc-product-card {
+        margin: 0 auto !important;
+    }
+}

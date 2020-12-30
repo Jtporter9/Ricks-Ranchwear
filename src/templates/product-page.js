@@ -2,11 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
-import ProductCard from '../components/bigcommerce/ProductCard';
-import logo from '../assets/logo.svg';
-import caretDownLight from '../assets/caret-down-light.svg';
-import hamburgerLogo from '../assets/hamburger.svg';
-import hamburgerGray from '../assets/hamburger-gray.svg';
 import ProductPageContainer from '../components/productPageContainer/productPageContainer.js';
 
 export const ProductPageTemplate = ({
