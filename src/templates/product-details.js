@@ -31,39 +31,9 @@ export default ({
     }
   }
 }) => {
-  const [selectedImage, updateSelectedImage] = useState(
-    images.length && images[0].url_standard
-  );
-  console.log(
-    {
-      name: name,
-      id: id,
-      bigcommerce_id: bigcommerce_id,
-      sku: sku,
-      price: price,
-      calculated_price: calculated_price,
-      retail_price: retail_price,
-      sale_price: sale_price,
-      map_price: map_price,
-      description: description,
-      weight: weight,
-      variants: variants,
-      images: images
-    }
-  );
-
-  const product = {
-    price,
-    calculated_price,
-    retail_price,
-    sale_price,
-    map_price,
-    bigcommerce_id
-  };
-
   // FIND PRODUCTS OPTIONS
   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
-  
+
   let colorOptions = [];
   let sizeOptions = [];
   let widthOptions = [];
@@ -78,18 +48,55 @@ export default ({
   colorOptions = [...new Set(findDuplicates(colorOptions))]; // Unique duplicates
   sizeOptions = [...new Set(findDuplicates(sizeOptions))]; // Unique duplicates
   widthOptions = [...new Set(findDuplicates(widthOptions))]; // Unique duplicates
-  sizeOptions = sizeOptions.sort(function(a, b){return a-b});
+  sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
   // FIND PRODUCTS OPTIONS
+
+  // STATES 
+  const [selectedImage, updateSelectedImage] = useState(
+    images.length && images[0].url_standard
+  );
+
+  const [activeColor, setActiveColor] = useState(colorOptions[0]);
+  const [activeWidth, setActiveWidth] = useState('');
+  const [activeSize, setActiveSize] = useState('');
+
+  // console.log(
+  //   {
+  //     name: name,
+  //     id: id,
+  //     bigcommerce_id: bigcommerce_id,
+  //     sku: sku,
+  //     price: price,
+  //     calculated_price: calculated_price,
+  //     retail_price: retail_price,
+  //     sale_price: sale_price,
+  //     map_price: map_price,
+  //     description: description,
+  //     weight: weight,
+  //     variants: variants,
+  //     images: images
+  //   }
+  // );
+
+  const product = {
+    price,
+    calculated_price,
+    retail_price,
+    sale_price,
+    map_price,
+    bigcommerce_id
+  };
 
   return (
     <Layout>
       <div className="product-details">
-        <section className="section products-details-head">
+        <section className="section container products-details-head">
           <div className="products-photos-container">
             <div className="side-photos">
               {images.length &&
-                images.map(img => (
+                images.map((img, i) => (
                   <img
+                    key={i}
                     height="100px"
                     width="100px"
                     src={img.url_thumbnail}
@@ -112,7 +119,7 @@ export default ({
           </div>
 
           <div className="products-details-right">
-            
+
             <div className="name-price-container">
               <h1>{name}</h1>
               <ProductPrices product={product} />
@@ -123,28 +130,28 @@ export default ({
             </div>
 
             <div className="swatch-container">
-                <label>Color</label>
-                <div className="color-swatches">
-                  {colorOptions.map(color => (
-                    <div className="swatch">{color}</div>
-                  ))}
-                </div>
+              <label>Color</label>
+              <div className="color-swatches">
+                {colorOptions.map((color, i) => (
+                  <div key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => setActiveColor(color)}>{color}</div>
+                ))}
+              </div>
             </div>
 
             <div className="swatch-container">
               <label>Width</label>
               <div className="width-swatches">
-                {widthOptions.map(width => (
-                  <div className="swatch">{width}</div>
+                {widthOptions.map((width, i) => (
+                  <div key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => setActiveWidth(width)}>{width}</div>
                 ))}
               </div>
             </div>
 
             <div className="swatch-container">
               <label>Size</label>
-              <div className="size-swatches">
-                {sizeOptions.map(size => (
-                  <div className="swatch">{size}</div>
+              <div className="size-swatches"> 
+                {sizeOptions.map((size, i) => (
+                  <div key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => setActiveSize(size)}>{size}</div>
                 ))}
                 <Link to="/">Size Chart</Link>
               </div>

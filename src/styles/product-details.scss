@@ -86,6 +86,11 @@
                             color: $white;
                         }
                     }
+                    .active-swatch {
+                        background: $functional-darkest;
+                        border: 1px solid $functional-darkest;
+                        color: $white;
+                    }
                 }
             }
             .bc-product-card {

@@ -22,10 +22,24 @@ export default function HomePageContainer({
     post,
     products
 }) {
+    // STATES 
+    const [alertBannerState, setAlertBannerState] = useState(true);
     // TOP SELLING 
     products.length = 4;
+
+    function closeAlertBanner() {
+        setAlertBannerState(false)
+    }
+
     return (
         <div className="homepage">
+            {alertBannerState && (
+                <div className="alert-banner">
+                    <p>Boot Factory outlet Uses cookies to improve the user experience. To learn more about our cookie policy, please check our <Link to="/about">Privacy Policy</Link></p>
+                    <button onClick={closeAlertBanner}>Okay</button>
+                </div>
+            )
+            }
             <div className="homepage-hero">
                 <div className="half-hero">
                     <div>
@@ -145,7 +159,7 @@ export default function HomePageContainer({
                     <p>Check out our most awesomest popular boot that ll the coolest peoples in</p>
                     <Link to="/">Learn More</Link>
                 </div>
-            </section> 
+            </section>
         </div>
     )
 }

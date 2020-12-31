@@ -67,24 +67,12 @@
                 font-size: 20px;
                 letter-spacing: 0.01rem;
             }
-            .above-filter-button {
-                width: 294px;
-                height: 40px;
-                background: $red-mid;
-                padding: .5rem 2rem;
-                outline: none;
-                border: none;
-                text-transform: uppercase;
+            .coupon-banner {
                 display: flex;
-                justify-content: space-between;
+                justify-content: initial;
                 align-items: center;
-                span {
-                    color: white;
-                    font-size: 14px;
-                    letter-spacing: 0.2em;
-                }
-                img {
-                    width: 50px;
+                strong {
+                    padding: 0 1rem;
                 }
             }
             .products-quick-filter {
@@ -262,7 +250,7 @@
                 .toggle-filters {
                     display: flex;
                 }
-                .above-filter-button {
+                .coupon-banner {
                     display: none
                 }
             }

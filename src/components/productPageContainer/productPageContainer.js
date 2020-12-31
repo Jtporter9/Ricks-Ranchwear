@@ -3,8 +3,10 @@ import ProductCard from '../bigcommerce/ProductCard';
 import Dropdown from '../dropdown/dropdown.js';
 import logo from '../../assets/logo.svg';
 import caretDownLight from '../../assets/caret-down-light.svg';
-import hamburgerLogo from '../../assets/hamburger.svg';
 import hamburgerGray from '../../assets/hamburger-gray.svg';
+import filterIcon from '../../assets/filter.svg';
+import groupedBoots from '../../assets/grouped-boots.svg';
+
 
 export default function ProductPageContainer({
     image,
@@ -55,10 +57,10 @@ export default function ProductPageContainer({
                                 <img src={hamburgerGray} alt="Filters" />
                                 <span>Filters</span>
                             </button>
-                            <button className="above-filter-button">
-                                <img src={logo} alt="JB Dillon" />
-                                <span>Buy 1, Get 2 Free</span>
-                            </button>
+                            <div className="coupon-banner">
+                                <img src={groupedBoots} />
+                                <strong>Buy 1 and get 2, free!</strong>
+                            </div>
                         </div>
                         <div className="products-header-split">
                             <span className="numbered-products-results">{products.length} Resuts</span>
@@ -77,7 +79,7 @@ export default function ProductPageContainer({
                         <div className={`mobile-opaque-background ${filterDrawerActiveClass}`} onClick={toggleFilterDrawer}></div>
                         <div className={`products-filter-container ${filterDrawerActiveClass}`}>
                             <div className="products-filter-head">
-                                <img src={hamburgerLogo} alt="Mobile Menu" />
+                                <img src={filterIcon} alt="Mobile Menu" />
                                 <span>Filters</span>
                             </div>
                             <div className="selected-filters">

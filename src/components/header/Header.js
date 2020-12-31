@@ -14,8 +14,7 @@ const Header = class extends React.Component {
     this.state = {
       active: false,
       navBarActiveClass: '',
-      navBarActiveHelperClasses: '',
-      alertBannerActive: true
+      navBarActiveHelperClasses: ''
     };
   }
 
@@ -42,23 +41,10 @@ const Header = class extends React.Component {
       }
     );
   };
-  
-  closeAlertBanner = () => {
-    this.setState({alertBannerActive: false});
-  }
-
 
   render() {
     return (
       <header>
-        {this.state.alertBannerActive && (
-            <div className="alert-banner">
-              <p>Boot Factory outlet Uses cookies to improve the user experience. To learn more about our cookie policy, please check our <Link to="/about">Privacy Policy</Link></p>
-              <button onClick={() => this.closeAlertBanner()}>Okay</button>
-            </div>
-          )
-        }
-
         <div className="navbar-menu" role="navigation" aria-label="main-navigation">
           <div className="logo-container">
             <div className="mobile-menu">

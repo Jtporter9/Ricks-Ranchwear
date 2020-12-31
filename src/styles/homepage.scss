@@ -1,5 +1,35 @@
 // HERO
 .homepage {
+    .alert-banner {
+        background-color: $functional-darkest;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 4rem;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 999;
+        p {
+            color: $white;
+            font-size: 12px;
+            line-height: 16px;
+        }
+        button {
+            color: $white;
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background-color: transparent;
+            border: 1px solid $white;
+            padding: .5rem 2rem;
+            cursor: pointer;
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
     .homepage-hero {
         background-color: $red-mid;
         min-height: 200px;
@@ -237,6 +267,9 @@
 
 // SECOND CONTENT BLOCK 
 .second-content-block {
+    .bc-product__meta {
+        text-align: left;
+    }
     .head {
         display: flex;
         justify-content: space-around;
