@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, graphql } from 'gatsby';
-import ProductCard from '../bigcommerce/ProductCard';
 import PhotoGrid from '../PhotoGrid';
 import BlogItem from '../BlogItem';
+import TopSelling from '../topSelling/topSelling.js';
 import bootsImg from '../../assets/boots.svg';
 import logo from '../../assets/logo.svg';
 import dirtyBoots from '../../assets/dirty-boots.jpg';
@@ -115,14 +115,7 @@ export default function HomePageContainer({
                         <Link to="/">Shop</Link>
                     </div>
                 </div>
-                <div className="top-selling-boots-block">
-                    <h2>Top Selling Boots</h2>
-                    <div className="top-selling-boots-container bc-product-grid bc-product-grid--archive bc-product-grid--4col">
-                        {products.map(product => (
-                            <ProductCard key={product.id} product={product} />
-                        ))}
-                    </div>
-                </div>
+                <TopSelling products={products} />
             </section>
 
             <section className="homepage-hero-3">

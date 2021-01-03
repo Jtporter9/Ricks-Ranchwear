@@ -14,13 +14,26 @@
             display: flex;
             width: 55%;
             padding: 0 1rem;
+            flex: 1;
+            max-height: 600px;
             .side-photos {
                 display: flex;
                 flex-direction: column;
+                overflow: scroll;
+                overflow-x: hidden;
+                 /* Hide scrollbar for Chrome, Safari and Opera */
+                ::-webkit-scrollbar {
+                    display: none;
+                }
+                /* Hide scrollbar for IE, Edge and Firefox */
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+                width: 140px;
                 img {
                     margin: 1rem;
                     width: 80px;
                     border: 1px solid $functional-light;
+                    cursor: pointer;
                     &:first-of-type {
                         margin-top: 0;
                     }
@@ -29,10 +42,16 @@
                     }
                 }
             }
+            .selected-image-container {
+                img {
+                    height: 100%;
+                }
+            }
         }
         .products-details-right {
             width: 45%;
             padding: 0 1rem;
+            flex: 1;
             .name-price-container {
                 display: flex;
                 justify-content: space-between;
@@ -119,6 +138,35 @@
                 strong {
                     padding: 0 1rem;
                 }
+            }
+        }
+    }
+    
+    .product-details-container {
+        max-width: 980px;
+        margin: auto;
+        .collapsible {
+            box-shadow: inset 0px -1px 0px #C9C9C9;
+            padding: 2rem;
+            .split-title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                h4 {
+                    font-size: 18px;
+                    line-height: 24px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    margin-bottom: 1rem;
+                    box-shadow: inset 0px -2px 0px $red-mid;
+                }
+                img {
+                    cursor: pointer;
+                }
+            }
+            .collapsible-closed {
+                visibility: hidden;
+                height: 0;
             }
         }
     }
