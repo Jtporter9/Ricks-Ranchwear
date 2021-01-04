@@ -24,8 +24,6 @@ export default function HomePageContainer({
 }) {
     // STATES 
     const [alertBannerState, setAlertBannerState] = useState(true);
-    // TOP SELLING 
-    products.length = 4;
 
     function closeAlertBanner() {
         setAlertBannerState(false)

@@ -10,29 +10,26 @@ import infoIcon from '../assets/info-icon.svg';
 import closeCollapsible from '../assets/close-collapsible.svg';
 import openCollapsible from '../assets/open-collapsible.svg';
 
-export default ({
-  data: {
-    allBigCommerceProducts: {
-      nodes: [
-        {
-          name,
-          id,
-          bigcommerce_id,
-          sku,
-          price,
-          calculated_price,
-          retail_price,
-          sale_price,
-          map_price,
-          description,
-          weight,
-          variants,
-          images
-        }
-      ]
-    }
-  }
-}) => {
+export default (context) => {
+  const { data: { allBigCommerceProducts: { nodes: products } }, pageContext: { productId } } = context;
+  let product = {};
+  
+  products.map(p => {
+    if(p.id === productId) {
+      product = p;
+    } 
+  })
+
+  const { 
+    bigcommerce_id,
+    description,
+    images,
+    name,
+    sku,
+    variants,
+    weight
+   } = product;
+
   // FIND PRODUCTS OPTIONS
   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
 
@@ -66,33 +63,6 @@ export default ({
   const [activeWidth, setActiveWidth] = useState('');
   const [activeSize, setActiveSize] = useState('');
 
-  // console.log(
-  //   {
-  //     name: name,
-  //     id: id,
-  //     bigcommerce_id: bigcommerce_id,
-  //     sku: sku,
-  //     price: price,
-  //     calculated_price: calculated_price,
-  //     retail_price: retail_price,
-  //     sale_price: sale_price,
-  //     map_price: map_price,
-  //     description: description,
-  //     weight: weight,
-  //     variants: variants,
-  //     images: images
-  //   }
-  // );
-
-  const product = {
-    price,
-    calculated_price,
-    retail_price,
-    sale_price,
-    map_price,
-    bigcommerce_id
-  };
-
   function toggleCollapsible (e) {
     e.target.parentNode.nextSibling.className === '' ? e.target.parentNode.nextSibling.className = 'collapsible-closed' : e.target.parentNode.nextSibling.className = ''
     e.target.src === closeCollapsible ? e.target.src = openCollapsible : e.target.src = closeCollapsible
@@ -100,8 +70,8 @@ export default ({
 
   // REMOVE THIS 
   let imagesByColor = [];
-  for(let i = 0; i < images.length; i++) {
-    images[i].description === activeColor && imagesByColor.push(images[i])
+  for(let j = 0; j < images.length; j++) {
+    images[j].description === activeColor && imagesByColor.push(images[j])
   }
 
   return (
@@ -134,18 +104,21 @@ export default ({
                   style={{ objectFit: 'contain' }}
                 />
               </div>
-            </div>
-
-            <div className="products-details-right">
-
               <div className="name-price-container">
                 <h1>{name}</h1>
                 <ProductPrices product={product} />
               </div>
+            </div>
 
+            <div className="products-details-right">
+              <div className="name-price-container">
+                <h1>{name}</h1>
+                <ProductPrices product={product} />
+              </div>
+              {/* 
               <div>
                 Some kind of rating system :)
-              </div>
+              </div> */}
 
               <div className="swatch-container">
                 <label>Color</label>
@@ -174,7 +147,6 @@ export default ({
                   <Link to="/">Size Chart</Link>
                 </div>
               </div>
-
 
               <AddToCartButton
                 productId={bigcommerce_id}
@@ -227,7 +199,9 @@ export default ({
           </div>
         </section>
 
-        {/* <TopSelling product={products}/> */}
+        <section className="section container">
+          <TopSelling products={products}/>
+        </section>
 
       </div>
     </Layout>
@@ -235,8 +209,8 @@ export default ({
 };
 
 export const query = graphql`
-  query($productId: String!) {
-    allBigCommerceProducts(filter: { id: { eq: $productId } }) {
+  query {
+    allBigCommerceProducts {
       nodes {
         id
         bigcommerce_id
@@ -249,6 +223,9 @@ export const query = graphql`
         map_price
         description
         weight
+        custom_url {
+          url
+        }
         images {
           url_standard
           url_thumbnail
