@@ -1,5 +1,7 @@
 ---
 title: Mens Boots
+path: /mens
+templateKey: mens-page
 image: /img/man-motorcycle.jpg
 heading: Testing
 description: Testing
