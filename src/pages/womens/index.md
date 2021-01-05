@@ -1,5 +1,7 @@
 ---
 title: Womens Boots
+path: /womens
+templateKey: womens-page
 image: /img/our-story.jpg
 heading: testing
 description: testing

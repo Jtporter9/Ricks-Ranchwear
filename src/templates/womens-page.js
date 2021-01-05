@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import ProductPageContainer from '../components/productPageContainer/productPageContainer.js';
 
-export const MensPageTemplate = ({
+export const WomensPageTemplate = ({
   image,
   title,
   heading,
@@ -20,7 +20,7 @@ export const MensPageTemplate = ({
   />
 );
 
-MensPageTemplate.propTypes = {
+WomensPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
   heading: PropTypes.string,
@@ -28,13 +28,13 @@ MensPageTemplate.propTypes = {
   products: PropTypes.array
 };
 
-const MensPage = ({ data }) => {
+const WomensPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
   const products = data.allBigCommerceProducts.nodes;
 
   return (
     <Layout>
-      <MensPageTemplate
+      <WomensPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}
         heading={frontmatter.heading}
@@ -45,7 +45,7 @@ const MensPage = ({ data }) => {
   );
 };
 
-MensPage.propTypes = {
+WomensPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.object
@@ -56,10 +56,10 @@ MensPage.propTypes = {
   })
 };
 
-export default MensPage;
+export default WomensPage;
 
-export const mensPageQuery = graphql`
-  query MensPage($id: String!) {
+export const WomensPageQuery = graphql`
+  query WomensPage($id: String!) {
     allBigCommerceProducts {
       nodes {
         id

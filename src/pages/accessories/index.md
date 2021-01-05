@@ -1,5 +1,7 @@
 ---
 title: Accessories
+path: /accessories
+templateKey: accessories-page
 image: /img/accessory-art.jpg
 heading: testing
 description: testing
