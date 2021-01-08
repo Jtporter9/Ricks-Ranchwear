@@ -50,6 +50,15 @@ IndexPageTemplate.propTypes = {
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
+
+  for(let i = 0; i < data.allBigCommerceProducts.nodes.length; i++) {
+    for(let j = 0; j < data.allBigCommerceBrands.edges.length; j++) {
+      if (data.allBigCommerceProducts.nodes[i].brand_id === data.allBigCommerceBrands.edges[j].node.bigcommerce_id) {
+        data.allBigCommerceProducts.nodes[i] = {...data.allBigCommerceProducts.nodes[i], brand: data.allBigCommerceBrands.edges[j].node }
+      }
+    }
+  }
+  
   const products = data.allBigCommerceProducts.nodes;
 
   return (
@@ -106,6 +115,8 @@ export const pageQuery = graphql`
         images {
           url_thumbnail
           url_standard
+          description
+          is_thumbnail
         }
         variants {
           product_id
@@ -115,6 +126,15 @@ export const pageQuery = graphql`
             option_display_name
           }
           sku
+        }
+      }
+    }
+    allBigCommerceBrands {
+      edges {
+        node {
+          id
+          name
+          bigcommerce_id
         }
       }
     }

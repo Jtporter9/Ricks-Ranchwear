@@ -6,6 +6,15 @@ import ProductPrices from './ProductPrices';
 class ProductCard extends React.Component {
   render() {
     const product = this.props.product;
+    const { images } = product;
+    let defaultImage = "";
+    
+    for(let i = 0; i < images.length; i++) {
+      if(images[i].is_thumbnail) {
+        defaultImage = images[i].url_standard
+        break;
+      } 
+    }
 
     return (
       <div className="bc-product-card">
@@ -14,7 +23,7 @@ class ProductCard extends React.Component {
             <img
               className="attachment-bc-medium size-bc-medium"
               src={
-                (product.images.length && product.images[0].url_standard) ||
+                ( product.images.length && (defaultImage ? defaultImage : product.images[0].url_standard)) ||
                 '/img/default-bc-product.png'
               }
               alt={product.name}
@@ -23,6 +32,7 @@ class ProductCard extends React.Component {
         </Link>
 
         <div className="bc-product__meta">
+          <span className="brand-name">{product.brand.name}</span>
           <h3 className="bc-product__title">
             <Link to={`/products${product.custom_url.url}`} className="bc-product__title-link" title={product.name}>{product.name}</Link>
           </h3>

@@ -1,24 +1,45 @@
 header {
+    .global-announcement-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $red-mid;
+        span {
+            padding: .5rem 1rem;
+            font-size: 10px;
+            letter-spacing: 0.01em;
+            color: $white;
+        }
+    }
+    &.sticky {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 99999;
+    }
     .pointer {
         cursor: pointer;
     }
     .desktop-links {
         width: 50%;
+        .desktop-links-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            width: 450px;
+            margin: auto;
+        }
     }
     .navbar-menu {
         box-shadow: inset 0px -1px 0px rgba(51, 51, 51, 0.25);
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width:100%;
         padding: 0 55px;
-        align-items: center;
-
         .logo-container {
             width: 25%;
-            a {
-                display: flex;
-                align-items: center;
-            }
             .mobile-cart {
                 display: none;
             }
@@ -34,7 +55,6 @@ header {
             font-size: 14px;
             text-decoration: none;
             text-transform: uppercase;
-            font-weight: bold;
             &:hover {
                 color: $link-hover-gray;
                 text-decoration: none;
@@ -51,6 +71,9 @@ header {
         img {
             max-width: 100px;
             width: auto;
+        }
+        svg {
+            fill: $white;
         }
         .is-active {
             visibility: visible !important;
@@ -134,16 +157,32 @@ header {
 }
     .navbar-right {
         display: flex;
-        justify-content: space-around;
+        justify-content: end;
         text-align: right;
         align-items: center;
         width: 25%;
-        >a {
+        >.side-link {
             font-size: 12px;
             text-transform: none; 
-            font-weight: 500;
             color: $functional-darkest;
             text-decoration: none;
+            border-bottom: 1px solid $white;
+            margin: 0 1rem;
+            &:hover {
+                color: $functional-dark;
+                text-decoration: none;
+                border-bottom: 1px solid $functional-dark;
+            }
+        }
+        img {
+            border-bottom: .25rem solid $white;
+            padding: .5rem 1rem;
+            width: 60px;
+            &:hover {
+                text-decoration: none;
+                padding-bottom: .5rem;
+                border-bottom: .25rem solid $red-mid;
+            }
         }
     }
     
@@ -224,6 +263,7 @@ header {
                     }
                     .cart-icon-container {
                         padding: 0;
+                        margin-right: -5px;
                     }
                 }
             }

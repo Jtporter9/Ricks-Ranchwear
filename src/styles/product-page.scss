@@ -69,10 +69,14 @@
             }
             .coupon-banner {
                 display: flex;
-                justify-content: initial;
+                justify-content: space-between;
                 align-items: center;
-                strong {
-                    padding: 0 1rem;
+                background-color: $red-mid;
+                padding: .5rem 1rem;
+                span {
+                    padding-left: 1rem;
+                    text-transform: uppercase;
+                    color: $white;
                 }
             }
             .products-quick-filter {
@@ -90,9 +94,6 @@
                 align-items: center;
                 justify-content: space-between;
                 cursor: pointer;
-                &:hover {
-
-                }
                 span {
                     color: $functional-dark;
                     white-space: nowrap;
@@ -171,6 +172,11 @@
         }
         .products-filter-container {
             width: 25%;
+            .sticky {
+                position: sticky;
+                background-color: white;
+                z-index: 99999;
+            }
             .products-filter-head {
                 font-size: 18px;
                 display: flex;
@@ -185,12 +191,19 @@
                 }
             }
             .selected-filters {
-                border: 1px solid $functional-light;
-                font-size: 16px;
-                letter-spacing: 0.01em;
-                color: $functional-dark;
-                padding: .5rem;
-                margin: .5rem 0;
+                margin: 1.5rem 0;
+                .no-selected-filters {
+                    padding: .5rem;
+                    border: 1px solid $functional-light;
+                    width: 162px;
+                    span {
+                        font-weight: normal;
+                        color: $functional-dark;
+                        font-size: 16px;
+                        letter-spacing: 0.01em;
+    
+                    }
+                }
             }
         }
     }
@@ -202,6 +215,13 @@
         border: 1px solid $functional-light;
         padding: 1rem 0;
         background-color: white;
+    }
+    .bc-product-card-image-anchor {
+        &:hover,
+        &:focus,
+        &:active {
+            border: 2px solid $functional-darkest;
+        }
     }
 }
 
@@ -263,6 +283,7 @@
         .hero {
             height: 200px;
             justify-content: end;
+            margin-bottom: .5rem;
             .hero-title {
                 font-size: 20px;
                 line-height: 24px;
@@ -273,10 +294,13 @@
         }
         .products-container {
             .products-header .products-header-split {
-                width: 50%;
+                width: 49%;
                 &:nth-child(2) {
                     display: none;
                 }
+            }
+            .products-section {
+                padding: .5rem 0;
             }
         }
     }
@@ -291,7 +315,7 @@
                 }
                 .products-header-split {
                     .toggle-filters, .products-quick-filter {
-                        width: 95%;
+                        width: 100%;
                         margin: 0;
                         max-height: 40px;
                     }

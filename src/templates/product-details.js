@@ -11,7 +11,17 @@ import closeCollapsible from '../assets/close-collapsible.svg';
 import openCollapsible from '../assets/open-collapsible.svg';
 
 export default (context) => {
-  const { data: { allBigCommerceProducts: { nodes: products } }, pageContext: { productId } } = context;
+  const { data: { allBigCommerceProducts, allBigCommerceBrands }, pageContext: { productId } } = context;
+  
+  for(let i = 0; i < allBigCommerceProducts.nodes.length; i++) {
+    for(let j = 0; j < allBigCommerceBrands.edges.length; j++) {
+      if (allBigCommerceProducts.nodes[i].brand_id === allBigCommerceBrands.edges[j].node.bigcommerce_id) {
+        allBigCommerceProducts.nodes[i] = {...allBigCommerceProducts.nodes[i], brand: allBigCommerceBrands.edges[j].node }
+      }
+    }
+  }
+  
+  const { nodes: products }  = allBigCommerceProducts;
   let product = {};
   
   products.map(p => {
@@ -20,6 +30,7 @@ export default (context) => {
     } 
   })
 
+  
   const { 
     bigcommerce_id,
     description,
@@ -27,8 +38,11 @@ export default (context) => {
     name,
     sku,
     variants,
-    weight
-   } = product;
+    weight,
+    brand: { name: brandName }
+  } = product;
+  
+  console.log(1, product)
 
   // FIND PRODUCTS OPTIONS
   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
@@ -105,14 +119,20 @@ export default (context) => {
                 />
               </div>
               <div className="name-price-container">
-                <h1>{name}</h1>
+                <div>
+                  <span className="brand-name">{brandName}</span>
+                  <h1>{name}</h1>
+                </div>
                 <ProductPrices product={product} />
               </div>
             </div>
 
             <div className="products-details-right">
               <div className="name-price-container">
-                <h1>{name}</h1>
+                <div>
+                  <span>{brandName}</span>
+                  <h1>{name}</h1>
+                </div>
                 <ProductPrices product={product} />
               </div>
               {/* 
@@ -144,7 +164,7 @@ export default (context) => {
                   {sizeOptions.map((size, i) => (
                     <div key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => setActiveSize(size)}>{size}</div>
                   ))}
-                  <Link to="/">Size Chart</Link>
+                  <Link className="size-chart-link" to="/">Size Chart</Link>
                 </div>
               </div>
 
@@ -154,9 +174,14 @@ export default (context) => {
                 Add to Cart
               </AddToCartButton>
 
+              {/* <div className="coupon-banner">
+                <img src={groupedBoots} />
+                <strong>Buy 1 pair, get 2 pair free!</strong>
+                <img src={infoIcon} />
+              </div> */}
               <div className="coupon-banner">
                 <img src={groupedBoots} />
-                <strong>Buy 1 and get 2, free!</strong>
+                <strong>Buy 1 pair, get 2 pair free!</strong>
                 <img src={infoIcon} />
               </div>
             </div>
@@ -213,6 +238,7 @@ export const query = graphql`
     allBigCommerceProducts {
       nodes {
         id
+        brand_id
         bigcommerce_id
         name
         sku
@@ -240,6 +266,15 @@ export const query = graphql`
             option_display_name
           }
           sku
+        }
+      }
+    }
+    allBigCommerceBrands {
+      edges {
+        node {
+          id
+          name
+          bigcommerce_id
         }
       }
     }

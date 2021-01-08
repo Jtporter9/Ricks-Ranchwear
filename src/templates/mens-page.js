@@ -30,6 +30,15 @@ MensPageTemplate.propTypes = {
 
 const MensPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
+
+  for(let i = 0; i < data.allBigCommerceProducts.nodes.length; i++) {
+    for(let j = 0; j < data.allBigCommerceBrands.edges.length; j++) {
+      if (data.allBigCommerceProducts.nodes[i].brand_id === data.allBigCommerceBrands.edges[j].node.bigcommerce_id) {
+        data.allBigCommerceProducts.nodes[i] = {...data.allBigCommerceProducts.nodes[i], brand: data.allBigCommerceBrands.edges[j].node }
+      }
+    }
+  }
+  
   const products = data.allBigCommerceProducts.nodes;
 
   return (
@@ -58,9 +67,13 @@ MensPage.propTypes = {
 
 export default MensPage;
 
+// MENS 24
+// WOMENS 25
+// ACCESSORRIES 26
+
 export const mensPageQuery = graphql`
   query MensPage($id: String!) {
-    allBigCommerceProducts {
+    allBigCommerceProducts(filter: {categories: {eq: 24}}) {
       nodes {
         id
         brand_id
@@ -78,6 +91,8 @@ export const mensPageQuery = graphql`
         images {
           url_thumbnail
           url_standard
+          description
+          is_thumbnail
         }
         variants {
           product_id
@@ -87,6 +102,16 @@ export const mensPageQuery = graphql`
             option_display_name
           }
           sku
+        }
+        categories
+      }
+    }
+    allBigCommerceBrands {
+      edges {
+        node {
+          id
+          name
+          bigcommerce_id
         }
       }
     }
