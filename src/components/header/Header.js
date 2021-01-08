@@ -21,13 +21,6 @@ export default function Header() {
   function toggleHamburger() {
     // toggle the active boolean in the state
     setNavBarActive(!navBarActive);
-    if (navBarActive) {
-      setNavBarActiveClass('is-active');
-      setNavBarActiveHelperClasses('animated fadeInLeft');
-    } else {
-      setNavBarActiveClass('');
-      setNavBarActiveHelperClasses('');
-    }
   };
 
   const ref = useRef(null);
@@ -55,11 +48,11 @@ export default function Header() {
         <div className="logo-container">
           <div className="mobile-menu">
             <img src={hamburgerLogo} alt="Mobile Menu"
-              className={`pointer ${navBarActiveClass}`}
+              className={`pointer ${navBarActive && `is-active`}`}
               data-target="navMenu"
               onClick={toggleHamburger} />
-            <div className={`opaque-background ${navBarActiveClass}`} onClick={toggleHamburger}></div>
-            <div className={`mobile-menu-drawer ${navBarActiveClass} ${navBarActiveHelperClasses}`}>
+            <div className={`opaque-background ${navBarActive && `is-active`}`} onClick={toggleHamburger}></div>
+            <div className={`mobile-menu-drawer ${navBarActive && `is-active`} ${navBarActive && `animated fadeInLeft`}`}>
               <div className="mobile-search-container">
                 <input className="mobile-search" placeholder="Search" />
               </div>

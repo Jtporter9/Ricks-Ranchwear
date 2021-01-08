@@ -220,6 +220,11 @@
 
 @media (max-width: 900px) {
     .product-details {
+        .products-details-head .products-details-right .bc-product-card {
+            .bc-product__actions {
+                width: 100%;
+            }
+        }
         .section {
             padding: 1rem;
         }
@@ -270,16 +275,17 @@
                 .side-photos {
                     flex-direction: row;
                     width: auto;
-                    justify-content: space-between;
-                    flex-wrap: wrap;
+                    overflow-x: scroll;
                     img {
                         width: 55px;
-                        margin-top: 1rem;
+                        margin: 1rem .25rem;
                         &:first-of-type {
                             margin-top: 1rem;
+                            margin-left: 0;
                         }
                         &:last-of-type {
                             margin-bottom: 1rem;
+                            margin-right: 0;
                         }
                     }
                 }

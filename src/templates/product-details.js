@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, graphql } from 'gatsby';
 
 import AddToCartButton from '../components/bigcommerce/AddToCartButton';
@@ -12,26 +12,26 @@ import openCollapsible from '../assets/open-collapsible.svg';
 
 export default (context) => {
   const { data: { allBigCommerceProducts, allBigCommerceBrands }, pageContext: { productId } } = context;
-  
-  for(let i = 0; i < allBigCommerceProducts.nodes.length; i++) {
-    for(let j = 0; j < allBigCommerceBrands.edges.length; j++) {
+
+  for (let i = 0; i < allBigCommerceProducts.nodes.length; i++) {
+    for (let j = 0; j < allBigCommerceBrands.edges.length; j++) {
       if (allBigCommerceProducts.nodes[i].brand_id === allBigCommerceBrands.edges[j].node.bigcommerce_id) {
-        allBigCommerceProducts.nodes[i] = {...allBigCommerceProducts.nodes[i], brand: allBigCommerceBrands.edges[j].node }
+        allBigCommerceProducts.nodes[i] = { ...allBigCommerceProducts.nodes[i], brand: allBigCommerceBrands.edges[j].node }
       }
     }
   }
-  
-  const { nodes: products }  = allBigCommerceProducts;
+
+  const { nodes: products } = allBigCommerceProducts;
   let product = {};
-  
+
   products.map(p => {
-    if(p.id === productId) {
+    if (p.id === productId) {
       product = p;
-    } 
+    }
   })
 
-  
-  const { 
+
+  const {
     bigcommerce_id,
     description,
     images,
@@ -41,8 +41,6 @@ export default (context) => {
     weight,
     brand: { name: brandName }
   } = product;
-  
-  console.log(1, product)
 
   // FIND PRODUCTS OPTIONS
   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
@@ -51,10 +49,14 @@ export default (context) => {
   let sizeOptions = [];
   let widthOptions = [];
 
+  const colorKey = "Color";
+  const sizeKey = "Size";
+  const widthKey = "Width";
+
   variants.map(variant => variant.option_values.map(option => {
-    option.option_display_name === "Color" && colorOptions.push(option.label)
-    option.option_display_name === "Size" && sizeOptions.push(option.label)
-    option.option_display_name === "Width" && widthOptions.push(option.label)
+    option.option_display_name === colorKey && colorOptions.push(option.label)
+    option.option_display_name === sizeKey && sizeOptions.push(option.label)
+    option.option_display_name === widthKey && widthOptions.push(option.label)
   }))
 
 
@@ -66,27 +68,44 @@ export default (context) => {
 
   // STATES 
   const [selectedImage, updateSelectedImage] = useState(() => {
-    for(let i = 0; i < images.length; i++) {
-      if(images[i].is_thumbnail) {
+    for (let i = 0; i < images.length; i++) {
+      if (images[i].is_thumbnail) {
         return images[i].url_standard
-      } 
+      }
     }
   });
 
   const [activeColor, setActiveColor] = useState(colorOptions[0]);
   const [activeWidth, setActiveWidth] = useState('');
   const [activeSize, setActiveSize] = useState('');
+  const [activeVariant, setActiveVariant] = useState(variants[0]);
 
-  function toggleCollapsible (e) {
+  function toggleCollapsible(e) {
     e.target.parentNode.nextSibling.className === '' ? e.target.parentNode.nextSibling.className = 'collapsible-closed' : e.target.parentNode.nextSibling.className = ''
     e.target.src === closeCollapsible ? e.target.src = openCollapsible : e.target.src = closeCollapsible
   }
 
   // REMOVE THIS 
   let imagesByColor = [];
-  for(let j = 0; j < images.length; j++) {
+  for (let j = 0; j < images.length; j++) {
     images[j].description === activeColor && imagesByColor.push(images[j])
   }
+
+  // THIS CAN BE BETTER 
+  function getProductVariant() {
+    variants.forEach(variant => {
+      (
+        variant.option_values[0].label === activeColor &&
+        variant.option_values[1].label === activeSize &&
+        variant.option_values[2].label === activeWidth
+      ) && setActiveVariant(variant);
+    })
+  }
+
+  useEffect(() => { 
+    // SELECTS VARIANT WHEN COLOR, WIDTH, AND SIZE ARE SET
+    (activeColor && activeSize && activeWidth) && getProductVariant()
+   });
 
   return (
     <Layout>
@@ -160,7 +179,7 @@ export default (context) => {
 
               <div className="swatch-container">
                 <label>Size</label>
-                <div className="size-swatches"> 
+                <div className="size-swatches">
                   {sizeOptions.map((size, i) => (
                     <div key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => setActiveSize(size)}>{size}</div>
                   ))}
@@ -169,8 +188,9 @@ export default (context) => {
               </div>
 
               <AddToCartButton
+                disabled={(activeColor && activeSize && activeWidth) ? false : true}
                 productId={bigcommerce_id}
-                variantId={variants[0].id}>
+                variantId={activeVariant.id}>
                 Add to Cart
               </AddToCartButton>
 
@@ -193,7 +213,7 @@ export default (context) => {
             <div className="collapsible">
               <div className="split-title">
                 <h4 className="bc-single-product__section-title">Description</h4>
-                <img src={closeCollapsible} onClick={toggleCollapsible}/>
+                <img src={closeCollapsible} onClick={toggleCollapsible} />
               </div>
               <div className="">
                 <div
@@ -210,7 +230,7 @@ export default (context) => {
             <div className="collapsible">
               <div className="split-title">
                 <h4 className="bc-single-product__section-title">Specifications</h4>
-                <img src={closeCollapsible} onClick={toggleCollapsible}/>
+                <img src={closeCollapsible} onClick={toggleCollapsible} />
               </div>
               <div className="">
                 <ul className="bc-product__spec-list">
@@ -225,7 +245,7 @@ export default (context) => {
         </section>
 
         <section className="section container">
-          <TopSelling products={products}/>
+          <TopSelling products={products} />
         </section>
 
       </div>

@@ -11,13 +11,7 @@ export const ProductPageTemplate = ({
   description,
   products
 }) => (
-  <ProductPageContainer 
-    image={image}
-    title={title}
-    heading={heading}
-    description={description}
-    products={products}
-  />
+  <div>Page does not exsist</div>
 );
 
 ProductPageTemplate.propTypes = {

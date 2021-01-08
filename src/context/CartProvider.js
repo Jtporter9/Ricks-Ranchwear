@@ -73,6 +73,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = (productId, variantId, retry) => {
+    console.log(state, productId, variantId, retry)
     setState({ ...state, addingToCart: productId });
     fetch(`/.netlify/functions/bigcommerce?endpoint=carts/items`, {
       method: 'POST',

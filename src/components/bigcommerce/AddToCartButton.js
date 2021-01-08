@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import CartContext from '../../context/CartProvider';
 
-const AddToCartButton = ({ children, productId, variantId }) => {
+const AddToCartButton = ({ children, productId, variantId, disabled }) => {
   const value = useContext(CartContext);
   const addToCart = value && value.addToCart;
   const addingToCart = value && value.state.addingToCart;
-
   return (
     <div className="bc-product-card">
       <div className="bc-product__actions" data-js="bc-product-group-actions">
@@ -14,7 +13,7 @@ const AddToCartButton = ({ children, productId, variantId }) => {
           <button
             className="bc-btn bc-btn--form-submit bc-btn--add_to_cart"
             type="submit"
-            disabled={addingToCart === productId}
+            disabled={(addingToCart === productId || disabled)}
             onClick={() => addToCart(productId, variantId)}>
             {addingToCart === productId ? 'Adding to Cart' : children}
           </button>
