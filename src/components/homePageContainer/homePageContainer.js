@@ -71,31 +71,39 @@ export default function HomePageContainer({
                 </div>
                 <div className="lower">
                     <div className="boot-block-link" >
-                        <div className="image-block" style={{
-                            background: `url(${dirtyBoots}) no-repeat`
-                        }}></div>
-                        <div className="boot-block-container">
-                            <h2>Mens</h2>
-                            <Link to="/mens">Shop</Link>
-                        </div>
+                        <Link to="/mens">
+                            <div className="image-block" style={{
+                                background: `url(${dirtyBoots}) no-repeat`
+                            }}></div>
+                            <div className="boot-block-container">
+                                <h2>Mens</h2>
+                                <span>Shop</span>
+                            </div>
+                        </Link>
                     </div>
                     <div className="boot-block-link" >
-                        <div className="image-block" style={{
-                            background: `url(${dirtyBoots}) no-repeat`
-                        }}></div>
-                        <div className="boot-block-container">
-                            <h2>Womens</h2>
-                            <Link to="/womens">Shop</Link>
-                        </div>
+                        <Link to="/womens">
+                            <div className="image-block" style={{
+                                background: `url(${dirtyBoots}) no-repeat`
+                            }}></div>
+                            <div className="boot-block-container">
+                                <h2>Womens</h2>
+                                <span>Shop</span>
+                            </div>
+                        </Link>
+
                     </div>
                     <div className="boot-block-link" >
-                        <div className="image-block" style={{
-                            background: `url(${dirtyBoots}) no-repeat`
-                        }}></div>
-                        <div className="boot-block-container">
-                            <h2>Kids</h2>
-                            <Link to="/kids">Shop</Link>
-                        </div>
+                        <Link to="/kids">
+                            <div className="image-block" style={{
+                                background: `url(${dirtyBoots}) no-repeat`
+                            }}></div>
+                            <div className="boot-block-container">
+                                <h2>Kids</h2>
+                                <span>Shop</span>
+                            </div>
+                        </Link>
+
                     </div>
                 </div>
             </section>

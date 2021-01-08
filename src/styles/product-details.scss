@@ -4,7 +4,7 @@
         justify-content: space-between;
         .selected-image-container {
             width: 100%;
-            margin: 0 2rem;
+            margin: 0 1rem;
             img {
                 width: 100%;
                 border: 1px solid $functional-light;
@@ -178,9 +178,10 @@
                 display: flex;
                 justify-content: initial;
                 align-items: center;
-                margin-top: 3rem;
+                margin-top: 1rem;
                 strong {
                     padding: 0 1rem;
+                    text-transform: uppercase;
                 }
             }
         }

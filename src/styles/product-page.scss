@@ -30,7 +30,7 @@
             justify-content: space-between;
             align-items: center;
             .products-header-split {
-                width: 33%;
+                width: auto;
                 display: flex;
                 justify-content: center;
                 text-align: center;
@@ -69,14 +69,12 @@
             }
             .coupon-banner {
                 display: flex;
-                justify-content: space-between;
+                justify-content: initial;
                 align-items: center;
-                background-color: $red-mid;
-                padding: .5rem 1rem;
-                span {
-                    padding-left: 1rem;
+                margin-top: 1rem;
+                strong {
+                    padding: 0 1rem;
                     text-transform: uppercase;
-                    color: $white;
                 }
             }
             .products-quick-filter {

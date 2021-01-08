@@ -29,6 +29,7 @@ MensPageTemplate.propTypes = {
 };
 
 const MensPage = ({ data }) => {
+  console.log(1, data)
   const { frontmatter } = data.markdownRemark;
 
   for(let i = 0; i < data.allBigCommerceProducts.nodes.length; i++) {

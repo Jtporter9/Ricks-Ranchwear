@@ -144,6 +144,10 @@
             margin: .5rem;
             width: 100%;
             border: 1px solid $functional-light;
+            &:hover {
+                border: 1px solid $functional-darkest;
+                opacity: .8;
+            }
             .image-block {
                 height: 300px;
                 width: 100%;
@@ -151,6 +155,7 @@
             .boot-block-container {
                 text-align: center;
                 padding: 1.5rem 0;
+
                 h2 {
                     font-weight: 900;
                     font-size: 48px;
@@ -159,7 +164,7 @@
                     padding-left: 1rem 0;
                     text-transform: uppercase;
                 }
-                a {
+                span {
                     text-transform: uppercase;
                     color: $red-mid;
                     padding-left: 1rem 0;

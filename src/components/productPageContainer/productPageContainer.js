@@ -5,7 +5,8 @@ import Dropdown from '../dropdown/dropdown.js';
 import logo from '../../assets/logo.svg';
 import caretDownLight from '../../assets/caret-down-light.svg';
 import filterIcon from '../../assets/filter.svg';
-import groupedBootsWhite from '../../assets/grouped-boots-white.svg';
+import infoIcon from '../../assets/info-icon.svg';
+import groupedBoots from '../../assets/grouped-boots.svg';
 
 
 export default function ProductPageContainer({
@@ -73,8 +74,9 @@ export default function ProductPageContainer({
                                 <span>Filters</span>
                             </button>
                             <div className="coupon-banner">
-                                <img src={groupedBootsWhite} />
-                                <span>Buy 1 pair, get 2 pair free!</span>
+                                <img src={groupedBoots} />
+                                <strong>Buy 1 pair, get 2 pair free!</strong>
+                                <img src={infoIcon} />
                             </div>
                         </div>
                         <div className="products-header-split">
