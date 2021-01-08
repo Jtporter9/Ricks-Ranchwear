@@ -20,16 +20,15 @@ export default (context) => {
       }
     }
   }
-
+  
   const { nodes: products } = allBigCommerceProducts;
   let product = {};
-
+  
   products.map(p => {
     if (p.id === productId) {
       product = p;
     }
   })
-
 
   const {
     bigcommerce_id,
@@ -159,11 +158,13 @@ export default (context) => {
                 Some kind of rating system :)
               </div> */}
 
+              {activeVariant.inventory_level === 0 && <div className={`out-of-stock-message`}>This selection you made is out of stock.</div>}
+
               <div className="swatch-container">
                 <label>Color</label>
                 <div className="color-swatches">
                   {colorOptions.map((color, i) => (
-                    <div key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => setActiveColor(color)}>{color}</div>
+                    <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => setActiveColor(color)}>{color}</button>
                   ))}
                 </div>
               </div>
@@ -172,7 +173,7 @@ export default (context) => {
                 <label>Width</label>
                 <div className="width-swatches">
                   {widthOptions.map((width, i) => (
-                    <div key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => setActiveWidth(width)}>{width}</div>
+                    <button key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => setActiveWidth(width)}>{width}</button>
                   ))}
                 </div>
               </div>
@@ -181,24 +182,19 @@ export default (context) => {
                 <label>Size</label>
                 <div className="size-swatches">
                   {sizeOptions.map((size, i) => (
-                    <div key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => setActiveSize(size)}>{size}</div>
+                    <button key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => setActiveSize(size)}>{size}</button>
                   ))}
                   <Link className="size-chart-link" to="/">Size Chart</Link>
                 </div>
               </div>
 
               <AddToCartButton
-                disabled={(activeColor && activeSize && activeWidth) ? false : true}
+                disabled={activeColor && activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
                 variantId={activeVariant.id}>
                 Add to Cart
               </AddToCartButton>
-
-              {/* <div className="coupon-banner">
-                <img src={groupedBoots} />
-                <strong>Buy 1 pair, get 2 pair free!</strong>
-                <img src={infoIcon} />
-              </div> */}
+                  
               <div className="coupon-banner">
                 <img src={groupedBoots} />
                 <strong>Buy 1 pair, get 2 pair free!</strong>
@@ -277,6 +273,7 @@ export const query = graphql`
           url_thumbnail
           description
           is_thumbnail
+          sort_order
         }
         variants {
           product_id
@@ -286,6 +283,7 @@ export const query = graphql`
             option_display_name
           }
           sku
+          inventory_level
         }
       }
     }

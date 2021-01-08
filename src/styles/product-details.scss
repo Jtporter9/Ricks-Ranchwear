@@ -107,10 +107,20 @@
         }
         .products-details-right {
             width: 45%;
-            padding: 0 1rem;
-            flex: 1;
+            padding: 0 .5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .out-of-stock-message {
+                font-weight: bold;
+                font-size: 12px;
+                line-height: 24px;
+                letter-spacing: 0.2em;
+                margin: 1rem 0;
+                text-transform: uppercase;
+            }
             .swatch-container {
-                padding: 1rem 0;
+                padding: .5rem 0;
                 .size-chart-link {
                     margin: .25rem;
                 }
@@ -136,6 +146,7 @@
                         color: $functional-dark;
                     }
                     .swatch {
+                        font-weight: 500;
                         padding: 8px 16px;
                         background: $white;
                         border: 1px solid $functional-light;
@@ -158,6 +169,7 @@
             }
             .bc-product-card {
                 flex-direction: initial;
+                margin: .5rem 0;
                 .bc-product__actions {
                     width: auto;
                 }
