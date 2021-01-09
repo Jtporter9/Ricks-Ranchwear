@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link, graphql } from 'gatsby';
 import AppContext from '../../context/AppContext';
 import PhotoGrid from '../PhotoGrid';
@@ -27,26 +27,16 @@ export default function HomePageContainer({
     products
 }) {
     // GET GLOBAL APP CONTEXT 
-    const myContext = useContext(AppContext);
-    // STATES 
-    const [alertBannerState, setAlertBannerState] = useState(true);
+    const { alertBanner, toggleAlertBanner } = useContext(AppContext);
 
-    function closeAlertBanner() {
-        setAlertBannerState(false)
-    }
-
-    useEffect(() => { 
-        localStorage.setItem('alertBannerState', alertBannerState)
-       });
-
-       console.log(10, myContext)
+       console.log(10, alertBanner, toggleAlertBanner)
 
     return (
         <div className="homepage">
-            {alertBannerState && (
+            {alertBanner && (
                 <div className="alert-banner">
                     <p>Boot Factory outlet Uses cookies to improve the user experience. To learn more about our cookie policy, please check our <Link to="/about">Privacy Policy</Link></p>
-                    <button onClick={closeAlertBanner}>Okay</button>
+                    <button onClick={toggleAlertBanner}>Okay</button>
                 </div>
             )
         }
