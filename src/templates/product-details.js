@@ -157,7 +157,7 @@ export default (context) => {
               <div className="selected-image-container">
                 <img
                   src={
-                    (selectedImage.url_standard && selectedImage.url_standard) ||
+                    (selectedImage && selectedImage.url_standard) ||
                     '/img/default-bc-product.png'
                   }
                   alt="Main"

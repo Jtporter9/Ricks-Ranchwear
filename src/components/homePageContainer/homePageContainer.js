@@ -29,7 +29,7 @@ export default function HomePageContainer({
     // GET GLOBAL APP CONTEXT 
     const myContext = useContext(AppContext);
     // STATES 
-    const [alertBannerState, setAlertBannerState] = useState(localStorage.getItem('alertBannerState') ? localStorage.getItem('alertBannerState') : true);
+    const [alertBannerState, setAlertBannerState] = useState(true);
 
     function closeAlertBanner() {
         setAlertBannerState(false)
@@ -43,7 +43,7 @@ export default function HomePageContainer({
 
     return (
         <div className="homepage">
-            {alertBannerState === true && (
+            {alertBannerState && (
                 <div className="alert-banner">
                     <p>Boot Factory outlet Uses cookies to improve the user experience. To learn more about our cookie policy, please check our <Link to="/about">Privacy Policy</Link></p>
                     <button onClick={closeAlertBanner}>Okay</button>
