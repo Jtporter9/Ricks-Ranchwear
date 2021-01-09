@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, graphql } from 'gatsby';
 import PhotoGrid from '../PhotoGrid';
 import BlogItem from '../BlogItem';
@@ -26,21 +26,25 @@ export default function HomePageContainer({
     products
 }) {
     // STATES 
-    const [alertBannerState, setAlertBannerState] = useState(true);
+    const [alertBannerState, setAlertBannerState] = useState(localStorage.getItem('alertBannerState') ? localStorage.getItem('alertBannerState') : true);
 
     function closeAlertBanner() {
         setAlertBannerState(false)
     }
 
+    useEffect(() => { 
+        localStorage.setItem('alertBannerState', alertBannerState)
+       });
+
     return (
         <div className="homepage">
-            {alertBannerState && (
+            {alertBannerState === true && (
                 <div className="alert-banner">
                     <p>Boot Factory outlet Uses cookies to improve the user experience. To learn more about our cookie policy, please check our <Link to="/about">Privacy Policy</Link></p>
                     <button onClick={closeAlertBanner}>Okay</button>
                 </div>
             )
-            }
+        }
             <div className="homepage-hero"
                 style={{
                     backgroundImage: `url(${!!image.childImageSharp ? image.childImageSharp.fluid.src : image

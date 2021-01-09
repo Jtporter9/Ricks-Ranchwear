@@ -20,10 +20,10 @@ export default (context) => {
       }
     }
   }
-  
+
   const { nodes: products } = allBigCommerceProducts;
   let product = {};
-  
+
   products.map(p => {
     if (p.id === productId) {
       product = p;
@@ -40,6 +40,7 @@ export default (context) => {
     weight,
     brand: { name: brandName }
   } = product;
+
 
   // FIND PRODUCTS OPTIONS
   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
@@ -65,11 +66,13 @@ export default (context) => {
   sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
   // FIND PRODUCTS OPTIONS
 
+  images.sort((a, b) => (a.sort_order > b.sort_order) ? 1 : -1)
+
   // STATES 
   const [selectedImage, updateSelectedImage] = useState(() => {
     for (let i = 0; i < images.length; i++) {
       if (images[i].is_thumbnail) {
-        return images[i].url_standard
+        return images[i]
       }
     }
   });
@@ -78,16 +81,37 @@ export default (context) => {
   const [activeWidth, setActiveWidth] = useState('');
   const [activeSize, setActiveSize] = useState('');
   const [activeVariant, setActiveVariant] = useState(variants[0]);
+  const [activeImagesByColor, setActiveImagesByColor] = useState(() => getActiveImagesByColor());
+
+  function getActiveImagesByColor() {
+    let imagesByColor = []
+    for (let j = 0; j < images.length; j++) {
+      images[j].description === activeColor && imagesByColor.push(images[j])
+    }
+    return imagesByColor;
+  }
 
   function toggleCollapsible(e) {
     e.target.parentNode.nextSibling.className === '' ? e.target.parentNode.nextSibling.className = 'collapsible-closed' : e.target.parentNode.nextSibling.className = ''
     e.target.src === closeCollapsible ? e.target.src = openCollapsible : e.target.src = closeCollapsible
   }
 
-  // REMOVE THIS 
-  let imagesByColor = [];
-  for (let j = 0; j < images.length; j++) {
-    images[j].description === activeColor && imagesByColor.push(images[j])
+  // THIS CAN ALSO BE BETTER 
+
+  // setActiveImagesByColor(() => {
+  //   images.map(image => {
+  //     return image.description === activeColor && image
+  //   })
+  // })
+  // for (let j = 0; j < images.length; j++) {
+  //   images[j].description === activeColor && activeImagesByColor.push(images[j])
+  // }
+
+
+  function updateSelectedDetail(type, data) {
+    type === colorKey && setActiveColor(data);
+    type === widthKey && setActiveWidth(data);
+    type === sizeKey && setActiveSize(data);
   }
 
   // THIS CAN BE BETTER 
@@ -101,10 +125,14 @@ export default (context) => {
     })
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     // SELECTS VARIANT WHEN COLOR, WIDTH, AND SIZE ARE SET
     (activeColor && activeSize && activeWidth) && getProductVariant()
-   });
+    // UPDATE SIDE PHOTOS
+    activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor())
+    // UPDATE MAIN IMAGE
+    selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0])
+  });
 
   return (
     <Layout>
@@ -113,8 +141,8 @@ export default (context) => {
           <div className="products-details-head">
             <div className="products-photos-container">
               <div className="side-photos">
-                {imagesByColor.length &&
-                  imagesByColor.map((img, i) => (
+                {activeImagesByColor.length &&
+                  activeImagesByColor.map((img, i) => (
                     <img
                       key={i}
                       height="100px"
@@ -122,14 +150,14 @@ export default (context) => {
                       src={img.url_thumbnail}
                       alt="Thumb"
                       key={JSON.stringify(img)}
-                      onClick={() => updateSelectedImage(img.url_standard)}
+                      onClick={() => updateSelectedImage(img)}
                     />
                   ))}
               </div>
               <div className="selected-image-container">
                 <img
                   src={
-                    (selectedImage && selectedImage) ||
+                    (selectedImage.url_standard && selectedImage.url_standard) ||
                     '/img/default-bc-product.png'
                   }
                   alt="Main"
@@ -158,13 +186,11 @@ export default (context) => {
                 Some kind of rating system :)
               </div> */}
 
-              {activeVariant.inventory_level === 0 && <div className={`out-of-stock-message`}>This selection you made is out of stock.</div>}
-
               <div className="swatch-container">
                 <label>Color</label>
                 <div className="color-swatches">
                   {colorOptions.map((color, i) => (
-                    <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => setActiveColor(color)}>{color}</button>
+                    <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
                   ))}
                 </div>
               </div>
@@ -173,7 +199,7 @@ export default (context) => {
                 <label>Width</label>
                 <div className="width-swatches">
                   {widthOptions.map((width, i) => (
-                    <button key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => setActiveWidth(width)}>{width}</button>
+                    <button key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(widthKey, width)}>{width}</button>
                   ))}
                 </div>
               </div>
@@ -182,11 +208,13 @@ export default (context) => {
                 <label>Size</label>
                 <div className="size-swatches">
                   {sizeOptions.map((size, i) => (
-                    <button key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => setActiveSize(size)}>{size}</button>
+                    <button key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(sizeKey, size)}>{size}</button>
                   ))}
                   <Link className="size-chart-link" to="/">Size Chart</Link>
                 </div>
               </div>
+
+              {activeVariant.inventory_level === 0 && <div className={`out-of-stock-message`}>This selection you made is out of stock.</div>}
 
               <AddToCartButton
                 disabled={activeColor && activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
@@ -194,7 +222,7 @@ export default (context) => {
                 variantId={activeVariant.id}>
                 Add to Cart
               </AddToCartButton>
-                  
+
               <div className="coupon-banner">
                 <img src={groupedBoots} />
                 <strong>Buy 1 pair, get 2 pair free!</strong>
@@ -251,7 +279,7 @@ export default (context) => {
 
 export const query = graphql`
   query {
-    allBigCommerceProducts {
+    allBigCommerceProducts(sort: {fields: images___sort_order}) {
       nodes {
         id
         brand_id
