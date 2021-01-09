@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { LocalStorage } from "node-localstorage";
 import { Helmet } from 'react-helmet';
 import Footer from './footer/Footer';
 import Header from './header/Header';
@@ -12,15 +13,22 @@ const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
 
   const [alertBanner, setAlertBanner] = useState(true);
+  const [globalLocalStorage, setGlobalLocalStorage] = useState(new LocalStorage('./scratch'));
 
   const toggleAlertBanner = () => {
     console.log('yes')
     setAlertBanner(false);
   };
 
+  const setGlobalStorage = (obj) => {
+    setGlobalLocalStorage(obj)
+  }
+
   const globalState = {
     alertBanner: alertBanner,
     toggleAlertBanner,
+    globalLocalStorage: globalLocalStorage,
+    setGlobalStorage
   };
 
   return (

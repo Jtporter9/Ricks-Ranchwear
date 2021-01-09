@@ -27,9 +27,9 @@ export default function HomePageContainer({
     products
 }) {
     // GET GLOBAL APP CONTEXT 
-    const { alertBanner, toggleAlertBanner } = useContext(AppContext);
+    const { alertBanner, toggleAlertBanner, globalLocalStorage, setGlobalStorage } = useContext(AppContext);
 
-       console.log(10, alertBanner, toggleAlertBanner)
+    console.log(10, alertBanner, toggleAlertBanner, globalLocalStorage, setGlobalStorage)
 
     return (
         <div className="homepage">
