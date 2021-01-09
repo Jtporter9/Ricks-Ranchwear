@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, graphql } from 'gatsby';
+import AppContext from '../../context/AppContext';
 import PhotoGrid from '../PhotoGrid';
 import BlogItem from '../BlogItem';
 import TopSelling from '../topSelling/topSelling.js';
@@ -25,6 +26,8 @@ export default function HomePageContainer({
     post,
     products
 }) {
+    // GET GLOBAL APP CONTEXT 
+    const myContext = useContext(AppContext);
     // STATES 
     const [alertBannerState, setAlertBannerState] = useState(localStorage.getItem('alertBannerState') ? localStorage.getItem('alertBannerState') : true);
 
@@ -35,6 +38,8 @@ export default function HomePageContainer({
     useEffect(() => { 
         localStorage.setItem('alertBannerState', alertBannerState)
        });
+
+       console.log(10, myContext)
 
     return (
         <div className="homepage">
