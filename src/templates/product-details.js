@@ -104,17 +104,22 @@ export default (context) => {
   // THIS CAN BE BETTER 
   function getProductVariant() {
     variants.forEach(variant => {
-      (
-        variant.option_values[0].label === activeColor &&
-        variant.option_values[1].label === activeSize &&
-        variant.option_values[2].label === activeWidth
-      ) && setActiveVariant(variant);
+      if (variant.option_values.length == 3) {
+        return variant.option_values[0].label === activeColor &&
+          variant.option_values[1].label === activeSize &&
+          variant.option_values[2].label === activeWidth
+          && setActiveVariant(variant);
+      } else if (variant.option_values.length == 2) {
+        return variant.option_values[0].label === activeSize &&
+          variant.option_values[1].label === activeWidth
+          && setActiveVariant(variant);
+      }
     })
   }
 
   useEffect(() => {
     // SELECTS VARIANT WHEN COLOR, WIDTH, AND SIZE ARE SET
-    (activeColor && activeSize && activeWidth) && getProductVariant()
+    (activeSize && activeWidth) && getProductVariant()
     // UPDATE SIDE PHOTOS
     activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor())
     // UPDATE MAIN IMAGE
