@@ -41,7 +41,6 @@ export default (context) => {
     brand: { name: brandName }
   } = product;
 
-
   // FIND PRODUCTS OPTIONS
   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
 
@@ -77,7 +76,7 @@ export default (context) => {
     }
   });
 
-  const [activeColor, setActiveColor] = useState(colorOptions[0]);
+  const [activeColor, setActiveColor] = useState(colorOptions.length > 0 ? colorOptions[0] : "");
   const [activeWidth, setActiveWidth] = useState('');
   const [activeSize, setActiveSize] = useState('');
   const [activeVariant, setActiveVariant] = useState(variants[0]);
@@ -86,7 +85,7 @@ export default (context) => {
   function getActiveImagesByColor() {
     let imagesByColor = []
     for (let j = 0; j < images.length; j++) {
-      images[j].description === activeColor && imagesByColor.push(images[j])
+      images[j].description ? images[j].description === activeColor && imagesByColor.push(images[j]) : imagesByColor.push(images[j])
     }
     return imagesByColor;
   }
@@ -95,18 +94,6 @@ export default (context) => {
     e.target.parentNode.nextSibling.className === '' ? e.target.parentNode.nextSibling.className = 'collapsible-closed' : e.target.parentNode.nextSibling.className = ''
     e.target.src === closeCollapsible ? e.target.src = openCollapsible : e.target.src = closeCollapsible
   }
-
-  // THIS CAN ALSO BE BETTER 
-
-  // setActiveImagesByColor(() => {
-  //   images.map(image => {
-  //     return image.description === activeColor && image
-  //   })
-  // })
-  // for (let j = 0; j < images.length; j++) {
-  //   images[j].description === activeColor && activeImagesByColor.push(images[j])
-  // }
-
 
   function updateSelectedDetail(type, data) {
     type === colorKey && setActiveColor(data);
@@ -131,7 +118,7 @@ export default (context) => {
     // UPDATE SIDE PHOTOS
     activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor())
     // UPDATE MAIN IMAGE
-    selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0])
+    activeImagesByColor[0].description ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
   });
 
   return (
@@ -189,9 +176,12 @@ export default (context) => {
               <div className="swatch-container">
                 <label>Color</label>
                 <div className="color-swatches">
-                  {colorOptions.map((color, i) => (
-                    <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
-                  ))}
+                  {colorOptions.length > 0 ?
+                    colorOptions.map((color, i) => (
+                      <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
+                    ))
+                    : <p>No color variants exist for this product.</p>
+                  }
                 </div>
               </div>
 
@@ -215,9 +205,8 @@ export default (context) => {
               </div>
 
               {activeVariant.inventory_level === 0 && <div className={`out-of-stock-message`}>This selection you made is out of stock.</div>}
-
               <AddToCartButton
-                disabled={activeColor && activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
+                disabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
                 variantId={activeVariant.id}>
                 Add to Cart

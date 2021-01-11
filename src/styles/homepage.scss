@@ -138,7 +138,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 80%;
+        width: 100%;
         margin: auto;
         .boot-block-link {
             margin: .5rem;
@@ -173,6 +173,15 @@
         }
     }
 }
+
+@media (max-width: 1715px) {
+    .first-content-block {
+        .lower {
+            width: 80%;
+        }
+    }
+}
+
 
 @media (max-width: 1415px) {
     .first-content-block {
