@@ -69,10 +69,10 @@ export default function ProductPageContainer({
                 <div className="container">
                     <div className="products-header">
                         <div className="products-header-split">
-                            <button className="toggle-filters" onClick={toggleFilterDrawer}>
+                            {/* <button className="toggle-filters" onClick={toggleFilterDrawer}>
                                 <img src={filterIcon} alt="Mobile Filters" />
                                 <span>Filters</span>
-                            </button>
+                            </button> */}
                             <div className="coupon-banner">
                                 <img src={groupedBoots} />
                                 <strong>Buy 1 pair, get 2 pair free!</strong>
@@ -129,7 +129,7 @@ export default function ProductPageContainer({
         
                             </div>
                         </div>
-                        <div className="bc-product-grid bc-product-grid--archive bc-product-grid--3col">
+                        <div className="bc-product-grid bc-product-grid--archive bc-product-grid--4col">
                             {products.map(product => (
                                 <ProductCard key={product.id} product={product} />
                             ))}

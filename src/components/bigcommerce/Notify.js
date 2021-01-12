@@ -22,13 +22,13 @@ export default () => {
 const Notification = ({ id, text, type }) => {
   const value = useContext(CartContext);
   const removeNotification = value && value.removeNotification;
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      removeNotification(id);
-    }, 7000);
-    return () => clearTimeout(timer);
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     removeNotification(id);
+  //   }, 7000);
+  //   return () => clearTimeout(timer);
+  //   // eslint-disable-next-line
+  // }, []);
 
   return (
     <article className="Notification Animate">

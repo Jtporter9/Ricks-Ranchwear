@@ -166,10 +166,10 @@ export default function HomePageContainer({
                     <Link to="/">Learn More</Link>
                 </div>
             </section> */}
-
+{/* 
             <section className="container">
                 REVIEWS
-            </section>
+            </section> */}
         </div>
     )
 }

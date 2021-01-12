@@ -209,12 +209,11 @@ export default (context) => {
                 </div>
               </div>
 
-              {activeVariant.inventory_level === 0 && <div className={`out-of-stock-message`}>This selection you made is out of stock.</div>}
               <AddToCartButton
                 disabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
                 variantId={activeVariant.id}>
-                Add to Cart
+                {activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart'}
               </AddToCartButton>
 
               <div className="coupon-banner">
