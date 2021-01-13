@@ -7,6 +7,9 @@ import bootsImg from '../../assets/boots.svg';
 import logo from '../../assets/logo.svg';
 import dirtyBoots from '../../assets/dirty-boots.jpg';
 import bootsBlueBg from '../../assets/boots-blue-bg.jpg';
+import mensBoots from '../../assets/boots-in-hand.jpg';
+import womensBoots from '../../assets/womens-boots.jpg';
+import kidsBoots from '../../assets/kids-boots.jpg';
 import openSign from '../../assets/open-sign.jpg';
 import horseShowBend from '../../assets/horseshoebend.jpg';
 import bootCountryLogo from '../../assets/boot-country-logo.svg';
@@ -73,7 +76,7 @@ export default function HomePageContainer({
                     <div className="boot-block-link" >
                         <Link to="/mens">
                             <div className="image-block" style={{
-                                background: `url(${dirtyBoots}) no-repeat`
+                                background: `url(${mensBoots}) no-repeat`
                             }}></div>
                             <div className="boot-block-container">
                                 <h2>Mens</h2>
@@ -84,7 +87,7 @@ export default function HomePageContainer({
                     <div className="boot-block-link" >
                         <Link to="/womens">
                             <div className="image-block" style={{
-                                background: `url(${dirtyBoots}) no-repeat`
+                                background: `url(${womensBoots}) no-repeat`
                             }}></div>
                             <div className="boot-block-container">
                                 <h2>Womens</h2>
@@ -96,7 +99,7 @@ export default function HomePageContainer({
                     <div className="boot-block-link" >
                         <Link to="/kids">
                             <div className="image-block" style={{
-                                background: `url(${dirtyBoots}) no-repeat`
+                                background: `url(${kidsBoots}) no-repeat`
                             }}></div>
                             <div className="boot-block-container">
                                 <h2>Kids</h2>
