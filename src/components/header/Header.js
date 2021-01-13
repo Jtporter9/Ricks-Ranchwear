@@ -122,8 +122,9 @@ export default function Header() {
               <div className="mobile-menu-checkout-container">
                 <CartContext.Consumer>
                   {value => {
+                    const addNotification = value && value.addNotification;
                     return (
-                      <Link className="menu-item-bigcommerce-cart cart-icon-container" to="/cart">
+                      <div className="menu-item-bigcommerce-cart cart-icon-container" onClick={() => addNotification('test')}>
                         <button>
                           <img src={cartIconWhite} />
                           <span>View Cart</span>
@@ -132,7 +133,7 @@ export default function Header() {
                               <span>( {value.state.cart.numberItems} )</span>
                             )}
                         </button>
-                      </Link>
+                      </div>
                     );
                   }}
                 </CartContext.Consumer>
@@ -151,14 +152,15 @@ export default function Header() {
               onClick={toggleHamburger} />
             <CartContext.Consumer>
               {value => {
+                const addNotification = value && value.addNotification;
                 return (
-                  <Link className="navbar-item menu-item-bigcommerce-cart cart-icon-container" to="/cart">
+                  <div className="navbar-item menu-item-bigcommerce-cart cart-icon-container" onClick={() => addNotification('test')}>
                     <img src={cartIcon} alt="Cart" />
                     {value &&
                       value.state.cart && (
                         <span className="bigcommerce-cart__item-count full">{value.state.cart.numberItems}</span>
                       )}
-                  </Link>
+                  </div>
                 );
               }}
             </CartContext.Consumer>
@@ -208,15 +210,16 @@ export default function Header() {
         </Link>
           <CartContext.Consumer>
             {value => {
+              const addNotification = value && value.addNotification;
               return (
-                <Link className="menu-item-bigcommerce-cart cart-icon-container" to="/cart">
+                <div className="menu-item-bigcommerce-cart cart-icon-container" onClick={() => addNotification('test')}>
                   <img src={cartIcon} alt="Cart" />
                   {value &&
                     value.state.cart &&
                     value.state.cart.numberItems > 0 && (
                       <span className="bigcommerce-cart__item-count full">{value.state.cart.numberItems}</span>
                     )}
-                </Link>
+                </div>
               );
             }}
           </CartContext.Consumer>

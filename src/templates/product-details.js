@@ -85,8 +85,13 @@ export default (context) => {
   function getActiveImagesByColor() {
     let imagesByColor = []
     for (let j = 0; j < images.length; j++) {
-      images[j].description ? images[j].description === activeColor && imagesByColor.push(images[j]) : imagesByColor.push(images[j])
+      if (activeColor) {
+        images[j].description ? images[j].description === activeColor && imagesByColor.push(images[j]) : imagesByColor.push(images[j])
+      } else {
+        imagesByColor.push(images[j])
+      }
     }
+
     return imagesByColor;
   }
 
@@ -121,7 +126,7 @@ export default (context) => {
     // SELECTS VARIANT WHEN COLOR, WIDTH, AND SIZE ARE SET
     (activeSize && activeWidth) && getProductVariant()
     // UPDATE SIDE PHOTOS
-    activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor())
+    activeColor && (activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor()))
     // UPDATE MAIN IMAGE
     activeImagesByColor[0].description ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
   });
@@ -212,7 +217,7 @@ export default (context) => {
               <AddToCartButton
                 disabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
-                variantId={activeVariant.id}>
+                variant={activeVariant}>
                 {activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart'}
               </AddToCartButton>
 

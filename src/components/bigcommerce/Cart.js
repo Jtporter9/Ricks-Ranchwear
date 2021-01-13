@@ -10,10 +10,10 @@ const AdjustItem = props => {
   const { item, updatingItem, cartType } = props;
   let minusBtn, plusBtn;
 
-  if (cartType === 'full') {
+  // if (cartType === 'full') {
     minusBtn = (
       <button
-        className="bc-btn"
+        className="side-btn"
         onClick={() => props.updateCartItemQuantity(item, 'minus')}>
         -
       </button>
@@ -21,19 +21,19 @@ const AdjustItem = props => {
 
     plusBtn = (
       <button
-        className="bc-btn"
+        className="side-btn"
         onClick={() => props.updateCartItemQuantity(item, 'plus')}>
         +
       </button>
     )
-  }
+  // }
 
   return (
     <div className="bc-cart-item-quantity">
       {minusBtn}
 
       {updatingItem === item.id ? <Loader /> : <div>{item.quantity}</div>}
-      
+
       {plusBtn}
     </div>
   );
@@ -47,30 +47,25 @@ const CustomItems = props => {
   return (
     <>
       {items.map(item => {
-        if (cartType === 'full') {
-          itemImage = (
-            <div className="bc-cart-item-image">
-              <img src="/img/default-bc-product.png" alt={`${item.name}`} />
-              <button
-                className="bc-link bc-cart-item__remove-button"
-                onClick={() => props.removeItemFromCart(item.id)}
-                type="button">
-                Remove
-              </button>
-            </div>
-          )
-        }
-
         return (
           <div className="bc-cart-item" key={item.id}>
-            {itemImage}
-            
             <div className="bc-cart-item-meta">
-              <h3 className="bc-cart-item__product-title">{item.name}</h3>
-              <span className="bc-cart-item__product-brand">{item.sku}</span>
+              <img
+                src={
+                  (item.image_url && item.image_url) ||
+                  '/img/default-bc-product.png'
+                }
+                alt={item.name}
+                style={{ objectFit: 'contain' }}
+              />
             </div>
-            
-            <AdjustItem {...props} item={item} cartType={cartType} />
+
+            <div>
+              <h3 className="bc-cart-item__product-title">{item.name}</h3>
+              {/* <span className="bc-cart-item__product-brand">{item.sku}</span> */}
+              <AdjustItem {...props} item={item} cartType={cartType} />
+            </div>
+
 
             <div className="bc-cart-item-total-price">
               <CurrencyFormatter
@@ -93,32 +88,28 @@ const StandardItems = props => {
   return (
     <>
       {items.map(item => {
-        if (cartType === 'full') {
-          itemImage = (
-            <div className="bc-cart-item-image">
-              <img src={item.image_url} alt={`${item.name}`} />
-              <button
-                className="bc-link bc-cart-item__remove-button"
-                onClick={() => props.removeItemFromCart(item.id)}
-                type="button">
-                Remove
-              </button>
-            </div>
-          )
-        }
-
         return (
           <div className="bc-cart-item" key={item.id}>
-            {itemImage}
-            
             <div className="bc-cart-item-meta">
-              <h3 className="bc-cart-item__product-title">{item.name}</h3>
-              <span className="bc-cart-item__product-brand">{item.sku}</span>
+              <img
+                src={
+                  (item.image_url && item.image_url) ||
+                  '/img/default-bc-product.png'
+                }
+                alt={item.name}
+                style={{ objectFit: 'contain' }}
+              />
             </div>
 
-            <AdjustItem {...props} item={item} cartType={cartType} />
+            <div className="cart-details-meta">
+              <h3 className="bc-cart-item__product-title">{item.name}</h3>
+              {/* <span className="bc-cart-item__product-brand">{item.sku}</span> */}
+              <AdjustItem {...props} item={item} cartType={cartType} />
+            </div>
+
 
             <div className="bc-cart-item-total-price">
+              <a className="remove-item-link" onClick={() => props.removeItemFromCart(item.id)}>REMOVE</a>
               <CurrencyFormatter
                 currency={props.currency.code}
                 amount={item.list_price}
@@ -139,36 +130,31 @@ const GiftCertificateItems = props => {
   return (
     <>
       {items.map(item => {
-        if (cartType === 'full') {
-          itemImage = (
-            <div className="bc-cart-item-image">
-              <button
-                className="bc-link bc-cart-item__remove-button"
-                onClick={() => props.removeItemFromCart(item.id)}
-                type="button">
-                Remove
-              </button>
-            </div>
-          )
-        }
-
         return (
           <div className="bc-cart-item" key={item.id}>
-            {itemImage}
-
             <div className="bc-cart-item-meta">
-              <h3 className="bc-cart-item__product-title">
-                {item.name} - Gift Certificate for {item.recipient.name}
-              </h3>
-              <span className="bc-cart-item__product-brand">
-                Theme: {item.theme}
-              </span>
+              <img
+                src={
+                  (item.image_url && item.image_url) ||
+                  '/img/default-bc-product.png'
+                }
+                alt={item.name}
+                style={{ objectFit: 'contain' }}
+              />
             </div>
 
+            <div className="cart-details-meta">
+              <h3 className="bc-cart-item__product-title">{item.name}</h3>
+              {/* <span className="bc-cart-item__product-brand">{item.sku}</span> */}
+              <AdjustItem {...props} item={item} cartType={cartType} />
+            </div>
+
+
             <div className="bc-cart-item-total-price">
+              <a className="remove-item-link" onClick={() => props.removeItemFromCart(item.id)}>REMOVE</a>
               <CurrencyFormatter
                 currency={props.currency.code}
-                amount={item.amount}
+                amount={item.list_price}
               />
             </div>
           </div>
@@ -181,10 +167,11 @@ const GiftCertificateItems = props => {
 const Cart = class extends React.Component {
   render() {
     const cartType = this.props.cartType;
-    let cartFooter;             
+    let cartFooter;
 
     return (
       <CartContext.Consumer>
+        {/* {console.log()} */}
         {value => {
           if (!value) {
             return null;
@@ -221,7 +208,7 @@ const Cart = class extends React.Component {
                       <button
                         className="bc-btn bc-cart-actions__checkout-button"
                         type="submit">
-                        Proceed to Checkout
+                        Proceed to Checkouts
                       </button>
                     </form>
                   </div>
@@ -231,16 +218,16 @@ const Cart = class extends React.Component {
           }
 
           return (
-            <div className="container">
+            <div className="container cart-page">
               <section className="bc-cart">
                 <div className="bc-cart-error">
                   <p className="bc-cart-error__message"></p>
                 </div>
-                <header className="bc-cart-header">
+                {/* <header className="bc-cart-header">
                   <div className="bc-cart-header__item">Item</div>
                   <div className="bc-cart-header__qty">Qty</div>
                   <div className="bc-cart-header__price">Price</div>
-                </header>
+                </header> */}
                 {state.cartLoading ? (
                   <div className="bc-cart__empty">
                     <h2 className="bc-cart__title--empty">
@@ -282,15 +269,15 @@ const Cart = class extends React.Component {
                     />
                   </div>
                 ) : (
-                  <div className="bc-cart__empty">
-                    <h2 className="bc-cart__title--empty">
-                      Your cart is empty.
+                      <div className="bc-cart__empty">
+                        <h2 className="bc-cart__title--empty">
+                          Your cart is empty.
                     </h2>
-                    <Link to="/products" className="bc-cart__continue-shopping">
-                      Take a look around.
+                        <Link to="/products" className="bc-cart__continue-shopping">
+                          Take a look around.
                     </Link>
-                  </div>
-                )}
+                      </div>
+                    )}
 
                 {cartFooter}
               </section>

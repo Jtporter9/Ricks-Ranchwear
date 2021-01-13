@@ -25,7 +25,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeNotification = id => {
-    updateNotifications(notifications.filter(ntfy => ntfy.id !== id));
+    id ? updateNotifications(notifications.filter(ntfy => ntfy.id !== id)) : updateNotifications([])
   };
 
   const fetchCart = () => {
@@ -72,8 +72,9 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-const addToCart = (productId, variantId, retry) => {
-    setState({ ...state, addingToCart: productId });
+const addToCart = (productId, variant, retry) => {
+  const { id: variantId } = variant;
+  setState({ ...state, addingToCart: productId });
     fetch(`/.netlify/functions/bigcommerce?endpoint=carts/items`, {
       method: 'POST',
       credentials: 'same-origin',

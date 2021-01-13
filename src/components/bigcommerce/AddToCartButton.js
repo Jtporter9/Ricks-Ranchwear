@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import CartContext from '../../context/CartProvider';
 
-const AddToCartButton = ({ children, productId, variantId, disabled }) => {
+const AddToCartButton = ({ children, productId, variant, disabled }) => {
   const value = useContext(CartContext);
   const addToCart = value && value.addToCart;
   const addingToCart = value && value.state.addingToCart;
@@ -14,7 +14,7 @@ const AddToCartButton = ({ children, productId, variantId, disabled }) => {
             className="bc-btn bc-btn--form-submit bc-btn--add_to_cart"
             type="submit"
             disabled={(addingToCart === productId || disabled)}
-            onClick={() => addToCart(productId, variantId)}>
+            onClick={() => addToCart(productId, variant)}>
             {addingToCart === productId ? 'Adding to Cart' : children}
           </button>
         </div>

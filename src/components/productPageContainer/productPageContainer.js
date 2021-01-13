@@ -16,7 +16,6 @@ export default function ProductPageContainer({
     description,
     products
 }) {
-
     const optionsList = ["Best Selling", "Price: Low to High", "Price: High to Low"];
     const categoryList = ["Category 1", "Category 2", "Category 3"]
     // STATES
