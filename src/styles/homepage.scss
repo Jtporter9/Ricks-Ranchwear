@@ -151,6 +151,7 @@
             .image-block {
                 height: 300px;
                 width: 100%;
+                background-size: cover;
             }
             .boot-block-container {
                 text-align: center;
@@ -208,17 +209,18 @@
             display: block;
             .boot-block-link {
                 margin: 1rem auto;
-                width: 500px;
+                width: 350px;
             }
         }
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 450px) {
     .first-content-block {
         .lower {
             .boot-block-link {
-                width: 100%;
+                width: auto;
+                margin: 1rem;
             }
         }
     }

@@ -38,7 +38,8 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`${isSticky ? ' sticky' : ''}`} ref={ref}>
+    // <header className={`${isSticky ? ' sticky' : ''}`} ref={ref}>
+    <header id="header" className='sticky' ref={ref}>
       <div className="global-announcement-bar">
         <img src={groupedBootsWhite} />
         <span>Buy 1 pair, get 2 pair free!</span>

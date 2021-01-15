@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Footer from './footer/Footer';
 import Header from './header/Header';
@@ -9,6 +9,14 @@ import useSiteMetadata from './SiteMetadata';
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
+  const [headerHeight, setHeaderHeight] = useState(0)
+
+  
+  useEffect(() => {
+    const offset = document.getElementById("header").offsetHeight;
+    setHeaderHeight(offset - 1)
+  })
+
   return (
     <div>
       <Helmet>
@@ -49,7 +57,7 @@ const TemplateWrapper = ({ children }) => {
       </Helmet>
       <Notify />
       <Header />
-      <div>{children}</div>
+      <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
       <Footer />
     </div>
   );
