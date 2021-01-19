@@ -13,38 +13,19 @@ export const AboutPageTemplate = ({
   const PageContent = contentComponent || Content
 
   return (
-    <div className="content">
-      <div
-        className="full-width-image-container margin-top-0"
+    <div className="about-page">
+      <div className="hero"
         style={{
-          backgroundImage: `url(${
-            !!image.childImageSharp ? image.childImageSharp.fluid.src : image
-          })`
+          backgroundImage: `url(${!!image.childImageSharp ? image.childImageSharp.fluid.src : image
+            })`
         }}>
-        <h2
-          className="has-text-weight-bold is-size-1"
-          style={{
-            boxShadow: '0.5rem 0 0 rgba(0, 0, 0, 0.75), -0.5rem 0 0 rgba(0, 0, 0, 0.75)',
-            backgroundColor: 'rgba(0, 0, 0, 0.75)',
-            color: 'white',
-            padding: '1rem'
-          }}>
-          {title}
-        </h2>
-      </div>
-      
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
-              <PageContent className="content" content={content} />
-            </div>
-          </div>
+        <div className="opaque-overlay"></div>
+        <div className="hero-content-container">
+          <h1>ABOUT US</h1>
+          <p>something goes here</p>
         </div>
       </div>
+
     </div>
   )
 }

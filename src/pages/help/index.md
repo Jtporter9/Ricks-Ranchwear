@@ -1,5 +1,7 @@
 ---
 title: Help
+path: /help
+templateKey: help-page
 image: /img/help-hero.jpg
 heading: test
 description: test

@@ -1,0 +1,64 @@
+// HERO
+.about-page {
+    .hero {
+        min-height: 200px;
+        height: 600px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        .opaque-overlay {
+            background: linear-gradient(0deg, #000000 10.26%, rgba(0, 0, 0, 0) 63.27%);            
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9;
+        }
+        .hero-content-container {
+            text-align: center;
+            z-index: 99;
+            img {
+                width: 200px;
+            }
+            h1 {
+                color: $white;
+                font-size: 48px;
+                line-height: 56px;
+                letter-spacing: 0.04em;
+                font-weight: 900;
+                padding: 1rem 0;
+            }
+            p {
+                color: $white;
+                padding-bottom: 2rem;
+                font-weight: 400;
+            }
+            a {
+                color: $white;
+                border: 1px solid $white;
+                font-size: 14px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                background-color: transparent;
+                padding: 0.5rem 2rem;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .homepage {
+        .homepage-hero {
+            padding: 4rem 1rem;
+            height: auto;
+        }
+    }
+}
+

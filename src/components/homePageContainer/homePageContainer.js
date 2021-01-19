@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import PhotoGrid from '../PhotoGrid';
 import BlogItem from '../BlogItem';
 import TopSelling from '../topSelling/topSelling.js';
