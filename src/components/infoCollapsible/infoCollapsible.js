@@ -10,11 +10,11 @@ export default function InfoCollapsible(props) {
 
     return (
         <div>
-            <button type="button" className={`collapsible ${collapsibleState && 'collapsible-active'} ${last && 'last'}`} onClick={() => setCollapsibleState(!collapsibleState)}>
-                <span className="collapsible-title">{title}</span>
+            <button type="button" className={`info-collapsible ${collapsibleState && 'info-collapsible-active'} ${last && 'last'}`} onClick={() => setCollapsibleState(!collapsibleState)}>
+                <span className="info-collapsible-title">{title}</span>
                 <img src={collapsibleState ? minusIcon : plusIcon} alt={collapsibleState ? 'close' : 'open'} />    
             </button>
-            <div style={{ display: `${collapsibleState ? 'block' : 'none'}` }} className="collapsible-meta">
+            <div style={{ display: `${collapsibleState ? 'block' : 'none'}` }} className="info-collapsible-meta">
                 <p>{content}</p>
             </div>
         </div>
