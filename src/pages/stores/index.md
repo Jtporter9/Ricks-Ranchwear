@@ -1,5 +1,7 @@
 ---
 title: Stores Page
+path: /stores
+templateKey: stores-page
 image: /img/about-us-hero.jpg
 heading: test
 description: test
