@@ -35,7 +35,6 @@ store1:
     Let our knowledgeable sales staff help you find the perfect fit. We look forward to making your shopping experience something you'll always remember.  Come on in and see how much fun it can be to Buy One Pair, Get Two Pair Free!
   hours: |-
     Mon - Sat | 10:00am to 9:00pm
-
     Sun | 11:00am to 6:00pm
   address:
     street: "7336 Market Street "
