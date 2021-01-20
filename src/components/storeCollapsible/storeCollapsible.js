@@ -13,8 +13,17 @@ export default function StoreCollapsible(props) {
         company,
         image,
         location,
-        state
+        state,
+        hours,
+        address: {
+            city_state,
+            post_code,
+            street
+        },
+        phone
     } } = props;
+
+    console.log(hours)
 
 
     // STATES 
@@ -41,17 +50,17 @@ export default function StoreCollapsible(props) {
                     <div className="icon-container-split">
                         <img src={timeIconRed} alt="hours"/>
                         <span>Hours</span>
-                        <p>blah</p>
+                        <p>{hours}</p>
                     </div>
                     <div className="icon-container-split">
                         <img src={locationIconRed} alt="location"/>
                         <span>Address</span>
-                        <p>blah</p>
+                        <p>{street}<br />{city_state} {post_code}</p>
                     </div>
                     <div className="icon-container-split">
                         <img src={phoneIconRed} alt="phone number"/>
                         <span>Phone</span>
-                        <p>blah</p>
+                        <p>{phone}</p>
                     </div>
                 </div>
             </div>

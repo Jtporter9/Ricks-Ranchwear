@@ -73,6 +73,13 @@ export const storesPageQuery = graphql`
                 }
               }
             }
+            hours 
+            phone
+            address {
+              city_state
+              post_code
+              street
+            }
           }
         store2 {
             body
@@ -85,6 +92,13 @@ export const storesPageQuery = graphql`
                   ...GatsbyImageSharpFluid
                 }
               }
+            }
+            hours
+            phone
+            address {
+              city_state
+              post_code
+              street
             }
           }
         store3 {
@@ -99,6 +113,13 @@ export const storesPageQuery = graphql`
                 }
               }
             }
+            hours
+            phone
+            address {
+              city_state
+              post_code
+              street
+            }
           }
         store4 {
             body
@@ -111,6 +132,13 @@ export const storesPageQuery = graphql`
                   ...GatsbyImageSharpFluid
                 }
               }
+            }
+            hours
+            phone
+            address {
+              city_state
+              post_code
+              street
             }
           }
       }

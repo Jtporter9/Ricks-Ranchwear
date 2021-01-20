@@ -920,15 +920,21 @@ collections:
                 { label: Company, name: company, widget: string },
                 { label: Location, name: location, widget: string },
                 { label: "Body", name: "body", widget: "markdown" },
-                { label: "Hours", name: "hours", widget: "markdown" },
+                { 
+                  label: "Hours", 
+                  name: "hours", 
+                  widget: object, 
+                  fields: [
+                    { label: "Body", name: "body", widget: "markdown" }
+                  ]
+                },
                 { 
                   label: "Address", 
                   name: "address", 
                   widget: object, 
-                  collapsed: true,
                   fields: [
                     {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City", name: "city", widget: "string"},
+                    {label: "City, State", name: "city-state", widget: "string"},
                     {label: "Postal Code", name: "post-code", widget: "string"}
                   ]
                 },
@@ -946,15 +952,21 @@ collections:
                 { label: Company, name: company, widget: string },
                 { label: Location, name: location, widget: string },
                 { label: "Body", name: "body", widget: "markdown" },
-                { label: "Hours", name: "hours", widget: "markdown" },
+                { 
+                  label: "Hours", 
+                  name: "hours", 
+                  widget: object, 
+                  fields: [
+                    { label: "Body", name: "body", widget: "markdown" }
+                  ]
+                },
                 { 
                   label: "Address", 
                   name: "address", 
                   widget: object, 
-                  collapsed: true,
                   fields: [
                     {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City", name: "city", widget: "string"},
+                    {label: "City, State", name: "city-state", widget: "string"},
                     {label: "Postal Code", name: "post-code", widget: "string"}
                   ]
                 },
@@ -972,15 +984,21 @@ collections:
                 { label: Company, name: company, widget: string },
                 { label: Location, name: location, widget: string },
                 { label: "Body", name: "body", widget: "markdown" },
-                { label: "Hours", name: "hours", widget: "markdown" },
+                { 
+                  label: "Hours", 
+                  name: "hours", 
+                  widget: object, 
+                  fields: [
+                    { label: "Body", name: "body", widget: "markdown" }
+                  ]
+                },
                 { 
                   label: "Address", 
                   name: "address", 
                   widget: object, 
-                  collapsed: true,
                   fields: [
                     {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City", name: "city", widget: "string"},
+                    {label: "City, State", name: "city-state", widget: "string"},
                     {label: "Postal Code", name: "post-code", widget: "string"}
                   ]
                 },
@@ -998,15 +1016,21 @@ collections:
                 { label: Company, name: company, widget: string },
                 { label: Location, name: location, widget: string },
                 { label: "Body", name: "body", widget: "markdown" },
-                { label: "Hours", name: "hours", widget: "markdown" },
+                { 
+                  label: "Hours", 
+                  name: "hours", 
+                  widget: object, 
+                  fields: [
+                    { label: "Body", name: "body", widget: "markdown" }
+                  ]
+                },
                 { 
                   label: "Address", 
                   name: "address", 
                   widget: object, 
-                  collapsed: true,
                   fields: [
                     {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City", name: "city", widget: "string"},
+                    {label: "City, State", name: "city-state", widget: "string"},
                     {label: "Postal Code", name: "post-code", widget: "string"}
                   ]
                 },
