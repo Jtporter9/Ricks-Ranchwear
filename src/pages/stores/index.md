@@ -11,7 +11,7 @@ intro:
   description: test
 title: Stores Page
 store1:
-  state: "OHIO "
+  state: OHIO
   image: /img/ohio-store.jpg
   company: Boot Factory Outlet
   location: Youngstown, OH
