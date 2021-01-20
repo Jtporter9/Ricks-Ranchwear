@@ -909,103 +909,108 @@ collections:
               default: "stores-page",
             }
           - { label: Title, name: title, widget: string }
-          - { label: Image, name: image, widget: image }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Description, name: description, widget: string }
           - {
-              label: Intro,
-              name: intro,
+              label: Store 1,
+              name: store1,
               widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
+              summary: "{{fields.state}}",
+              fields: [
+                { label: State, name: state, widget: string },
+                { label: Image, name: image, widget: image },
+                { label: Company, name: company, widget: string },
+                { label: Location, name: location, widget: string },
+                { label: "Body", name: "body", widget: "markdown" },
+                { label: "Hours", name: "hours", widget: "markdown" },
+                { 
+                  label: "Address", 
+                  name: "address", 
+                  widget: object, 
+                  collapsed: true,
+                  fields: [
+                    {label: "Street Address", name: "street", widget: "string"},
+                    {label: "City", name: "city", widget: "string"},
+                    {label: "Postal Code", name: "post-code", widget: "string"}
+                  ]
+                },
+                { label: "Phone", name: "phone", widget: "string" }
+                ]
             }
           - {
-              label: Main,
-              name: main,
+              label: Store 2,
+              name: store2,
               widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
+              summary: "{{fields.state}}",
+              fields: [
+                { label: State, name: state, widget: string },
+                { label: Image, name: image, widget: image },
+                { label: Company, name: company, widget: string },
+                { label: Location, name: location, widget: string },
+                { label: "Body", name: "body", widget: "markdown" },
+                { label: "Hours", name: "hours", widget: "markdown" },
+                { 
+                  label: "Address", 
+                  name: "address", 
+                  widget: object, 
+                  collapsed: true,
+                  fields: [
+                    {label: "Street Address", name: "street", widget: "string"},
+                    {label: "City", name: "city", widget: "string"},
+                    {label: "Postal Code", name: "post-code", widget: "string"}
+                  ]
+                },
+                { label: "Phone", name: "phone", widget: "string" }
+                ]
             }
           - {
-              label: Testimonials,
-              name: testimonials,
-              widget: list,
-              fields:
-                [
-                  { label: Quote, name: quote, widget: string },
-                  { label: Author, name: author, widget: string },
-                ],
-            }
-          - { label: Full_image, name: full_image, widget: image }
-          - {
-              label: Pricing,
-              name: pricing,
+              label: Store 3,
+              name: store3,
               widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: string },
-                  {
-                    label: Plans,
-                    name: plans,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Plan, name: plan, widget: string },
-                        { label: Price, name: price, widget: string },
-                        {
-                          label: Description,
-                          name: description,
-                          widget: string,
-                        },
-                        { label: Items, name: items, widget: list },
-                      ],
-                  },
-                ],
+              summary: "{{fields.state}}",
+              fields: [
+                { label: State, name: state, widget: string },
+                { label: Image, name: image, widget: image },
+                { label: Company, name: company, widget: string },
+                { label: Location, name: location, widget: string },
+                { label: "Body", name: "body", widget: "markdown" },
+                { label: "Hours", name: "hours", widget: "markdown" },
+                { 
+                  label: "Address", 
+                  name: "address", 
+                  widget: object, 
+                  collapsed: true,
+                  fields: [
+                    {label: "Street Address", name: "street", widget: "string"},
+                    {label: "City", name: "city", widget: "string"},
+                    {label: "Postal Code", name: "post-code", widget: "string"}
+                  ]
+                },
+                { label: "Phone", name: "phone", widget: "string" }
+                ]
             }
+          - {
+              label: Store 4,
+              name: store4,
+              widget: object,
+              summary: "{{fields.state}}",
+              fields: [
+                { label: State, name: state, widget: string },
+                { label: Image, name: image, widget: image },
+                { label: Company, name: company, widget: string },
+                { label: Location, name: location, widget: string },
+                { label: "Body", name: "body", widget: "markdown" },
+                { label: "Hours", name: "hours", widget: "markdown" },
+                { 
+                  label: "Address", 
+                  name: "address", 
+                  widget: object, 
+                  collapsed: true,
+                  fields: [
+                    {label: "Street Address", name: "street", widget: "string"},
+                    {label: "City", name: "city", widget: "string"},
+                    {label: "Postal Code", name: "post-code", widget: "string"}
+                  ]
+                },
+                { label: "Phone", name: "phone", widget: "string" }
+                ]
+            }
+            

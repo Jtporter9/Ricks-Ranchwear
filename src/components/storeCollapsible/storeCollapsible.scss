@@ -1,0 +1,106 @@
+.store-collapsible {
+    .info-collapsible {
+        cursor: pointer;
+        padding: 1rem 4rem;
+        width: 100%;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: $white;
+        border-top: 1px solid $functional-light;
+        .info-collapsible-title {
+            max-width: 80%;
+            text-align: left;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 32px;
+            line-height: 40px;
+            text-align: center;
+            letter-spacing: 0.04em;
+        }
+    }
+    
+    .info-collapsible:hover {
+        background-color: rgba(51,51,51,.1);
+    }
+    
+    .info-collapsible-active {
+        border-bottom: none;
+    }
+    
+    .info-collapsible-meta {
+        padding: 1rem;
+        overflow: hidden;
+        padding-bottom: 4rem;
+        .store-info-split {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            .split-left,
+            .split-right {
+                width: 49%;
+                span {
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 24px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: $functional-dark;
+                }
+                h3 {
+                    font-style: normal;
+                    font-weight: 900;
+                    font-size: 32px;
+                    line-height: 40px;
+                    letter-spacing: 0.04em;
+                    margin-bottom: 1.5rem;
+                }
+                p {
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 24px;
+                    letter-spacing: 0.01em;
+                    color: #767676;
+                }
+            }
+        }
+        .icon-info-split {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 2rem 0;
+            .icon-container-split {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+                img {
+                    width: 40px;
+                    margin: 0 auto;
+                }
+                span {
+                    margin: 1rem;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 24px;
+                    text-align: center;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                }
+                p {
+                    font-weight: normal;
+                    font-size: 20px;
+                    line-height: 32px;
+                    text-align: center;
+                    letter-spacing: 0.01em;
+                    color: $functional-dark;
+                }
+            }
+        }
+    }
+    
+}
