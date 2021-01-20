@@ -37,7 +37,7 @@ store1:
     Mon - Sat | 10:00am to 9:00pm
     Sun | 11:00am to 6:00pm
   address:
-    street: "7336 Market Street "
+    street: 7336 Market Street
     post-code: "44512"
     city-state: Youngstown, OH
   phone: (330) 726-8436
