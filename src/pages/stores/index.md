@@ -1,13 +1,91 @@
 ---
-title: Stores Page
+heading: test
 path: /stores
 templateKey: stores-page
-image: /img/about-us-hero.jpg
-heading: test
-description: test
+pricing:
+  heading: test
+  description: test
+full_image: /img/about-us-hero.jpg
 intro:
   heading: test
   description: test
+title: Stores Page
+store1:
+  state: OHIO
+  image: /img/ohio-store.jpg
+  company: Boot Factory Outlet
+  location: Youngstown, OH
+  body: >-
+    More than forty years ago the original store was opened just across the
+    street from where we are today. Over the years the company grew and focused
+    mainly on selling boots. In June of 2018, the name changed to Boot Factory
+    Outlet to better reflect what we do. The location and the name may have
+    changed, but the concept of great product selection and excellent customer
+    service has never changed. It is the reason we have so many return customers
+    as well as first time shoppers. Our community is one of many different
+    cultures and professions. The new gas and oil industry boom has brought
+    workers from all over the United States and even Europe to the store. They
+    are always impressed with the sheer quantity and size selection of work
+    boots, western boots, fashion, hiking, and motorcycle boots. 
+
+
+    We carry national brands such as Rocky, Justin, Lucchese, Ariat, Wolverine, J.B. Dillon, Masterson, Santa Fe, Sterling River and more. You’ll find boots for the entire family with men’s sizes 6 to 16 including hard to find widths and ladies sizes 5-12 including wide widths and big selection of children’s boots.  
+
+
+    Let our knowledgeable sales staff help you find the perfect fit. We look forward to making your shopping experience something you'll always remember.  Come on in and see how much fun it can be to Buy One Pair, Get Two Pair Free!
+store2:
+  state: TENNESSEE
+  image: /img/tennessee-store.jpg
+  company: Boot Coutnry
+  location: Nashville, TN
+  body: >-
+    At Boot Country in Nashville you'll get a big ole welcome y'all and become
+    part of the Boot Country family as soon as you walk in the door. We pride
+    ourselves on customer service and of course great boots. Boot Country's
+    staff makes sure that our extended customer family leave with a smile. We
+    have over 20,000 boots in stock and carry national brands such as Rocky,
+    Justin, Ariat, Wolverine, J.B. Dillon, Masterson, Sterling River, and more.
+    You'll find boots for the entire family with men's sizes 6 to 16 including
+    hard to find widths and ladies sizes 5 to 12 including wide widths. There is
+    also a large selection of children's boots!
+
+
+    Find out what true southern hospitality is! You’ll want to come back to add to your boot collection and see just what your Boot Country family is up to!
+
+
+    Buy One Pair, Get Two Pair Free!
+store3:
+  state: FLORIDA
+  image: /img/florida-store.jpg
+  company: Boot Factory outlet
+  location: Orlando, FL
+  body: >-
+    Located on famous International Drive, Boot Factory Outlet thrives on
+    selling boots buy 1 pair, get two pairs free! Thousands and thousands of
+    boots to choose from with national brands such as Rocky, Justin, Ariat,
+    Wolverine, J.B. Dillon, Masterson, Sterling River, and more. You'll find
+    boots for the entire family with men's sizes 6 to 16 including hard to find
+    widths, and ladies sizes 5-12 including wide widths, and a big selection of
+    children's boots. We carry western, work, hiking, fashion, motorcycle boots
+    and more!
+
+
+    From the moment you set your foot in our store, you will experience shopping like never before. We have qualified, knowledgeable and friendly staff eager to help you choose the right size and style for any occasion. You don't have to settle for one pair of boots! Here at Boot Factory Outlet you can walk out the door with three pairs, so come on in and let the adventure begin. 
+
+
+    Buy 1 Pair, Get two pair Free!
+store4:
+  state: NEVADA
+  image: /img/nevada-store.jpg
+  company: Boot Factory outlet
+  location: Las Vegas, NV
+  body: Our newest store, located in Las Vegas South Premium Outlet Mall, offers
+    thousands of boots to choose from. You'll find national brands such as
+    Rocky, Justin, Tony Lama, Ariat, Wolverine, J.B. Dillon, Masterson, Sterling
+    River, Harley Davidson, and more. You'll find boots for the entire family
+    with men's sizes 6 to 16 including hard to find widths, ladies sizes 5 to 12
+    including wide widths, and a large selection of children's boots. We carry
+    western, work, hiking, fashion, motorcycle boots, and more!
 main:
   heading: test
   description: test
@@ -20,8 +98,6 @@ main:
   image3:
     image: /img/about-us-hero.jpg
     alt: test
-full_image: /img/about-us-hero.jpg
-pricing:
-  heading: test
-  description: test
+image: /img/about-us-hero.jpg
+description: test
 ---
