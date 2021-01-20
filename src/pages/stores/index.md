@@ -33,6 +33,14 @@ store1:
 
 
     Let our knowledgeable sales staff help you find the perfect fit. We look forward to making your shopping experience something you'll always remember.  Come on in and see how much fun it can be to Buy One Pair, Get Two Pair Free!
+  hours: |-
+    Mon - Sat | 10:00am to 9:00pm
+    Sun | 11:00am to 6:00pm
+  address:
+    street: "7336 Market Street "
+    post-code: "44512"
+    city-state: Youngstown, OH
+  phone: (330) 726-8436
 store2:
   state: TENNESSEE
   image: /img/tennessee-store.jpg
@@ -54,6 +62,14 @@ store2:
 
 
     Buy One Pair, Get Two Pair Free!
+  hours: |-
+    Mon - Sat | 10:00am to 10:00pm
+    Sun | 11:00am to 7:30pm
+  address:
+    street: 304 Broadway
+    post-code: "37201"
+    city-state: Nashville, TN
+  phone: (615) 259-1691
 store3:
   state: FLORIDA
   image: /img/florida-store.jpg
@@ -74,6 +90,14 @@ store3:
 
 
     Buy 1 Pair, Get two pair Free!
+  hours: |-
+    Mon - Sat | 9:30am to 9:00pm
+    Sun | 9:00am to 6:00pm
+  address:
+    street: 5490 International Drive
+    post-code: "32819"
+    city-state: Orlando, FL
+  phone: (407) 903-0317
 store4:
   state: NEVADA
   image: /img/nevada-store.jpg
@@ -86,6 +110,14 @@ store4:
     with men's sizes 6 to 16 including hard to find widths, ladies sizes 5 to 12
     including wide widths, and a large selection of children's boots. We carry
     western, work, hiking, fashion, motorcycle boots, and more!
+  address:
+    post-code: "89123"
+    street: 7400 Las Vegas Blvd S, Unit 0247A
+    city-state: " Las Vegas, NV"
+  hours: |-
+    Mon - Sat | 10:00am to 9:00pm
+    Sun | 11:00am to 8:00pm
+  phone: (725) 214-0293
 main:
   heading: test
   description: test
