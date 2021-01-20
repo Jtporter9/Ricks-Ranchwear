@@ -64,6 +64,7 @@ store2:
     Buy One Pair, Get Two Pair Free!
   hours: |-
     Mon - Sat | 10:00am to 10:00pm
+
     Sun | 11:00am to 7:30pm
   address:
     street: 304 Broadway
