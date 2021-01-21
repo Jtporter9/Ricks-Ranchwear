@@ -30,9 +30,6 @@ export default (context) => {
     }
   })
 
-  console.log(1, product)
-
-
   const {
     bigcommerce_id,
     description,
@@ -222,7 +219,7 @@ export default (context) => {
                 disabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
                 variant={activeVariant}>
-                {activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart'}
+                {(activeSize && activeWidth) ? activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart' : 'Out of Stock'}
               </AddToCartButton>
 
               <div className="coupon-banner">
