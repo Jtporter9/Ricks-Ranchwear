@@ -1,31 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'gatsby';
 
 import CurrencyFormatter from './CurrencyFormatter';
 import Loader from '../Loader';
 
+import AppContext from '../../context/AppContext';
 import CartContext from '../../context/CartProvider';
 
 const AdjustItem = props => {
+  // GET GLOBAL APP CONTEXT 
+  const { cartProducts, setCartProducts } = useContext(AppContext);
+
   const { item, updatingItem, cartType } = props;
   let minusBtn, plusBtn;
 
   // if (cartType === 'full') {
-    minusBtn = (
-      <button
-        className="side-btn"
-        onClick={() => props.updateCartItemQuantity(item, 'minus')}>
-        -
-      </button>
-    )
+  minusBtn = (
+    <button
+      className="side-btn"
+      onClick={() => props.updateCartItemQuantity(item, 'minus')}>
+      -
+    </button>
+  )
 
-    plusBtn = (
-      <button
-        className="side-btn"
-        onClick={() => props.updateCartItemQuantity(item, 'plus')}>
-        +
-      </button>
-    )
+  plusBtn = (
+    <button
+      className="side-btn"
+      onClick={() => props.updateCartItemQuantity(item, 'plus')}>
+      +
+    </button>
+  )
   // }
 
   return (
@@ -88,7 +92,9 @@ const StandardItems = props => {
   return (
     <>
       {items.map(item => {
+        console.log('cart.js: ', item);
         return (
+          // SIDE CART 
           <div className="bc-cart-item" key={item.id}>
             <div className="bc-cart-item-meta">
               <img
@@ -110,10 +116,26 @@ const StandardItems = props => {
 
             <div className="bc-cart-item-total-price">
               <a className="remove-item-link" onClick={() => props.removeItemFromCart(item.id)}>REMOVE</a>
-              <CurrencyFormatter
+              {/* <CurrencyFormatter
                 currency={props.currency.code}
                 amount={item.list_price}
-              />
+              /> */}
+              <p className="bc-product__pricing--api bc-product__pricing--visible">
+                {item.originalPrice !== item.sale_price && (
+                  <span className="original-price-node bc-product__original-price bc-show-current-price">
+                    <CurrencyFormatter
+                      currency={props.currency.code}
+                      amount={item.originalPrice}
+                    />
+                  </span>
+                )}
+                <span className="sale-node bc-product__price bc-product__price--sale bc-show-current-price">
+                  <CurrencyFormatter
+                    currency={props.currency.code}
+                    amount={item.sale_price}
+                  />
+                </span>
+              </p>
             </div>
           </div>
         )
@@ -171,7 +193,6 @@ const Cart = class extends React.Component {
 
     return (
       <CartContext.Consumer>
-        {/* {console.log()} */}
         {value => {
           if (!value) {
             return null;

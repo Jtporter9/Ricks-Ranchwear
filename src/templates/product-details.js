@@ -39,7 +39,8 @@ export default (context) => {
     variants,
     weight,
     brand: { name: brandName },
-    custom_fields
+    custom_fields,
+    price
   } = product;
 
   // FIND PRODUCTS OPTIONS
@@ -218,7 +219,7 @@ export default (context) => {
               <AddToCartButton
                 disabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
-                variant={activeVariant}>
+                variant={{...activeVariant, price}}>
                 {(activeSize && activeWidth) ? activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart' : 'Out of Stock'}
               </AddToCartButton>
 

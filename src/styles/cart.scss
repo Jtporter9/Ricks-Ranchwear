@@ -21,6 +21,35 @@
             align-items: unset;
             border-top: none;
             border-bottom: 1px solid $functional-light;
+            .bc-product__pricing--visible {
+                display: flex;
+                align-items: baseline;
+                justify-content: flex-end;
+                .bc-product__title {
+                    margin-bottom: 10px;
+                }
+                .bc-product-price,
+                .bc-product__price--sale {
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 24px;
+                    letter-spacing: 0.01em;
+                    color: $functional-darkest;
+                }
+                .original-price-node {
+                    font-weight: normal;
+                    font-size: 12px;
+                    line-height: 16px;
+                    letter-spacing: 0.01em;
+                    text-decoration-line: line-through;
+                    color: $functional-dark;
+                    margin-bottom: 0;
+                }
+                .bc-product__pricing--visible {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
             .cart-details-meta {
                 display: flex;
                 justify-content: space-between;

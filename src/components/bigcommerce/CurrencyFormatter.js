@@ -7,7 +7,7 @@ const CurrencyFormatter = ({ currency, amount }) => {
     style: 'currency',
     currency
   }).format(amount);
-  return amount && formattedPrice;
+  return amount === 0 ? 'FREE' : amount && formattedPrice;
 };
 
 export default CurrencyFormatter;
