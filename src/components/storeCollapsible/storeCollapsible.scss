@@ -21,6 +21,9 @@
             text-align: center;
             letter-spacing: 0.04em;
         }
+        &.last {
+            border-bottom: 1px solid $functional-light;
+        }
     }
     
     .info-collapsible:hover {
@@ -65,6 +68,7 @@
                     line-height: 24px;
                     letter-spacing: 0.01em;
                     color: #767676;
+                    white-space: pre-wrap;
                 }
             }
         }
@@ -98,9 +102,64 @@
                     text-align: center;
                     letter-spacing: 0.01em;
                     color: $functional-dark;
+                    white-space: pre-wrap;
                 }
             }
         }
     }
     
+}
+
+@media (max-width: 1200px) {
+    .stores-page {
+        .collapsibles-section {
+            margin: 2rem;
+            width: auto;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .stores-page {
+        .stores-page-hero {
+            padding: 3rem 0;
+            height: auto;
+        }
+        .collapsibles-section {
+            margin: 2rem;
+            width: auto;
+            .store-collapsible {
+                .info-collapsible {
+                    padding: 1rem .5rem;
+                }
+                .info-collapsible-meta {
+                    padding: 0;
+                    .store-info-split {
+                        flex-direction: column;
+                        .split-left,
+                        .split-right {
+                            width: 100%;
+                            padding: 1rem 0;
+                        }
+                    }
+                    .icon-info-split {
+                        flex-direction: column;
+                        .icon-container-split {
+                            width: 100%;
+                            padding: 1rem 0;
+                        }
+                    }
+                } 
+            } 
+        }
+    }
+}
+
+@media (max-width: $mobile-bp) {
+    .stores-page {
+        .collapsibles-section {
+            margin: 1rem;
+            margin-bottom: 5rem;
+        }
+    }
 }

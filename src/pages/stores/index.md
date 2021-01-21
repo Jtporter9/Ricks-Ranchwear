@@ -34,10 +34,6 @@ store1:
       Mon - Sat | 10:00am to 9:00pm
       Sun | 11:00am to 6:00pm
   phone: (330) 726-8436
-  hours: |-
-    Mon - Sat | 10:00am to 9:00pm 
-
-    Sun | 11:00am to 6:00pm
   state: OHIO
   address:
     street: 7336 Market Street
@@ -69,10 +65,6 @@ store2:
       Mon - Sat | 10:00am to 10:00pm
       Sun | 11:00am to 7:30pm
   phone: (615) 259-1691
-  hours: |-
-    Mon - Sat | 10:00am to 10:00pm
-
-    Sun | 11:00am to 7:30pm
   state: TENNESSEE
   address:
     street: 304 Broadway
@@ -103,9 +95,6 @@ store3:
       Mon - Sat | 9:30am to 9:00pm
       Sun | 9:00am to 6:00pm
   phone: (407) 903-0317
-  hours: |-
-    Mon - Sat | 9:30am to 9:00pm
-    Sun | 9:00am to 6:00pm
   state: FLORIDA
   address:
     street: 5490 International Drive
@@ -128,9 +117,6 @@ store4:
       Mon - Sat | 10:00am to 9:00pm
       Sun | 11:00am to 8:00pm
   phone: (725) 214-0293
-  hours: |-
-    Mon - Sat | 10:00am to 9:00pm
-    Sun | 11:00am to 8:00pm
   state: NEVADA
   address:
     post-code: "89123"

@@ -22,7 +22,7 @@ export const StoresPageTemplate = ({
       <section className="collapsibles-section">
         {stores.map((store, i) => {
           return (
-            <StoreCollapsible key={i} store={store} />
+            <StoreCollapsible key={i} store={store} last={(i + 1) === stores.length ? true : false} />
           )
         })}
 
@@ -73,7 +73,9 @@ export const storesPageQuery = graphql`
                 }
               }
             }
-            hours 
+            store_hours {
+              body
+            } 
             phone
             address {
               city_state
@@ -93,7 +95,9 @@ export const storesPageQuery = graphql`
                 }
               }
             }
-            hours
+            store_hours {
+              body
+            }
             phone
             address {
               city_state
@@ -113,7 +117,9 @@ export const storesPageQuery = graphql`
                 }
               }
             }
-            hours
+            store_hours {
+              body
+            }
             phone
             address {
               city_state
@@ -133,7 +139,9 @@ export const storesPageQuery = graphql`
                 }
               }
             }
-            hours
+            store_hours {
+              body
+            }
             phone
             address {
               city_state

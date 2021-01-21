@@ -68,7 +68,7 @@ export const AboutPageTemplate = ({
               <div className="split-right">
                 <img src={redStore} alt="" />
                 <h2>1</h2>
-                <span>Store Location</span>
+                <span>Store Locations</span>
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ export const AboutPageTemplate = ({
               <div className="split-right">
                 <img src={redStore} alt="" />
                 <h2>8</h2>
-                <span>Store Location</span>
+                <span>Store Locations</span>
               </div>
             </div>
           </div>

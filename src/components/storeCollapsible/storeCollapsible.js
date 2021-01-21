@@ -14,31 +14,33 @@ export default function StoreCollapsible(props) {
         image,
         location,
         state,
-        hours,
+        store_hours: {
+            body: hoursBody
+        },
         address: {
             city_state,
             post_code,
             street
         },
         phone
-    } } = props;
+    },
+        last } = props;
 
-    console.log(hours)
-
+        console.log(last)
 
     // STATES 
     const [collapsibleState, setCollapsibleState] = useState(false);
 
     return (
         <div className="store-collapsible">
-            <button type="button" className={`info-collapsible ${collapsibleState && 'info-collapsible-active'}`} onClick={() => setCollapsibleState(!collapsibleState)}>
+            <button type="button" className={`info-collapsible ${collapsibleState && 'info-collapsible-active'} ${last && 'last'}`} onClick={() => setCollapsibleState(!collapsibleState)}>
                 <h2 className="info-collapsible-title">{state}</h2>
                 <img src={collapsibleState ? caretDownRed : caretUpRed} alt={collapsibleState ? 'close' : 'open'} />
             </button>
             <div style={{ display: `${collapsibleState ? 'block' : 'none'}` }} className="info-collapsible-meta">
                 <div className="store-info-split">
                     <div className="split-left">
-                        <img src={!!image.childImageSharp ? image.childImageSharp.fluid.src : image} alt={state}/>
+                        <img src={!!image.childImageSharp ? image.childImageSharp.fluid.src : image} alt={state} />
                     </div>
                     <div className="split-right">
                         <span>{company}</span>
@@ -48,17 +50,17 @@ export default function StoreCollapsible(props) {
                 </div>
                 <div className="icon-info-split">
                     <div className="icon-container-split">
-                        <img src={timeIconRed} alt="hours"/>
+                        <img src={timeIconRed} alt="hours" />
                         <span>Hours</span>
-                        <p>{hours}</p>
+                        <p>{hoursBody}</p>
                     </div>
                     <div className="icon-container-split">
-                        <img src={locationIconRed} alt="location"/>
+                        <img src={locationIconRed} alt="location" />
                         <span>Address</span>
                         <p>{street}<br />{city_state} {post_code}</p>
                     </div>
                     <div className="icon-container-split">
-                        <img src={phoneIconRed} alt="phone number"/>
+                        <img src={phoneIconRed} alt="phone number" />
                         <span>Phone</span>
                         <p>{phone}</p>
                     </div>
