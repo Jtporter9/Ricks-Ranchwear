@@ -101,7 +101,7 @@ export default function Header() {
                 </div>
               </Link> */}
               <div className="mobile-menu-links">
-                <Link to="/womens">
+                <Link to="/stores">
                   Stores
               </Link>
               </div>

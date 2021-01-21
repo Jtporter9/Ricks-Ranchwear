@@ -30,6 +30,9 @@ export default (context) => {
     }
   })
 
+  console.log(1, product)
+
+
   const {
     bigcommerce_id,
     description,
@@ -38,7 +41,8 @@ export default (context) => {
     sku,
     variants,
     weight,
-    brand: { name: brandName }
+    brand: { name: brandName },
+    custom_fields
   } = product;
 
   // FIND PRODUCTS OPTIONS
@@ -260,6 +264,7 @@ export default (context) => {
                     <span className="bc-product__spec-title">Weight:</span>{' '}
                     <span className="bc-product__spec-value">{weight} oz</span>
                   </li>
+                  {custom_fields.map((field, i) => <li className="bc-product__spec" key={i}><span className="bc-product__spec-title">{field.name}: {field.value}</span></li> )}
                 </ul>
               </div>
             </div>
@@ -310,6 +315,11 @@ export const query = graphql`
           }
           sku
           inventory_level
+        }
+        custom_fields {
+          id
+          name
+          value
         }
       }
     }
