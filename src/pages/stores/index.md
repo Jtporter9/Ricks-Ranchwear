@@ -34,13 +34,14 @@ store1:
 
     Let our knowledgeable sales staff help you find the perfect fit. We look forward to making your shopping experience something you'll always remember.  Come on in and see how much fun it can be to Buy One Pair, Get Two Pair Free!
   hours: |-
-    Mon - Sat | 10:00am to 9:00pm
+    Mon - Sat | 10:00am to 9:00pm 
 
     Sun | 11:00am to 6:00pm
   address:
     street: 7336 Market Street
     post-code: "44512"
     city-state: Youngstown, OH
+    city: Youngstown, OH
   phone: (330) 726-8436
 store2:
   state: TENNESSEE
@@ -71,6 +72,7 @@ store2:
     street: 304 Broadway
     post-code: "37201"
     city-state: Nashville, TN
+    city: Nashville, TN
   phone: (615) 259-1691
 store3:
   state: FLORIDA
@@ -99,6 +101,7 @@ store3:
     street: 5490 International Drive
     post-code: "32819"
     city-state: Orlando, FL
+    city: Orlando, FL
   phone: (407) 903-0317
 store4:
   state: NEVADA
@@ -116,6 +119,7 @@ store4:
     post-code: "89123"
     street: 7400 Las Vegas Blvd S, Unit 0247A
     city-state: " Las Vegas, NV"
+    city: Las Vegas, NV
   hours: |-
     Mon - Sat | 10:00am to 9:00pm
     Sun | 11:00am to 8:00pm
