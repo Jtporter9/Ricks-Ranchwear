@@ -30,15 +30,13 @@
     .Message {
         margin: 1rem;
         height: 100%;
-        overflow: scroll;
-        overflow-x: hidden;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        &::-webkit-scrollbar {
-            display: none;
-        }
-        .container {
-            overflow: hidden;
+        .container.cart-page {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            height: calc(100vh - 209px);
+            &::-webkit-scrollbar {
+                display: none;
+            }
         }
     }
     .bc-cart-body {
@@ -63,6 +61,7 @@
         }
         img {
             width: 100px;
+            height: 100px;
             border: 1px solid $functional-light;
         }
         .bc-cart-item-meta {
@@ -198,11 +197,6 @@
         width: 100%;
         .Notification {
             width: 100%;
-        }
-        .Message {
-            .container {
-                height: 100%;
-            }
         }
     }
 }

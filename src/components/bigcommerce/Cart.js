@@ -238,7 +238,7 @@ const Cart = class extends React.Component {
           }
 
           return (
-            <div className="container cart-page">
+            <div id="cart-page" className="container cart-page">
               <section className="bc-cart">
                 <div className="bc-cart-error">
                   <p className="bc-cart-error__message"></p>

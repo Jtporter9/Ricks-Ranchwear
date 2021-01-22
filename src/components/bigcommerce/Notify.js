@@ -37,19 +37,20 @@ const Notification = ({ id, text, type }) => {
     currency,
     cartAmount
   } = state.cart;
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     removeNotification(id);
-  //   }, 7000);
-  //   return () => clearTimeout(timer);
-  //   // eslint-disable-next-line
-  // }, []);
+  useEffect(() => {
+    // const timer = setTimeout(() => {
+    //   removeNotification(id);
+    // }, 7000);
+    // return () => clearTimeout(timer);
+    document.getElementById("cart-page").style.height = `calc(100vh - ${document.getElementById("Actions").clientHeight + document.getElementById("Title").clientHeight + 16}px)`
+  }, []);
+
 
   return (
     <article className="Notification Animate">
       <div className="Content">
         <div className="Message">
-          <div className="Title">
+          <div id="Title" className="Title">
             <div style={{ textAlign: 'center' }} className="Text">
               {value.state.cart.numberItems} {value.state.cart.numberItems === 1 ? 'item' : 'items'} in your cart
             </div>
@@ -61,7 +62,7 @@ const Notification = ({ id, text, type }) => {
             <p className="bc-ajax-add-to-cart__message bc-alert bc-alert--success">{text}</p>
           </div> */}
           <Cart cartType="overlay" />
-          <div className="Actions">
+          <div id="Actions" className="Actions">
             <div className="bc-cart-subtotal">
               <span className="bc-cart-subtotal__label">Subtotal: </span>
               <span className="bc-cart-subtotal__amount">
@@ -72,7 +73,6 @@ const Notification = ({ id, text, type }) => {
                 />
               </span>
             </div>
-            {console.log(value.state.cart.numberItems)}
             {value.state.cart.numberItems < 3 && (
               <div className="discount-banner">
                 <img src={GroupedBootsWhite} alt="discount" />
