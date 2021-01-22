@@ -1,4 +1,4 @@
-const CurrencyFormatter = ({ currency, amount }) => {
+const CurrencyFormatter = ({ currency, amount, type = 'item' }) => {
   const languageCode =
     typeof window !== 'undefined'
       ? window.navigator.language || 'en-US'
@@ -7,7 +7,7 @@ const CurrencyFormatter = ({ currency, amount }) => {
     style: 'currency',
     currency
   }).format(amount);
-  return amount === 0 ? 'FREE' : amount && formattedPrice;
+  return amount === 0 && type !== 'total' ? 'FREE' : amount && formattedPrice;
 };
 
 export default CurrencyFormatter;

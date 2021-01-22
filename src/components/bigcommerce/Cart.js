@@ -92,7 +92,6 @@ const StandardItems = props => {
   return (
     <>
       {items.map(item => {
-        console.log('cart.js: ', item);
         return (
           // SIDE CART 
           <div className="bc-cart-item" key={item.id}>
@@ -120,22 +119,22 @@ const StandardItems = props => {
                 currency={props.currency.code}
                 amount={item.list_price}
               /> */}
-              <p className="bc-product__pricing--api bc-product__pricing--visible">
+              <div className="bc-product__pricing--api bc-product__pricing--visible">
                 {item.originalPrice !== item.sale_price && (
-                  <span className="original-price-node bc-product__original-price bc-show-current-price">
+                  <p className="original-price-node bc-product__original-price bc-show-current-price">
                     <CurrencyFormatter
                       currency={props.currency.code}
                       amount={item.originalPrice}
                     />
-                  </span>
+                  </p>
                 )}
-                <span className="sale-node bc-product__price bc-product__price--sale bc-show-current-price">
+                <p className="sale-node bc-product__price bc-product__price--sale bc-show-current-price">
                   <CurrencyFormatter
                     currency={props.currency.code}
                     amount={item.sale_price}
                   />
-                </span>
-              </p>
+                </p>
+              </div>
             </div>
           </div>
         )

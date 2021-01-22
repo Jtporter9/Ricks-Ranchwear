@@ -23,7 +23,7 @@
             border-bottom: 1px solid $functional-light;
             .bc-product__pricing--visible {
                 display: flex;
-                align-items: baseline;
+                flex-direction: column;
                 justify-content: flex-end;
                 .bc-product__title {
                     margin-bottom: 10px;
