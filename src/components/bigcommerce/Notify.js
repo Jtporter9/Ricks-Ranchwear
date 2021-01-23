@@ -73,15 +73,17 @@ const Notification = ({ id, text, type }) => {
                 />
               </span>
             </div>
-            {value.state.cart.numberItems < 3 && (
-              <div className="discount-banner">
-                <img src={GroupedBootsWhite} alt="discount" />
-                <h3>Buy 1 and Get 2, Free</h3>
-                <p>Get 2 <strong>free</strong> boots by adding {3 - value.state.cart.numberItems} to your cart!</p>
-                <a onClick={() => removeNotification(id)}>Continue Shopping</a>
-              </div>
-            )
-            }
+            <div className="discount-banner">
+              <img src={GroupedBootsWhite} alt="discount" />
+              <h3>Buy 1 and Get 2, Free</h3>
+              {/* {console.log(value.state.cart.numberItems % 3 == 0 ? true : 3 - (value.state.cart.numberItems - (Math.floor(value.state.cart.numberItems / 3) * 3)))} */}
+              {value.state.cart.numberItems % 3 == 0 ? (
+                <p>Get 2 <strong>free.</strong> boots by adding 1 to your cart!</p>
+              ) : (
+                  <p>Add up to {3 - (value.state.cart.numberItems - (Math.floor(value.state.cart.numberItems / 3) * 3))} more boots to your cart for <strong>free.</strong></p>
+                )}
+              <a onClick={() => removeNotification(id)}>Continue Shopping</a>
+            </div>
 
             {/* <Link to="/cart" className="bc-btn" onClick={() => removeNotification(id)}>View Cart</Link> */}
             {/* href={value.state.cart.redirectUrls.checkout_url} */}
