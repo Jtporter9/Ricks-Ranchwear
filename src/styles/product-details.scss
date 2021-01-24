@@ -205,6 +205,13 @@
         .collapsible {
             box-shadow: inset 0px -1px 0px #C9C9C9;
             padding: 2rem;
+            cursor: pointer;
+            &:hover,
+            &:active {
+                h4 {
+                    box-shadow: inset 0px -2px 0px $red-mid;
+                }
+            }
             .split-title {
                 display: flex;
                 justify-content: space-between;
@@ -215,6 +222,8 @@
                     letter-spacing: 0.12em;
                     text-transform: uppercase;
                     margin-bottom: 1rem;
+                }
+                .underline {
                     box-shadow: inset 0px -2px 0px $red-mid;
                 }
                 img {

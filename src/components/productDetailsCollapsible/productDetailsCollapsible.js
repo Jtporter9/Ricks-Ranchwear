@@ -9,10 +9,10 @@ export default function ProductDetailsCollapsible(props) {
     const [activeCollapsible, setActiveCollapsible] = useState(true);
 
     return (
-        <div className="collapsible">
+        <div className="collapsible" onClick={() => setActiveCollapsible(!activeCollapsible)}>
             <div className="split-title">
-                <h4 className="bc-single-product__section-title">{title}</h4>
-                <img src={activeCollapsible ? closeCollapsible : openCollapsible} onClick={() => setActiveCollapsible(!activeCollapsible)} />
+                <h4 className={`bc-single-product__section-title ${activeCollapsible ? 'underline' : ''}`}>{title}</h4>
+                <img src={activeCollapsible ? closeCollapsible : openCollapsible}/>
             </div>
             {activeCollapsible && (
                 <div className="collapsible-details-container">

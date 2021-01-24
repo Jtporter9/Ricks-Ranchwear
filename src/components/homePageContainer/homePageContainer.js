@@ -52,7 +52,7 @@ export default function HomePageContainer({
                 <div className="opaque-overlay"></div>
                 <div className="hero-content-container">
                     <img src={groupedBootsWhite} />
-                    <h1>Buy 1 pair, <br /> get 2 more free</h1>
+                    <h1>Buy 1 pair,<br /> get 2 pair free!</h1>
                     <p>Seriously, we aren’t kidding</p>
                     <Link to="/">Learn More</Link>
                 </div>

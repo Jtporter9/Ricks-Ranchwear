@@ -21,7 +21,20 @@ footer {
         > div {
             margin-bottom: 2rem;
             width: 33%;
-            padding: 4rem 3rem;
+            padding: 2rem 3rem;
+            height: 400px;
+        }
+        .copyright {
+            font-size: 10px;
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+        }
+        .subscribe-link {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .footer-label {
             font-size: 24px;
@@ -43,9 +56,23 @@ footer {
         .footer-logo-container {
             display: flex;
             align-self: flex-end;
-            padding: 0;
+            justify-content: flex-end;
+            align-items: flex-end;
+            .copyright {
+                display: none;
+            }
+            .social-links {
+                display: flex;
+                justify-content: space-between;
+                width: 250px;
+                align-items: center;
+                margin: 1rem 0;
+            }
             .block-logo-container {
-                display: block;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: flex-end;
             }
             .split-logos {
                 display: flex;
@@ -109,6 +136,29 @@ footer {
             display: block;
             > div {
                 width: 100%;
+                height: auto;
+            }
+            .subscribe-link {
+                .copyright {
+                    display: none;
+                }
+            }
+            .footer-logo-container {
+                align-items: unset;
+                align-self: unset;
+                justify-content: center;
+                .copyright {
+                    display: block;
+                    text-align: center;
+                }
+                .block-logo-container {
+                    align-items: unset;
+                    align-self: unset;
+                    justify-content: center;
+                }
+                .social-links {
+                    margin: 1rem auto;
+                }
             }
         }
     }
