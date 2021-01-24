@@ -36,15 +36,10 @@ export default function HomePageContainer({
         setCookie('alertBanner', true);
     }
 
+    console.log(1, cookies)
+
     return (
         <div className="homepage">
-            {!cookies.alertBanner && (
-                <div className="alert-banner">
-                    <p>Boot Factory outlet Uses cookies to improve the user experience. To learn more about our cookie policy, please check our <Link to="/about">Privacy Policy</Link></p>
-                    <button onClick={closeAlertBanner}>Okay</button>
-                </div>
-            )
-        }
             <div className="homepage-hero"
                 style={{
                     backgroundImage: `url(${!!image.childImageSharp ? image.childImageSharp.fluid.src : image
@@ -170,10 +165,17 @@ export default function HomePageContainer({
                     <Link to="/">Learn More</Link>
                 </div>
             </section> */}
-{/* 
+            {/* 
             <section className="container">
                 REVIEWS
             </section> */}
+            {!cookies.alertBanner && (
+                <div className="alert-banner">
+                    <p>Boot Factory outlet Uses cookies to improve the user experience. To learn more about our cookie policy, please check our <Link to="/about">Privacy Policy</Link></p>
+                    <button onClick={closeAlertBanner}>Okay</button>
+                </div>
+            )
+            }
         </div>
     )
 }

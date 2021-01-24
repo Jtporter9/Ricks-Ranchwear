@@ -1,4 +1,5 @@
 var proxy = require('http-proxy-middleware');
+const cookiesMiddleware = require('universal-cookie-express');
 require('dotenv').config();
 
 module.exports = {
@@ -104,6 +105,6 @@ module.exports = {
           '/.netlify/functions/': ''
         }
       })
-    );
+    ).use(cookiesMiddleware());
   }
 };
