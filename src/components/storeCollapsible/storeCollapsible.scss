@@ -1,0 +1,165 @@
+.store-collapsible {
+    .info-collapsible {
+        cursor: pointer;
+        padding: 1rem 4rem;
+        width: 100%;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: $white;
+        border-top: 1px solid $functional-light;
+        .info-collapsible-title {
+            max-width: 80%;
+            text-align: left;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 32px;
+            line-height: 40px;
+            text-align: center;
+            letter-spacing: 0.04em;
+        }
+        &.last {
+            border-bottom: 1px solid $functional-light;
+        }
+    }
+    
+    .info-collapsible:hover {
+        background-color: rgba(51,51,51,.1);
+    }
+    
+    .info-collapsible-active {
+        border-bottom: none;
+    }
+    
+    .info-collapsible-meta {
+        padding: 1rem;
+        overflow: hidden;
+        padding-bottom: 4rem;
+        .store-info-split {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            .split-left,
+            .split-right {
+                width: 49%;
+                span {
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 24px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: $functional-dark;
+                }
+                h3 {
+                    font-style: normal;
+                    font-weight: 900;
+                    font-size: 32px;
+                    line-height: 40px;
+                    letter-spacing: 0.04em;
+                    margin-bottom: 1.5rem;
+                }
+                p {
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 24px;
+                    letter-spacing: 0.01em;
+                    color: #767676;
+                    white-space: pre-wrap;
+                }
+            }
+        }
+        .icon-info-split {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 2rem 0;
+            .icon-container-split {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+                img {
+                    width: 40px;
+                    margin: 0 auto;
+                }
+                span {
+                    margin: 1rem;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 24px;
+                    text-align: center;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                }
+                p {
+                    font-weight: normal;
+                    font-size: 20px;
+                    line-height: 32px;
+                    text-align: center;
+                    letter-spacing: 0.01em;
+                    color: $functional-dark;
+                    white-space: pre-wrap;
+                }
+            }
+        }
+    }
+    
+}
+
+@media (max-width: 1200px) {
+    .stores-page {
+        .collapsibles-section {
+            margin: 2rem;
+            width: auto;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .stores-page {
+        .stores-page-hero {
+            padding: 3rem 0;
+            height: auto;
+        }
+        .collapsibles-section {
+            margin: 2rem;
+            width: auto;
+            .store-collapsible {
+                .info-collapsible {
+                    padding: 1rem .5rem;
+                }
+                .info-collapsible-meta {
+                    padding: 0;
+                    .store-info-split {
+                        flex-direction: column;
+                        .split-left,
+                        .split-right {
+                            width: 100%;
+                            padding: 1rem 0;
+                        }
+                    }
+                    .icon-info-split {
+                        flex-direction: column;
+                        .icon-container-split {
+                            width: 100%;
+                            padding: 1rem 0;
+                        }
+                    }
+                } 
+            } 
+        }
+    }
+}
+
+@media (max-width: $mobile-bp) {
+    .stores-page {
+        .collapsibles-section {
+            margin: 1rem;
+            margin-bottom: 5rem;
+        }
+    }
+}

@@ -5,10 +5,9 @@ import AddToCartButton from '../components/bigcommerce/AddToCartButton';
 import ProductPrices from '../components/bigcommerce/ProductPrices';
 import TopSelling from '../components/topSelling/topSelling';
 import Layout from '../components/Layout';
+import ProductDetailsCollapsible from '../components/productDetailsCollapsible/productDetailsCollapsible'
 import groupedBoots from '../assets/grouped-boots.svg';
 import infoIcon from '../assets/info-icon.svg';
-import closeCollapsible from '../assets/close-collapsible.svg';
-import openCollapsible from '../assets/open-collapsible.svg';
 
 export default (context) => {
   const { data: { allBigCommerceProducts, allBigCommerceBrands }, pageContext: { productId } } = context;
@@ -38,9 +37,10 @@ export default (context) => {
     sku,
     variants,
     weight,
-    brand: { name: brandName }
+    brand: { name: brandName },
+    custom_fields,
+    price
   } = product;
-
 
   // FIND PRODUCTS OPTIONS
   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
@@ -77,7 +77,7 @@ export default (context) => {
     }
   });
 
-  const [activeColor, setActiveColor] = useState(colorOptions[0]);
+  const [activeColor, setActiveColor] = useState(colorOptions.length > 0 ? colorOptions[0] : "");
   const [activeWidth, setActiveWidth] = useState('');
   const [activeSize, setActiveSize] = useState('');
   const [activeVariant, setActiveVariant] = useState(variants[0]);
@@ -86,27 +86,15 @@ export default (context) => {
   function getActiveImagesByColor() {
     let imagesByColor = []
     for (let j = 0; j < images.length; j++) {
-      images[j].description === activeColor && imagesByColor.push(images[j])
+      if (activeColor) {
+        images[j].description ? images[j].description === activeColor && imagesByColor.push(images[j]) : imagesByColor.push(images[j])
+      } else {
+        imagesByColor.push(images[j])
+      }
     }
+
     return imagesByColor;
   }
-
-  function toggleCollapsible(e) {
-    e.target.parentNode.nextSibling.className === '' ? e.target.parentNode.nextSibling.className = 'collapsible-closed' : e.target.parentNode.nextSibling.className = ''
-    e.target.src === closeCollapsible ? e.target.src = openCollapsible : e.target.src = closeCollapsible
-  }
-
-  // THIS CAN ALSO BE BETTER 
-
-  // setActiveImagesByColor(() => {
-  //   images.map(image => {
-  //     return image.description === activeColor && image
-  //   })
-  // })
-  // for (let j = 0; j < images.length; j++) {
-  //   images[j].description === activeColor && activeImagesByColor.push(images[j])
-  // }
-
 
   function updateSelectedDetail(type, data) {
     type === colorKey && setActiveColor(data);
@@ -117,21 +105,26 @@ export default (context) => {
   // THIS CAN BE BETTER 
   function getProductVariant() {
     variants.forEach(variant => {
-      (
-        variant.option_values[0].label === activeColor &&
-        variant.option_values[1].label === activeSize &&
-        variant.option_values[2].label === activeWidth
-      ) && setActiveVariant(variant);
+      if (variant.option_values.length == 3) {
+        return variant.option_values[0].label === activeColor &&
+          variant.option_values[1].label === activeSize &&
+          variant.option_values[2].label === activeWidth
+          && setActiveVariant(variant);
+      } else if (variant.option_values.length == 2) {
+        return variant.option_values[0].label === activeSize &&
+          variant.option_values[1].label === activeWidth
+          && setActiveVariant(variant);
+      }
     })
   }
 
   useEffect(() => {
     // SELECTS VARIANT WHEN COLOR, WIDTH, AND SIZE ARE SET
-    (activeColor && activeSize && activeWidth) && getProductVariant()
+    (activeSize && activeWidth) && getProductVariant()
     // UPDATE SIDE PHOTOS
-    activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor())
+    activeColor && (activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor()))
     // UPDATE MAIN IMAGE
-    selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0])
+    activeImagesByColor[0].description ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
   });
 
   return (
@@ -189,9 +182,12 @@ export default (context) => {
               <div className="swatch-container">
                 <label>Color</label>
                 <div className="color-swatches">
-                  {colorOptions.map((color, i) => (
-                    <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
-                  ))}
+                  {colorOptions.length > 0 ?
+                    colorOptions.map((color, i) => (
+                      <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
+                    ))
+                    : <p>No color variants exist for this product.</p>
+                  }
                 </div>
               </div>
 
@@ -214,13 +210,11 @@ export default (context) => {
                 </div>
               </div>
 
-              {activeVariant.inventory_level === 0 && <div className={`out-of-stock-message`}>This selection you made is out of stock.</div>}
-
               <AddToCartButton
-                disabled={activeColor && activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
+                disabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
-                variantId={activeVariant.id}>
-                Add to Cart
+                variant={{ ...activeVariant, price }}>
+                {(activeSize && activeWidth) ? activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart' : 'Out of Stock'}
               </AddToCartButton>
 
               <div className="coupon-banner">
@@ -234,37 +228,11 @@ export default (context) => {
 
         <section className="section container">
           <div className="product-details-container">
-            <div className="collapsible">
-              <div className="split-title">
-                <h4 className="bc-single-product__section-title">Description</h4>
-                <img src={closeCollapsible} onClick={toggleCollapsible} />
-              </div>
-              <div className="">
-                <div
-                  className="bc-product__description"
-                  dangerouslySetInnerHTML={{ __html: description }}>
-                </div>
-                <p>
-                  <span>SKU:</span>{' '}
-                  {sku}
-                </p>
-              </div>
-            </div>
 
-            <div className="collapsible">
-              <div className="split-title">
-                <h4 className="bc-single-product__section-title">Specifications</h4>
-                <img src={closeCollapsible} onClick={toggleCollapsible} />
-              </div>
-              <div className="">
-                <ul className="bc-product__spec-list">
-                  <li className="bc-product__spec">
-                    <span className="bc-product__spec-title">Weight:</span>{' '}
-                    <span className="bc-product__spec-value">{weight} oz</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <ProductDetailsCollapsible title="Description" description={description} custom_fields={custom_fields}/>
+            <ProductDetailsCollapsible title="Features" description={description} custom_fields={custom_fields}/>
+            <ProductDetailsCollapsible title="Shipping and Returns" description={description} custom_fields={custom_fields}/>
+
           </div>
         </section>
 
@@ -312,6 +280,11 @@ export const query = graphql`
           }
           sku
           inventory_level
+        }
+        custom_fields {
+          id
+          name
+          value
         }
       }
     }

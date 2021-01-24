@@ -35,6 +35,8 @@
     "prop-types": "^15.6.0",
     "qs": "^6.7.0",
     "react": "^16.8.4",
+    "react-cookie": "^4.0.3",
+    "react-cookies": "^0.1.1",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
     "set-cookie-parser": "^2.3.5",

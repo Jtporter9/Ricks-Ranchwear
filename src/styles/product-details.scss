@@ -200,11 +200,18 @@
     }
     
     .product-details-container {
-        max-width: 980px;
+        max-width: 1100px;
         margin: auto;
         .collapsible {
             box-shadow: inset 0px -1px 0px #C9C9C9;
             padding: 2rem;
+            cursor: pointer;
+            &:hover,
+            &:active {
+                h4 {
+                    box-shadow: inset 0px -2px 0px $red-mid;
+                }
+            }
             .split-title {
                 display: flex;
                 justify-content: space-between;
@@ -215,10 +222,35 @@
                     letter-spacing: 0.12em;
                     text-transform: uppercase;
                     margin-bottom: 1rem;
+                }
+                .underline {
                     box-shadow: inset 0px -2px 0px $red-mid;
                 }
                 img {
                     cursor: pointer;
+                }
+            }
+            .collapsible-details-container {
+                .field-detail {
+                    white-space: pre-wrap;
+                    padding-bottom: .5rem;
+                    span {
+                        font-weight: normal;
+                        font-size: 20px;
+                        line-height: 32px;
+                        letter-spacing: 0.01em;
+                        color: $functional-dark;
+                    }
+                    strong {
+                        font-size: 20px;
+                        line-height: 32px;
+                        letter-spacing: 0.01em;
+                        color: $functional-dark;
+                        margin-right: 5px;
+                    }
+                    .small {
+                        font-size: 12px;
+                    }
                 }
             }
             .collapsible-closed {
@@ -290,6 +322,7 @@
                     overflow-x: scroll;
                     img {
                         width: 55px;
+                        height: 55px;
                         margin: 1rem .25rem;
                         &:first-of-type {
                             margin-top: 1rem;
@@ -301,6 +334,16 @@
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+@media (max-width: $mobile-bp) {
+    .product-details {
+        .product-details-container {
+            .collapsible {
+                padding: 1rem 0;
             }
         }
     }

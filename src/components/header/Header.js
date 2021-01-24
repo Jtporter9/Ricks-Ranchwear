@@ -38,7 +38,8 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`${isSticky ? ' sticky' : ''}`} ref={ref}>
+    // <header className={`${isSticky ? ' sticky' : ''}`} ref={ref}>
+    <header id="header" className='sticky' ref={ref}>
       <div className="global-announcement-bar">
         <img src={groupedBootsWhite} />
         <span>Buy 1 pair, get 2 pair free!</span>
@@ -100,30 +101,31 @@ export default function Header() {
                 </div>
               </Link> */}
               <div className="mobile-menu-links">
-                <Link to="/womens">
+                <Link to="/stores">
                   Stores
               </Link>
               </div>
               <div className="mobile-menu-links">
-                <Link to="/womens">
+                <Link to="/about">
                   About
               </Link>
               </div>
               <div className="mobile-menu-links">
-                <Link to="/womens">
+                <Link to="/help">
                   Help
               </Link>
               </div>
               <div className="mobile-menu-links">
-                <Link to="/womens">
+                <Link to="/">
                   Account
               </Link>
               </div>
               <div className="mobile-menu-checkout-container">
                 <CartContext.Consumer>
                   {value => {
+                    const addNotification = value && value.addNotification;
                     return (
-                      <Link className="menu-item-bigcommerce-cart cart-icon-container" to="/cart">
+                      <div className="menu-item-bigcommerce-cart cart-icon-container" onClick={() => addNotification('test')}>
                         <button>
                           <img src={cartIconWhite} />
                           <span>View Cart</span>
@@ -132,7 +134,7 @@ export default function Header() {
                               <span>( {value.state.cart.numberItems} )</span>
                             )}
                         </button>
-                      </Link>
+                      </div>
                     );
                   }}
                 </CartContext.Consumer>
@@ -151,14 +153,15 @@ export default function Header() {
               onClick={toggleHamburger} />
             <CartContext.Consumer>
               {value => {
+                const addNotification = value && value.addNotification;
                 return (
-                  <Link className="navbar-item menu-item-bigcommerce-cart cart-icon-container" to="/cart">
+                  <div className="navbar-item menu-item-bigcommerce-cart cart-icon-container" onClick={() => addNotification('test')}>
                     <img src={cartIcon} alt="Cart" />
                     {value &&
                       value.state.cart && (
                         <span className="bigcommerce-cart__item-count full">{value.state.cart.numberItems}</span>
                       )}
-                  </Link>
+                  </div>
                 );
               }}
             </CartContext.Consumer>
@@ -208,15 +211,16 @@ export default function Header() {
         </Link>
           <CartContext.Consumer>
             {value => {
+              const addNotification = value && value.addNotification;
               return (
-                <Link className="menu-item-bigcommerce-cart cart-icon-container" to="/cart">
+                <div className="menu-item-bigcommerce-cart cart-icon-container" onClick={() => addNotification('test')}>
                   <img src={cartIcon} alt="Cart" />
                   {value &&
                     value.state.cart &&
                     value.state.cart.numberItems > 0 && (
                       <span className="bigcommerce-cart__item-count full">{value.state.cart.numberItems}</span>
                     )}
-                </Link>
+                </div>
               );
             }}
           </CartContext.Consumer>

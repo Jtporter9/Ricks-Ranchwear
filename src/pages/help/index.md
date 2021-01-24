@@ -1,9 +1,9 @@
 ---
+title: Help
+path: /help
+templateKey: help-page
+image: /img/help-hero.jpg
 heading: test
-path: /about
-templateKey: about-page
-title: About Us
-image: /img/about-us-hero.jpg
 description: test
 intro:
   heading: test
@@ -12,15 +12,15 @@ main:
   heading: test
   description: test
   image1:
+    image: /img/help-hero.jpg
     alt: test
-    image: /img/about-us-hero.jpg
   image2:
     alt: test
-    image: /img/about-us-hero.jpg
+    image: /img/help-hero.jpg
   image3:
+    image: /img/help-hero.jpg
     alt: test
-    image: /img/about-us-hero.jpg
-full_image: /img/about-us-hero.jpg
+full_image: /img/help-hero.jpg
 pricing:
   heading: test
   description: test

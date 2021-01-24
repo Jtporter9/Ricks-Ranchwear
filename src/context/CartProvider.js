@@ -10,6 +10,7 @@ const initialState = {
       code: 'USD'
     },
     cartAmount: 0,
+    originalPrice: 0,
     lineItems: {},
     numberItems: 0,
     redirectUrls: {}
@@ -25,7 +26,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeNotification = id => {
-    updateNotifications(notifications.filter(ntfy => ntfy.id !== id));
+    id ? updateNotifications(notifications.filter(ntfy => ntfy.id !== id)) : updateNotifications([])
   };
 
   const fetchCart = () => {
@@ -53,26 +54,54 @@ export const CartProvider = ({ children }) => {
       const cartAmount = response.data.cart_amount;
       const currency = response.data.currency;
 
-      setState({
-        ...state,
-        cartLoading: false,
-        updatingItem: false,
-        cart: {
-          currency,
-          cartAmount,
-          lineItems,
-          numberItems:
-            lineItems.physical_items.length +
-            lineItems.digital_items.length +
-            lineItems.custom_items.length +
-            lineItems.gift_certificates.length,
-          redirectUrls: response.data.redirect_urls
-        }
-      });
+      const functionWithPromise = item => { //a function that returns a promise
+        return fetch(`/.netlify/functions/bigcommerce?endpoint=catalog/products/${item.product_id}`, {
+          credentials: 'same-origin',
+          mode: 'same-origin'
+        })
+          .then(res => res.json())
+          .then(response => {
+            return { ...item, originalPrice: response.data.price }
+          })
+          .catch(error => {
+            setState({ ...state, cartLoading: false, cartError: error });
+          });
+      }
+
+      const anAsyncFunction = async item => {
+        return functionWithPromise(item)
+      }
+
+      const getData = async () => {
+        return Promise.all(lineItems.physical_items = lineItems.physical_items.map(item => {
+          return anAsyncFunction(item)
+        }))
+      }
+
+      getData().then(data => {
+        lineItems.physical_items = data
+        setState({
+          ...state,
+          cartLoading: false,
+          updatingItem: false,
+          cart: {
+            currency,
+            cartAmount,
+            lineItems,
+            numberItems:
+              lineItems.physical_items.length +
+              lineItems.digital_items.length +
+              lineItems.custom_items.length +
+              lineItems.gift_certificates.length,
+            redirectUrls: response.data.redirect_urls
+          }
+        });
+      })
     }
   };
 
-const addToCart = (productId, variantId, retry) => {
+  const addToCart = (productId, variant, retry) => {
+    const { id: variantId, price: originalPrice } = variant;
     setState({ ...state, addingToCart: productId });
     fetch(`/.netlify/functions/bigcommerce?endpoint=carts/items`, {
       method: 'POST',
@@ -98,27 +127,54 @@ const addToCart = (productId, variantId, retry) => {
           }).then(() => addToCart(productId, variantId, true));
         }
         status < 300 && addNotification('Item added successfully');
-
         const lineItems = response.data.line_items;
         const cartAmount = response.data.cart_amount;
         const currency = response.data.currency;
 
-        setState({
-          ...state,
-          addingToCart: false,
-          addedToCart: productId,
-          cart: {
-            currency,
-            cartAmount,
-            lineItems,
-            numberItems:
-              lineItems.physical_items.length +
-              lineItems.digital_items.length +
-              lineItems.custom_items.length +
-              lineItems.gift_certificates.length,
-            redirectUrls: response.data.redirect_urls
-          }
-        });
+        const functionWithPromise = item => { //a function that returns a promise
+          return fetch(`/.netlify/functions/bigcommerce?endpoint=catalog/products/${item.product_id}`, {
+            credentials: 'same-origin',
+            mode: 'same-origin'
+          })
+            .then(res => res.json())
+            .then(response => {
+              return { ...item, originalPrice: response.data.price }
+            })
+            .catch(error => {
+              setState({ ...state, cartLoading: false, cartError: error });
+            });
+        }
+  
+        const anAsyncFunction = async item => {
+          return functionWithPromise(item)
+        }
+  
+        const getData = async () => {
+          return Promise.all(lineItems.physical_items = lineItems.physical_items.map(item => {
+            return anAsyncFunction(item)
+          }))
+        }
+  
+        getData().then(data => {
+          lineItems.physical_items = data
+          setState({
+            ...state,
+            addingToCart: false,
+            addedToCart: productId,
+            cart: {
+              currency,
+              cartAmount,
+              lineItems,
+              numberItems:
+                lineItems.physical_items.length +
+                lineItems.digital_items.length +
+                lineItems.custom_items.length +
+                lineItems.gift_certificates.length,
+              redirectUrls: response.data.redirect_urls
+            }
+          });
+        })
+
       })
       .catch(error => {
         setState({ ...state, addingToCart: false, addToCartError: error });

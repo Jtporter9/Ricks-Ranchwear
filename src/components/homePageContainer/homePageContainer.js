@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import AppContext from '../../context/AppContext';
 import PhotoGrid from '../PhotoGrid';
 import BlogItem from '../BlogItem';
@@ -8,6 +8,9 @@ import bootsImg from '../../assets/boots.svg';
 import logo from '../../assets/logo.svg';
 import dirtyBoots from '../../assets/dirty-boots.jpg';
 import bootsBlueBg from '../../assets/boots-blue-bg.jpg';
+import mensBoots from '../../assets/boots-in-hand.jpg';
+import womensBoots from '../../assets/womens-boots.jpg';
+import kidsBoots from '../../assets/kids-boots.jpg';
 import openSign from '../../assets/open-sign.jpg';
 import horseShowBend from '../../assets/horseshoebend.jpg';
 import bootCountryLogo from '../../assets/boot-country-logo.svg';
@@ -27,9 +30,9 @@ export default function HomePageContainer({
     products
 }) {
     // GET GLOBAL APP CONTEXT 
-    const { alertBanner, toggleAlertBanner, globalLocalStorage, setGlobalStorage } = useContext(AppContext);
+    const { globalCookies, setGlobalSiteCookies } = useContext(AppContext);
 
-    console.log(10, alertBanner, toggleAlertBanner, globalLocalStorage, setGlobalStorage)
+    console.log(10, globalLocalStorage, setGlobalStorage)
 
     return (
         <div className="homepage">
@@ -48,7 +51,7 @@ export default function HomePageContainer({
                 <div className="opaque-overlay"></div>
                 <div className="hero-content-container">
                     <img src={groupedBootsWhite} />
-                    <h1>Buy 1 pair, <br /> get 2 more free</h1>
+                    <h1>Buy 1 pair,<br /> get 2 pair free!</h1>
                     <p>Seriously, we aren’t kidding</p>
                     <Link to="/">Learn More</Link>
                 </div>
@@ -72,7 +75,7 @@ export default function HomePageContainer({
                     <div className="boot-block-link" >
                         <Link to="/mens">
                             <div className="image-block" style={{
-                                background: `url(${dirtyBoots}) no-repeat`
+                                background: `url(${mensBoots}) no-repeat`
                             }}></div>
                             <div className="boot-block-container">
                                 <h2>Mens</h2>
@@ -83,7 +86,7 @@ export default function HomePageContainer({
                     <div className="boot-block-link" >
                         <Link to="/womens">
                             <div className="image-block" style={{
-                                background: `url(${dirtyBoots}) no-repeat`
+                                background: `url(${womensBoots}) no-repeat`
                             }}></div>
                             <div className="boot-block-container">
                                 <h2>Womens</h2>
@@ -95,7 +98,7 @@ export default function HomePageContainer({
                     <div className="boot-block-link" >
                         <Link to="/kids">
                             <div className="image-block" style={{
-                                background: `url(${dirtyBoots}) no-repeat`
+                                background: `url(${kidsBoots}) no-repeat`
                             }}></div>
                             <div className="boot-block-container">
                                 <h2>Kids</h2>
@@ -165,10 +168,10 @@ export default function HomePageContainer({
                     <Link to="/">Learn More</Link>
                 </div>
             </section> */}
-
+{/* 
             <section className="container">
                 REVIEWS
-            </section>
+            </section> */}
         </div>
     )
 }

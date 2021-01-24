@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { LocalStorage } from "node-localstorage";
 import { Helmet } from 'react-helmet';
 import Footer from './footer/Footer';
 import Header from './header/Header';
@@ -8,27 +7,26 @@ import './all.scss';
 import './Layout.css';
 import useSiteMetadata from './SiteMetadata';
 import AppContext from '../context/AppContext';
+import { CookiesProvider } from 'react-cookie';
+
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
 
-  const [alertBanner, setAlertBanner] = useState(true);
-  const [globalLocalStorage, setGlobalLocalStorage] = useState(new LocalStorage('./scratch'));
+  const [globalCookies, setGlobalCookies] = useState({ testCookie: 'cookie' });
 
   const toggleAlertBanner = () => {
     console.log('yes')
     setAlertBanner(false);
   };
 
-  const setGlobalStorage = (obj) => {
-    setGlobalLocalStorage(obj)
+  const setGlobalSiteCookies = (obj) => {
+    setGlobalCookies(obj)
   }
 
   const globalState = {
-    alertBanner: alertBanner,
-    toggleAlertBanner,
-    globalLocalStorage: globalLocalStorage,
-    setGlobalStorage
+    globalCookies: globalCookies,
+    setGlobalSiteCookies
   };
 
   return (

@@ -11,10 +11,12 @@
         right: 0;
         left: 0;
         z-index: 999;
+        box-shadow: 0px -10px 1px -10px $functional-dark;
         p {
             color: $white;
             font-size: 12px;
             line-height: 16px;
+            padding-right: 1rem;
         }
         button {
             color: $white;
@@ -138,12 +140,13 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 80%;
+        width: 100%;
         margin: auto;
         .boot-block-link {
             margin: .5rem;
             width: 100%;
             border: 1px solid $functional-light;
+            max-width: 400px;
             &:hover {
                 border: 1px solid $functional-darkest;
                 opacity: .8;
@@ -151,6 +154,7 @@
             .image-block {
                 height: 300px;
                 width: 100%;
+                background-size: cover;
             }
             .boot-block-container {
                 text-align: center;
@@ -173,6 +177,15 @@
         }
     }
 }
+
+@media (max-width: 1715px) {
+    .first-content-block {
+        .lower {
+            width: 80%;
+        }
+    }
+}
+
 
 @media (max-width: 1415px) {
     .first-content-block {
@@ -199,17 +212,18 @@
             display: block;
             .boot-block-link {
                 margin: 1rem auto;
-                width: 500px;
+                width: 350px;
             }
         }
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 450px) {
     .first-content-block {
         .lower {
             .boot-block-link {
-                width: 100%;
+                width: auto;
+                margin: 1rem;
             }
         }
     }
@@ -239,6 +253,7 @@
                 letter-spacing: 0.04em;
                 font-weight: bold;
                 padding-bottom: 1rem;
+                font-weight: 900;
             }
             .subtitle {
                 font-size: 14px;
@@ -324,6 +339,7 @@
         justify-content: space-between;
         align-items: center;
         margin: 4rem 0;
+        margin-bottom: 0;
         .half-hero {
             width: 50%;
             >div {
@@ -336,6 +352,7 @@
                 letter-spacing: 0.04em;
                 font-weight: bold;
                 padding-bottom: 1rem;
+                font-weight: 900;
             }
             .subtitle {
                 font-size: 14px;

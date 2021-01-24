@@ -1,0 +1,35 @@
+.stores-page {
+    h2 {
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 56px;
+        text-align: center;
+        letter-spacing: 0.04em;
+    }
+    .stores-page-hero {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 5rem 0;
+        height: 400px;
+        img {
+            width: 88px;
+            margin: 0 auto;
+        }
+        .hero-subtext {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+            text-align: center;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: $functional-dark;
+        }
+    }
+
+    .collapsibles-section {
+        margin: 4rem auto;
+        width: 1200px;
+    }
+}

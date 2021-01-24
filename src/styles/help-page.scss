@@ -1,0 +1,241 @@
+// HERO
+.help-page {
+    section {
+        margin-bottom: 4rem;
+        scroll-margin-top: 7rem;
+    }
+    .hero {
+        min-height: 200px;
+        height: 600px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        .opaque-overlay {
+            background: linear-gradient(0deg, #000000 10.26%, rgba(0, 0, 0, 0) 63.27%);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9;
+        }
+        .hero-content-container {
+            text-align: center;
+            z-index: 99;
+            img {
+                width: 200px;
+            }
+            h1 {
+                color: $white;
+                font-size: 48px;
+                line-height: 56px;
+                letter-spacing: 0.04em;
+                font-weight: 900;
+                padding: 1rem 0;
+            }
+            p {
+                color: $white;
+                padding-bottom: 2rem;
+                font-weight: 400;
+            }
+            a {
+                color: $white;
+                border: 1px solid $white;
+                font-size: 14px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                background-color: transparent;
+                padding: 0.5rem 2rem;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .help-page {
+        section {
+            margin-left: 1rem !important;
+            margin-right: 1rem !important;
+        }
+        .hero {
+            padding: 4rem 1rem;
+            height: auto;
+            min-height: 500px;
+        }
+    }
+}
+
+// HELP MENU
+
+.help-page {
+    .help-sub-menu {
+        display: flex;
+        justify-content: center;
+        background-color: $white;
+        box-shadow: inset 0px -1px 0px rgba(51, 51, 51, 0.25);
+        > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 600px;
+            a {
+                text-transform: uppercase;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 24px;
+                text-align: center;
+                letter-spacing: 0.2em;
+                color: $functional-darkest;
+                padding: 1rem 1rem 0.7rem 1rem;
+                border-bottom: 0.3rem solid $white;
+                margin-bottom: 1px;
+                &:hover {
+                    border-bottom: 0.3rem solid $red-mid;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .help-page {
+        .help-sub-menu {
+            flex-direction: column;
+            overflow-x: scroll;
+        }
+    }
+}
+
+// BUY ONE GET TWO
+
+.help-page {
+    h3 {
+        font-weight: 900;
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: 0.04em;
+        margin-bottom: 2rem;
+    }
+    p {
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 32px;
+        letter-spacing: 0.01em;
+        color: $functional-dark;
+    }
+    .lined-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 3rem;
+        .dash {
+            border: 1px solid $functional-darkest;
+            height: 0;
+            width: 200px;
+        }
+        h2 {
+            font-weight: 900;
+            font-size: 48px;
+            line-height: 56px;
+            text-align: center;
+            letter-spacing: 0.04em;
+            color: $red-mid;
+            margin: 0 1.5rem;
+        }
+    }
+    .meta-container {
+        max-width: 550px;
+        margin: auto;
+        .info-block {
+            margin-top: 4rem;
+            strong {
+                color: $functional-dark;
+            }
+        }
+    }
+    .buy-one-get-two {
+        margin: 4rem 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        img {
+            width: 200px;
+            margin: auto;
+        }
+        .meta-banner {
+            display: flex;
+            background-color: $red-mid;
+            align-items: center;
+            justify-content: space-around;
+            padding: 2rem;
+            margin: 4rem 0;
+            .small-info-block {
+                margin: 0 0.5rem;
+                h4 {
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 24px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: $white;
+                }
+                p {
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 24px;
+                    letter-spacing: 0.01em;
+                    color: $white;
+                }
+            }
+        }
+        .cta-block {
+            margin: 2rem auto;
+            text-align: center;
+            max-width: 700px;
+            p {
+                margin-bottom: 2rem;
+            }
+            a {
+                padding: 12px 24px;
+                background: $blue-darkest;
+                color: $white;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .help-page {
+        .lined-header {
+            h2 {
+                font-size: 32px;
+            }
+            .dash {
+                width: 40px;
+            }
+        }
+        h3 {
+            font-size: 24px;
+        }
+        p {
+            font-size: 16px;
+        }
+        .buy-one-get-two {
+            .meta-banner {
+                flex-direction: column;
+                margin-left: -1rem;
+                margin-right: -1rem;
+                .small-info-block {
+                    margin: 1rem 0;
+                }
+            }
+        }
+    }
+}

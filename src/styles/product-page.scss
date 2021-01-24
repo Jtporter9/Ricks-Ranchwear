@@ -161,8 +161,9 @@
             .bc-product-grid {
                 width: auto;
                 padding: 0;
-                padding-left: 2rem;
-                width: 75%;
+                // padding-left: 2rem;
+                // width: 75%;
+                width: 100%;
             }
             .mobile-opaque-background { 
                 display: none;
@@ -170,6 +171,7 @@
         }
         .products-filter-container {
             width: 25%;
+            display: none;
             .sticky {
                 position: sticky;
                 background-color: white;
@@ -238,7 +240,7 @@
                 left: 0;
                 top: 0;
                 min-width: 80%;
-                z-index: 9999;
+                z-index: 99999;
             }
             .filter-drawer-open {
                 display: block;
@@ -258,6 +260,7 @@
                     z-index: 999;
                     &.filter-drawer-open {
                         display: block;
+                        z-index: 9999;
                     }
                 }
                 .bc-product-grid {
@@ -292,7 +295,11 @@
         }
         .products-container {
             .products-header .products-header-split {
-                width: 49%;
+                // width: 49%;
+                width: 100%;
+                &:nth-child(1) {
+                    display: none;
+                }
                 &:nth-child(2) {
                     display: none;
                 }
