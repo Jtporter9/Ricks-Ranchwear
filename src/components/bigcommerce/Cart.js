@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
 
 import CurrencyFormatter from './CurrencyFormatter';
 import Loader from '../Loader';
 
-import AppContext from '../../context/AppContext';
 import CartContext from '../../context/CartProvider';
 
 const AdjustItem = props => {
-  // GET GLOBAL APP CONTEXT 
-  const { cartProducts, setCartProducts } = useContext(AppContext);
 
   const { item, updatingItem, cartType } = props;
   let minusBtn, plusBtn;

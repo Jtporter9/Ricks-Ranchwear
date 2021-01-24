@@ -6,23 +6,11 @@ import Notify from './bigcommerce/Notify';
 import './all.scss';
 import './Layout.css';
 import useSiteMetadata from './SiteMetadata';
-import AppContext from '../context/AppContext';
+import { CookiesProvider } from 'react-cookie';
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
   const [headerHeight, setHeaderHeight] = useState(0)
-
-  const [cartProducts, setCartProducts] = useState([]);
-
-  const toggleCartProducts = (item) => {
-    console.log('yes')
-    setCartProducts(...cartProducts, item);
-  };
-
-  const globalState = {
-    cartProducts: cartProducts,
-    toggleCartProducts
-  };
 
   useEffect(() => {
     const offset = document.getElementById("header").offsetHeight;
@@ -30,8 +18,7 @@ const TemplateWrapper = ({ children }) => {
   })
 
   return (
-    <AppContext.Provider value={globalState}>
-
+    <CookiesProvider>
       <div>
         <Helmet>
           <html lang="en" />
@@ -74,7 +61,8 @@ const TemplateWrapper = ({ children }) => {
         <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
         <Footer />
       </div>
-    </AppContext.Provider>
+    </CookiesProvider>
+
   );
 };
 

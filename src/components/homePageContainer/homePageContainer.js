@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
+import { useCookies } from 'react-cookie';
 import PhotoGrid from '../PhotoGrid';
 import BlogItem from '../BlogItem';
 import TopSelling from '../topSelling/topSelling.js';
@@ -29,15 +30,15 @@ export default function HomePageContainer({
     products
 }) {
     // STATES 
-    const [alertBannerState, setAlertBannerState] = useState(true);
+    const [cookies, setCookie, removeCookie] = useCookies(['alertBanner']);
 
     function closeAlertBanner() {
-        setAlertBannerState(false)
+        setCookie('alertBanner', true);
     }
 
     return (
         <div className="homepage">
-            {alertBannerState && (
+            {!cookies.alertBanner && (
                 <div className="alert-banner">
                     <p>Boot Factory outlet Uses cookies to improve the user experience. To learn more about our cookie policy, please check our <Link to="/about">Privacy Policy</Link></p>
                     <button onClick={closeAlertBanner}>Okay</button>
