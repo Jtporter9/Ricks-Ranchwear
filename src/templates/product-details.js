@@ -82,6 +82,7 @@ export default (context) => {
   const [activeSize, setActiveSize] = useState('');
   const [activeVariant, setActiveVariant] = useState(variants[0]);
   const [activeImagesByColor, setActiveImagesByColor] = useState(() => getActiveImagesByColor());
+  const [activeInfoModal, setActiveInfoModal] = useState(false);
 
   function getActiveImagesByColor() {
     let imagesByColor = []
@@ -217,10 +218,10 @@ export default (context) => {
                 {(activeSize && activeWidth) ? activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart' : 'Out of Stock'}
               </AddToCartButton>
 
-              <div className="coupon-banner">
+              <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
                 <img src={groupedBoots} />
                 <strong>Buy 1 pair, get 2 pair free!</strong>
-                <img src={infoIcon} />
+                <img src={infoIcon} alt="discount info"/>
               </div>
             </div>
           </div>
@@ -239,6 +240,20 @@ export default (context) => {
         <section className="section container">
           <TopSelling products={products} />
         </section>
+
+        {activeInfoModal && (
+          <div className="info-modal-opaque-background">
+            <div className="info-modal">
+              <h3>Buy 1 pair get 2 free!</h3>
+              <p>
+                Select any 3 pairs of boots you like. There are no restrictions. You can mix and match mens, womens, kids, any size and any style. It’s based on the highest priced boot and the other two pairs are FREE! Once you have three pairs of boots in your cart, your total price will reflect the cost of the single highest priced pair. 
+              </p>
+              <button onClick={() => setActiveInfoModal(false)} >
+                Continue Shopping
+              </button>
+            </div>
+          </div>
+        )}
 
       </div>
     </Layout>
