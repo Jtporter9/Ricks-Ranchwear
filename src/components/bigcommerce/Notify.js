@@ -8,6 +8,10 @@ import Cart from './Cart'
 import CartIconWhite from '../../assets/cart-icon-white.svg';
 import CloseIcon from '../../assets/close-icon.svg';
 import GroupedBootsWhite from '../../assets/grouped-boots-white.svg';
+import BootsOneCheck from '../../assets/boots-one-check.svg';
+import BootsTwoCheck from '../../assets/boots-two-check.svg';
+import BootsThreeCheck from '../../assets/boots-three-check.svg';
+
 
 import './Notify.css';
 
@@ -73,15 +77,34 @@ const Notification = ({ id, text, type }) => {
                 />
               </span>
             </div>
-            {value.state.cart.numberItems < 3 && (
+            {value.state.cart.numberItems < 4 && (
               <div className="discount-banner">
-                <img src={GroupedBootsWhite} alt="discount" />
-                <h3>Buy 1 and Get 2, Free</h3>
-                {value.state.cart.numberItems % 3 == 0 ? (
-                  <p>Get 2 <strong>free.</strong> boots by adding 1 to your cart!</p>
-                ) : (
+                {value.state.cart.numberItems === 0 && (
+                  <div>
+                    <img src={GroupedBootsWhite} alt="discount" />
+                    <h3>Buy 1 and Get 2, Free</h3>
+                    <p>Get 2 <strong>free.</strong> boots by adding 1 to your cart!</p>
+                  </div>
+                )}
+                {(value.state.cart.numberItems > 0 && value.state.cart.numberItems < 3) && (
+                  <div>
+                    {value.state.cart.numberItems === 1 && (
+                      <img src={BootsOneCheck} alt="discount" />
+                    )}
+                    {value.state.cart.numberItems === 2 && (
+                      <img src={BootsTwoCheck} alt="discount" />
+                    )}
+                    <h3>Buy 1 and Get 2, Free</h3>
                     <p>Add up to {3 - (value.state.cart.numberItems - (Math.floor(value.state.cart.numberItems / 3) * 3))} more boots to your cart for <strong>free.</strong></p>
-                  )}
+                  </div>
+                )}
+                {(value.state.cart.numberItems === 3) && (
+                  <div>
+                    <img src={BootsThreeCheck} alt="discount" />
+                    <h3>Buy 1 and Get 2, Free</h3>
+                    <p>You’ve added all your boots.</p>
+                  </div>
+                )}
                 <a onClick={() => removeNotification(id)}>Continue Shopping</a>
               </div>
             )}
