@@ -7,6 +7,9 @@ import TopSelling from '../components/topSelling/topSelling';
 import Layout from '../components/Layout';
 import ProductDetailsCollapsible from '../components/productDetailsCollapsible/productDetailsCollapsible'
 import InfoModal from '../components/infoModal/infoModal';
+import SizeChart from '../components/sizeChart/sizeChart';
+
+// ASSETS
 import groupedBoots from '../assets/grouped-boots.svg';
 import infoIcon from '../assets/info-icon.svg';
 
@@ -84,6 +87,7 @@ export default (context) => {
   const [activeVariant, setActiveVariant] = useState(variants[0]);
   const [activeImagesByColor, setActiveImagesByColor] = useState(() => getActiveImagesByColor());
   const [activeInfoModal, setActiveInfoModal] = useState(false);
+  const [activeSizeChart, setActiveSizeChart] = useState(false);
 
   function getActiveImagesByColor() {
     let imagesByColor = []
@@ -208,7 +212,7 @@ export default (context) => {
                   {sizeOptions.map((size, i) => (
                     <button key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(sizeKey, size)}>{size}</button>
                   ))}
-                  <Link className="size-chart-link" to="/">Size Chart</Link>
+                  <a className="size-chart-link" onClick={() => setActiveSizeChart(true)}>Size Chart</a>
                 </div>
               </div>
 
@@ -243,7 +247,7 @@ export default (context) => {
         </section>
 
         <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
-
+        <SizeChart activeSizeChart={activeSizeChart} setActiveSizeChart={setActiveSizeChart} />
       </div>
     </Layout>
   );

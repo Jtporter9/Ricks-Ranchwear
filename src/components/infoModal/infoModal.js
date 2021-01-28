@@ -2,7 +2,6 @@ import React from 'react'
 
 export default function InfoModal(props) {
     const { activeInfoModal, setActiveInfoModal } = props;
-    console.log(props)
     return (
         <div>
             { activeInfoModal && (
