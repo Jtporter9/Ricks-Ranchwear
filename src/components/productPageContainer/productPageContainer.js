@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import ProductCard from '../bigcommerce/ProductCard';
 import TopSelling from '../topSelling/topSelling.js';
 import Dropdown from '../dropdown/dropdown.js';
+import InfoModal from '../infoModal/infoModal';
+
+// ASSESTS
 import logo from '../../assets/logo.svg';
 import caretDownLight from '../../assets/caret-down-light.svg';
 import filterIcon from '../../assets/filter.svg';
@@ -23,6 +26,7 @@ export default function ProductPageContainer({
     const [filterDrawerActiveClass, setFilterDrawerActiveClass] = useState('');
     const [filter, setFilter] = useState(optionsList[0]);
     const [isSticky, setSticky] = useState(false);
+    const [activeInfoModal, setActiveInfoModal] = useState(false);
 
     function toggleFilterDrawer() {
         setFilterDrawerOpen(!filterDrawerOpen);
@@ -72,7 +76,7 @@ export default function ProductPageContainer({
                                 <img src={filterIcon} alt="Mobile Filters" />
                                 <span>Filters</span>
                             </button> */}
-                            <div className="coupon-banner">
+                            <div className="coupon-banner" onClick={() => setActiveInfoModal(true)}>
                                 <img src={groupedBoots} />
                                 <strong>Buy 1 pair, get 2 pair free!</strong>
                                 <img src={infoIcon} />
@@ -139,6 +143,7 @@ export default function ProductPageContainer({
                     </section>
                 </div>
             </section>
+            <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
         </div>
     )
 }

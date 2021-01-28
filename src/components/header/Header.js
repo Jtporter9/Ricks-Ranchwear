@@ -1,5 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'gatsby';
+
+// COMPONENTS
+import InfoModal from '../infoModal/infoModal';
+
+//ASSESTS
 import logo from '../../assets/logo.svg';
 import hamburgerLogo from '../../assets/hamburger.svg';
 import searchLogo from '../../assets/search.svg';
@@ -17,6 +22,7 @@ export default function Header() {
   const [navBarActiveClass, setNavBarActiveClass] = useState('');
   const [navBarActiveHelperClasses, setNavBarActiveHelperClasses] = useState('');
   const [isSticky, setSticky] = useState(false);
+  const [activeInfoModal, setActiveInfoModal] = useState(false);
 
   function toggleHamburger() {
     // toggle the active boolean in the state
@@ -40,7 +46,7 @@ export default function Header() {
   return (
     // <header className={`${isSticky ? ' sticky' : ''}`} ref={ref}>
     <header id="header" className='sticky' ref={ref}>
-      <div className="global-announcement-bar">
+      <div className="global-announcement-bar" onClick={() => setActiveInfoModal(true)} >
         <img src={groupedBootsWhite} />
         <span>Buy 1 pair, get 2 pair free!</span>
         <img src={infoIconWhite} />
@@ -89,17 +95,6 @@ export default function Header() {
                   </ul>
                 </div>
               </Link>
-              {/* <Link to="/accessories">
-                <div className="mobile-menu-dropdown-container">
-                  <span>
-                    Accessories
-                    <img src={cartIcon} />
-                  </span>
-                  <ul>
-                    <li></li>
-                  </ul>
-                </div>
-              </Link> */}
               <div className="mobile-menu-links">
                 <Link to="/stores">
                   Stores
@@ -178,24 +173,9 @@ export default function Header() {
             <Link className="menu-link" to="/kids">
               Kids
           </Link>
-            {/* <Link className="menu-link" to="/accessories">
-              Accessories
-          </Link> */}
             <Link className="menu-link" to="/stores">
               Stores
           </Link>
-            {/* <Link className="menu-link" to="/about">
-            About
-          </Link> */}
-            {/* <Link className="menu-link" to="/products">
-            Products
-          </Link>
-          <Link className="menu-link" to="/blog">
-            Blog
-          </Link>
-          <Link className="menu-link" to="/contact">
-            Contact
-          </Link> */}
           </div>
         </nav>
         <div className="navbar-right">
@@ -226,6 +206,7 @@ export default function Header() {
           </CartContext.Consumer>
         </div>
       </div>
+      <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
     </header>
   )
 }
