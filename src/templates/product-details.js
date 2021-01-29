@@ -220,7 +220,7 @@ export default (context) => {
                 disabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
                 variant={{ ...activeVariant, price }}>
-                {(activeSize && activeWidth) ? activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart' : 'Out of Stock'}
+                {(activeSize && activeWidth) ? activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart' : 'Select Color & Size'}
               </AddToCartButton>
 
               <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
