@@ -10,6 +10,7 @@ const initialState = {
       code: 'USD'
     },
     cartAmount: 0,
+    baseAmount: 0,
     originalPrice: 0,
     lineItems: {},
     numberItems: 0,
@@ -52,6 +53,7 @@ export const CartProvider = ({ children }) => {
     } else {
       const lineItems = response.data.line_items;
       const cartAmount = response.data.cart_amount;
+      const baseAmount = response.data.base_amount;
       const currency = response.data.currency;
 
       const functionWithPromise = item => { //a function that returns a promise
@@ -87,6 +89,7 @@ export const CartProvider = ({ children }) => {
           cart: {
             currency,
             cartAmount,
+            baseAmount,
             lineItems,
             numberItems:
               lineItems.physical_items.length +
@@ -129,6 +132,7 @@ export const CartProvider = ({ children }) => {
         status < 300 && addNotification('Item added successfully');
         const lineItems = response.data.line_items;
         const cartAmount = response.data.cart_amount;
+        const baseAmount = response.data.base_amount;
         const currency = response.data.currency;
 
         const functionWithPromise = item => { //a function that returns a promise
@@ -164,6 +168,7 @@ export const CartProvider = ({ children }) => {
             cart: {
               currency,
               cartAmount,
+              baseAmount,
               lineItems,
               numberItems:
                 lineItems.physical_items.length +

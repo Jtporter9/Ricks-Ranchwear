@@ -128,7 +128,7 @@ const StandardItems = props => {
                 <p className="sale-node bc-product__price bc-product__price--sale bc-show-current-price">
                   <CurrencyFormatter
                     currency={props.currency.code}
-                    amount={item.sale_price}
+                    amount={item.list_price}
                   />
                 </p>
               </div>

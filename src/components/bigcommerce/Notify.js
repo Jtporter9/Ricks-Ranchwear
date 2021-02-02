@@ -39,7 +39,8 @@ const Notification = ({ id, text, type }) => {
   const { state, removeItemFromCart, updateCartItemQuantity } = value;
   const {
     currency,
-    cartAmount
+    cartAmount,
+    baseAmount
   } = state.cart;
   useEffect(() => {
     // const timer = setTimeout(() => {
@@ -68,14 +69,37 @@ const Notification = ({ id, text, type }) => {
           <Cart cartType="overlay" />
           <div id="Actions" className="Actions">
             <div className="bc-cart-subtotal">
-              <span className="bc-cart-subtotal__label">Subtotal: </span>
-              <span className="bc-cart-subtotal__amount">
-                <CurrencyFormatter
-                  currency={currency.code}
-                  amount={cartAmount}
-                  type="total"
-                />
-              </span>
+              <div className="subtotal-container">
+                <span className="bc-cart-subtotal__label">Subtotal:</span>
+                <span className="bc-cart-subtotal__amount">
+                  <CurrencyFormatter
+                    currency={currency.code}
+                    amount={baseAmount}
+                    type="total"
+                  />
+                </span>
+              </div>
+              <div className="discount-container">
+                <span className="bc-cart-subtotal__label">Buy 1, Get 2 Discount</span>
+                  <span className="bc-cart-subtotal__amount">
+                    - 
+                    <CurrencyFormatter
+                      currency={currency.code}
+                      amount={baseAmount - cartAmount}
+                      type="discount"
+                    />
+                  </span>
+              </div>
+              <div className="total-container">
+                <span className="bc-cart-subtotal__label">Total:</span>
+                  <span className="bc-cart-subtotal__amount">
+                    <CurrencyFormatter
+                      currency={currency.code}
+                      amount={cartAmount}
+                      type="total"
+                    />
+                  </span>
+              </div>
             </div>
             {value.state.cart.numberItems < 4 && (
               <div className="discount-banner">
