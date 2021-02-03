@@ -150,3 +150,4 @@ Contributions are always welcome, no matter how large or small.
 # SPECIAL HELPERS
 
 https://github.com/bigcommerce/checkout-sdk-js-example
+https://developer.bigcommerce.com/stencil-docs/customizing-checkout/installing-custom-checkouts#prerequisites
