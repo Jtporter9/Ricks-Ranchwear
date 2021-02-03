@@ -145,3 +145,8 @@ Photos in starter from various photographers:
 # CONTRIBUTING
 
 Contributions are always welcome, no matter how large or small.
+
+
+# SPECIAL HELPERS
+
+https://github.com/bigcommerce/checkout-sdk-js-example
