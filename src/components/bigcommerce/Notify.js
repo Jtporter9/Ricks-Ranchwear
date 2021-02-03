@@ -79,17 +79,19 @@ const Notification = ({ id, text, type }) => {
                   />
                 </span>
               </div>
-              <div className="discount-container">
-                <span className="bc-cart-subtotal__label">Buy 1, Get 2 Discount</span>
-                  <span className="bc-cart-subtotal__amount">
-                    - 
-                    <CurrencyFormatter
-                      currency={currency.code}
-                      amount={baseAmount - cartAmount}
-                      type="discount"
-                    />
-                  </span>
-              </div>
+              {state.cart.numberItems > 1 && (
+                <div className="discount-container">
+                  <span className="bc-cart-subtotal__label">Buy 1, Get 2 Discount</span>
+                    <span className="bc-cart-subtotal__amount">
+                      - 
+                      <CurrencyFormatter
+                        currency={currency.code}
+                        amount={baseAmount - cartAmount}
+                        type="discount"
+                      />
+                    </span>
+                </div>
+              )}
               <div className="total-container">
                 <span className="bc-cart-subtotal__label">Total:</span>
                   <span className="bc-cart-subtotal__amount">
