@@ -1,9 +1,9 @@
 ---
-title: Mens Boots
+heading: Testing
 path: /mens
 templateKey: mens-page
-image: /img/man-motorcycle.jpg
-heading: Testing
+title: Mens Boots
+image: /img/img.jpg
 description: Testing
 intro:
   heading: Testing
