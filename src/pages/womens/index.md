@@ -1,9 +1,9 @@
 ---
-title: Womens Boots
+heading: testing
 path: /womens
 templateKey: womens-page
-image: /img/our-story.jpg
-heading: testing
+title: Womens Boots
+image: /img/womens-page.jpg
 description: testing
 intro:
   heading: testing
