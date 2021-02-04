@@ -121,7 +121,7 @@ const Notification = ({ id, text, type }) => {
                       <img src={BootsTwoCheck} alt="discount" />
                     )}
                     <h3>Buy 1 and Get 2, Free</h3>
-                    <p>Add up to {3 - (value.state.cart.numberItems - (Math.floor(value.state.cart.numberItems / 3) * 3))} more boots to your cart for <strong>free.</strong></p>
+                    <p>Add up to {3 - (value.state.cart.numberItems - (Math.floor(value.state.cart.numberItems / 3) * 3))} more boot{value.state.cart.numberItems === 2 ? '' : 's'} to your cart for <strong>free.</strong></p>
                   </div>
                 )}
                 {(value.state.cart.numberItems === 3) && (

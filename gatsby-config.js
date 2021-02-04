@@ -4,9 +4,9 @@ require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + BigCommerce + Netlify CMS Starter',
+    title: 'Boot Factory Outlet',
     description:
-      'This repo contains an example ecommerce website that is built with Gatsby, BigCommerce and Netlify CMS. It follows the JAMstack architecture by using Git as a single source of truth for content, BigCommerce for catalog / cart / checkout, and Netlify for continuous deployment.'
+      'Boot Factory Outlet.'
   },
   plugins: [
     {
