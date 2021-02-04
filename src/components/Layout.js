@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { useCookies } from 'react-cookie';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Notify from './bigcommerce/Notify';
 import './all.scss';
 import './Layout.css';
 import useSiteMetadata from './SiteMetadata';
+import logo from '../assets/logo.svg';
 
 const TemplateWrapper = ({ children }) => {
-  const { title, description } = useSiteMetadata();
+  const { title, description } = useSiteMetadata()
   const [headerHeight, setHeaderHeight] = useState(0)
+  const [cookies, setCookie, removeCookie] = useCookies(['password'])
+  const { password } = cookies;
 
   useEffect(() => {
     const offset = document.getElementById("header").offsetHeight;
     setHeaderHeight(offset - 1)
   })
+
+  function setPassword(e) {
+    setCookie('password', e.target.previousSibling.value);
+  }
 
   return (
     <div>
@@ -55,6 +63,19 @@ const TemplateWrapper = ({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       </Helmet>
       <Notify />
+      {password !== 'jbdillon' && (
+        <div className="site-protection-container">
+          <img src={logo} alt="Boot Factory" />
+          <h2>Enter password to access site:</h2>
+          <div className="input-container">
+            <input type="password" />
+            <input onClick={setPassword} type="submit" value="SUBMIT" />
+          </div>
+          {(password !== '' && password) && (
+            <p className="wrong-password">Incorrect password</p>
+          )}
+        </div>
+      )}
       <Header />
       <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
       <Footer />

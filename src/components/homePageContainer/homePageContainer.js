@@ -36,8 +36,6 @@ export default function HomePageContainer({
         setCookie('alertBanner', true);
     }
 
-    console.log(1, cookies)
-
     return (
         <div className="homepage">
             <div className="homepage-hero"
