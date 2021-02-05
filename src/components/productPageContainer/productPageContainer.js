@@ -31,27 +31,27 @@ export default function ProductPageContainer({
     function toggleFilterDrawer() {
         setFilterDrawerOpen(!filterDrawerOpen);
         filterDrawerActiveClass === ''
-        ? setFilterDrawerActiveClass('filter-drawer-open') 
-        : setFilterDrawerActiveClass('')
+            ? setFilterDrawerActiveClass('filter-drawer-open')
+            : setFilterDrawerActiveClass('')
     }
-    
+
     // FILTER PRODUCTS
     filter === optionsList[0] && products.sort((a, b) => (a.bigcommerce_id > b.bigcommerce_id) ? 1 : -1)
     filter === optionsList[1] && products.sort((a, b) => (a.price > b.price) ? 1 : -1)
     filter === optionsList[2] && products.sort((a, b) => (a.price < b.price) ? 1 : -1)
-    
+
     const ref = useRef(null);
     const handleScroll = () => {
-      if (ref.current) {
-        setSticky(ref.current.getBoundingClientRect().top <= 0);
-      }
+        if (ref.current) {
+            setSticky(ref.current.getBoundingClientRect().top <= 0);
+        }
     };
-  
+
     useEffect(() => {
-      window.addEventListener('scroll', handleScroll);
-      return () => {
-        window.removeEventListener('scroll', () => handleScroll);
-      };
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', () => handleScroll);
+        };
     }, []);
 
 
@@ -87,7 +87,7 @@ export default function ProductPageContainer({
                         </div>
                         <div className="products-header-split">
                             <Dropdown
-                                dropDownClasses={{head: 'products-quick-filter', optionContainer: 'dropdown-options-container'}}
+                                dropDownClasses={{ head: 'products-quick-filter', optionContainer: 'dropdown-options-container' }}
                                 placeholder="Best Selling"
                                 value={filter}
                                 onChange={v => setFilter(v)}
@@ -109,27 +109,27 @@ export default function ProductPageContainer({
                                     </div>
                                 </div>
                                 <Dropdown
-                                    dropDownClasses={{head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container'}}
+                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
                                     placeholder="Category"
                                     value="Category"
                                     onChange={v => setFilter(v)}
                                     options={categoryList}
                                 />
                                 <Dropdown
-                                    dropDownClasses={{head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container'}}
+                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
                                     placeholder="Category"
                                     value="Category"
                                     onChange={v => setFilter(v)}
                                     options={categoryList}
                                 />
                                 <Dropdown
-                                    dropDownClasses={{head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container'}}
+                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
                                     placeholder="Category"
                                     value="Category"
                                     onChange={v => setFilter(v)}
                                     options={categoryList}
                                 />
-        
+
                             </div>
                         </div>
                         <div className="bc-product-grid bc-product-grid--archive bc-product-grid--4col">

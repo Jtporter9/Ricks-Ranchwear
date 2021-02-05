@@ -69,7 +69,7 @@ export default WomensPage;
 
 export const WomensPageQuery = graphql`
   query WomensPage($id: String!) {
-    allBigCommerceProducts(filter: {categories: {eq: 25}}) {
+    allBigCommerceProducts(filter: {categories: {eq: 25}, is_visible: {eq: true}}) {
       nodes {
         id
         brand_id
@@ -99,6 +99,8 @@ export const WomensPageQuery = graphql`
           }
           sku
         }
+        categories
+        is_visible
       }
     }
     allBigCommerceBrands {
