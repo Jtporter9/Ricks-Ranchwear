@@ -19,7 +19,7 @@ module.exports = {
         storeHash: process.env.API_STORE_HASH,
         endpoints: {
           //  BigCommerceProducts: '/catalog/products?include=images,variants,custom_fields,options,modifiers,videos',
-          BigCommerceProducts: '/catalog/products?include=images,variants,custom_fields',
+          BigCommerceProducts: '/catalog/products?limit=10000&include=images,variants,custom_fields',
           BigCommerceCategories: '/catalog/categories',
           BigCommerceBrands: "/catalog/brands"
         }
