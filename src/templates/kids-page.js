@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import ProductPageContainer from '../components/productPageContainer/productPageContainer.js';
 
-export const MensPageTemplate = ({
+export const KidsPageTemplate = ({
   image,
   title,
   heading,
@@ -20,7 +20,7 @@ export const MensPageTemplate = ({
   />
 );
 
-MensPageTemplate.propTypes = {
+KidsPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
   heading: PropTypes.string,
@@ -28,7 +28,7 @@ MensPageTemplate.propTypes = {
   products: PropTypes.array
 };
 
-const MensPage = ({ data }) => {
+const KidsPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
 
   for(let i = 0; i < data.allBigCommerceProducts.nodes.length; i++) {
@@ -43,7 +43,7 @@ const MensPage = ({ data }) => {
 
   return (
     <Layout>
-      <MensPageTemplate
+      <KidsPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}
         heading={frontmatter.heading}
@@ -54,7 +54,7 @@ const MensPage = ({ data }) => {
   );
 };
 
-MensPage.propTypes = {
+KidsPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.object
@@ -65,15 +65,15 @@ MensPage.propTypes = {
   })
 };
 
-export default MensPage;
+export default KidsPage;
 
 // MENS 24
 // WOMENS 25
 // KIDS 26
 
-export const mensPageQuery = graphql`
-  query MensPage($id: String!) {
-    allBigCommerceProducts(filter: {categories: {eq: 24}, is_visible: {eq: true}}) {
+export const kidsPageQuery = graphql`
+  query KidsPage($id: String!) {
+    allBigCommerceProducts(filter: {categories: {eq: 26}, is_visible: {eq: true}}) {
       nodes {
         id
         brand_id
