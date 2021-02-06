@@ -1,9 +1,9 @@
 ---
-title: Kids Boots
-image: /img/kids-page.jpg
 heading: Kids Boots
 path: /kids
 templateKey: kids-page
+title: Kids Boots
+image: /img/kids3x.jpg
 description: test
 intro:
   heading: test
