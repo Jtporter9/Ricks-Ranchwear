@@ -3,7 +3,7 @@ heading: Kids Boots
 path: /kids
 templateKey: kids-page
 title: Kids Boots
-image: /img/kids3x.jpg
+image: /img/kids-4x.png
 description: test
 intro:
   heading: test
