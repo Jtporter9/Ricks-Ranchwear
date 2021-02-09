@@ -83,7 +83,7 @@ export default function ProductPageContainer({
                             </div>
                         </div>
                         <div className="products-header-split">
-                            <span className="numbered-products-results">{products.length} Resuts</span>
+                            <span style={{display: 'none'}} className="numbered-products-results">{products.length} Results</span>
                         </div>
                         <div className="products-header-split">
                             <Dropdown
