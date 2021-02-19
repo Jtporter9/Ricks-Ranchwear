@@ -92,6 +92,7 @@
         }
     }
     .bc-cart-item-quantity {
+        max-width: 80px;
         > div {
             background: $functional-lightest !important;
             border: 1px solid $functional-light;
