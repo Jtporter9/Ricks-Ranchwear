@@ -63,6 +63,22 @@ export const CartProvider = ({ children }) => {
         })
           .then(res => res.json())
           .then(response => {
+            // return fetch(`/.netlify/function/bigcommerce?endpoint=catalog/products/${item.product_id}/variants/${item.variant_id}`, {
+            //   credentials: 'same-origin',
+            //   mode: 'same-origin'
+            // })
+            //   .then(resp => {
+            //     console.log(2, resp)
+            //     return res.json()
+            //   })
+            //   .then(variantResponse => {
+            //     console.log(1000, variantResponse)
+            //     return { ...item, originalPrice: response.data.pric, variant: variantResponse.data }
+            //   })
+            //   .catch(error => {
+            //     console.log('error', error)
+            //     setState({ ...state, cartLoading: false, cartError: error });
+            //   });
             return { ...item, originalPrice: response.data.price }
           })
           .catch(error => {
@@ -148,19 +164,21 @@ export const CartProvider = ({ children }) => {
               setState({ ...state, cartLoading: false, cartError: error });
             });
         }
-  
+
         const anAsyncFunction = async item => {
           return functionWithPromise(item)
         }
-  
+
         const getData = async () => {
           return Promise.all(lineItems.physical_items = lineItems.physical_items.map(item => {
             return anAsyncFunction(item)
           }))
         }
-  
+
         getData().then(data => {
-          lineItems.physical_items = data
+          lineItems.physical_items = data.map(item => {
+            return { ...item, variant: variant }
+          })
           setState({
             ...state,
             addingToCart: false,

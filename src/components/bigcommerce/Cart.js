@@ -89,6 +89,7 @@ const StandardItems = props => {
   return (
     <>
       {items.map(item => {
+        console.log(10, item)
         return (
           // SIDE CART 
           <div className="bc-cart-item" key={item.id}>
@@ -105,7 +106,11 @@ const StandardItems = props => {
 
             <div className="cart-details-meta">
               <h3 className="bc-cart-item__product-title">{item.name}</h3>
-              {/* <span className="bc-cart-item__product-brand">{item.sku}</span> */}
+              
+                <span className="bc-cart-item__variant">
+                  {item.variant && item.variant.option_values.map((option, i, arr) => i === arr.length - 1 ? option.label : `${option.label}/`)}
+                </span>
+
               <AdjustItem {...props} item={item} cartType={cartType} />
             </div>
 

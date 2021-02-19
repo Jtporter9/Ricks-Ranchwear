@@ -63,15 +63,15 @@ export default (context) => {
     option.option_display_name === widthKey && widthOptions.push(option.label)
   }))
 
-
   colorOptions = [...new Set(findDuplicates(colorOptions))]; // Unique duplicates
-  sizeOptions = [...new Set(findDuplicates(sizeOptions))]; // Unique duplicates
+  if (sizeOptions[0].search('Infant') === -1) {
+    sizeOptions = [...new Set(findDuplicates(sizeOptions))]; // Unique duplicatesa
+  }
   widthOptions = [...new Set(findDuplicates(widthOptions))]; // Unique duplicates
   sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
   // FIND PRODUCTS OPTIONS
-
   images.sort((a, b) => (a.sort_order > b.sort_order) ? 1 : -1)
-
+  
   // STATES 
   const [selectedImage, updateSelectedImage] = useState(() => {
     for (let i = 0; i < images.length; i++) {
@@ -82,7 +82,7 @@ export default (context) => {
   });
 
   const [activeColor, setActiveColor] = useState(colorOptions.length > 0 ? colorOptions[0] : "");
-  const [activeWidth, setActiveWidth] = useState('');
+  const [activeWidth, setActiveWidth] = useState(widthOptions.length === 0 ? true : '');
   const [activeSize, setActiveSize] = useState('');
   const [activeVariant, setActiveVariant] = useState(variants[0]);
   const [activeImagesByColor, setActiveImagesByColor] = useState(() => getActiveImagesByColor());
@@ -92,8 +92,8 @@ export default (context) => {
   function getActiveImagesByColor() {
     let imagesByColor = []
     for (let j = 0; j < images.length; j++) {
-      if (activeColor) {
-        images[j].description ? images[j].description === activeColor && imagesByColor.push(images[j]) : imagesByColor.push(images[j])
+      if (activeColor && images[j].description) {
+        images[j].description ? images[j].description === activeColor ? imagesByColor.push(images[j]) : imagesByColor.push(images[j]) : imagesByColor.push(images[j])
       } else {
         imagesByColor.push(images[j])
       }
@@ -192,7 +192,7 @@ export default (context) => {
                     colorOptions.map((color, i) => (
                       <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
                     ))
-                    : <p>No color variants exist for this product.</p>
+                    : <p>No color variants.</p>
                   }
                 </div>
               </div>
@@ -200,9 +200,13 @@ export default (context) => {
               <div className="swatch-container">
                 <label>Width</label>
                 <div className="width-swatches">
-                  {widthOptions.map((width, i) => (
-                    <button key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(widthKey, width)}>{width}</button>
-                  ))}
+                  {widthOptions.length > 0 ?
+                    widthOptions.map((width, i) => (
+                      <button key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(widthKey, width)}>{width}</button>
+                    ))
+                    : <p>No width variants.</p>
+                  }
+
                 </div>
               </div>
 
@@ -220,7 +224,7 @@ export default (context) => {
                 disabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
                 variant={{ ...activeVariant, price }}>
-                {(activeSize && activeWidth) ? activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart' : 'Select Color & Size'}
+                {(activeSize && activeWidth) ? activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart' : 'Select Width & Size'}
               </AddToCartButton>
 
               <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
