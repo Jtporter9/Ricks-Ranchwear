@@ -47,7 +47,7 @@ export default (context) => {
   } = product;
 
   // FIND PRODUCTS OPTIONS
-  let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+  let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) === index)
 
   let colorOptions = [];
   let sizeOptions = [];
@@ -63,10 +63,11 @@ export default (context) => {
     option.option_display_name === widthKey && widthOptions.push(option.label)
   }))
 
+  console.log(sizeOptions)
+
   colorOptions = [...new Set(findDuplicates(colorOptions))]; // Unique duplicates
-  if (sizeOptions[0].search('Infant') === -1) {
-    sizeOptions = [...new Set(findDuplicates(sizeOptions))]; // Unique duplicatesa
-  }
+  sizeOptions = [...new Set(findDuplicates(sizeOptions))]; // Unique duplicatesa
+  console.log(sizeOptions)
   widthOptions = [...new Set(findDuplicates(widthOptions))]; // Unique duplicates
   sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
   // FIND PRODUCTS OPTIONS
