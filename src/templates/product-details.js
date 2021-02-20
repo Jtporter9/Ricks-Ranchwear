@@ -63,11 +63,8 @@ export default (context) => {
     option.option_display_name === widthKey && widthOptions.push(option.label)
   }))
 
-  console.log(sizeOptions)
-
   colorOptions = [...new Set(findDuplicates(colorOptions))]; // Unique duplicates
   sizeOptions = [...new Set(findDuplicates(sizeOptions))]; // Unique duplicatesa
-  console.log(sizeOptions)
   widthOptions = [...new Set(findDuplicates(widthOptions))]; // Unique duplicates
   sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
   // FIND PRODUCTS OPTIONS

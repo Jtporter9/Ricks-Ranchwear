@@ -63,23 +63,20 @@ export const CartProvider = ({ children }) => {
         })
           .then(res => res.json())
           .then(response => {
-            // return fetch(`/.netlify/function/bigcommerce?endpoint=catalog/products/${item.product_id}/variants/${item.variant_id}`, {
-            //   credentials: 'same-origin',
-            //   mode: 'same-origin'
-            // })
-            //   .then(resp => {
-            //     console.log(2, resp)
-            //     return res.json()
-            //   })
-            //   .then(variantResponse => {
-            //     console.log(1000, variantResponse)
-            //     return { ...item, originalPrice: response.data.pric, variant: variantResponse.data }
-            //   })
-            //   .catch(error => {
-            //     console.log('error', error)
-            //     setState({ ...state, cartLoading: false, cartError: error });
-            //   });
-            return { ...item, originalPrice: response.data.price }
+            return fetch(
+              `/.netlify/functions/bigcommerce?endpoint=catalog/products/${item.product_id}/variants/${item.variant_id}`,
+              {
+                credentials: 'same-origin',
+                mode: 'same-origin',
+              }
+            )
+              .then(res => res.json())
+              .then(variantResponse => {
+                return { ...item, originalPrice: response.data.price, variant: variantResponse.data }
+              })
+              .catch(error => {
+                setState({ ...state, cartLoading: false, cartError: error });
+              });
           })
           .catch(error => {
             setState({ ...state, cartLoading: false, cartError: error });
@@ -97,7 +94,7 @@ export const CartProvider = ({ children }) => {
       }
 
       getData().then(data => {
-        lineItems.physical_items = data
+        lineItems.physical_items = data;
         setState({
           ...state,
           cartLoading: false,
@@ -116,6 +113,7 @@ export const CartProvider = ({ children }) => {
           }
         });
       })
+
     }
   };
 
@@ -158,7 +156,20 @@ export const CartProvider = ({ children }) => {
           })
             .then(res => res.json())
             .then(response => {
-              return { ...item, originalPrice: response.data.price }
+              return fetch(
+                `/.netlify/functions/bigcommerce?endpoint=catalog/products/${item.product_id}/variants/${item.variant_id}`,
+                {
+                  credentials: 'same-origin',
+                  mode: 'same-origin',
+                }
+              )
+                .then(res => res.json())
+                .then(variantResponse => {
+                  return { ...item, originalPrice: response.data.price, variant: variantResponse.data }
+                })
+                .catch(error => {
+                  setState({ ...state, cartLoading: false, cartError: error });
+                });
             })
             .catch(error => {
               setState({ ...state, cartLoading: false, cartError: error });
@@ -176,9 +187,7 @@ export const CartProvider = ({ children }) => {
         }
 
         getData().then(data => {
-          lineItems.physical_items = data.map(item => {
-            return { ...item, variant: variant }
-          })
+          lineItems.physical_items = data;
           setState({
             ...state,
             addingToCart: false,

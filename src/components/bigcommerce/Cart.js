@@ -89,7 +89,6 @@ const StandardItems = props => {
   return (
     <>
       {items.map(item => {
-        console.log(10, item)
         return (
           // SIDE CART 
           <div className="bc-cart-item" key={item.id}>
