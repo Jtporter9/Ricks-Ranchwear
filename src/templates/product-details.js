@@ -69,7 +69,7 @@ export default (context) => {
   sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
   // FIND PRODUCTS OPTIONS
   images.sort((a, b) => (a.sort_order > b.sort_order) ? 1 : -1)
-  
+
   // STATES 
   const [selectedImage, updateSelectedImage] = useState(() => {
     for (let i = 0; i < images.length; i++) {
@@ -183,30 +183,27 @@ export default (context) => {
                 Some kind of rating system :)
               </div> */}
 
-              <div className="swatch-container">
-                <label>Color</label>
-                <div className="color-swatches">
-                  {colorOptions.length > 0 ?
-                    colorOptions.map((color, i) => (
+              {colorOptions.length > 0 && (
+                <div className="swatch-container">
+                  <label>Color</label>
+                  <div className="color-swatches">
+                    {colorOptions.map((color, i) => (
                       <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
-                    ))
-                    : <p>No color variants.</p>
-                  }
+                    ))}
                 </div>
-              </div>
+                </div>
+              )}
 
+            {widthOptions.length > 0 && (
               <div className="swatch-container">
                 <label>Width</label>
                 <div className="width-swatches">
-                  {widthOptions.length > 0 ?
-                    widthOptions.map((width, i) => (
+                    {widthOptions.map((width, i) => (
                       <button key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(widthKey, width)}>{width}</button>
-                    ))
-                    : <p>No width variants.</p>
-                  }
-
+                    ))}
                 </div>
               </div>
+            )}
 
               <div className="swatch-container">
                 <label>Size</label>
