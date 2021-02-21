@@ -86,6 +86,7 @@ const StandardItems = props => {
   const cartType = props.cartType;
   let itemImage;
 
+  console.log('items.length: ', items.length)
   return (
     <>
       {items.map(item => {

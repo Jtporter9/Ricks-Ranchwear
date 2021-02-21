@@ -93,6 +93,19 @@ export const CartProvider = ({ children }) => {
         }))
       }
 
+      const allLineItems = [ 
+        ...lineItems.physical_items,
+        ...lineItems.digital_items,
+        ...lineItems.custom_items,
+        ...lineItems.gift_certificates 
+      ];
+
+      let itemCount = 0;
+
+      allLineItems.forEach(item => {
+        itemCount += item.quantity
+      })
+
       getData().then(data => {
         lineItems.physical_items = data;
         setState({
@@ -104,11 +117,7 @@ export const CartProvider = ({ children }) => {
             cartAmount,
             baseAmount,
             lineItems,
-            numberItems:
-              lineItems.physical_items.length +
-              lineItems.digital_items.length +
-              lineItems.custom_items.length +
-              lineItems.gift_certificates.length,
+            numberItems: itemCount,
             redirectUrls: response.data.redirect_urls
           }
         });
@@ -118,6 +127,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = (productId, variant, retry) => {
+    console.log('addToCart: ', productId)
     const { id: variantId, price: originalPrice } = variant;
     setState({ ...state, addingToCart: productId });
     fetch(`/.netlify/functions/bigcommerce?endpoint=carts/items`, {
@@ -148,6 +158,8 @@ export const CartProvider = ({ children }) => {
         const cartAmount = response.data.cart_amount;
         const baseAmount = response.data.base_amount;
         const currency = response.data.currency;
+
+        console.log('addToCart: ', response)
 
         const functionWithPromise = item => { //a function that returns a promise
           return fetch(`/.netlify/functions/bigcommerce?endpoint=catalog/products/${item.product_id}`, {
@@ -186,6 +198,19 @@ export const CartProvider = ({ children }) => {
           }))
         }
 
+        const allLineItems = [ 
+          ...lineItems.physical_items,
+          ...lineItems.digital_items,
+          ...lineItems.custom_items,
+          ...lineItems.gift_certificates 
+        ];
+
+        let itemCount = 0;
+ 
+        allLineItems.forEach(item => {
+          itemCount += item.quantity
+        })
+
         getData().then(data => {
           lineItems.physical_items = data;
           setState({
@@ -197,11 +222,7 @@ export const CartProvider = ({ children }) => {
               cartAmount,
               baseAmount,
               lineItems,
-              numberItems:
-                lineItems.physical_items.length +
-                lineItems.digital_items.length +
-                lineItems.custom_items.length +
-                lineItems.gift_certificates.length,
+              numberItems: itemCount,
               redirectUrls: response.data.redirect_urls
             }
           });
