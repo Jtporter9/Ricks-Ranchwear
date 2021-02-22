@@ -5,7 +5,7 @@ import PhotoGrid from '../PhotoGrid';
 import BlogItem from '../BlogItem';
 import TopSelling from '../topSelling/topSelling.js';
 import bootsImg from '../../assets/boots.svg';
-import logo from '../../assets/logo.svg';
+import logo from '../../assets/logo.png';
 import dirtyBoots from '../../assets/dirty-boots.jpg';
 import bootsBlueBg from '../../assets/boots-blue-bg.jpg';
 import mensBoots from '../../assets/boots-in-hand.jpg';

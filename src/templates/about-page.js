@@ -8,7 +8,7 @@ import Content, { HTMLContent } from '../components/Content'
 import ownerImg from '../assets/owner.jpg'
 import bootRed from '../assets/boot-red.svg'
 import redStore from '../assets/red-store.svg'
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 import caretRightDark from '../assets/caret-right-dark.svg'
 import ricksRanchwearLogo from '../assets/ricks-ranchwear-logo.svg'
 

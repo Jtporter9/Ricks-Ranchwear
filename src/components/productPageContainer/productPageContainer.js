@@ -5,7 +5,7 @@ import Dropdown from '../dropdown/dropdown.js';
 import InfoModal from '../infoModal/infoModal';
 
 // ASSESTS
-import logo from '../../assets/logo.svg';
+import logo from '../../assets/logo.png';
 import caretDownLight from '../../assets/caret-down-light.svg';
 import filterIcon from '../../assets/filter.svg';
 import infoIcon from '../../assets/info-icon.svg';

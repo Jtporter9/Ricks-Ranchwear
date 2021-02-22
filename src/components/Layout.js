@@ -7,7 +7,7 @@ import Notify from './bigcommerce/Notify';
 import './all.scss';
 import './Layout.css';
 import useSiteMetadata from './SiteMetadata';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()

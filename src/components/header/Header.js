@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 import InfoModal from '../infoModal/infoModal';
 
 //ASSESTS
-import logo from '../../assets/logo.svg';
+import logo from '../../assets/logo.png';
 import hamburgerLogo from '../../assets/hamburger.svg';
 import searchLogo from '../../assets/search.svg';
 import cartIcon from '../../assets/cart-icon.svg';

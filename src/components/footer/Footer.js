@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 //ASSETS
-import logo from '../../assets/logo.svg';
+import logo from '../../assets/logo.png';
 import caret from '../../assets/caret-right.svg';
 import bootCountryLogo from '../../assets/boot-country-logo.svg';
 import facebook from '../../assets/facebook.svg';
