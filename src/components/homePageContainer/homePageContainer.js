@@ -13,7 +13,7 @@ import womensBoots from '../../assets/womens-boots.jpg';
 import kidsBoots from '../../assets/kids-boots.jpg';
 import openSign from '../../assets/open-sign.jpg';
 import horseShowBend from '../../assets/horseshoebend.jpg';
-import bootCountryLogo from '../../assets/boot-country-logo.svg';
+import bootCountryLogo from '../../assets/boot-country-logo.png';
 import groupedBootsWhite from '../../assets/grouped-boots-white.svg';
 import bootCountryBg from '../../assets/boot-country.jpg';
 
