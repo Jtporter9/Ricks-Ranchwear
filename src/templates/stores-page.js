@@ -19,7 +19,7 @@ export const StoresPageTemplate = ({
         <p className="hero-subtext">Boot Factory Outlet</p>
       </div>
 
-      <section className="collapsibles-section">
+      <section style={{ marginBottom: '7rem'}} className="collapsibles-section">
         {stores.map((store, i) => {
           return (
             <StoreCollapsible key={i} store={store} last={(i + 1) === stores.length ? true : false} />
@@ -40,7 +40,7 @@ const StoresPage = ({ data }) => {
   const stores = [ post.frontmatter.store1, post.frontmatter.store2, post.frontmatter.store3, post.frontmatter.store4 ];
 
   return (
-    <Layout>
+  <Layout>
       <StoresPageTemplate
         title={post.frontmatter.title}
         stores={stores}

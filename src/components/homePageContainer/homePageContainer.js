@@ -134,7 +134,7 @@ export default function HomePageContainer({
                         <p className="description">
                             Our retail stores offer an incredible selection of boots, with many additional brands and styles not offered online. Our highly trained sales staff  can help find the perfect boots for you!
                         </p>
-                        <Link to="/">View Stores</Link>
+                        <Link to="/stores">View Stores</Link>
                     </div>
                 </div>
                 <div className="hero-right-image half-hero full-width-image margin-top-0"

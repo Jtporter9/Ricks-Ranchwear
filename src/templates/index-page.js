@@ -97,7 +97,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexPageTemplate {
-    allBigCommerceProducts {
+    allBigCommerceProducts(filter: {is_visible: {eq: true}}) {
       nodes {
         id
         brand_id

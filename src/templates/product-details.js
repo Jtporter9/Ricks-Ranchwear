@@ -254,7 +254,7 @@ export default (context) => {
 
 export const query = graphql`
   query {
-    allBigCommerceProducts(sort: {fields: images___sort_order}) {
+    allBigCommerceProducts(sort: {fields: images___sort_order}, filter: {is_visible: {eq: true}}) {
       nodes {
         id
         brand_id

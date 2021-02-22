@@ -26,8 +26,6 @@ export default function StoreCollapsible(props) {
     },
         last } = props;
 
-        console.log(last)
-
     // STATES 
     const [collapsibleState, setCollapsibleState] = useState(false);
 
