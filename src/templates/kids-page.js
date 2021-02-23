@@ -93,6 +93,7 @@ export const kidsPageQuery = graphql`
           url_standard
           description
           is_thumbnail
+          url_zoom
         }
         variants {
           product_id

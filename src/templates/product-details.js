@@ -277,6 +277,7 @@ export const query = graphql`
           description
           is_thumbnail
           sort_order
+          url_zoom
         }
         variants {
           product_id

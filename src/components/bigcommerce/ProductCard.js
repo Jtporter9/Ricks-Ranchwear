@@ -23,7 +23,7 @@ class ProductCard extends React.Component {
             <img
               className="attachment-bc-medium size-bc-medium"
               src={
-                ( product.images.length && (defaultImage ? defaultImage : product.images[0].url_standard)) ||
+                ( product.images.length && (defaultImage ? defaultImage : product.images[0].url_zoom)) ||
                 '/img/default-bc-product.png'
               }
               alt={product.name}
