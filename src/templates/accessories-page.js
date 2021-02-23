@@ -69,7 +69,7 @@ export default AccessoriesPage;
 
 export const AccessoriesPageQuery = graphql`
   query AccessoriesPage($id: String!) {
-    allBigCommerceProducts(filter: {categories: {eq: 26}}) {
+    allBigCommerceProducts(filter: {categories: {eq: 26}, is_visible: {eq: true}}) {
       nodes {
         id
         brand_id

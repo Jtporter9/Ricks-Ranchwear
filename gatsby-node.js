@@ -22,7 +22,7 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
       }
-      allBigCommerceProducts {
+      allBigCommerceProducts(filter: {is_visible: {eq: true}}) {
         nodes {
           id
           name
