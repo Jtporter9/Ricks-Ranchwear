@@ -34,15 +34,15 @@ const Footer = class extends React.Component {
                 </Link>
               </li>
               <li>
-                <Link className="white-text" to="/returns">
+                <Link className="white-text" to="/help#returns">
                   Returns
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link className="white-text" to="/FAQ">
                   FAQ
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link className="white-text" to="/help">
                   Help

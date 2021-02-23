@@ -41,7 +41,7 @@ export default function StoreCollapsible(props) {
                         <img src={!!image.childImageSharp ? image.childImageSharp.fluid.src : image} alt={state} />
                     </div>
                     <div className="split-right">
-                        <span>{company}</span>
+                        <h2>{company}</h2>
                         <h3>{location}</h3>
                         <p>{body}</p>
                     </div>

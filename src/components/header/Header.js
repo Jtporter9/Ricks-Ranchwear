@@ -60,9 +60,9 @@ export default function Header() {
               onClick={toggleHamburger} />
             <div className={`opaque-background ${navBarActive && `is-active`}`} onClick={toggleHamburger}></div>
             <div className={`mobile-menu-drawer ${navBarActive && `is-active`} ${navBarActive && `animated fadeInLeft`}`}>
-              <div className="mobile-search-container">
+              {/* <div className="mobile-search-container">
                 <input className="mobile-search" placeholder="Search" />
-              </div>
+              </div> */}
               <Link to="/mens">
                 <div className="mobile-menu-dropdown-container">
                   <span>
@@ -98,30 +98,30 @@ export default function Header() {
               <div className="mobile-menu-links">
                 <Link to="/stores">
                   Stores
-              </Link>
+                </Link>
               </div>
               <div className="mobile-menu-links">
                 <Link to="/about">
                   About
-              </Link>
+                </Link>
               </div>
               <div className="mobile-menu-links">
                 <Link to="/help">
                   Help
-              </Link>
+                </Link>
               </div>
-              <div className="mobile-menu-links">
+              {/* <div className="mobile-menu-links">
                 <Link to="/">
                   Account
-              </Link>
-              </div>
+                </Link>
+              </div> */}
               <div className="mobile-menu-checkout-container">
                 <CartContext.Consumer>
                   {value => {
                     const addNotification = value && value.addNotification;
                     return (
                       <div className="menu-item-bigcommerce-cart cart-icon-container" onClick={() => addNotification('test')}>
-                        <button>
+                        <button onClick={toggleHamburger}>
                           <img src={cartIconWhite} />
                           <span>View Cart</span>
                           {value &&
@@ -142,10 +142,10 @@ export default function Header() {
             </Link>
           </div>
           <div className="mobile-cart">
-            <img src={searchLogo} alt="Search"
+            {/* <img src={searchLogo} alt="Search"
               className={`search-icon pointer ${navBarActiveClass}`}
               data-target=""
-              onClick={toggleHamburger} />
+              onClick={toggleHamburger} /> */}
             <CartContext.Consumer>
               {value => {
                 const addNotification = value && value.addNotification;
@@ -179,16 +179,16 @@ export default function Header() {
           </div>
         </nav>
         <div className="navbar-right">
-          <img src={searchLogo} alt="Search"
+          {/* <img src={searchLogo} alt="Search"
             className={`search-icon pointer ${navBarActiveClass}`}
             data-target=""
-            onClick={toggleHamburger} />
+            onClick={toggleHamburger} /> */}
           <Link className="side-link" to="/help">
             Help
         </Link>
-          <Link className="side-link" to="/login">
+          {/* <Link className="side-link" to="/login">
             Login/Register
-        </Link>
+        </Link> */}
           <CartContext.Consumer>
             {value => {
               const addNotification = value && value.addNotification;
