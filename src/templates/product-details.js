@@ -154,7 +154,7 @@ export default (context) => {
               <div className="selected-image-container">
                 <img
                   src={
-                    (selectedImage && selectedImage.url_standard) ||
+                    (selectedImage && selectedImage.url_zoom) ||
                     '/img/default-bc-product.png'
                   }
                   alt="Main"

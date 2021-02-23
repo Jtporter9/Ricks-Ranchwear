@@ -84,9 +84,9 @@ const TemplateWrapper = ({ children }) => {
         </div>
       )}
       <Header />
-      {cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && (
+      {/* {cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && (
         <EmailSubscriptionModal />
-      )}
+      )} */}
       <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
       <Footer />
     </div>
