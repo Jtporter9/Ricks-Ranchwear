@@ -4,6 +4,8 @@ import { useCookies } from 'react-cookie';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Notify from './bigcommerce/Notify';
+import EmailSubscriptionModal from './emailSubscriptionModal/emailSubscriptionModal';
+
 import './all.scss';
 import './Layout.css';
 import useSiteMetadata from './SiteMetadata';
@@ -13,16 +15,21 @@ const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
   const [headerHeight, setHeaderHeight] = useState(0)
   const [cookies, setCookie, removeCookie] = useCookies(['password'])
+
   const { password } = cookies;
 
   useEffect(() => {
     const offset = document.getElementById("header").offsetHeight;
     setHeaderHeight(offset - 1)
+    console.log(1, cookies.siteVisits)
+    !cookies.siteVisits && setCookie('siteVisits', 1)
+    cookies.siteVisits && setCookie('siteVisits', cookies.siteVisits++)
   })
 
   function setPassword(e) {
     setCookie('password', e.target.previousSibling.value);
   }
+
 
   return (
     <div>
@@ -77,6 +84,9 @@ const TemplateWrapper = ({ children }) => {
         </div>
       )}
       <Header />
+      {cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && (
+        <EmailSubscriptionModal />
+      )}
       <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
       <Footer />
     </div>

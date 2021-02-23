@@ -4,7 +4,6 @@ import { useCookies } from 'react-cookie';
 import PhotoGrid from '../PhotoGrid';
 import BlogItem from '../BlogItem';
 import TopSelling from '../topSelling/topSelling.js';
-import EmailSubscriptionModal from '../emailSubscriptionModal/emailSubscriptionModal';
 
 // IMAGES
 import bootsImg from '../../assets/boots.svg';
@@ -55,8 +54,6 @@ export default function HomePageContainer({
                 </div>
             </div>
             
-            {/* <EmailSubscriptionModal /> */}
-
             <section className="container first-content-block">
                 <div className="head">
                     <div className="head-content">
