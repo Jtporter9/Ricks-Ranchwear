@@ -62,7 +62,7 @@ const Footer = class extends React.Component {
                   <img className="logo" style={{width: '100px'}} src={logo} alt="JB Dillon" />
                 </Link>
                 <Link to="/" title="Logo">
-                  <img className="logo" src={bootCountryLogo} alt="JB Dillon" />
+                  <img className="logo" style={{width: '225px'}} src={bootCountryLogo} alt="JB Dillon" />
                 </Link>
               </div>
               <div className="social-links">

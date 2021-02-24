@@ -91,16 +91,16 @@ export default (context) => {
     let imagesByColor = []
     for (let j = 0; j < images.length; j++) {
       if (activeColor && images[j].description) {
-        images[j].description ? images[j].description === activeColor ? imagesByColor.push(images[j]) : imagesByColor.push(images[j]) : imagesByColor.push(images[j])
+        images[j].description ? images[j].description === activeColor && imagesByColor.push(images[j]) : imagesByColor.push(images[j])
       } else {
         imagesByColor.push(images[j])
       }
     }
-
     return imagesByColor;
   }
 
   function updateSelectedDetail(type, data) {
+    console.log(type, data)
     type === colorKey && setActiveColor(data);
     type === widthKey && setActiveWidth(data);
     type === sizeKey && setActiveSize(data);
@@ -190,27 +190,29 @@ export default (context) => {
                     {colorOptions.map((color, i) => (
                       <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
                     ))}
-                </div>
+                  </div>
                 </div>
               )}
 
-            {widthOptions.length > 0 && (
-              <div className="swatch-container">
-                <label>Width</label>
-                <div className="width-swatches">
+              {widthOptions.length > 0 && (
+                <div className="swatch-container">
+                  <label>Width</label>
+                  <div className="width-swatches">
                     {widthOptions.map((width, i) => (
                       <button key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(widthKey, width)}>{width}</button>
                     ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
               <div className="swatch-container">
                 <label>Size</label>
+                {/* TODO: make swatches into a component  */}
                 <div className="size-swatches">
                   {sizeOptions.map((size, i) => (
-                    <button key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(sizeKey, size)}>{size}</button>
-                  ))}
+                      <button style={{ minWidth: size.length <= 4 ? '66px' : '120px'}} key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(sizeKey, size)}>{size}</button>
+                    )
+                  )}
                   <a className="size-chart-link" onClick={() => setActiveSizeChart(true)}>Size Chart</a>
                 </div>
               </div>

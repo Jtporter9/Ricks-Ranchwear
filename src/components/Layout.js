@@ -21,7 +21,6 @@ const TemplateWrapper = ({ children }) => {
   useEffect(() => {
     const offset = document.getElementById("header").offsetHeight;
     setHeaderHeight(offset - 1)
-    console.log(1, cookies.siteVisits)
     !cookies.siteVisits && setCookie('siteVisits', 1)
     cookies.siteVisits && setCookie('siteVisits', cookies.siteVisits++)
   })
