@@ -100,7 +100,6 @@ export default (context) => {
   }
 
   function updateSelectedDetail(type, data) {
-    console.log(type, data)
     type === colorKey && setActiveColor(data);
     type === widthKey && setActiveWidth(data);
     type === sizeKey && setActiveSize(data);
