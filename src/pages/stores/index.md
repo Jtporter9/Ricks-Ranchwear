@@ -170,33 +170,6 @@ store5:
   state: TENNESSEE
   image: /img/sevierville.jpg
 store6:
-  phone: (386) 628-5160
-  address:
-    post-code: "32024"
-    city-state: Lake City, Florida
-    street: "131 SW Webbs Glen "
-  store-hours:
-    body: |-
-      Mon - Sat | 9:30am to 9:00pm
-      Sun | 10:00am to7:00pm
-  body: >-
-    Located between Jacksonville and Gainesville, Boot Factory Outlet thrives on
-    selling boots buy 1 pair get two pairs free! Thousands and thousands of
-    boots to choose from with national brands such as Rocky, Justin, Lucchese,
-    Ariat, Wolverine, J.B. Dillon, Masterson, Santa Fe, Sterling River and more.
-    You’ll find boots for the entire family with men’s sizes 6 to 16 including
-    hard to find widths and ladies sizes 5-12 including wide widths and big
-    selection of children’s boots. We carry western, work, hiking, fashion,
-    motorcycle boots and more!
-
-     From the moment you set your foot in our store you will experience shopping like never before. We have qualified, knowledgeable and friendly staff eager to help you choose the right size and style for any occasion. You don't have to settle for one pair of boots! Here at Boot Factory Outlet you can walk out the door with three pairs. So come on in and let the adventure begin.  
-
-    Buy 1 Pair, Get Two Pair Free!
-  location: Lake City, Florida
-  company: Boot Factory Outlet
-  image: /img/lakecity.jpg
-  state: Florida
-store7:
   phone: (407) 903-0317
   address:
     post-code: "32819"
@@ -222,9 +195,36 @@ store7:
 
     Buy 1 Pair, Get two pair Free!
   location: Orlando, FL
+  company: Boot Factory Outlet
+  image: /img/florida-store.jpg
+  state: FLORIDA
+store7:
+  phone: (386) 628-5160
+  address:
+    post-code: "32024"
+    city-state: Lake City, Florida
+    street: "131 SW Webbs Glen "
+  store-hours:
+    body: |-
+      Mon - Sat | 9:30am to 9:00pm
+      Sun | 10:00am to7:00pm
+  body: >-
+    Located between Jacksonville and Gainesville, Boot Factory Outlet thrives on
+    selling boots buy 1 pair get two pairs free! Thousands and thousands of
+    boots to choose from with national brands such as Rocky, Justin, Lucchese,
+    Ariat, Wolverine, J.B. Dillon, Masterson, Santa Fe, Sterling River and more.
+    You’ll find boots for the entire family with men’s sizes 6 to 16 including
+    hard to find widths and ladies sizes 5-12 including wide widths and big
+    selection of children’s boots. We carry western, work, hiking, fashion,
+    motorcycle boots and more!
+
+     From the moment you set your foot in our store you will experience shopping like never before. We have qualified, knowledgeable and friendly staff eager to help you choose the right size and style for any occasion. You don't have to settle for one pair of boots! Here at Boot Factory Outlet you can walk out the door with three pairs. So come on in and let the adventure begin.  
+
+    Buy 1 Pair, Get Two Pair Free!
+  location: Lake City, Florida
   company: Boot Factory outlet
   state: FLORIDA
-  image: /img/florida-store.jpg
+  image: /img/lakecity.jpg
 store8:
   state: NEVADA
   image: /img/nevada-store.jpg
