@@ -76,55 +76,72 @@ store2:
   company: Boot Coutnry
 store3:
   body: >-
-    Located on famous International Drive, Boot Factory Outlet thrives on
-    selling boots buy 1 pair, get two pairs free! Thousands and thousands of
-    boots to choose from with national brands such as Rocky, Justin, Ariat,
-    Wolverine, J.B. Dillon, Masterson, Sterling River, and more. You'll find
-    boots for the entire family with men's sizes 6 to 16 including hard to find
-    widths, and ladies sizes 5-12 including wide widths, and a big selection of
-    children's boots. We carry western, work, hiking, fashion, motorcycle boots
-    and more!
+    Located in Nashville's Opry Mills Mall, Boot Factory Outlet offers thousands
+    of boots to choose from with national brands such as Rocky, Justin, Tony
+    Lama, Lucchese, Ariat, Wolverine, J.B. Dillon, Masterson, Georgia Boot,
+    Santa Fe, Sterling River and more. You’ll find boots for the entire family
+    with men’s sizes 6 to 16 including hard to find widths and ladies sizes 5-12
+    including wide widths and big selection of children’s boots. We carry
+    western, work, hiking, fashion, motorcycle boots and more!
 
 
-    From the moment you set your foot in our store, you will experience shopping like never before. We have qualified, knowledgeable and friendly staff eager to help you choose the right size and style for any occasion. You don't have to settle for one pair of boots! Here at Boot Factory Outlet you can walk out the door with three pairs, so come on in and let the adventure begin. 
-
-
-    Buy 1 Pair, Get two pair Free!
+    Buy One Pair, Get Two Pair Free!
   store-hours:
     body: |-
-      Mon - Sat | 9:30am to 9:00pm
-      Sun | 9:00am to 6:00pm
-  phone: (407) 903-0317
-  state: FLORIDA
+      Mon - Sat | 10:00am to 9:00pm
+      Sun | 11:00am to 7:00pm
+  phone: (615) 970-3003
+  state: TENNESSEE
   address:
-    street: 5490 International Drive
-    post-code: "32819"
-    city-state: Orlando, FL
+    street: 127 Opry Mills Dr., Suite 325B
+    post-code: "37214"
+    city-state: Nashville, TN
     city: Orlando, FL
-  location: Orlando, FL
-  image: /img/florida-store.jpg
+  location: Nashville, TN
+  image: /img/nashville.jpg
   company: Boot Factory outlet
 store4:
-  body: Our newest store, located in Las Vegas South Premium Outlet Mall, offers
+  body: >-
+    Our newest store, located in Las Vegas South Premium Outlet Mall, offers
     thousands of boots to choose from. You'll find national brands such as
     Rocky, Justin, Tony Lama, Ariat, Wolverine, J.B. Dillon, Masterson, Sterling
     River, Harley Davidson, and more. You'll find boots for the entire family
     with men's sizes 6 to 16 including hard to find widths, ladies sizes 5 to 12
     including wide widths, and a large selection of children's boots. We carry
-    western, work, hiking, fashion, motorcycle boots, and more!
+    western, work, hiking, fashion, motorcycle boots, and more!Boot Factory
+    Outlet is located in Pigeon Forge, Tennessee at the foothills of the Smoky
+    Mountains, just minutes from the entrance of the Smoky Mountain National
+    Park and Gatlinburg, Tennessee.
+
+
+    With attractions such as Dollywood, Splash Country and Dixie Stampede, Smoky Mountain National Park, Pigeon Forge and Gatlinburg are a very family friendly year-round tourist attraction. With over 20,000 pairs of boots in stock along with a fun, friendly atmosphere, Boot Factory Outlet is also a must see in Pigeon Forge!
+
+
+    We carry national brands such as Rocky, Justin, Lucchese, Ariat, Wolverine, J.B. Dillon, Masterson, Santa Fe, Sterling River and more. You’ll find boots for the entire family with men’s sizes 6 to 16 including hard to find widths and ladies sizes 5-12 including wide widths and big selection of children’s boots. We carry western, work, hiking, fashion motorcycle boots and more!
+
+
+    We want you to go to Dollywood, we want you to visit the Smoky Mountain National Park, as well as take the family to a great dinner show. But don’t forget to visit us to keep the fun going!
+
+
+    Not only will you get a great deal on boots for the entire family, but you will leave our store and tell your friends and family back home about the great time you had visiting Boot Factory Outlet.
+
+
+    Buy One Pair, Get Two Pair Free!
   store-hours:
     body: |-
       Mon - Sat | 10:00am to 9:00pm
-      Sun | 11:00am to 8:00pm
-  phone: (725) 214-0293
-  state: NEVADA
+      Sun | 11:00am to 8:00pmMon - Thu | 9:00am to 9:30pm
+      Fri - Sat | 9:00am to 10:30pm
+      Sun | 9:00am to 8:00pm
+  phone: (865) 428-7100
+  state: TENNESSEE
   address:
-    post-code: "89123"
-    street: 7400 Las Vegas Blvd S, Unit 0247A
-    city-state: " Las Vegas, NV"
+    post-code: "37863"
+    street: 4135 Parkway
+    city-state: Pigeon Forge TN
     city: Las Vegas, NV
-  location: Las Vegas, NV
-  image: /img/nevada-store.jpg
+  location: Pigeon Forge TN
+  image: /img/pigeon-forge.jpg
   company: Boot Factory outlet
 store5:
   phone: (865) 366-6111
