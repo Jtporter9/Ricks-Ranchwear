@@ -9,22 +9,21 @@ import redStore from '../assets/red-store.svg'
 
 export const StoresPageTemplate = ({
   title,
-  stores
+  locations
 }) => {
   return (
     <div className="stores-page">
       <div className="stores-page-hero">
-        <img src={redStore} alt="Store Locations"/>
+        <img src={redStore} alt="Store Locations" />
         <h2>Store Locations</h2>
         <p className="hero-subtext">Boot Factory Outlet</p>
       </div>
 
-      <section style={{ marginBottom: '7rem'}} className="collapsibles-section">
-        {stores.map((store, i) => {
-          return (
-            <StoreCollapsible key={i} store={store} last={(i + 1) === stores.length ? true : false} />
+      <section style={{ marginBottom: '7rem' }} className="collapsibles-section">
+        {locations.map((location, i) => (
+            <StoreCollapsible key={i} location={location} last={(i + 1) === locations.length ? true : false} />
           )
-        })}
+        )}
 
       </section>
     </div>
@@ -37,13 +36,19 @@ StoresPageTemplate.propTypes = {
 
 const StoresPage = ({ data }) => {
   const { markdownRemark: post } = data
-  const stores = [ post.frontmatter.store1, post.frontmatter.store2, post.frontmatter.store3, post.frontmatter.store4 ];
+
+  const locations = [
+    { "stateStores": [post.frontmatter.store1]},
+    { "stateStores": [post.frontmatter.store2, post.frontmatter.store3, post.frontmatter.store4, post.frontmatter.store5]},
+    { "stateStores": [post.frontmatter.store6, post.frontmatter.store7]},
+    { "stateStores": [post.frontmatter.store8]}
+  ];
 
   return (
-  <Layout>
+    <Layout>
       <StoresPageTemplate
         title={post.frontmatter.title}
-        stores={stores}
+        locations={locations}
       />
     </Layout>
   )
@@ -128,6 +133,94 @@ export const storesPageQuery = graphql`
             }
           }
         store4 {
+            body
+            company
+            location
+            state
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            store_hours {
+              body
+            }
+            phone
+            address {
+              city_state
+              post_code
+              street
+            }
+          }
+          store5 {
+            body
+            company
+            location
+            state
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            store_hours {
+              body
+            }
+            phone
+            address {
+              city_state
+              post_code
+              street
+            }
+          }
+          store6 {
+            body
+            company
+            location
+            state
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            store_hours {
+              body
+            }
+            phone
+            address {
+              city_state
+              post_code
+              street
+            }
+          }
+          store7 {
+            body
+            company
+            location
+            state
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            store_hours {
+              body
+            }
+            phone
+            address {
+              city_state
+              post_code
+              street
+            }
+          }
+          store8 {
             body
             company
             location
