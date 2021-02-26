@@ -40,7 +40,7 @@ store1:
     post-code: "44512"
     city-state: Youngstown, OH
     city: Youngstown, OH
-  location: Youngstown, OH
+  location: "Youngstown, OH "
   image: /img/ohio-store.jpg
   company: Boot Factory Outlet
 store2:
