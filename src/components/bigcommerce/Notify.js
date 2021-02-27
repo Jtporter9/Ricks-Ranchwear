@@ -68,6 +68,38 @@ const Notification = ({ id, text, type }) => {
           </div> */}
           <Cart cartType="overlay" />
           <div id="Actions" className="Actions">
+          {value.state.cart.numberItems < 4 && (
+              <div className="discount-banner">
+                {console.log("numberItems", value.state.cart.numberItems)}
+                {value.state.cart.numberItems === 0 && (
+                  <div>
+                    <img src={GroupedBootsWhite} alt="discount" />
+                    <h3>Buy 1 and Get 2, Free</h3>
+                    <p>Get 2 <strong>free.</strong> boots by adding 1 to your cart!</p>
+                  </div>
+                )}
+                {(value.state.cart.numberItems > 0 && value.state.cart.numberItems < 3) && (
+                  <div>
+                    {value.state.cart.numberItems === 1 && (
+                      <img src={BootsOneCheck} alt="discount" />
+                    )}
+                    {value.state.cart.numberItems === 2 && (
+                      <img src={BootsTwoCheck} alt="discount" />
+                    )}
+                    <h3>Buy 1 and Get 2, Free</h3>
+                    <p>Add up to {3 - (value.state.cart.numberItems - (Math.floor(value.state.cart.numberItems / 3) * 3))} more boot{value.state.cart.numberItems === 2 ? '' : 's'} to your cart for <strong>free.</strong></p>
+                  </div>
+                )}
+                {(value.state.cart.numberItems === 3) && (
+                  <div>
+                    <img src={BootsThreeCheck} alt="discount" />
+                    <h3>Buy 1 and Get 2, Free</h3>
+                    <p>You’ve added all your boots.</p>
+                  </div>
+                )}
+                <a onClick={() => removeNotification(id)}>Continue Shopping</a>
+              </div>
+            )}
             <div className="bc-cart-subtotal">
               <div className="subtotal-container">
                 <span className="bc-cart-subtotal__label">Subtotal:</span>
@@ -103,38 +135,7 @@ const Notification = ({ id, text, type }) => {
                   </span>
               </div>
             </div>
-            {value.state.cart.numberItems < 4 && (
-              <div className="discount-banner">
-                {console.log("numberItems", value.state.cart.numberItems)}
-                {value.state.cart.numberItems === 0 && (
-                  <div>
-                    <img src={GroupedBootsWhite} alt="discount" />
-                    <h3>Buy 1 and Get 2, Free</h3>
-                    <p>Get 2 <strong>free.</strong> boots by adding 1 to your cart!</p>
-                  </div>
-                )}
-                {(value.state.cart.numberItems > 0 && value.state.cart.numberItems < 3) && (
-                  <div>
-                    {value.state.cart.numberItems === 1 && (
-                      <img src={BootsOneCheck} alt="discount" />
-                    )}
-                    {value.state.cart.numberItems === 2 && (
-                      <img src={BootsTwoCheck} alt="discount" />
-                    )}
-                    <h3>Buy 1 and Get 2, Free</h3>
-                    <p>Add up to {3 - (value.state.cart.numberItems - (Math.floor(value.state.cart.numberItems / 3) * 3))} more boot{value.state.cart.numberItems === 2 ? '' : 's'} to your cart for <strong>free.</strong></p>
-                  </div>
-                )}
-                {(value.state.cart.numberItems === 3) && (
-                  <div>
-                    <img src={BootsThreeCheck} alt="discount" />
-                    <h3>Buy 1 and Get 2, Free</h3>
-                    <p>You’ve added all your boots.</p>
-                  </div>
-                )}
-                <a onClick={() => removeNotification(id)}>Continue Shopping</a>
-              </div>
-            )}
+
 
             {/* <Link to="/cart" className="bc-btn" onClick={() => removeNotification(id)}>View Cart</Link> */}
             {/* href={value.state.cart.redirectUrls.checkout_url} */}

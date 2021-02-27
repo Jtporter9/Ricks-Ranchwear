@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 
 export default function InfoModal(props) {
     const { activeInfoModal, setActiveInfoModal } = props;
@@ -14,6 +15,7 @@ export default function InfoModal(props) {
                         <button onClick={() => setActiveInfoModal(false)} >
                             Continue Shopping
                         </button>
+                        <Link to="/help#shipping">View Policies</Link>
                     </div>
                 </div>
             )}

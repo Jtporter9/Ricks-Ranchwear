@@ -251,6 +251,11 @@
                     }
                     .small {
                         font-size: 12px;
+                        a {
+                            color: $functional-dark;
+                            text-decoration: underline;
+                            font-weight: normal;
+                        }
                     }
                 }
             }

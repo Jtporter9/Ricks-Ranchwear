@@ -86,7 +86,6 @@ const StandardItems = props => {
   const cartType = props.cartType;
   let itemImage;
 
-  console.log('items.length: ', items.length)
   return (
     <>
       {items.map(item => {
@@ -153,6 +152,7 @@ const GiftCertificateItems = props => {
   return (
     <>
       {items.map(item => {
+        console.log(1, item)
         return (
           <div className="bc-cart-item" key={item.id}>
             <div className="bc-cart-item-meta">
