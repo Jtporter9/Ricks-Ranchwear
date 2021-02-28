@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 
 import CurrencyFormatter from './CurrencyFormatter';
@@ -85,10 +85,16 @@ const StandardItems = props => {
   const { items } = props;
   const cartType = props.cartType;
   let itemImage;
+  const [isMobileView, setIsMobileView] = useState(window.matchMedia('(max-width: 500px)').matches)
+
+  useEffect(() => {
+    window.addEventListener('resize', setIsMobileView(window.matchMedia('(max-width: 500px)').matches));
+  })
 
   return (
     <>
       {items.map(item => {
+        const name = isMobileView ? item.name.substring(0, 10) + "..." : item.name
         return (
           // SIDE CART 
           <div className="bc-cart-item" key={item.id}>
@@ -104,7 +110,7 @@ const StandardItems = props => {
             </div>
 
             <div className="cart-details-meta">
-              <h3 className="bc-cart-item__product-title">{item.name}</h3>
+              <h3 className="bc-cart-item__product-title">{name}</h3>
               
                 <span className="bc-cart-item__variant">
                   {item.variant && item.variant.option_values.map((option, i, arr) => i === arr.length - 1 ? option.label : `${option.label}/`)}
@@ -152,7 +158,6 @@ const GiftCertificateItems = props => {
   return (
     <>
       {items.map(item => {
-        console.log(1, item)
         return (
           <div className="bc-cart-item" key={item.id}>
             <div className="bc-cart-item-meta">

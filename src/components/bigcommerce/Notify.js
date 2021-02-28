@@ -70,7 +70,6 @@ const Notification = ({ id, text, type }) => {
           <div id="Actions" className="Actions">
           {value.state.cart.numberItems < 4 && (
               <div className="discount-banner">
-                {console.log("numberItems", value.state.cart.numberItems)}
                 {value.state.cart.numberItems === 0 && (
                   <div>
                     <img src={GroupedBootsWhite} alt="discount" />

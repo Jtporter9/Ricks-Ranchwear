@@ -16,7 +16,6 @@ const ProductPrices = ({ product }) => {
           sale_price: null
         };
 
-        console.log(product)
   return (
     <div className="bc-product__pricing initialized">
       {product.sale_price !== 0 ? (
