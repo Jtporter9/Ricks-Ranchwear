@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'gatsby';
 import { useCookies } from 'react-cookie';
 import PhotoGrid from '../PhotoGrid';
 import BlogItem from '../BlogItem';
 import TopSelling from '../topSelling/topSelling.js';
+import EmailSubscriptionModal from '../emailSubscriptionModal/emailSubscriptionModal';
 
 // IMAGES
 import bootsImg from '../../assets/boots.svg';
@@ -32,14 +33,21 @@ export default function HomePageContainer({
     products
 }) {
     // STATES 
-    const [cookies, setCookie, removeCookie] = useCookies(['alertBanner']);
+    const [cookies, setCookie, removeCookie] = useCookies([]);
 
     function closeAlertBanner() {
         setCookie('alertBanner', true);
     }
 
+    useEffect(() => {
+        !cookies.siteVisits && setCookie('siteVisits', 1)
+        cookies.siteVisits && setCookie('siteVisits', cookies.siteVisits++)
+    })
     return (
         <div className="homepage">
+            {cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && (
+                <EmailSubscriptionModal />
+            )}
             <div className="homepage-hero"
                 style={{
                     backgroundImage: `url(${!!image.childImageSharp ? image.childImageSharp.fluid.src : image
@@ -53,7 +61,7 @@ export default function HomePageContainer({
                     <Link to="/">Learn More</Link>
                 </div>
             </div>
-            
+
             <section className="container first-content-block">
                 <div className="head">
                     <div className="head-content">

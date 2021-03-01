@@ -159,8 +159,6 @@ export const CartProvider = ({ children }) => {
         const baseAmount = response.data.base_amount;
         const currency = response.data.currency;
 
-        console.log('addToCart: ', response)
-
         const functionWithPromise = item => { //a function that returns a promise
           return fetch(`/.netlify/functions/bigcommerce?endpoint=catalog/products/${item.product_id}`, {
             credentials: 'same-origin',

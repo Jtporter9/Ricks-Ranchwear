@@ -4,7 +4,6 @@ import { useCookies } from 'react-cookie';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Notify from './bigcommerce/Notify';
-import EmailSubscriptionModal from './emailSubscriptionModal/emailSubscriptionModal';
 
 import './all.scss';
 import './Layout.css';
@@ -21,8 +20,6 @@ const TemplateWrapper = ({ children }) => {
   useEffect(() => {
     const offset = document.getElementById("header").offsetHeight;
     setHeaderHeight(offset - 1)
-    !cookies.siteVisits && setCookie('siteVisits', 1)
-    cookies.siteVisits && setCookie('siteVisits', cookies.siteVisits++)
   })
 
   function setPassword(e) {
@@ -83,9 +80,6 @@ const TemplateWrapper = ({ children }) => {
         </div>
       )}
       <Header />
-      {/* {cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && (
-        <EmailSubscriptionModal />
-      )} */}
       <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
       <Footer />
     </div>
