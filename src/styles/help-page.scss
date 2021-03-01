@@ -152,10 +152,46 @@
     .meta-container {
         max-width: 550px;
         margin: auto;
+        .sub-heading {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+            text-align: center;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: $functional-darkest; 
+            margin-bottom: 1rem;
+        }
+        .sub-heading-description {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 20px;
+            line-height: 32px;
+            text-align: center;
+            letter-spacing: 0.01em;
+            color: $functional-dark;
+        }
         .info-block {
             margin-top: 4rem;
             strong {
                 color: $functional-dark;
+            }
+            .sub-label {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 24px;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: $functional-darkest;
+                margin-bottom: 1rem;
+            }
+            .sub-description {
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: 0.01em;
+                color: $functional-dark;
+                margin-bottom: 1rem;
             }
         }
     }
@@ -235,6 +271,16 @@
                 .small-info-block {
                     margin: 1rem 0;
                 }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .help-page {
+        .lined-header {
+            .dash {
+                width: 25px;
             }
         }
     }

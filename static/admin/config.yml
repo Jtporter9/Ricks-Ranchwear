@@ -898,7 +898,7 @@ collections:
                   },
                 ],
             }
-      - file: "src/pages/bootfitguide/index.md"
+      - file: "src/pages/boot-fit-guide/index.md"
         label: "Boot Fit Guide Page"
         name: "Boot Fit Guide"
         fields:

@@ -20,8 +20,8 @@ const Footer = class extends React.Component {
             <h2 className="white-text">Join The Family!</h2>
             <p className="footer-message white-text">Sign up to receive occasional promotions, store happenings, and more!</p>
             <form>
-              <input style={{color: "black"}} type="email" placeholder="Email Address" />
-              <input style={{backgroundImage: "url(" + caret + ")"}} type="submit" value="" />
+              <input style={{ color: "black" }} type="email" placeholder="Email Address" />
+              <input style={{ backgroundImage: "url(" + caret + ")" }} type="submit" value="" />
             </form>
             <p className="sub-text white-text copyright">ⓒ 2020 Boot Factory Outlet. Privacy Policy, Do Not Sell, MAP Policy, Terms.</p>
           </div>
@@ -53,24 +53,29 @@ const Footer = class extends React.Component {
                   Stores
                 </Link>
               </li>
+              <li>
+                <Link className="white-text" to="/boot-fit-guide">
+                  Boot Fit & Care
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="footer-logo-container">
             <div className="block-logo-container">
               <div className="split-logos">
                 <Link to="/" title="Logo">
-                  <img className="logo" style={{width: '100px'}} src={logo} alt="JB Dillon" />
+                  <img className="logo" style={{ width: '100px' }} src={logo} alt="JB Dillon" />
                 </Link>
                 <Link to="/" title="Logo">
-                  <img className="logo" style={{width: '225px'}} src={bootCountryLogo} alt="JB Dillon" />
+                  <img className="logo" style={{ width: '225px' }} src={bootCountryLogo} alt="JB Dillon" />
                 </Link>
               </div>
               <div className="social-links">
-                <Link to="https://instagram.com/twofreeboots/"><img src={instagram} alt=""/></Link>
-                <Link to="https://www.pinterest.com/twofreeboots/"><img src={pintrest} alt=""/></Link>
-                <Link to="http://www.twofreeboots.com/?q=contact"><img src={mail} alt=""/></Link>
-                <Link to="https://twitter.com/twofreeboots"><img src={twitter} alt=""/></Link>
-                <Link to="http://www.facebook.com/bootcountrynashville"><img src={facebook} alt=""/></Link>
+                <Link to="https://instagram.com/twofreeboots/"><img src={instagram} alt="" /></Link>
+                <Link to="https://www.pinterest.com/twofreeboots/"><img src={pintrest} alt="" /></Link>
+                <Link to="http://www.twofreeboots.com/?q=contact"><img src={mail} alt="" /></Link>
+                <Link to="https://twitter.com/twofreeboots"><img src={twitter} alt="" /></Link>
+                <Link to="http://www.facebook.com/bootcountrynashville"><img src={facebook} alt="" /></Link>
               </div>
               <p className="sub-text white-text copyright">ⓒ 2020 Boot Factory Outlet. Privacy Policy, Do Not Sell, MAP Policy, Terms.</p>
             </div>

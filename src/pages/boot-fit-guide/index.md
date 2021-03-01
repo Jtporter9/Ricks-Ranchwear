@@ -1,5 +1,7 @@
 ---
 title: tsest
+path: /boot-fit-guide
+templateKey: boot-fit-guide-page
 image: /img/about-us-hero.jpg
 heading: test
 description: test

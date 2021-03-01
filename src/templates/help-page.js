@@ -155,7 +155,7 @@ export const HelpPageTemplate = ({
         </div>
       </section>
 
-      <section id="faqs" className="faqs">
+      {/* <section id="faqs" className="faqs">
         <div className="lined-header">
           <div className="dash"></div>
           <h2>FAQ's</h2>
@@ -173,7 +173,7 @@ export const HelpPageTemplate = ({
             last={true}
           />
         </div>
-      </section>
+      </section> */}
 
     </div>
   )
