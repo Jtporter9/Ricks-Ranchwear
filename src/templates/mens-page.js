@@ -9,7 +9,8 @@ export const MensPageTemplate = ({
   title,
   heading,
   description,
-  products
+  products,
+  brands
 }) => (
   <ProductPageContainer 
     image={image}
@@ -17,6 +18,7 @@ export const MensPageTemplate = ({
     heading={heading}
     description={description}
     products={products}
+    brands={brands}
   />
 );
 
@@ -40,6 +42,7 @@ const MensPage = ({ data }) => {
   }
   
   const products = data.allBigCommerceProducts.nodes;
+  const brands = data.allBigCommerceBrands.edges;
 
   return (
     <Layout>
@@ -49,6 +52,7 @@ const MensPage = ({ data }) => {
         heading={frontmatter.heading}
         description={frontmatter.description}
         products={products}
+        brands={brands}
       />
     </Layout>
   );

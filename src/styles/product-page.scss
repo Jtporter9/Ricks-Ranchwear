@@ -172,7 +172,7 @@
         }
         .products-filter-container {
             width: 25%;
-            display: none;
+            margin-right: 1rem;
             .sticky {
                 position: sticky;
                 background-color: white;
@@ -192,11 +192,16 @@
                 }
             }
             .selected-filters {
-                margin: 1.5rem 0;
-                .no-selected-filters {
+                .filter-swatch {
+                    margin: 1rem 0;
                     padding: .5rem;
                     border: 1px solid $functional-light;
-                    width: 162px;
+                    display: flex;
+                    align-items: center;
+                    img {
+                        cursor: pointer;
+                        margin-right: .5rem;
+                    }
                     span {
                         font-weight: normal;
                         color: $functional-dark;

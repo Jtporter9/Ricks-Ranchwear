@@ -46,6 +46,9 @@ ProductPage.propTypes = {
     }),
     allBigCommerceProducts: PropTypes.shape({
       nodes: PropTypes.array
+    }),
+    allBigCommerceBrands: PropTypes.shape({
+      nodes: PropTypes.array
     })
   })
 };
