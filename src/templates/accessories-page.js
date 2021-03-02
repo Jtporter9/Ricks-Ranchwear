@@ -9,7 +9,8 @@ export const AccessoriesPageTemplate = ({
   title,
   heading,
   description,
-  products
+  products,
+  brands
 }) => (
   <ProductPageContainer 
     image={image}
@@ -17,6 +18,7 @@ export const AccessoriesPageTemplate = ({
     heading={heading}
     description={description}
     products={products}
+    brands={brands}
   />
 );
 
@@ -40,6 +42,7 @@ const AccessoriesPage = ({ data }) => {
   }
 
   const products = data.allBigCommerceProducts.nodes;
+  const brands = data.allBigCommerceBrands.edges;
 
   return (
     <Layout>
@@ -49,6 +52,7 @@ const AccessoriesPage = ({ data }) => {
         heading={frontmatter.heading}
         description={frontmatter.description}
         products={products}
+        brands={brands}
       />
     </Layout>
   );
