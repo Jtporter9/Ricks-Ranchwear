@@ -59,7 +59,7 @@ export default function ProductPageContainer({
     const [sizeFilter, setSizeFilter] = useState(null);
     const [isSticky, setSticky] = useState(false);
     const [activeInfoModal, setActiveInfoModal] = useState(false);
-    const [isMobileView, setIsMobileView] = useState(window.matchMedia('(max-width: 1000px)').matches)
+    // const [isMobileView, setIsMobileView] = useState(window.matchMedia('(max-width: 1000px)').matches)
 
     function toggleFilterDrawer() {
         setFilterDrawerOpen(!filterDrawerOpen);
@@ -85,7 +85,7 @@ export default function ProductPageContainer({
     };
 
     useEffect(() => {
-        window.addEventListener('resize', setIsMobileView(window.matchMedia('(max-width: 1000px)').matches));
+        // window.addEventListener('resize', setIsMobileView(window.matchMedia('(max-width: 1000px)').matches));
         window.addEventListener('scroll', handleScroll);
 
         return () => {
@@ -201,7 +201,9 @@ export default function ProductPageContainer({
 
                             </div>
                         </div>
-                        <div className={`bc-product-grid bc-product-grid--archive ${isMobileView ? 'bc-product-grid--4col' : 'bc-product-grid--3col'}`}>
+                        {/* <div className={`bc-product-grid bc-product-grid--archive ${isMobileView ? 'bc-product-grid--4col' : 'bc-product-grid--3col'}`}> */}
+                        <div className={`bc-product-grid bc-product-grid--archive bc-product-grid--3col}`}>
+
                             {products.map(product => (
                                 <ProductCard key={product.id} product={product} />
                             ))}

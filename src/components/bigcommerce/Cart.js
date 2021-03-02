@@ -85,16 +85,16 @@ const StandardItems = props => {
   const { items } = props;
   const cartType = props.cartType;
   let itemImage;
-  const [isMobileView, setIsMobileView] = useState(window.matchMedia('(max-width: 500px)').matches)
+  // const [isMobileView, setIsMobileView] = useState(window.matchMedia('(max-width: 500px)').matches)
 
-  useEffect(() => {
-    window.addEventListener('resize', setIsMobileView(window.matchMedia('(max-width: 500px)').matches));
-  })
+  // useEffect(() => {
+  //   window.addEventListener('resize', setIsMobileView(window.matchMedia('(max-width: 500px)').matches));
+  // })
 
   return (
     <>
       {items.map(item => {
-        const name = isMobileView ? item.name.substring(0, 10) + "..." : item.name
+        // const name = isMobileView ? item.name.substring(0, 10) + "..." : item.name
         return (
           // SIDE CART 
           <div className="bc-cart-item" key={item.id}>
