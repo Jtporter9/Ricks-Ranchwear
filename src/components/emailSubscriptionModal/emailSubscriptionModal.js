@@ -1,4 +1,3 @@
-import { func } from 'prop-types';
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import closeIcon from '../../assets/close-icon.svg';
@@ -8,6 +7,7 @@ export default function EmailSubscriptionModal() {
     const [emailInput, setEmailInput] = useState('')
     const [isValidEmail, setIsValidEmail] = useState(false)
     const [cookies, setCookie, removeCookie] = useCookies()
+    const [failedEmailSubmission, setFailedEmailSubmission] = useState(null)
 
     function handleOnChange(event) {
         setEmailInput(event.target.value)
@@ -16,10 +16,7 @@ export default function EmailSubscriptionModal() {
 
     function submitEmailSubscription(event) {
         event.preventDefault();
-        console.log(emailInput)
         createUser(emailInput)
-        setActiveEmailSubscriptionModal(false)
-        setCookie('emailSubscriptionSubmitted', true)
     }
 
     function email_check(email) {
@@ -32,31 +29,27 @@ export default function EmailSubscriptionModal() {
           method: 'POST',
           credentials: 'same-origin',
           mode: 'same-origin',
-          body: JSON.stringify({
-            line_items: [
+          body: JSON.stringify([
               {
                 email: email,
-                first_name: null,
-                last_name: null,
+                first_name: 'homepage email subscription',
+                last_name: 'homepage email subscription',
+
               }
-            ]
-          })
+            ])
         })
           .then(async res => ({ response: await res.json(), status: res.status }))
           .then(({ response, status }) => {
-              console.log(response)
-            // if (status === 404 && !retry) {
-            //   // re create a cart if cart was destroyed
-            //   return fetch(`/.netlify/functions/bigcommerce?endpoint=customers`, {
-            //     credentials: 'same-origin',
-            //     mode: 'same-origin'
-            //   }).then(() => addToCart(productId, variantId, true));
-            // }
-            // status < 300 && addNotification('Item added successfully');
+              console.log(response, status)
+                status === 200 ? (
+                    setActiveEmailSubscriptionModal(false) &&
+                    setCookie('emailSubscriptionSubmitted', true)
+                ) : setFailedEmailSubmission(true)
+
     
           })
           .catch(error => {
-            console.log("error")
+            console.log("error", error)
           });
       };
 
@@ -79,6 +72,9 @@ export default function EmailSubscriptionModal() {
                                 <input style={{ cursor: isValidEmail ? 'pointer' : 'not-allowed'}} className="btn-dark" type="submit" value="Sign me up" disabled={isValidEmail ? "" : "disabled"} />
                             </div>
                         </form>
+                        {failedEmailSubmission && (
+                            <p className="submission-error">*Submission failed, or customer already exsists*</p>
+                        )}
                         <p className="email-subscription-sub-text">
                             By signing up, you agree to our  Privacy Policy and Terms. We hat spam as much as you do, we promise to keep your email safe.
                         </p>
