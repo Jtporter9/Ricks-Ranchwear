@@ -21,6 +21,31 @@ export default function ProductPageContainer({
     products,
     brands
 }) {
+    let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) === index)
+
+    let colorOptions = [];
+    let sizeOptions = [];
+    let widthOptions = [];
+
+    const colorKey = "Color";
+    const sizeKey = "Size";
+    const widthKey = "Width";
+
+    products.map(product => {
+        product.variantsList = []
+        product.variants.map(variant => variant.option_values.map(option => {
+            option.option_display_name === colorKey && colorOptions.push(option.label)
+            option.option_display_name === sizeKey && sizeOptions.push(option.label)
+            option.option_display_name === widthKey && widthOptions.push(option.label)
+            product.variantsList = [...new Set(findDuplicates([...product.variantsList, option.label]))];
+        }))
+    })
+
+    colorOptions = [...new Set(findDuplicates(colorOptions))]; // Unique duplicates
+    sizeOptions = [...new Set(findDuplicates(sizeOptions))]; // Unique duplicatesa
+    widthOptions = [...new Set(findDuplicates(widthOptions))]; // Unique duplicates
+    sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
+
     const brandsFiltered = brands.map(obj => obj.node.name);
     const optionsList = ["Best Selling", "Price: Low to High", "Price: High to Low"];
     const categoryList = ["Category 1", "Category 2", "Category 3"]
@@ -29,6 +54,9 @@ export default function ProductPageContainer({
     const [filterDrawerActiveClass, setFilterDrawerActiveClass] = useState('');
     const [filter, setFilter] = useState(optionsList[0]);
     const [brandsFilter, setBrandsFilter] = useState(null);
+    const [colorFilter, setColorFilter] = useState(null);
+    const [widthFilter, setWidthFilter] = useState(null);
+    const [sizeFilter, setSizeFilter] = useState(null);
     const [isSticky, setSticky] = useState(false);
     const [activeInfoModal, setActiveInfoModal] = useState(false);
     const [isMobileView, setIsMobileView] = useState(window.matchMedia('(max-width: 1000px)').matches)
@@ -45,6 +73,9 @@ export default function ProductPageContainer({
     filter === optionsList[1] && products.sort((a, b) => (a.price > b.price) ? 1 : -1)
     filter === optionsList[2] && products.sort((a, b) => (a.price < b.price) ? 1 : -1)
     brandsFilter && products.sort((a, b) => (b.brand.name === brandsFilter) ? 1 : -1)
+    colorFilter && products.sort((a, b) => b.variantsList.indexOf(colorFilter) !== -1 ? 1 : -1)
+    sizeFilter && products.sort((a, b) => b.variantsList.indexOf(sizeFilter) !== -1 ? 1 : -1)
+    widthFilter && products.sort((a, b) => b.variantsList.indexOf(widthFilter) !== -1 ? 1 : -1)
 
     const ref = useRef(null);
     const handleScroll = () => {
@@ -120,6 +151,24 @@ export default function ProductPageContainer({
                                             <span>{brandsFilter}</span>
                                         </div>
                                     )}
+                                    {colorFilter && (
+                                        <div className="filter-swatch">
+                                            <img src={CloseIcon} alt="remove" onClick={() => setColorFilter(null)} />
+                                            <span>{colorFilter}</span>
+                                        </div>
+                                    )}
+                                    {sizeFilter && (
+                                        <div className="filter-swatch">
+                                            <img src={CloseIcon} alt="remove" onClick={() => setSizeFilter(null)} />
+                                            <span>{sizeFilter}</span>
+                                        </div>
+                                    )}
+                                    {widthFilter && (
+                                        <div className="filter-swatch">
+                                            <img src={CloseIcon} alt="remove" onClick={() => setWidthFilter(null)} />
+                                            <span>{widthFilter}</span>
+                                        </div>
+                                    )}
                                 </div>
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
@@ -130,17 +179,24 @@ export default function ProductPageContainer({
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Category"
-                                    value="Category"
-                                    onChange={v => setFilter(v)}
-                                    options={categoryList}
+                                    placeholder="Size"
+                                    value="Size"
+                                    onChange={v => setSizeFilter(v)}
+                                    options={sizeOptions}
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Category"
-                                    value="Category"
-                                    onChange={v => setFilter(v)}
-                                    options={categoryList}
+                                    placeholder="Color"
+                                    value="Color"
+                                    onChange={v => setColorFilter(v)}
+                                    options={colorOptions}
+                                />
+                                <Dropdown
+                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
+                                    placeholder="Width"
+                                    value="Width"
+                                    onChange={v => setWidthFilter(v)}
+                                    options={widthOptions}
                                 />
 
                             </div>
