@@ -22,7 +22,7 @@
         padding-top: 1rem;
         .submission-error {
             margin-bottom: 1rem;
-            
+
         }
         .email-subscription-head {
             display: flex;
@@ -103,7 +103,7 @@
             height: 60%;
             .email-subscription-buttons-split {
                 flex-direction: column;
-                button {
+                button, input {
                     width: 100%;
                     margin: .5rem 0;
                 }
