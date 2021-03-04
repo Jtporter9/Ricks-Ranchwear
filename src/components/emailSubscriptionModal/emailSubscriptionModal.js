@@ -32,8 +32,8 @@ export default function EmailSubscriptionModal() {
           body: JSON.stringify([
               {
                 email: email,
-                first_name: 'homepage email subscription',
-                last_name: 'homepage email subscription',
+                first_name: 'Email subscription',
+                last_name: 'modal',
 
               }
             ])
@@ -41,11 +41,12 @@ export default function EmailSubscriptionModal() {
           .then(async res => ({ response: await res.json(), status: res.status }))
           .then(({ response, status }) => {
               console.log(response, status)
-                status === 200 ? (
+                if (status === 200) {
                     setActiveEmailSubscriptionModal(false) &&
                     setCookie('emailSubscriptionSubmitted', true)
-                ) : setFailedEmailSubmission(true)
-
+                 } else { 
+                     setFailedEmailSubmission(true)
+                 }
     
           })
           .catch(error => {
