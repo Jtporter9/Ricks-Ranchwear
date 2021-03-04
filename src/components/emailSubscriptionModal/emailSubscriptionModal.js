@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import closeIcon from '../../assets/close-icon.svg';
 
-export default function EmailSubscriptionModal({toggleModal}) {
+export default function EmailSubscriptionModal({ toggleModal }) {
     console.log(toggleModal)
     const [emailInput, setEmailInput] = useState('')
     const [isValidEmail, setIsValidEmail] = useState(false)
     const [cookies, setCookie, removeCookie] = useCookies()
     const [failedEmailSubmission, setFailedEmailSubmission] = useState(null)
+    const [successEmailSubmission, setSuccessEmailSubmission] = useState(false)
 
     function handleOnChange(event) {
         setEmailInput(event.target.value)
@@ -49,7 +50,7 @@ export default function EmailSubscriptionModal({toggleModal}) {
             .then(({ response, status }) => {
                 console.log(response, status)
                 if (status === 200) {
-                    toggleModal(false)
+                    setSuccessEmailSubmission(true)
                     setCookie('emailSubscriptionSubmitted', true)
                 } else {
                     setFailedEmailSubmission(true)
@@ -67,23 +68,39 @@ export default function EmailSubscriptionModal({toggleModal}) {
                 <div className="email-subscription-head">
                     <img src={closeIcon} alt="close" onClick={emailSubscripionDenial} />
                 </div>
-                <h3>Free Shipping off your first order!</h3>
-                <p className="email-subscription-description">
-                    Sign up for our email list to receive updates from Boot Factory Outlet and to receive free shipping off of your first order of up to 3 pairs of boots!
-                        </p>
-                <form onSubmit={submitEmailSubscription}>
-                    <input placeholder="Email Address" type="email" value={emailInput} onChange={handleOnChange} />
-                    <div className="email-subscription-buttons-split">
-                        <button onClick={emailSubscripionDenial}>No thanks</button>
-                        <input style={{ cursor: isValidEmail ? 'pointer' : 'not-allowed' }} className="btn-dark" type="submit" value="Sign me up" disabled={isValidEmail ? "" : "disabled"} />
+                {!successEmailSubmission && (
+                    <div>
+                        <h3>Free Shipping off your first order!</h3>
+                        <p className="email-subscription-description">
+                            Sign up for our email list to receive updates from Boot Factory Outlet and to receive free shipping off of your first order of up to 3 pairs of boots!
+                    </p>
+                        <form onSubmit={submitEmailSubscription}>
+                            <input placeholder="Email Address" type="email" value={emailInput} onChange={handleOnChange} />
+                            <div className="email-subscription-buttons-split">
+                                <button onClick={emailSubscripionDenial}>No thanks</button>
+                                <input style={{ cursor: isValidEmail ? 'pointer' : 'not-allowed' }} className="btn-dark" type="submit" value="Sign me up" disabled={isValidEmail ? "" : "disabled"} />
+                            </div>
+                        </form>
+                        {failedEmailSubmission && (
+                            <p className="submission-error">*Submission failed, or customer already exsists*</p>
+                        )}
                     </div>
-                </form>
-                {failedEmailSubmission && (
-                    <p className="submission-error">*Submission failed, or customer already exsists*</p>
+                )}
+                {successEmailSubmission && (
+                    <div className="success-state">
+                        <h3>Thanks for signing up!</h3>
+                        <p className="discount-code-label">FREE SHIPPING DISCOUNT CODE:</p>
+                        <h2>SHIPFREE</h2>
+                        <p>Discount automatically applied at checkout.</p>
+                        <div className="subscribed-box">
+                            <span>Subscribed!</span>
+                        </div>
+                        <button onClick={emailSubscripionDenial}>Continue Shopping</button>
+                    </div>
                 )}
                 <p className="email-subscription-sub-text">
                     By signing up, you agree to our  Privacy Policy and Terms. We hat spam as much as you do, we promise to keep your email safe.
-                        </p>
+                </p>
             </div>
         </div>
     )

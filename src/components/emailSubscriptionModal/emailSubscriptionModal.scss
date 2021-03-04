@@ -17,9 +17,66 @@
         flex-direction: column;
         justify-content: space-between;
         text-align: center;
-        width: 500px;
+        width: 425px;
         margin: 0 auto;
         padding-top: 1rem;
+        .success-state {
+            h3 {
+                margin-bottom: 1rem;
+            }
+            .discount-code-label {
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 24px;
+                text-align: center;
+                letter-spacing: 0.01em;
+                color: $functional-dark;
+                margin-bottom: 1rem;
+            }
+            h2 {
+                font-weight: 900;
+                font-size: 32px;
+                line-height: 40px;
+                text-align: center;
+                letter-spacing: 0.04em;
+                color: $functional-darkest;
+                margin-bottom: 1rem;
+            }
+            p {
+                margin-bottom: 1rem;
+            }
+            .subscribed-box {
+                margin-bottom: 1rem;
+                width: 100%;
+                padding: 1rem;
+                background: $white;
+                border: 1px solid $functional-darkest;
+                span {
+                    font-weight: normal;
+                    font-size: 10px;
+                    line-height: 12px;
+                    display: flex;
+                    align-items: center;
+                    letter-spacing: 0.01em;
+                    color: $functional-darkest;
+                }
+            }
+            button {
+                padding: 1rem 2rem;
+                border-radius: 0;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 24px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: $white;
+                background-color: $blue-darkest;
+                border: 1px solid $blue-darkest;
+                cursor: pointer;
+                margin-bottom: 1rem;
+                width: 100%;
+            }
+        }
         .submission-error {
             margin-bottom: 1rem;
 
@@ -94,7 +151,7 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 425px) {
     .email-subscription-modal-opaque-background {
         .email-subscription-modal {
             width: 100%;
