@@ -24,6 +24,13 @@ export default function EmailSubscriptionModal() {
         return (email != '' && email != 'undefined' && regex.test(email));
     }
 
+    function emailSubscripionDenial() {
+        setActiveEmailSubscriptionModal(false)
+        const today = new Date();
+        const tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
+        !cookies.emailSubscriptionExpiration && setCookie('emailSubscriptionExpiration', tomorrow.getTime())
+    }
+
     const createUser = (email) => {
         fetch(`/.netlify/functions/bigcommerce?endpoint=customers`, {
           method: 'POST',
@@ -60,7 +67,7 @@ export default function EmailSubscriptionModal() {
                 <div className="email-subscription-modal-opaque-background">
                     <div className="email-subscription-modal">
                         <div className="email-subscription-head">
-                            <img src={closeIcon} alt="close" onClick={() => setActiveEmailSubscriptionModal(false)} />
+                            <img src={closeIcon} alt="close" onClick={emailSubscripionDenial} />
                         </div>
                         <h3>Free Shipping off your first order!</h3>
                         <p className="email-subscription-description">
@@ -69,7 +76,7 @@ export default function EmailSubscriptionModal() {
                         <form onSubmit={submitEmailSubscription}>
                             <input placeholder="Email Address" type="email" value={emailInput} onChange={handleOnChange} />
                             <div className="email-subscription-buttons-split">
-                                <button onClick={() => setActiveEmailSubscriptionModal(false)}>No thanks</button>
+                                <button onClick={emailSubscripionDenial}>No thanks</button>
                                 <input style={{ cursor: isValidEmail ? 'pointer' : 'not-allowed'}} className="btn-dark" type="submit" value="Sign me up" disabled={isValidEmail ? "" : "disabled"} />
                             </div>
                         </form>

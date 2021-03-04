@@ -4,7 +4,6 @@ import { useCookies } from 'react-cookie';
 import PhotoGrid from '../PhotoGrid';
 import BlogItem from '../BlogItem';
 import TopSelling from '../topSelling/topSelling.js';
-import EmailSubscriptionModal from '../emailSubscriptionModal/emailSubscriptionModal';
 
 // IMAGES
 import bootsImg from '../../assets/boots.svg';
@@ -39,15 +38,8 @@ export default function HomePageContainer({
         setCookie('alertBanner', true);
     }
 
-    useEffect(() => {
-        !cookies.siteVisits && setCookie('siteVisits', 1)
-        cookies.siteVisits && setCookie('siteVisits', cookies.siteVisits++)
-    })
     return (
         <div className="homepage">
-            {cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && (
-                <EmailSubscriptionModal />
-            )}
             <div className="homepage-hero"
                 style={{
                     backgroundImage: `url(${!!image.childImageSharp ? image.childImageSharp.fluid.src : image
