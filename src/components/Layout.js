@@ -15,6 +15,7 @@ const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
   const [headerHeight, setHeaderHeight] = useState(0)
   const [cookies, setCookie, removeCookie] = useCookies(['password'])
+  const [activeEmailSubscriptionModal, setActiveEmailSubscriptionModal] = useState(true);
 
   const { password } = cookies;
 
@@ -88,8 +89,8 @@ const TemplateWrapper = ({ children }) => {
       )}
       <Header />
       <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
-      {cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && !cookies.emailSubscriptionExpiration && (
-        <EmailSubscriptionModal />
+      {activeEmailSubscriptionModal && cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && !cookies.emailSubscriptionExpiration && (
+        <EmailSubscriptionModal toggleModal={v => setActiveEmailSubscriptionModal(v)} />
       )}
       <Footer />
     </div>
