@@ -21,6 +21,7 @@ export default function ProductPageContainer({
     products,
     brands
 }) {
+    console.log(products)
     let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) === index)
 
     let colorOptions = [];

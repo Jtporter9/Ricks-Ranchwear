@@ -107,6 +107,12 @@ export const kidsPageQuery = graphql`
             option_display_name
           }
           sku
+          inventory_level
+        }
+        custom_fields {
+          id
+          name
+          value
         }
         categories
         is_visible

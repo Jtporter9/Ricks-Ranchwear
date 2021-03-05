@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import closeIcon from '../../assets/close-icon.svg';
+import copyIcon from '../../assets/copy.svg';
 
 export default function EmailSubscriptionModal({ toggleModal }) {
     console.log(toggleModal)
@@ -9,6 +10,8 @@ export default function EmailSubscriptionModal({ toggleModal }) {
     const [cookies, setCookie, removeCookie] = useCookies()
     const [failedEmailSubmission, setFailedEmailSubmission] = useState(null)
     const [successEmailSubmission, setSuccessEmailSubmission] = useState(false)
+    const [copyButtonText, setCopyButtonText] = useState('Copy Discount Code')
+    const discountCouponCode = 'SHIPFREE';
 
     function handleOnChange(event) {
         setEmailInput(event.target.value)
@@ -32,6 +35,14 @@ export default function EmailSubscriptionModal({ toggleModal }) {
         !cookies.emailSubscriptionExpiration && setCookie('emailSubscriptionExpiration', tomorrow.getTime())
     }
 
+    function copyToClipboard() {
+        navigator.clipboard.writeText(discountCouponCode)
+        setCopyButtonText('Copied Discount Code!')
+        setTimeout(() => {
+            setCopyButtonText('Copy Discount Code')
+        }, 2000);
+      }
+
     const createUser = (email) => {
         fetch(`/.netlify/functions/bigcommerce?endpoint=customers`, {
             method: 'POST',
@@ -52,6 +63,16 @@ export default function EmailSubscriptionModal({ toggleModal }) {
                 if (status === 200) {
                     setSuccessEmailSubmission(true)
                     setCookie('emailSubscriptionSubmitted', true)
+                    // fetch(`/.netlify/functions/bigcommerce?endpoint=checkouts/{id}/coupons`, {
+                    //     method: 'POST',
+                    //     credentials: 'same-origin',
+                    //     mode: 'same-origin',
+                    //     body: JSON.stringify(
+                    //         {
+                    //             coupon_code: "SHIPFREE"
+                    //         }
+                    //     )
+                    // })
                 } else {
                     setFailedEmailSubmission(true)
                 }
@@ -89,13 +110,13 @@ export default function EmailSubscriptionModal({ toggleModal }) {
                 {successEmailSubmission && (
                     <div className="success-state">
                         <h3>Thanks for signing up!</h3>
-                        <p className="discount-code-label">FREE SHIPPING DISCOUNT CODE:</p>
+                        <p className="discount-code-label">FREE SHIPPING DISCOUNT CODE:</p> 
                         <h2>SHIPFREE</h2>
-                        <p>Discount automatically applied at checkout.</p>
+                        <p>One time use for each customer only.</p>
                         <div className="subscribed-box">
                             <span>Subscribed!</span>
                         </div>
-                        <button onClick={emailSubscripionDenial}>Continue Shopping</button>
+                        <button onClick={copyToClipboard}>{copyButtonText} <img src={copyIcon}/></button>
                     </div>
                 )}
                 <p className="email-subscription-sub-text">
