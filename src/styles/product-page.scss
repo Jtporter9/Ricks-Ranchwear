@@ -214,13 +214,16 @@
         }
     }
 }
-
 // PRODUCT CARD
 .bc-product-card {
     img {
         border: 1px solid $functional-light;
         padding: 1rem 0;
         background-color: white;
+    }
+    .bc-product__meta {
+        padding-top: 1rem;
+        padding-bottom: 0;
     }
     .bc-product-card-image-anchor {
         &:hover,
