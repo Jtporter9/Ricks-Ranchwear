@@ -17,7 +17,7 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
 
   const handleChange = selectedValue => {
     onChange(selectedValue);
-    setOpen(false);
+    dropDownClasses.head !== 'products-side-filter-head' && setOpen(false);
   };
 
   useEffect(() => {

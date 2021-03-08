@@ -103,17 +103,25 @@ export default function ProductPageContainer({
     };
 
     function getProductsFilteredByBrand(brands) {
-        brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...products.filter(product => product.brand.name === brand)]))])) : 
-        brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(products.filter(product => product.brand.name === brand)))])));
-        console.log(brands.length)
-        // brands.length === 0 && setFilteredProducts(products);
+        if (numberOfFilters > 0 && brands.length === 0) {
+            brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...filteredProducts.filter(product => product.brand.name === brand)]))])) :
+            brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(filteredProducts.filter(product => product.brand.name === brand)))])));
+        } else {
+            brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...products.filter(product => product.brand.name === brand)]))])) :
+            brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(products.filter(product => product.brand.name === brand)))])));
+        }
     }
 
     function getProductsFilteredByVariant(arr) {
-        arr.length > 1 ?
-            arr.map(item => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...products.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)]))])) :
-            arr.map(item => setFilteredProducts([...new Set(findDuplicates(products.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)))]));
-        // arr.length === 0 && setFilteredProducts(products);
+        if (numberOfFilters > 0 && arr.length === 0) {
+            arr.length > 1 ?
+                arr.map(item => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...filteredProducts.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)]))])) :
+                arr.map(item => setFilteredProducts([...new Set(findDuplicates(filteredProducts.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)))]));
+        } else {
+            arr.length > 1 ?
+                arr.map(item => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...products.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)]))])) :
+                arr.map(item => setFilteredProducts([...new Set(findDuplicates(products.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)))]));
+        }
     }
 
     useEffect(() => {
@@ -126,7 +134,6 @@ export default function ProductPageContainer({
             toeStyleFilter.length +
             styleNumberFilter.length
         );
-        console.log(numberOfFilters);
         filteredProducts.length === 0 && setFilteredProducts(products);
         numberOfFilters === 0 && setFilteredProducts(products);
         (!filter && filteredProducts.length !== 0) && setFilter(optionsList[0]);
@@ -172,7 +179,7 @@ export default function ProductPageContainer({
                         <div className="products-header-split">
                             <button className="toggle-filters" onClick={toggleFilterDrawer}>
                                 <img src={filterIcon} alt="Mobile Filters" />
-                                <span>Filters</span>
+                                <span>Filters {numberOfFilters > 0 && `(${numberOfFilters})`}</span>
                             </button>
                             <div className="coupon-banner" onClick={() => setActiveInfoModal(true)}>
                                 <img src={groupedBoots} />
