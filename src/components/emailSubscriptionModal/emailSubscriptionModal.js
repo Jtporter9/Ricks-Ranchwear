@@ -30,9 +30,7 @@ export default function EmailSubscriptionModal({ toggleModal }) {
 
     function emailSubscripionDenial() {
         toggleModal(false)
-        const today = new Date();
-        const tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
-        !cookies.emailSubscriptionExpiration && setCookie('emailSubscriptionExpiration', tomorrow.getTime())
+        !cookies.emailSubscriptionExpiration && setCookie('emailSubscriptionExpiration', false)
     }
 
     function copyToClipboard() {

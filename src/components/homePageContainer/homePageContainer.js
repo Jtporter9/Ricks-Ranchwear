@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { useCookies } from 'react-cookie';
 import PhotoGrid from '../PhotoGrid';
@@ -33,10 +33,16 @@ export default function HomePageContainer({
 }) {
     // STATES 
     const [cookies, setCookie, removeCookie] = useCookies([]);
+    const [showAlertBanner, setShowAlertBanner] = useState(false);
 
     function closeAlertBanner() {
+        setShowAlertBanner(false)
         setCookie('alertBanner', true);
     }
+
+    useEffect(() => {
+        !cookies.alertBanner && setShowAlertBanner(true)
+    }, [cookies])
 
     return (
         <div className="homepage">
@@ -169,7 +175,7 @@ export default function HomePageContainer({
             <section className="container">
                 REVIEWS
             </section> */}
-            {!cookies.alertBanner && (
+            {showAlertBanner && (
                 <div className="alert-banner">
                     <p>Boot Factory outlet Uses cookies to improve the user experience. To learn more about our cookie policy, please check our <Link to="/about">Privacy Policy</Link></p>
                     <button onClick={closeAlertBanner}>Okay</button>
