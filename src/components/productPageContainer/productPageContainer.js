@@ -105,10 +105,10 @@ export default function ProductPageContainer({
     function getProductsFilteredByBrand(brands) {
         if (numberOfFilters > 0 && brands.length === 0) {
             brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...filteredProducts.filter(product => product.brand.name === brand)]))])) :
-            brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(filteredProducts.filter(product => product.brand.name === brand)))])));
+                brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(filteredProducts.filter(product => product.brand.name === brand)))])));
         } else {
             brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...products.filter(product => product.brand.name === brand)]))])) :
-            brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(products.filter(product => product.brand.name === brand)))])));
+                brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(products.filter(product => product.brand.name === brand)))])));
         }
     }
 
@@ -209,9 +209,11 @@ export default function ProductPageContainer({
                                     <span>Filters</span>
                                 </div>
                                 <div className="selected-filters">
-                                    <div style={{ margin: '1rem' }}>
-                                        <span>No Filters Selected</span>
-                                    </div>
+                                    {numberOfFilters < 1 && (
+                                        <div style={{ padding: '0 1rem' }}>
+                                            <span>No Filters Selected</span>
+                                        </div>
+                                    )}
                                     {brandsFilter && brandsFilter.map((brand, i) => (
                                         <div key={i} className="filter-swatch">
                                             <img src={CloseIcon} alt="remove" onClick={() => setBrandsFilter(brandsFilter.filter(a => a !== brand))} />
@@ -251,7 +253,7 @@ export default function ProductPageContainer({
                                     {styleNumberFilter && styleNumberFilter.map((style, i) => (
                                         <div key={i} className="filter-swatch">
                                             <img src={CloseIcon} alt="remove" onClick={() => { setStyleNumberFilter(styleNumberFilter.filter(a => a !== style)); getProductsFilteredByVariant(styleNumberFilter.filter(a => a !== style)); }} />
-                                            <span>{styleNumberFilter}</span>
+                                            <span>{style}</span>
                                         </div>
                                     ))}
                                 </div>
