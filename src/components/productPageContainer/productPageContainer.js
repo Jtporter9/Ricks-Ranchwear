@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'gatsby';
 import ProductCard from '../bigcommerce/ProductCard';
 import TopSelling from '../topSelling/topSelling.js';
 import Dropdown from '../dropdown/dropdown.js';
@@ -7,10 +8,12 @@ import InfoModal from '../infoModal/infoModal';
 // ASSESTS
 import logo from '../../assets/logo.png';
 import caretDownLight from '../../assets/caret-down-light.svg';
+import caretUpDark from '../../assets/caret-up-dark.svg';
 import filterIcon from '../../assets/filter.svg';
 import infoIcon from '../../assets/info-icon.svg';
 import groupedBoots from '../../assets/grouped-boots.svg';
 import CloseIcon from '../../assets/close-icon.svg';
+import CloseIconWhite from '../../assets/close-icon-white.svg';
 import { number } from 'prop-types';
 
 export default function ProductPageContainer({
@@ -87,6 +90,7 @@ export default function ProductPageContainer({
     const [isMobileView, setIsMobileView] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [numberOfFilters, setNumberOfFilters] = useState(null);
+    const [categoryDropDown, setCategoryDropDown] = useState(false);
 
     function toggleFilterDrawer() {
         setFilterDrawerOpen(!filterDrawerOpen);
@@ -121,6 +125,36 @@ export default function ProductPageContainer({
             arr.length > 1 ?
                 arr.map(item => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...products.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)]))])) :
                 arr.map(item => setFilteredProducts([...new Set(findDuplicates(products.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)))]));
+        }
+    }
+
+    function clearAllFilters() {
+        setBrandsFilter([]);
+        setColorFilter([]);
+        setWidthFilter([]);
+        setSizeFilter([]);
+        setMaterialFilter([]);
+        setToeStyleFilter([]);
+        setStyleNumberFilter([]);
+    }
+
+    function toggleFilter(arr, val, type) {
+        if (arr.indexOf(val) === -1) {
+            type === "Brand" && setBrandsFilter([...arr, val]);
+            type === "Color" && setColorFilter([...arr, val]);
+            type === "Width" && setWidthFilter([...arr, val]);
+            type === "Size" && setSizeFilter([...arr, val]);
+            type === "Material" && setMaterialFilter([...arr, val]);
+            type === "Toe Shape" && setToeStyleFilter([...arr, val]);
+            type === "Style" && setStyleNumberFilter([...arr, val]);
+        } else {
+            type === "Brand" && setBrandsFilter(arr.filter(a => a !== val));
+            type === "Color" && setColorFilter(arr.filter(a => a !== val));
+            type === "Width" && setWidthFilter(arr.filter(a => a !== val));
+            type === "Size" && setSizeFilter(arr.filter(a => a !== val));
+            type === "Material" && setMaterialFilter(arr.filter(a => a !== val));
+            type === "Toe Shape" && setToeStyleFilter(arr.filter(a => a !== val));
+            type === "Style" && setStyleNumberFilter(arr.filter(a => a !== val));
         }
     }
 
@@ -214,97 +248,135 @@ export default function ProductPageContainer({
                                             <span>No Filters Selected</span>
                                         </div>
                                     )}
+                                    {numberOfFilters > 0 && (
+                                        <div className="filter-swatch" style={{ backgroundColor: 'white' }} onClick={clearAllFilters}>
+                                            <img src={CloseIcon} alt="Clear All" />
+                                            <span style={{ color: '#767676' }}>Clear All</span>
+                                        </div>
+                                    )}
                                     {brandsFilter && brandsFilter.map((brand, i) => (
                                         <div key={i} className="filter-swatch">
-                                            <img src={CloseIcon} alt="remove" onClick={() => setBrandsFilter(brandsFilter.filter(a => a !== brand))} />
+                                            <img src={CloseIconWhite} alt="remove" onClick={() => setBrandsFilter(brandsFilter.filter(a => a !== brand))} />
                                             <span>{brand}</span>
                                         </div>
                                     ))}
                                     {colorFilter && colorFilter.map((color, i) => (
                                         <div key={i} className="filter-swatch">
-                                            <img src={CloseIcon} alt="remove" onClick={() => { setColorFilter(colorFilter.filter(a => a !== color)); getProductsFilteredByVariant(colorFilter.filter(a => a !== color)); }} />
+                                            <img src={CloseIconWhite} alt="remove" onClick={() => { setColorFilter(colorFilter.filter(a => a !== color)); getProductsFilteredByVariant(colorFilter.filter(a => a !== color)); }} />
                                             <span>{color}</span>
                                         </div>
                                     ))}
                                     {widthFilter && widthFilter.map((width, i) => (
                                         <div key={i} className="filter-swatch">
-                                            <img src={CloseIcon} alt="remove" onClick={() => { setWidthFilter(widthFilter.filter(a => a !== width)); getProductsFilteredByVariant(widthFilter.filter(a => a !== width)); }} />
+                                            <img src={CloseIconWhite} alt="remove" onClick={() => { setWidthFilter(widthFilter.filter(a => a !== width)); getProductsFilteredByVariant(widthFilter.filter(a => a !== width)); }} />
                                             <span>{width}</span>
                                         </div>
                                     ))}
                                     {sizeFilter && sizeFilter.map((size, i) => (
                                         <div key={i} className="filter-swatch">
-                                            <img src={CloseIcon} alt="remove" onClick={() => { setSizeFilter(sizeFilter.filter(a => a !== size)); getProductsFilteredByVariant(sizeFilter.filter(a => a !== size)); }} />
+                                            <img src={CloseIconWhite} alt="remove" onClick={() => { setSizeFilter(sizeFilter.filter(a => a !== size)); getProductsFilteredByVariant(sizeFilter.filter(a => a !== size)); }} />
                                             <span>{size}</span>
                                         </div>
                                     ))}
                                     {materialFilter && materialFilter.map((material, i) => (
                                         <div key={i} className="filter-swatch">
-                                            <img src={CloseIcon} alt="remove" onClick={() => { setMaterialFilter(materialFilter.filter(a => a !== material)); getProductsFilteredByVariant(materialFilter.filter(a => a !== material)); }} />
+                                            <img src={CloseIconWhite} alt="remove" onClick={() => { setMaterialFilter(materialFilter.filter(a => a !== material)); getProductsFilteredByVariant(materialFilter.filter(a => a !== material)); }} />
                                             <span>{material}</span>
                                         </div>
                                     ))}
                                     {toeStyleFilter && toeStyleFilter.map((toeStyle, i) => (
                                         <div key={i} className="filter-swatch">
-                                            <img src={CloseIcon} alt="remove" onClick={() => { setToeStyleFilter(toeStyleFilter.filter(a => a !== toeStyle)); getProductsFilteredByVariant(toeStyleFilter.filter(a => a !== toeStyle)); }} />
+                                            <img src={CloseIconWhite} alt="remove" onClick={() => { setToeStyleFilter(toeStyleFilter.filter(a => a !== toeStyle)); getProductsFilteredByVariant(toeStyleFilter.filter(a => a !== toeStyle)); }} />
                                             <span>{toeStyle}</span>
                                         </div>
                                     ))}
                                     {styleNumberFilter && styleNumberFilter.map((style, i) => (
                                         <div key={i} className="filter-swatch">
-                                            <img src={CloseIcon} alt="remove" onClick={() => { setStyleNumberFilter(styleNumberFilter.filter(a => a !== style)); getProductsFilteredByVariant(styleNumberFilter.filter(a => a !== style)); }} />
+                                            <img src={CloseIconWhite} alt="remove" onClick={() => { setStyleNumberFilter(styleNumberFilter.filter(a => a !== style)); getProductsFilteredByVariant(styleNumberFilter.filter(a => a !== style)); }} />
                                             <span>{style}</span>
                                         </div>
                                     ))}
+                                </div>
+                                <div className="filter-drop-down">
+                                    <div className="products-side-filter-head" onClick={() => setCategoryDropDown(!categoryDropDown)}>
+                                        <span className={`${categoryDropDown && 'dropdown-open'}`}>Category</span>
+                                        <img src={categoryDropDown ? caretUpDark : caretDownLight} alt="Dropdown" />
+                                    </div>
+                                    {categoryDropDown && (
+                                        <ul className="side-filter-dropdown-container">
+                                            <Link to='/mens'>
+                                                <li className="dropdown-option">
+                                                    Mens
+                                                </li>
+                                            </Link>
+                                            <Link to='/womens'>
+                                                <li className="dropdown-option">
+                                                    Womens
+                                                </li>
+                                            </Link>
+                                            <Link to='/kids'>
+                                                <li className="dropdown-option">
+                                                    Kids
+                                                </li>
+                                            </Link>
+                                        </ul>
+                                    )}
                                 </div>
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
                                     placeholder="Brand"
                                     value="Brand"
-                                    onChange={v => setBrandsFilter([...brandsFilter, v])}
+                                    onChange={v => toggleFilter(brandsFilter, v, "Brand")}
                                     options={brandsFiltered}
+                                    selectedFilters={brandsFilter}
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
                                     placeholder="Material"
                                     value="Material"
-                                    onChange={v => setMaterialFilter([...materialFilter, v])}
+                                    onChange={v => toggleFilter(materialFilter, v, "Material")}
                                     options={materialOptions}
+                                    selectedFilters={materialFilter}
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
                                     placeholder="Color"
                                     value="Color"
-                                    onChange={v => setColorFilter([...colorFilter, v])}
+                                    onChange={v => toggleFilter(colorFilter, v, "Color")}
                                     options={colorOptions}
+                                    selectedFilters={colorFilter}
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
                                     placeholder="Width"
                                     value="Width"
-                                    onChange={v => setWidthFilter([...widthFilter, v])}
+                                    onChange={v => toggleFilter(widthFilter, v, "Width")}
                                     options={widthOptions}
+                                    selectedFilters={widthFilter}
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
                                     placeholder="Size"
                                     value="Size"
-                                    onChange={v => setSizeFilter([...sizeFilter, v])}
+                                    onChange={v => toggleFilter(sizeFilter, v, "Size")}
                                     options={sizeOptions}
+                                    selectedFilters={sizeFilter}
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
                                     placeholder="Toe Shape"
                                     value="Toe Shape"
-                                    onChange={v => setToeStyleFilter([...toeStyleFilter, v])}
+                                    onChange={v => toggleFilter(toeStyleFilter, v, "Toe Shape")}
                                     options={toeStyleOptions}
+                                    selectedFilters={toeStyleFilter}
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
                                     placeholder="Style"
                                     value="Style"
-                                    onChange={v => setStyleNumberFilter([...styleNumberFilter, v])}
+                                    onChange={v => toggleFilter(styleNumberFilter, v, "Style")}
                                     options={styleNumberOptions}
+                                    selectedFilters={styleNumberFilter}
                                 />
 
 
@@ -320,8 +392,8 @@ export default function ProductPageContainer({
                         <TopSelling products={products} />
                     </section>
                 </div>
-            </section>
+            </section >
             <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
-        </div>
+        </div >
     )
 }

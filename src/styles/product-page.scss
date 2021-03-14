@@ -128,6 +128,9 @@
                         box-shadow: inset 0px -2px 0px $red-mid;
                     }
                 }
+                .dropdown-open {
+                    box-shadow: inset 0px -2px 0px $red-mid;
+                }
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -147,6 +150,9 @@
             }
             .side-filter-dropdown-container {
                 padding: .5rem 0;
+                .dropdown-option-selected {
+                    background-color: $functional-lightest;
+                }
                 .dropdown-swatch {
                     background: $white;
                     border: 1px solid $functional-light;
@@ -158,10 +164,17 @@
                     min-width: 66px;
                     text-align: center;
                 }
+                .dropdown-swatch-active {
+                    background-color: $functional-darkest;
+                    span {
+                        color: $white;
+                    }
+                }
                 .dropdown-checkbox-container {
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
+                    padding: 0 .5rem;
                     // input[type="checkbox"] {
                     //     margin-right: .5rem;
                     //     background: $white;
@@ -254,6 +267,9 @@
                     &:hover {
                         background-color: $functional-lightest;
                     }
+                    a {
+                        color: $functional-dark;
+                    }
                 }
             }
         }
@@ -305,6 +321,7 @@
                     border: 1px solid $functional-light;
                     display: flex;
                     align-items: center;
+                    background-color: $functional-darkest;
                     img {
                         cursor: pointer;
                         margin-right: .5rem;
@@ -314,7 +331,7 @@
                         color: $functional-dark;
                         font-size: 16px;
                         letter-spacing: 0.01em;
-    
+                        color: $white;
                     }
                 }
             }

@@ -4,7 +4,6 @@ import closeIcon from '../../assets/close-icon.svg';
 import copyIcon from '../../assets/copy.svg';
 
 export default function EmailSubscriptionModal({ toggleModal }) {
-    console.log(toggleModal)
     const [emailInput, setEmailInput] = useState('')
     const [isValidEmail, setIsValidEmail] = useState(false)
     const [cookies, setCookie, removeCookie] = useCookies()
@@ -42,6 +41,18 @@ export default function EmailSubscriptionModal({ toggleModal }) {
       }
 
     const createUser = (email) => {
+        // fetch(`/.netlify/functions/bigcommerce?endpoint=v2/customer_groups`, {
+        //     credentials: 'same-origin',
+        //     mode: 'same-origin'
+        // })
+        // .then(async res => ({ response: await res.json(), status: res.status }))
+        // .then(({ response, status }) => {
+        //     console.log(1, response);
+        // })
+        // .catch(error => {
+        //     console.log("error", error)
+        // });
+
         fetch(`/.netlify/functions/bigcommerce?endpoint=customers`, {
             method: 'POST',
             credentials: 'same-origin',
@@ -51,13 +62,13 @@ export default function EmailSubscriptionModal({ toggleModal }) {
                     email: email,
                     first_name: 'Email subscription',
                     last_name: 'modal',
+                    customer_group_id: 1
 
                 }
             ])
         })
             .then(async res => ({ response: await res.json(), status: res.status }))
             .then(({ response, status }) => {
-                console.log(response, status)
                 if (status === 200) {
                     setSuccessEmailSubmission(true)
                     setCookie('emailSubscriptionSubmitted', true)

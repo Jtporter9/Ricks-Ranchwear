@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import caretDownLight from '../../assets/caret-down-light.svg';
+import caretUpDark from '../../assets/caret-up-dark.svg';
 
-const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onChange }) => {
+const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onChange, selectedFilters = [] }) => {
   const node = useRef();
 
   const [open, setOpen] = useState(false);
@@ -31,12 +32,13 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
   return (
     <div ref={node} className="filter-drop-down">
       <div className={`${dropDownClasses.head}`} onClick={e => setOpen(!open)}>
-        <span>{value || placeholder}</span>
-        <img src={caretDownLight} alt="Dropdown" />
+        <span className={`${open && 'dropdown-open'}`}>{value || placeholder}</span>
+        <img src={open ? caretUpDark : caretDownLight} alt="Dropdown" />
       </div>
       {open && (
         <ul className={`${dropDownClasses.optionContainer}`}>
           {options.map(opt => {
+            let active = selectedFilters.indexOf(opt) !== -1;
             if (placeholder === "Best Selling") {
               return (
                 <li key={opt} className="dropdown-option" onClick={e => handleChange(opt)}>
@@ -45,19 +47,21 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
               );
             } else {
               if (value === "Size" || value === "Width") {
-                return <button key={opt} className="dropdown-swatch" onClick={e => handleChange(opt)}>{opt}</button>
+                return <button key={opt} className={`dropdown-swatch ${active ? 'dropdown-swatch-active' : ''}`} onClick={e => handleChange(opt)}>
+                  <span>{opt}</span>
+                  </button>
               }
-              if (value === "Brand" || value === "Color") {
+              if (value === "Color") {
                     return (
-                      <li key={opt} className="dropdown-option" onClick={e => handleChange(opt)}>
-                        {opt}
+                      <li key={opt} className={`dropdown-option ${active ? 'dropdown-option-selected' : ''}`} onClick={e => handleChange(opt)}>
+                        <span>{opt}</span>
                       </li>
                     )
               }
-              if (value === "Material" || value === "Toe Shape" || value === "Style") {
+              if (value === "Brand" || value === "Material" || value === "Toe Shape" || value === "Style") {
                 return (
                   <div key={opt} className="dropdown-checkbox-container">
-                    <input id={opt} type="checkbox" value={opt} className="dropdown-option" onClick={e => handleChange(opt)} />
+                    <input id={opt} type="checkbox" value={opt} className="dropdown-option" onClick={e => handleChange(opt)} checked={active} />
                     <label htmlFor={opt}>{opt}</label>
                   </div>
                 )
