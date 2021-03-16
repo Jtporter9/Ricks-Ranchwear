@@ -224,7 +224,7 @@ export default (context) => {
               </AddToCartButton>
 
               <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
-                <img src={groupedBoots} />
+                <img src={groupedBoots} alt="grouped boots" />
                 <strong>Buy 1 pair, get 2 pair free!</strong>
                 <img src={infoIcon} alt="discount info" />
               </div>

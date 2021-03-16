@@ -428,11 +428,7 @@
         }
         .products-container {
             .products-header .products-header-split {
-                // width: 49%;
-                width: 100%;
-                &:nth-child(1) {
-                    display: none;
-                }
+                width: 49%;
                 &:nth-child(2) {
                     display: none;
                 }
