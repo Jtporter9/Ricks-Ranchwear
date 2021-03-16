@@ -51,14 +51,14 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
                   <span>{opt}</span>
                   </button>
               }
-              if (value === "Color") {
-                    return (
-                      <li key={opt} className={`dropdown-option ${active ? 'dropdown-option-selected' : ''}`} onClick={e => handleChange(opt)}>
-                        <span>{opt}</span>
-                      </li>
-                    )
-              }
-              if (value === "Brand" || value === "Material" || value === "Toe Shape" || value === "Style") {
+              // if (value === "Color") {
+              //       return (
+              //         <li key={opt} className={`dropdown-option ${active ? 'dropdown-option-selected' : ''}`} onClick={e => handleChange(opt)}>
+              //           <span>{opt}</span>
+              //         </li>
+              //       )
+              // }
+              if (value === "Color" || value === "Brand" || value === "Material" || value === "Toe Shape" || value === "Style") {
                 return (
                   <div key={opt} className="dropdown-checkbox-container">
                     <input id={opt} type="checkbox" value={opt} className="dropdown-option" onClick={e => handleChange(opt)} checked={active} />
