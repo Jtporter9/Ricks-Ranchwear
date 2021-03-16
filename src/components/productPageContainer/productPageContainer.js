@@ -30,20 +30,21 @@ export default function ProductPageContainer({
     let sizeOptions = [];
     let widthOptions = [];
 
+    let bootTypeOptions = [];
     let materialOptions = [];
     let toeStyleOptions = [];
-    let styleNumberOptions = [];
+    // let styleNumberOptions = [];
 
-    const colorKey = "Color";
+    const colorKey = "Generic Color";
     const sizeKey = "Size";
     const widthKey = "Width";
 
-    function splitUpStyleNumbers(value) {
-        let styles = value.split(',');
-        for (let i = 0; i < styles.length; i++) {
-            styleNumberOptions.push(styles[i])
-        }
-    }
+    // function splitUpStyleNumbers(value) {
+    //     let styles = value.split(',');
+    //     for (let i = 0; i < styles.length; i++) {
+    //         styleNumberOptions.push(styles[i])
+    //     }
+    // }
 
     products.map(product => {
         product.variantsList = []
@@ -56,7 +57,8 @@ export default function ProductPageContainer({
         product.custom_fields.map(field => {
             field.name === "Material" && materialOptions.push(field.value)
             field.name === "Toe Style" && toeStyleOptions.push(field.value)
-            field.name === "Style Number" && splitUpStyleNumbers(field.value)
+            field.name === "Boot Type" && bootTypeOptions.push(field.value)
+            // field.name === "Style Number" && splitUpStyleNumbers(field.value)
             product.variantsList = [...new Set(findDuplicates([...product.variantsList, field.value]))];
         })
     })
@@ -66,7 +68,8 @@ export default function ProductPageContainer({
     widthOptions = [...new Set(findDuplicates(widthOptions))]; // Unique duplicates
     materialOptions = [...new Set(findDuplicates(materialOptions))]; // Unique duplicates
     toeStyleOptions = [...new Set(findDuplicates(toeStyleOptions))]; // Unique duplicates
-    styleNumberOptions = [...new Set(findDuplicates(styleNumberOptions))]; // Unique duplicates
+    bootTypeOptions = [...new Set(findDuplicates(bootTypeOptions))]; // Unique duplicates
+    // styleNumberOptions = [...new Set(findDuplicates(styleNumberOptions))]; // Unique duplicates
     sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
 
     const brandsFiltered = brands.map(obj => obj.node.name);
@@ -375,7 +378,7 @@ export default function ProductPageContainer({
                                     placeholder="Style"
                                     value="Style"
                                     onChange={v => toggleFilter(styleNumberFilter, v, "Style")}
-                                    options={styleNumberOptions}
+                                    options={bootTypeOptions}
                                     selectedFilters={styleNumberFilter}
                                 />
 
