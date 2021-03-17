@@ -41,14 +41,17 @@ collections:
             }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
-          - label: Hero Content
-            name: hero content
-            widget: object
-            collapsed: true
-            fields:
-              - { label: Hero Image, name: heroImage, widget: image }
-              - { label: Hero Heading 1, name: heroHeadingOne, widget: string }
-              - { label: Hero Heading 2, name: heroHeadingTwo, widget: string }
+          - { label: Hero Content
+              name: hero content
+              widget: object
+              collapsed: true
+              fields:
+                [
+                  { label: Hero Image, name: heroImage, widget: image }
+                  { label: Hero Heading 1, name: heroHeadingOne, widget: string }
+                  { label: Hero Heading 2, name: heroHeadingTwo, widget: string }
+                ]
+            }
           - { label: Heading, name: heading, widget: string }
           - { label: Subheading, name: subheading, widget: string }
           - {
@@ -1292,14 +1295,3 @@ collections:
                 { label: "Phone", name: "phone", widget: "string" }
                 ]
             }
-      - file: "src/pages/test-page/index.md"
-        label: "Test Label"
-        name: "Test Name"
-        fields:
-          - {
-            label: "Template Key",
-            name: "templateKey",
-            widget: "hidden",
-            default: "test-page",
-          }
-          - { label: Title, name: title, widget: string }
