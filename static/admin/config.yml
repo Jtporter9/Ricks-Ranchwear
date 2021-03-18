@@ -48,8 +48,21 @@ collections:
               fields:
                 [
                   { label: Hero Image, name: heroImage, widget: image },
+                  { label: Hero Image Alt Text, name: heroImageAltText, widget: string },
                   { label: Hero Heading 1, name: heroHeadingOne, widget: string },
                   { label: Hero Heading 2, name: heroHeadingTwo, widget: string },
+                  { label: Hero SubHeading, name: heroSubHeading, widget: string },
+                  {
+                    label: "Hero Btn",
+                    name: "heroBtn",
+                    widget: object,
+                    collapsed: true,
+                    fields:
+                      [
+                        { label: Text, name: text, widget: string },
+                        { label: Link, name: link, widget: string },
+                      ]
+                  }
                 ]
           }
           - { label: Heading, name: heading, widget: string }
