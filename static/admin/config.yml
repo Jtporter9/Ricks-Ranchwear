@@ -52,7 +52,7 @@ collections:
                   { label: Hero Heading 1, name: hero-heading-one, widget: string },
                   { label: Hero Heading 2, name: hero-heading-two, widget: string },
                   { label: Hero SubHeading, name: hero-sub-heading, widget: string },
-                  - {
+                  {
                       label: Hero Learn More Btn,
                       name: hero-learn-more-btn,
                       widget: object,
