@@ -41,15 +41,15 @@ collections:
             }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
-          - { label: "Hero Content"
-              name: "hero-content"
-              widget: object
-              collapsed: true
+          - { label: "Hero Content",
+              name: "hero-content",
+              widget: object,
+              collapsed: true,
               fields:
                 [
-                  { label: Hero Image, name: heroImage, widget: image }
-                  { label: Hero Heading 1, name: heroHeadingOne, widget: string }
-                  { label: Hero Heading 2, name: heroHeadingTwo, widget: string }
+                  { label: Hero Image, name: heroImage, widget: image },
+                  { label: Hero Heading 1, name: heroHeadingOne, widget: string },
+                  { label: Hero Heading 2, name: heroHeadingTwo, widget: string },
                 ]
             }
           - { label: Heading, name: heading, widget: string }
