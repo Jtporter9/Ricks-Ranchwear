@@ -7,7 +7,7 @@ hero-content:
   heroHeadingOne: Buy 1 pair,
   heroHeadingTwo: get 2 pair free!
   heroSubHeading: Seriously, we aren’t kidding
-  heroImageAltText: Seriously, we aren’t kidding
+  heroImageAltText: Hero Boot Image
   heroBtn:
     text: Learn More
     link: /
