@@ -1,5 +1,11 @@
 ---
 templateKey: index-page
+title: The world brought to your doorstep
+image: /img/homepage-hero.jpg
+hero-content:
+  heroImage: /img/homepage-hero.jpg
+  heroHeadingOne: Buy 1 pair,
+  heroHeadingTwo: get 2 pair free!
 heading: The world brought to your doorstep
 subheading: test
 mainpitch:
@@ -29,7 +35,6 @@ intro:
     of apparel that tells a story all it's own? That's what we seek out and hope
     you'll find here.
 subtitle: Your one-stop shop for unique products you'll love
-title: The world brought to your doorstep
 main:
   heading: test
   description: test
@@ -45,6 +50,5 @@ main:
 bigimage:
   image: /img/bazaar-home.jpg
   alt: Bazaar
-image: /img/homepage-hero.jpg
 description: test
 ---
