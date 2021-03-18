@@ -6,6 +6,11 @@ hero-content:
   heroImage: /img/homepage-hero.jpg
   heroHeadingOne: Buy 1 pair,
   heroHeadingTwo: get 2 pair free!
+  heroSubHeading: Seriously, we aren’t kidding
+  heroImageAltText: Seriously, we aren’t kidding
+  heroBtn:
+    text: Learn More
+    link: /
 heading: The world brought to your doorstep
 subheading: test
 mainpitch:
