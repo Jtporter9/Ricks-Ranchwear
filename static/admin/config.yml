@@ -13,11 +13,11 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {
-          label: "Template Key",
-          name: "templateKey",
-          widget: "hidden",
-          default: "blog-post",
-        }
+        label: "Template Key",
+        name: "templateKey",
+        widget: "hidden",
+        default: "blog-post",
+      }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Description", name: "description", widget: "text" }
@@ -34,99 +34,97 @@ collections:
         name: "index"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "index-page",
-            }
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "index-page",
+          }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
-          - { label: Hero Content,
-              name: hero-content,
+          - { label: "Hero Content",
+              name: "hero-content",
               widget: object,
               collapsed: true,
               fields:
                 [
-                  { label: Hero Image, name: hero-image, widget: image },
-                  { label: Hero Image Alt Text, name: hero-image-alt-text, widget: string },
-                  { label: Hero Heading 1, name: hero-heading-one, widget: string },
-                  { label: Hero Heading 2, name: hero-heading-two, widget: string },
-                  { label: Hero SubHeading, name: hero-sub-heading, widget: string },
+                  { label: Hero Image, name: heroImage, widget: image },
+                  { label: Hero Heading 1, name: heroHeadingOne, widget: string },
+                  { label: Hero Heading 2, name: heroHeadingTwo, widget: string },
                 ]
-            },
+          }
           - { label: Heading, name: heading, widget: string }
           - { label: Subheading, name: subheading, widget: string }
           - {
-              label: Mainpitch,
-              name: mainpitch,
-              widget: object,
-              fields:
-                [
-                  { label: Title, name: title, widget: string },
-                  { label: Description, name: description, widget: text },
-                ],
-            }
+            label: Mainpitch,
+            name: mainpitch,
+            widget: object,
+            fields:
+              [
+                { label: Title, name: title, widget: string },
+                { label: Description, name: description, widget: text },
+              ],
+          }
           - { label: Description, name: description, widget: string }
           - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
+            label: Intro,
+            name: intro,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Blurbs,
+                  name: blurbs,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Text, name: text, widget: text },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
+            label: Main,
+            name: main,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Image1,
+                  name: image1,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image2,
+                  name: image2,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image3,
+                  name: image3,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+              ],
+          }
       # - file: "src/pages/about/index.md"
       #   label: "About"
       #   name: "about"
@@ -139,1161 +137,1161 @@ collections:
         name: "products"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "product-page",
-            }
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "product-page",
+          }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
           - { label: Description, name: description, widget: string }
           - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
+            label: Intro,
+            name: intro,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Blurbs,
+                  name: blurbs,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Text, name: text, widget: text },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
+            label: Main,
+            name: main,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Image1,
+                  name: image1,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image2,
+                  name: image2,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image3,
+                  name: image3,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Testimonials,
-              name: testimonials,
-              widget: list,
-              fields:
-                [
-                  { label: Quote, name: quote, widget: string },
-                  { label: Author, name: author, widget: string },
-                ],
-            }
+            label: Testimonials,
+            name: testimonials,
+            widget: list,
+            fields:
+              [
+                { label: Quote, name: quote, widget: string },
+                { label: Author, name: author, widget: string },
+              ],
+          }
           - { label: Full_image, name: full_image, widget: image }
           - {
-              label: Pricing,
-              name: pricing,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: string },
-                  {
-                    label: Plans,
-                    name: plans,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Plan, name: plan, widget: string },
-                        { label: Price, name: price, widget: string },
-                        {
-                          label: Description,
-                          name: description,
-                          widget: string,
-                        },
-                        { label: Items, name: items, widget: list },
-                      ],
-                  },
-                ],
-            }
+            label: Pricing,
+            name: pricing,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: string },
+                {
+                  label: Plans,
+                  name: plans,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Plan, name: plan, widget: string },
+                      { label: Price, name: price, widget: string },
+                      {
+                        label: Description,
+                        name: description,
+                        widget: string,
+                      },
+                      { label: Items, name: items, widget: list },
+                    ],
+                },
+              ],
+          }
       - file: "src/pages/mens/index.md"
         label: "Mens Page"
         name: "mens"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "mens-page",
-            }
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "mens-page",
+          }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
           - { label: Description, name: description, widget: string }
           - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
+            label: Intro,
+            name: intro,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Blurbs,
+                  name: blurbs,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Text, name: text, widget: text },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
+            label: Main,
+            name: main,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Image1,
+                  name: image1,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image2,
+                  name: image2,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image3,
+                  name: image3,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Testimonials,
-              name: testimonials,
-              widget: list,
-              fields:
-                [
-                  { label: Quote, name: quote, widget: string },
-                  { label: Author, name: author, widget: string },
-                ],
-            }
+            label: Testimonials,
+            name: testimonials,
+            widget: list,
+            fields:
+              [
+                { label: Quote, name: quote, widget: string },
+                { label: Author, name: author, widget: string },
+              ],
+          }
           - { label: Full_image, name: full_image, widget: image }
           - {
-              label: Pricing,
-              name: pricing,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: string },
-                  {
-                    label: Plans,
-                    name: plans,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Plan, name: plan, widget: string },
-                        { label: Price, name: price, widget: string },
-                        {
-                          label: Description,
-                          name: description,
-                          widget: string,
-                        },
-                        { label: Items, name: items, widget: list },
-                      ],
-                  },
-                ],
-            }
+            label: Pricing,
+            name: pricing,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: string },
+                {
+                  label: Plans,
+                  name: plans,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Plan, name: plan, widget: string },
+                      { label: Price, name: price, widget: string },
+                      {
+                        label: Description,
+                        name: description,
+                        widget: string,
+                      },
+                      { label: Items, name: items, widget: list },
+                    ],
+                },
+              ],
+          }
       - file: "src/pages/womens/index.md"
         label: "Womens Page"
         name: "womens"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "womens-page",
-            }
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "womens-page",
+          }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
           - { label: Description, name: description, widget: string }
           - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
+            label: Intro,
+            name: intro,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Blurbs,
+                  name: blurbs,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Text, name: text, widget: text },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
+            label: Main,
+            name: main,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Image1,
+                  name: image1,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image2,
+                  name: image2,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image3,
+                  name: image3,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Testimonials,
-              name: testimonials,
-              widget: list,
-              fields:
-                [
-                  { label: Quote, name: quote, widget: string },
-                  { label: Author, name: author, widget: string },
-                ],
-            }
+            label: Testimonials,
+            name: testimonials,
+            widget: list,
+            fields:
+              [
+                { label: Quote, name: quote, widget: string },
+                { label: Author, name: author, widget: string },
+              ],
+          }
           - { label: Full_image, name: full_image, widget: image }
           - {
-              label: Pricing,
-              name: pricing,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: string },
-                  {
-                    label: Plans,
-                    name: plans,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Plan, name: plan, widget: string },
-                        { label: Price, name: price, widget: string },
-                        {
-                          label: Description,
-                          name: description,
-                          widget: string,
-                        },
-                        { label: Items, name: items, widget: list },
-                      ],
-                  },
-                ],
-            }
+            label: Pricing,
+            name: pricing,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: string },
+                {
+                  label: Plans,
+                  name: plans,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Plan, name: plan, widget: string },
+                      { label: Price, name: price, widget: string },
+                      {
+                        label: Description,
+                        name: description,
+                        widget: string,
+                      },
+                      { label: Items, name: items, widget: list },
+                    ],
+                },
+              ],
+          }
       - file: "src/pages/accessories/index.md"
         label: "Accessories Page"
         name: "accessories"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "accessories-page",
-            }
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "accessories-page",
+          }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
           - { label: Description, name: description, widget: string }
           - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
+            label: Intro,
+            name: intro,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Blurbs,
+                  name: blurbs,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Text, name: text, widget: text },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
+            label: Main,
+            name: main,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Image1,
+                  name: image1,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image2,
+                  name: image2,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image3,
+                  name: image3,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Testimonials,
-              name: testimonials,
-              widget: list,
-              fields:
-                [
-                  { label: Quote, name: quote, widget: string },
-                  { label: Author, name: author, widget: string },
-                ],
-            }
+            label: Testimonials,
+            name: testimonials,
+            widget: list,
+            fields:
+              [
+                { label: Quote, name: quote, widget: string },
+                { label: Author, name: author, widget: string },
+              ],
+          }
           - { label: Full_image, name: full_image, widget: image }
           - {
-              label: Pricing,
-              name: pricing,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: string },
-                  {
-                    label: Plans,
-                    name: plans,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Plan, name: plan, widget: string },
-                        { label: Price, name: price, widget: string },
-                        {
-                          label: Description,
-                          name: description,
-                          widget: string,
-                        },
-                        { label: Items, name: items, widget: list },
-                      ],
-                  },
-                ],
-            }
+            label: Pricing,
+            name: pricing,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: string },
+                {
+                  label: Plans,
+                  name: plans,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Plan, name: plan, widget: string },
+                      { label: Price, name: price, widget: string },
+                      {
+                        label: Description,
+                        name: description,
+                        widget: string,
+                      },
+                      { label: Items, name: items, widget: list },
+                    ],
+                },
+              ],
+          }
       - file: "src/pages/kids/index.md"
         label: "Kids Page"
         name: "kids"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "kids-page",
-            }
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "kids-page",
+          }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
           - { label: Description, name: description, widget: string }
           - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
+            label: Intro,
+            name: intro,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Blurbs,
+                  name: blurbs,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Text, name: text, widget: text },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
+            label: Main,
+            name: main,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Image1,
+                  name: image1,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image2,
+                  name: image2,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image3,
+                  name: image3,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Testimonials,
-              name: testimonials,
-              widget: list,
-              fields:
-                [
-                  { label: Quote, name: quote, widget: string },
-                  { label: Author, name: author, widget: string },
-                ],
-            }
+            label: Testimonials,
+            name: testimonials,
+            widget: list,
+            fields:
+              [
+                { label: Quote, name: quote, widget: string },
+                { label: Author, name: author, widget: string },
+              ],
+          }
           - { label: Full_image, name: full_image, widget: image }
           - {
-              label: Pricing,
-              name: pricing,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: string },
-                  {
-                    label: Plans,
-                    name: plans,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Plan, name: plan, widget: string },
-                        { label: Price, name: price, widget: string },
-                        {
-                          label: Description,
-                          name: description,
-                          widget: string,
-                        },
-                        { label: Items, name: items, widget: list },
-                      ],
-                  },
-                ],
-            }
+            label: Pricing,
+            name: pricing,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: string },
+                {
+                  label: Plans,
+                  name: plans,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Plan, name: plan, widget: string },
+                      { label: Price, name: price, widget: string },
+                      {
+                        label: Description,
+                        name: description,
+                        widget: string,
+                      },
+                      { label: Items, name: items, widget: list },
+                    ],
+                },
+              ],
+          }
       - file: "src/pages/about/index.md"
         label: "About Page"
         name: "About"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "about-page",
-            }
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "about-page",
+          }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
           - { label: Description, name: description, widget: string }
           - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
+            label: Intro,
+            name: intro,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Blurbs,
+                  name: blurbs,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Text, name: text, widget: text },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
+            label: Main,
+            name: main,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Image1,
+                  name: image1,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image2,
+                  name: image2,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image3,
+                  name: image3,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Testimonials,
-              name: testimonials,
-              widget: list,
-              fields:
-                [
-                  { label: Quote, name: quote, widget: string },
-                  { label: Author, name: author, widget: string },
-                ],
-            }
+            label: Testimonials,
+            name: testimonials,
+            widget: list,
+            fields:
+              [
+                { label: Quote, name: quote, widget: string },
+                { label: Author, name: author, widget: string },
+              ],
+          }
           - { label: Full_image, name: full_image, widget: image }
           - {
-              label: Pricing,
-              name: pricing,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: string },
-                  {
-                    label: Plans,
-                    name: plans,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Plan, name: plan, widget: string },
-                        { label: Price, name: price, widget: string },
-                        {
-                          label: Description,
-                          name: description,
-                          widget: string,
-                        },
-                        { label: Items, name: items, widget: list },
-                      ],
-                  },
-                ],
-            }
+            label: Pricing,
+            name: pricing,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: string },
+                {
+                  label: Plans,
+                  name: plans,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Plan, name: plan, widget: string },
+                      { label: Price, name: price, widget: string },
+                      {
+                        label: Description,
+                        name: description,
+                        widget: string,
+                      },
+                      { label: Items, name: items, widget: list },
+                    ],
+                },
+              ],
+          }
       - file: "src/pages/help/index.md"
         label: "Help Page"
         name: "Help"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "help-page",
-            }
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "help-page",
+          }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
           - { label: Description, name: description, widget: string }
           - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
+            label: Intro,
+            name: intro,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Blurbs,
+                  name: blurbs,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Text, name: text, widget: text },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
+            label: Main,
+            name: main,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Image1,
+                  name: image1,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image2,
+                  name: image2,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image3,
+                  name: image3,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Testimonials,
-              name: testimonials,
-              widget: list,
-              fields:
-                [
-                  { label: Quote, name: quote, widget: string },
-                  { label: Author, name: author, widget: string },
-                ],
-            }
+            label: Testimonials,
+            name: testimonials,
+            widget: list,
+            fields:
+              [
+                { label: Quote, name: quote, widget: string },
+                { label: Author, name: author, widget: string },
+              ],
+          }
           - { label: Full_image, name: full_image, widget: image }
           - {
-              label: Pricing,
-              name: pricing,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: string },
-                  {
-                    label: Plans,
-                    name: plans,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Plan, name: plan, widget: string },
-                        { label: Price, name: price, widget: string },
-                        {
-                          label: Description,
-                          name: description,
-                          widget: string,
-                        },
-                        { label: Items, name: items, widget: list },
-                      ],
-                  },
-                ],
-            }
+            label: Pricing,
+            name: pricing,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: string },
+                {
+                  label: Plans,
+                  name: plans,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Plan, name: plan, widget: string },
+                      { label: Price, name: price, widget: string },
+                      {
+                        label: Description,
+                        name: description,
+                        widget: string,
+                      },
+                      { label: Items, name: items, widget: list },
+                    ],
+                },
+              ],
+          }
       - file: "src/pages/boot-fit-guide/index.md"
         label: "Boot Fit Guide Page"
         name: "Boot Fit Guide"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "boot-fit-guide-page",
-            }
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "boot-fit-guide-page",
+          }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
           - { label: Description, name: description, widget: string }
           - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
+            label: Intro,
+            name: intro,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Blurbs,
+                  name: blurbs,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Text, name: text, widget: text },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
+            label: Main,
+            name: main,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: text },
+                {
+                  label: Image1,
+                  name: image1,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image2,
+                  name: image2,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+                {
+                  label: Image3,
+                  name: image3,
+                  widget: object,
+                  fields:
+                    [
+                      { label: Image, name: image, widget: image },
+                      { label: Alt, name: alt, widget: string },
+                    ],
+                },
+              ],
+          }
           - {
-              label: Testimonials,
-              name: testimonials,
-              widget: list,
-              fields:
-                [
-                  { label: Quote, name: quote, widget: string },
-                  { label: Author, name: author, widget: string },
-                ],
-            }
+            label: Testimonials,
+            name: testimonials,
+            widget: list,
+            fields:
+              [
+                { label: Quote, name: quote, widget: string },
+                { label: Author, name: author, widget: string },
+              ],
+          }
           - { label: Full_image, name: full_image, widget: image }
           - {
-              label: Pricing,
-              name: pricing,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: string },
-                  {
-                    label: Plans,
-                    name: plans,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Plan, name: plan, widget: string },
-                        { label: Price, name: price, widget: string },
-                        {
-                          label: Description,
-                          name: description,
-                          widget: string,
-                        },
-                        { label: Items, name: items, widget: list },
-                      ],
-                  },
-                ],
-            }
+            label: Pricing,
+            name: pricing,
+            widget: object,
+            fields:
+              [
+                { label: Heading, name: heading, widget: string },
+                { label: Description, name: description, widget: string },
+                {
+                  label: Plans,
+                  name: plans,
+                  widget: list,
+                  fields:
+                    [
+                      { label: Plan, name: plan, widget: string },
+                      { label: Price, name: price, widget: string },
+                      {
+                        label: Description,
+                        name: description,
+                        widget: string,
+                      },
+                      { label: Items, name: items, widget: list },
+                    ],
+                },
+              ],
+          }
       - file: "src/pages/stores/index.md"
         label: "Stores Page"
         name: "Stores"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "stores-page",
-            }
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "stores-page",
+          }
           - { label: Title, name: title, widget: string }
           - {
-              label: Store 1,
-              name: store1,
-              widget: object,
-              summary: "{{fields.state}}",
-              fields: [
-                { label: State, name: state, widget: string },
-                { label: Image, name: image, widget: image },
-                { label: Company, name: company, widget: string },
-                { label: Location, name: location, widget: string },
-                { label: "Body", name: "body", widget: "markdown" },
-                { 
-                  label: "Store Hours", 
-                  name: "store-hours", 
-                  widget: object, 
-                  fields: [
-                    { label: "Body", name: "body", widget: "markdown" }
-                  ]
-                },
-                { 
-                  label: "Address", 
-                  name: "address", 
-                  widget: object, 
-                  collapsed: false,
-                  fields: [
-                    {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City, State", name: "city-state", widget: "string"},
-                    {label: "Postal Code", name: "post-code", widget: "string"}
-                  ]
-                },
-                { label: "Phone", name: "phone", widget: "string" }
+            label: Store 1,
+            name: store1,
+            widget: object,
+            summary: "{{fields.state}}",
+            fields: [
+              { label: State, name: state, widget: string },
+              { label: Image, name: image, widget: image },
+              { label: Company, name: company, widget: string },
+              { label: Location, name: location, widget: string },
+              { label: "Body", name: "body", widget: "markdown" },
+              {
+                label: "Store Hours",
+                name: "store-hours",
+                widget: object,
+                fields: [
+                  { label: "Body", name: "body", widget: "markdown" }
                 ]
-            }
+              },
+              {
+                label: "Address",
+                name: "address",
+                widget: object,
+                collapsed: false,
+                fields: [
+                  {label: "Street Address", name: "street", widget: "string"},
+                  {label: "City, State", name: "city-state", widget: "string"},
+                  {label: "Postal Code", name: "post-code", widget: "string"}
+                ]
+              },
+              { label: "Phone", name: "phone", widget: "string" }
+            ]
+          }
           - {
-              label: Store 2,
-              name: store2,
-              widget: object,
-              summary: "{{fields.state}}",
-              fields: [
-                { label: State, name: state, widget: string },
-                { label: Image, name: image, widget: image },
-                { label: Company, name: company, widget: string },
-                { label: Location, name: location, widget: string },
-                { label: "Body", name: "body", widget: "markdown" },
-                { 
-                  label: "Store Hours", 
-                  name: "store-hours", 
-                  widget: object, 
-                  fields: [
-                    { label: "Body", name: "body", widget: "markdown" }
-                  ]
-                },
-                { 
-                  label: "Address", 
-                  name: "address", 
-                  widget: object,
-                  collapsed: false,
-                  fields: [
-                    {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City, State", name: "city-state", widget: "string"},
-                    {label: "Postal Code", name: "post-code", widget: "string"}
-                  ]
-                },
-                { label: "Phone", name: "phone", widget: "string" }
+            label: Store 2,
+            name: store2,
+            widget: object,
+            summary: "{{fields.state}}",
+            fields: [
+              { label: State, name: state, widget: string },
+              { label: Image, name: image, widget: image },
+              { label: Company, name: company, widget: string },
+              { label: Location, name: location, widget: string },
+              { label: "Body", name: "body", widget: "markdown" },
+              {
+                label: "Store Hours",
+                name: "store-hours",
+                widget: object,
+                fields: [
+                  { label: "Body", name: "body", widget: "markdown" }
                 ]
-            }
+              },
+              {
+                label: "Address",
+                name: "address",
+                widget: object,
+                collapsed: false,
+                fields: [
+                  {label: "Street Address", name: "street", widget: "string"},
+                  {label: "City, State", name: "city-state", widget: "string"},
+                  {label: "Postal Code", name: "post-code", widget: "string"}
+                ]
+              },
+              { label: "Phone", name: "phone", widget: "string" }
+            ]
+          }
           - {
-              label: Store 3,
-              name: store3,
-              widget: object,
-              summary: "{{fields.state}}",
-              fields: [
-                { label: State, name: state, widget: string },
-                { label: Image, name: image, widget: image },
-                { label: Company, name: company, widget: string },
-                { label: Location, name: location, widget: string },
-                { label: "Body", name: "body", widget: "markdown" },
-                { 
-                  label: "Store Hours", 
-                  name: "store-hours", 
-                  widget: object, 
-                  fields: [
-                    { label: "Body", name: "body", widget: "markdown" }
-                  ]
-                },
-                { 
-                  label: "Address", 
-                  name: "address", 
-                  widget: object,
-                  collapsed: false,
-                  fields: [
-                    {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City, State", name: "city-state", widget: "string"},
-                    {label: "Postal Code", name: "post-code", widget: "string"}
-                  ]
-                },
-                { label: "Phone", name: "phone", widget: "string" }
+            label: Store 3,
+            name: store3,
+            widget: object,
+            summary: "{{fields.state}}",
+            fields: [
+              { label: State, name: state, widget: string },
+              { label: Image, name: image, widget: image },
+              { label: Company, name: company, widget: string },
+              { label: Location, name: location, widget: string },
+              { label: "Body", name: "body", widget: "markdown" },
+              {
+                label: "Store Hours",
+                name: "store-hours",
+                widget: object,
+                fields: [
+                  { label: "Body", name: "body", widget: "markdown" }
                 ]
-            }
+              },
+              {
+                label: "Address",
+                name: "address",
+                widget: object,
+                collapsed: false,
+                fields: [
+                  {label: "Street Address", name: "street", widget: "string"},
+                  {label: "City, State", name: "city-state", widget: "string"},
+                  {label: "Postal Code", name: "post-code", widget: "string"}
+                ]
+              },
+              { label: "Phone", name: "phone", widget: "string" }
+            ]
+          }
           - {
-              label: Store 4,
-              name: store4,
-              widget: object,
-              summary: "{{fields.state}}",
-              fields: [
-                { label: State, name: state, widget: string },
-                { label: Image, name: image, widget: image },
-                { label: Company, name: company, widget: string },
-                { label: Location, name: location, widget: string },
-                { label: "Body", name: "body", widget: "markdown" },
-                { 
-                  label: "Store Hours", 
-                  name: "store-hours", 
-                  widget: object, 
-                  fields: [
-                    { label: "Body", name: "body", widget: "markdown" }
-                  ]
-                },
-                { 
-                  label: "Address", 
-                  name: "address", 
-                  widget: object, 
-                  collapsed: false,
-                  fields: [
-                    {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City, State", name: "city-state", widget: "string"},
-                    {label: "Postal Code", name: "post-code", widget: "string"}
-                  ]
-                },
-                { label: "Phone", name: "phone", widget: "string" }
+            label: Store 4,
+            name: store4,
+            widget: object,
+            summary: "{{fields.state}}",
+            fields: [
+              { label: State, name: state, widget: string },
+              { label: Image, name: image, widget: image },
+              { label: Company, name: company, widget: string },
+              { label: Location, name: location, widget: string },
+              { label: "Body", name: "body", widget: "markdown" },
+              {
+                label: "Store Hours",
+                name: "store-hours",
+                widget: object,
+                fields: [
+                  { label: "Body", name: "body", widget: "markdown" }
                 ]
-            }
+              },
+              {
+                label: "Address",
+                name: "address",
+                widget: object,
+                collapsed: false,
+                fields: [
+                  {label: "Street Address", name: "street", widget: "string"},
+                  {label: "City, State", name: "city-state", widget: "string"},
+                  {label: "Postal Code", name: "post-code", widget: "string"}
+                ]
+              },
+              { label: "Phone", name: "phone", widget: "string" }
+            ]
+          }
           - {
-              label: Store 5,
-              name: store5,
-              widget: object,
-              summary: "{{fields.state}}",
-              fields: [
-                { label: State, name: state, widget: string },
-                { label: Image, name: image, widget: image },
-                { label: Company, name: company, widget: string },
-                { label: Location, name: location, widget: string },
-                { label: "Body", name: "body", widget: "markdown" },
-                { 
-                  label: "Store Hours", 
-                  name: "store-hours", 
-                  widget: object, 
-                  fields: [
-                    { label: "Body", name: "body", widget: "markdown" }
-                  ]
-                },
-                { 
-                  label: "Address", 
-                  name: "address", 
-                  widget: object, 
-                  collapsed: false,
-                  fields: [
-                    {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City, State", name: "city-state", widget: "string"},
-                    {label: "Postal Code", name: "post-code", widget: "string"}
-                  ]
-                },
-                { label: "Phone", name: "phone", widget: "string" }
+            label: Store 5,
+            name: store5,
+            widget: object,
+            summary: "{{fields.state}}",
+            fields: [
+              { label: State, name: state, widget: string },
+              { label: Image, name: image, widget: image },
+              { label: Company, name: company, widget: string },
+              { label: Location, name: location, widget: string },
+              { label: "Body", name: "body", widget: "markdown" },
+              {
+                label: "Store Hours",
+                name: "store-hours",
+                widget: object,
+                fields: [
+                  { label: "Body", name: "body", widget: "markdown" }
                 ]
-            }
+              },
+              {
+                label: "Address",
+                name: "address",
+                widget: object,
+                collapsed: false,
+                fields: [
+                  {label: "Street Address", name: "street", widget: "string"},
+                  {label: "City, State", name: "city-state", widget: "string"},
+                  {label: "Postal Code", name: "post-code", widget: "string"}
+                ]
+              },
+              { label: "Phone", name: "phone", widget: "string" }
+            ]
+          }
           - {
-              label: Store 6,
-              name: store6,
-              widget: object,
-              summary: "{{fields.state}}",
-              fields: [
-                { label: State, name: state, widget: string },
-                { label: Image, name: image, widget: image },
-                { label: Company, name: company, widget: string },
-                { label: Location, name: location, widget: string },
-                { label: "Body", name: "body", widget: "markdown" },
-                { 
-                  label: "Store Hours", 
-                  name: "store-hours", 
-                  widget: object, 
-                  fields: [
-                    { label: "Body", name: "body", widget: "markdown" }
-                  ]
-                },
-                { 
-                  label: "Address", 
-                  name: "address", 
-                  widget: object, 
-                  collapsed: false,
-                  fields: [
-                    {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City, State", name: "city-state", widget: "string"},
-                    {label: "Postal Code", name: "post-code", widget: "string"}
-                  ]
-                },
-                { label: "Phone", name: "phone", widget: "string" }
+            label: Store 6,
+            name: store6,
+            widget: object,
+            summary: "{{fields.state}}",
+            fields: [
+              { label: State, name: state, widget: string },
+              { label: Image, name: image, widget: image },
+              { label: Company, name: company, widget: string },
+              { label: Location, name: location, widget: string },
+              { label: "Body", name: "body", widget: "markdown" },
+              {
+                label: "Store Hours",
+                name: "store-hours",
+                widget: object,
+                fields: [
+                  { label: "Body", name: "body", widget: "markdown" }
                 ]
-            }
+              },
+              {
+                label: "Address",
+                name: "address",
+                widget: object,
+                collapsed: false,
+                fields: [
+                  {label: "Street Address", name: "street", widget: "string"},
+                  {label: "City, State", name: "city-state", widget: "string"},
+                  {label: "Postal Code", name: "post-code", widget: "string"}
+                ]
+              },
+              { label: "Phone", name: "phone", widget: "string" }
+            ]
+          }
           - {
-              label: Store 7,
-              name: store7,
-              widget: object,
-              summary: "{{fields.state}}",
-              fields: [
-                { label: State, name: state, widget: string },
-                { label: Image, name: image, widget: image },
-                { label: Company, name: company, widget: string },
-                { label: Location, name: location, widget: string },
-                { label: "Body", name: "body", widget: "markdown" },
-                { 
-                  label: "Store Hours", 
-                  name: "store-hours", 
-                  widget: object, 
-                  fields: [
-                    { label: "Body", name: "body", widget: "markdown" }
-                  ]
-                },
-                { 
-                  label: "Address", 
-                  name: "address", 
-                  widget: object, 
-                  collapsed: false,
-                  fields: [
-                    {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City, State", name: "city-state", widget: "string"},
-                    {label: "Postal Code", name: "post-code", widget: "string"}
-                  ]
-                },
-                { label: "Phone", name: "phone", widget: "string" }
+            label: Store 7,
+            name: store7,
+            widget: object,
+            summary: "{{fields.state}}",
+            fields: [
+              { label: State, name: state, widget: string },
+              { label: Image, name: image, widget: image },
+              { label: Company, name: company, widget: string },
+              { label: Location, name: location, widget: string },
+              { label: "Body", name: "body", widget: "markdown" },
+              {
+                label: "Store Hours",
+                name: "store-hours",
+                widget: object,
+                fields: [
+                  { label: "Body", name: "body", widget: "markdown" }
                 ]
-            }
+              },
+              {
+                label: "Address",
+                name: "address",
+                widget: object,
+                collapsed: false,
+                fields: [
+                  {label: "Street Address", name: "street", widget: "string"},
+                  {label: "City, State", name: "city-state", widget: "string"},
+                  {label: "Postal Code", name: "post-code", widget: "string"}
+                ]
+              },
+              { label: "Phone", name: "phone", widget: "string" }
+            ]
+          }
           - {
-              label: Store 8,
-              name: store8,
-              widget: object,
-              summary: "{{fields.state}}",
-              fields: [
-                { label: State, name: state, widget: string },
-                { label: Image, name: image, widget: image },
-                { label: Company, name: company, widget: string },
-                { label: Location, name: location, widget: string },
-                { label: "Body", name: "body", widget: "markdown" },
-                { 
-                  label: "Store Hours", 
-                  name: "store-hours", 
-                  widget: object, 
-                  fields: [
-                    { label: "Body", name: "body", widget: "markdown" }
-                  ]
-                },
-                { 
-                  label: "Address", 
-                  name: "address", 
-                  widget: object, 
-                  collapsed: false,
-                  fields: [
-                    {label: "Street Address", name: "street", widget: "string"},
-                    {label: "City, State", name: "city-state", widget: "string"},
-                    {label: "Postal Code", name: "post-code", widget: "string"}
-                  ]
-                },
-                { label: "Phone", name: "phone", widget: "string" }
+            label: Store 8,
+            name: store8,
+            widget: object,
+            summary: "{{fields.state}}",
+            fields: [
+              { label: State, name: state, widget: string },
+              { label: Image, name: image, widget: image },
+              { label: Company, name: company, widget: string },
+              { label: Location, name: location, widget: string },
+              { label: "Body", name: "body", widget: "markdown" },
+              {
+                label: "Store Hours",
+                name: "store-hours",
+                widget: object,
+                fields: [
+                  { label: "Body", name: "body", widget: "markdown" }
                 ]
-            }
+              },
+              {
+                label: "Address",
+                name: "address",
+                widget: object,
+                collapsed: false,
+                fields: [
+                  {label: "Street Address", name: "street", widget: "string"},
+                  {label: "City, State", name: "city-state", widget: "string"},
+                  {label: "Postal Code", name: "post-code", widget: "string"}
+                ]
+              },
+              { label: "Phone", name: "phone", widget: "string" }
+            ]
+          }
