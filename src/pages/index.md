@@ -3,7 +3,7 @@ templateKey: index-page
 title: The world brought to your doorstep
 image: /img/homepage-hero.jpg
 hero-content:
-  heroImage: /img/grouped-boots-white.svg
+  heroImage: /img/homepage-hero.jpg
   heroHeadingOne: Buy 1 pair,
   heroHeadingTwo: get 2 pair free!
   heroSubHeading: Seriously, we aren’t kidding
@@ -11,6 +11,7 @@ hero-content:
   heroBtn:
     text: Learn More
     link: /
+  heroBootsIcon: /img/grouped-boots-white.svg
 heading: The world brought to your doorstep
 subheading: test
 mainpitch:
