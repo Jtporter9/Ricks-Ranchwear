@@ -1,0 +1,60 @@
+.nav-drop-down {
+    display: flex;
+    align-items: stretch;
+    padding: 2rem 6rem;
+    > div {
+        &:first-child {
+            border: none;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        align-items: flex-start;
+        width: 100%;
+        border-left: 1px solid #C9C9C9;
+        padding: 0 1rem;
+        h3 {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: $functional-darkest;
+            margin-bottom: 1rem;
+        }
+        a {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.01em;
+            color: $functional-dark; 
+            margin-bottom: .5rem;
+            &:hover {
+                color: $functional-darkest;
+            }
+        }
+        .all-link {
+            font-style: normal;
+            font-weight: 900;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: 0.04em;
+            color: $functional-darkest;
+            &:hover {
+                box-shadow: inset 0px -2px 0px $red-mid;
+            }
+        }
+    }
+
+    @media (max-width: $tablet-bp) {
+        flex-direction: column;
+        padding: 1rem;
+        > div {
+            padding: 1rem;
+            border: none;
+            border-top: 1px solid #C9C9C9;
+        }
+    }
+}

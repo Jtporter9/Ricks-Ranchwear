@@ -61,7 +61,7 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
               if (value === "Color" || value === "Brand" || value === "Material" || value === "Toe Shape" || value === "Style") {
                 return (
                   <div key={opt} className="dropdown-checkbox-container">
-                    <input id={opt} type="checkbox" value={opt} className="dropdown-option" onClick={e => handleChange(opt)} checked={active} />
+                    <input id={opt} type="checkbox" value={opt} className="dropdown-option" onChange={e => handleChange(opt)} checked={active} />
                     <label htmlFor={opt}>{opt}</label>
                   </div>
                 )

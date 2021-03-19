@@ -29,27 +29,18 @@ export default function ProductPageContainer({
     let colorOptions = [];
     let sizeOptions = [];
     let widthOptions = [];
-
     let bootTypeOptions = [];
     let materialOptions = [];
     let toeStyleOptions = [];
-    // let styleNumberOptions = [];
 
-    const colorKey = "Generic Color";
+    const colorKey = "Generic Colors";
     const sizeKey = "Size";
     const widthKey = "Width";
-
-    // function splitUpStyleNumbers(value) {
-    //     let styles = value.split(',');
-    //     for (let i = 0; i < styles.length; i++) {
-    //         styleNumberOptions.push(styles[i])
-    //     }
-    // }
 
     products.map(product => {
         product.variantsList = []
         product.variants.map(variant => variant.option_values.map(option => {
-            option.option_display_name === colorKey && colorOptions.push(option.label)
+            // option.option_display_name === colorKey && colorOptions.push(option.label)
             option.option_display_name === sizeKey && sizeOptions.push(option.label)
             option.option_display_name === widthKey && widthOptions.push(option.label)
             product.variantsList = [...new Set(findDuplicates([...product.variantsList, option.label]))];
@@ -58,7 +49,13 @@ export default function ProductPageContainer({
             field.name === "Material" && materialOptions.push(field.value)
             field.name === "Toe Style" && toeStyleOptions.push(field.value)
             field.name === "Boot Type" && bootTypeOptions.push(field.value)
-            // field.name === "Style Number" && splitUpStyleNumbers(field.value)
+            if (field.name === colorKey) {
+                let colors = field.value.split(',');
+                for (let i = 0; i < colors.length; i++) {
+                    colorOptions.push(colors[i])
+                    product.variantsList = [...new Set(findDuplicates([...product.variantsList, colors[i]]))];
+                }
+            } 
             product.variantsList = [...new Set(findDuplicates([...product.variantsList, field.value]))];
         })
     })
@@ -120,6 +117,7 @@ export default function ProductPageContainer({
     }
 
     function getProductsFilteredByVariant(arr) {
+        console.log(arr)
         if (numberOfFilters > 0 && arr.length === 0) {
             arr.length > 1 ?
                 arr.map(item => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...filteredProducts.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)]))])) :

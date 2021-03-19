@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 // COMPONENTS
 import InfoModal from '../infoModal/infoModal';
+import NavDropDown from '../navDropDown/navDropDown';
 
 //ASSESTS
 import logo from '../../assets/logo.png';
@@ -206,6 +207,8 @@ export default function Header() {
           </CartContext.Consumer>
         </div>
       </div>
+      {/* <NavDropDown /> */}
+
       <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
     </header>
   )

@@ -34,16 +34,15 @@ export default function HomePageContainer({
     // STATES 
     const [cookies, setCookie, removeCookie] = useCookies([]);
     const [showAlertBanner, setShowAlertBanner] = useState(false);
-
     function closeAlertBanner() {
         setShowAlertBanner(false)
         setCookie('alertBanner', true);
     }
-
+    
     useEffect(() => {
         !cookies.alertBanner && setShowAlertBanner(true)
     }, [cookies])
-
+    
     return (
         <div className="homepage">
             <div className="homepage-hero"
