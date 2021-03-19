@@ -13,6 +13,9 @@ hero-content:
   hero-image: /img/homepage-hero.jpg
   hero-heading-one: Buy 1 pair,
   hero-heading-two: get 2 pair free!
+  hero-heading: |-
+    Buy 1 pair,
+    get 2 pair free!
   heroImageAltText: Hero Boot Image
   hero-image-alt-text: Image of boots
   hero-boots-icon: /img/grouped-boots-white.svg
