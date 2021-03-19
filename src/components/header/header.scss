@@ -58,6 +58,7 @@ header {
             font-size: 14px;
             text-decoration: none;
             text-transform: uppercase;
+            cursor: pointer;
             &:hover {
                 color: $link-hover-gray;
                 text-decoration: none;

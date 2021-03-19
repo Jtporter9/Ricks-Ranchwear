@@ -2,6 +2,10 @@
     display: flex;
     align-items: stretch;
     padding: 2rem 6rem;
+    position: absolute;
+    width: 100%;
+    background-color: $white;
+    height: 250px; 
     > div {
         &:first-child {
             border: none;
@@ -56,5 +60,10 @@
             border: none;
             border-top: 1px solid #C9C9C9;
         }
+    }
+}
+@media (max-width: 1024px) {
+    .nav-drop-down {
+        display: none;
     }
 }
