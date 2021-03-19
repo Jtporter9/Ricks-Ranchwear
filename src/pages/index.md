@@ -2,6 +2,7 @@
 templateKey: index-page
 title: The world brought to your doorstep
 image: /img/homepage-hero.jpg
+hero-image: /img/homepage-hero.jpg
 hero-content:
   heroBootsIcon: /img/grouped-boots-white.svg
   heroImage: /img/homepage-hero.jpg
