@@ -41,7 +41,7 @@ collections:
           }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
-          - { label: Hero Image, name: hero-image, widget: image },
+          - { label: Hero Image, name: hero-image, widget: image }
           - { label: "Hero Content",
               name: "hero-content",
               widget: object,
