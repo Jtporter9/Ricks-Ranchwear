@@ -70,7 +70,7 @@ collections:
                   { label: "Hero Heading", name: "heroHeading", widget: "markdown" },
                   { label: "Hero SubHeading", name: "heroSubHeading", widget: "string" },
                   {
-                    label: "Hero Btn",
+                    label: "Hero Button",
                     name: "heroBtn",
                     widget: "object",
                     collapsed: true,
@@ -114,6 +114,17 @@ collections:
                   { label: 'Welcome Heading', name: "welcomeHeading", widget: "string" },
                   { label: 'Welcome Sub Heading', name: "welcomeSubHeading", widget: "string" },
                   { label: 'Intro Description', name: "introDescription", widget: "string" },
+                  {
+                    label: "View Stores Button",
+                    name: "viewStoresBtn",
+                    widget: "object",
+                    collapsed: true,
+                    fields:
+                      [
+                        { label: "Text", name: "text", widget: "string" },
+                        { label: "Link", name: "link", widget: "string" },
+                      ]
+                  }
                 ]
           }
           - { label: "Image", name: "image", widget: "image" }
