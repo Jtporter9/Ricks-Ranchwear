@@ -4,6 +4,9 @@ import { Link } from 'gatsby';
 // COMPONENTS
 import InfoModal from '../infoModal/infoModal';
 import NavDropDown from '../navDropDown/navDropDown';
+import MobileMenuDropDown from '../mobileMenuDropDown/mobileMenuDropDown';
+
+import { options } from '../navDropDown/navDropDownOptions';
 
 //ASSESTS
 import logo from '../../assets/logo.png';
@@ -12,10 +15,12 @@ import searchLogo from '../../assets/search.svg';
 import cartIcon from '../../assets/cart-icon.svg';
 import cartIconWhite from '../../assets/cart-icon-white.svg';
 import caretDown from '../../assets/caret-down.svg';
+import caretUp from '../../assets/caret-up-dark.svg';
 import groupedBootsWhite from '../../assets/grouped-boots-white.svg';
 import infoIconWhite from '../../assets/info-icon-white.svg';
 import upArrowWhite from '../../assets/up-arrow-white.svg';
 import CartContext from '../../context/CartProvider';
+import { set } from 'lodash';
 
 export default function Header() {
   // STATES
@@ -24,24 +29,42 @@ export default function Header() {
   const [navBarActiveHelperClasses, setNavBarActiveHelperClasses] = useState('');
   const [isSticky, setSticky] = useState(false);
   const [activeInfoModal, setActiveInfoModal] = useState(false);
+  const [dropdownNavActive, setDropdownNavActive] = useState(false);
+  const [dropdownType, setDropdownType] = useState('');
+  const ref = useRef(null);
 
   function toggleHamburger() {
     // toggle the active boolean in the state
     setNavBarActive(!navBarActive);
   };
 
-  const ref = useRef(null);
+  function toggleDropdownNav(type) {
+    setDropdownType(type)
+    setDropdownNavActive(true)
+  }
+
   const handleScroll = () => {
     if (ref.current) {
       setSticky(ref.current.getBoundingClientRect().top <= 0);
     }
   };
 
+  const handleClick = e => {
+    if (!ref.current.contains(e.target)) {
+      setDropdownNavActive(false);
+    }
+  }
+
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousedown', handleClick)
+
     return () => {
-      window.removeEventListener('scroll', () => handleScroll);
+      window.removeEventListener('mousedown', handleClick)
     };
+    // window.addEventListener('scroll', handleScroll);
+    // return () => {
+    //   window.removeEventListener('scroll', () => handleScroll);
+    // };
   }, []);
 
   return (
@@ -61,61 +84,28 @@ export default function Header() {
               onClick={toggleHamburger} />
             <div className={`opaque-background ${navBarActive && `is-active`}`} onClick={toggleHamburger}></div>
             <div className={`mobile-menu-drawer ${navBarActive && `is-active`} ${navBarActive && `animated fadeInLeft`}`}>
-              {/* <div className="mobile-search-container">
-                <input className="mobile-search" placeholder="Search" />
-              </div> */}
-              <Link to="/mens">
-                <div className="mobile-menu-dropdown-container">
-                  <span>
-                    Mens
-                    {/* <img src={cartIcon} /> */}
-                  </span>
-                  <ul>
-                    <li></li>
-                  </ul>
+              <div className="mobile-menu-scrollable">
+                {/* <div className="mobile-search-container">
+                  <input className="mobile-search" placeholder="Search" />
+                </div> */}
+                {options.map((option, i) => <MobileMenuDropDown data={option} key={i} />)}
+
+                <div className="mobile-menu-links">
+                  <Link to="/about">
+                    About
+                  </Link>
                 </div>
-              </Link>
-              <Link to="/womens">
-                <div className="mobile-menu-dropdown-container">
-                  <span>Womens
-                    {/* <img src={cartIcon} /> */}
-                  </span>
-                  <ul>
-                    <li></li>
-                  </ul>
+                <div className="mobile-menu-links">
+                  <Link to="/help">
+                    Help
+                  </Link>
                 </div>
-              </Link>
-              <Link to="/kids">
-                <div className="mobile-menu-dropdown-container">
-                  <span>
-                    Kids
-                    {/* <img src={cartIcon} /> */}
-                  </span>
-                  <ul>
-                    <li></li>
-                  </ul>
-                </div>
-              </Link>
-              <div className="mobile-menu-links">
-                <Link to="/stores">
-                  Stores
-                </Link>
+                {/* <div className="mobile-menu-links">
+                  <Link to="/">
+                    Account
+                  </Link>
+                </div> */}
               </div>
-              <div className="mobile-menu-links">
-                <Link to="/about">
-                  About
-                </Link>
-              </div>
-              <div className="mobile-menu-links">
-                <Link to="/help">
-                  Help
-                </Link>
-              </div>
-              {/* <div className="mobile-menu-links">
-                <Link to="/">
-                  Account
-                </Link>
-              </div> */}
               <div className="mobile-menu-checkout-container">
                 <CartContext.Consumer>
                   {value => {
@@ -165,18 +155,18 @@ export default function Header() {
         </div>
         <nav className="desktop-links">
           <div className="desktop-links-inner">
-            <Link className="menu-link" to="/mens">
+            <span className="menu-link" onClick={() => toggleDropdownNav('Mens')}>
               Mens
-          </Link>
-            <Link className="menu-link" to="/womens">
+          </span>
+            <span className="menu-link" onClick={() => toggleDropdownNav('Womens')}>
               Womens
-          </Link>
-            <Link className="menu-link" to="/kids">
+          </span>
+            <span className="menu-link" onClick={() => toggleDropdownNav('Kids')}>
               Kids
-          </Link>
-            <Link className="menu-link" to="/stores">
+          </span>
+            <span className="menu-link" onClick={() => toggleDropdownNav('Stores')}>
               Stores
-          </Link>
+          </span>
           </div>
         </nav>
         <div className="navbar-right">
@@ -207,7 +197,9 @@ export default function Header() {
           </CartContext.Consumer>
         </div>
       </div>
-      {/* <NavDropDown /> */}
+      {dropdownNavActive && (
+        <NavDropDown type={dropdownType} />
+      )}
 
       <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
     </header>
