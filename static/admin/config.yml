@@ -82,6 +82,40 @@ collections:
                   }
                 ]
           }
+          - {
+              label: "Intro Content",
+              name: "introContent",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  {
+                    label: "Logo Image",
+                    name: "logoImage",
+                    widget: "object",
+                    collapsed: true,
+                    fields:
+                      [
+                        { label: "Image", name: "image", widget: "image" },
+                        { label: 'Alt Text', name: "altText", widget: "string" },
+                      ]
+                  },
+                  {
+                    label: "Boot Country Logo Image",
+                    name: "bootCountryLogoImage",
+                    widget: "object",
+                    collapsed: true,
+                    fields:
+                      [
+                        { label: "Image", name: "image", widget: "image" },
+                        { label: 'Alt Text', name: "altText", widget: "string" },
+                      ]
+                  },
+                  { label: 'Welcome Heading', name: "welcomeHeading", widget: "string" },
+                  { label: 'Welcome Sub Heading', name: "welcomeSubHeading", widget: "string" },
+                  { label: 'Intro Description', name: "introDescription", widget: "string" },
+                ]
+          }
           - { label: "Image", name: "image", widget: "image" }
           - { label: Heading, name: heading, widget: string }
           - { label: Subheading, name: subheading, widget: string }
