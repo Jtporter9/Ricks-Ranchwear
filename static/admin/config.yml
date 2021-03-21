@@ -25,7 +25,6 @@ collections:
       - { label: "Featured Image", name: "featuredimage", widget: image }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Tags", name: "tags", widget: "list" }
-
   - name: "pages"
     label: "Pages"
     files:
@@ -40,39 +39,36 @@ collections:
             default: "index-page",
           }
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Image", name: "image", widget: "image" }
           - { label: "Hero Content",
-              name: "hero-content",
+              name: "heroContent",
               widget: "object",
               collapsed: true,
               fields:
                 [
                   {
                     label: "Hero Image",
-                    name: "hero-image",
+                    name: "heroImage",
                     widget: "object",
                     collapsed: true,
                     fields:
                       [
                         { label: "Image", name: "image", widget: "image" },
-                        { label: 'Alt Text', name: "alt-text", widget: "string" },
+                        { label: 'Alt Text', name: "altText", widget: "string" },
                       ]
                   },
                   {
                     label: "Hero Boots Icon",
-                    name: "hero-boots-icon",
+                    name: "heroBootsIcon",
                     widget: "object",
                     collapsed: true,
                     fields:
                       [
                         { label: "Image", name: "image", widget: "image" },
-                        { label: "Alt Text", name: "alt-text", widget: "string" },
+                        { label: "Alt Text", name: "altText", widget: "string" },
                       ]
                   },
-                  { label: "Hero Heading", name: "hero-heading", widget: "markdown" },
-                  { label: "Hero Heading 1", name: 'hero-heading-one', widget: "string" },
-                  { label: "Hero Heading 2", name: "hero-heading-two", widget: "string" },
-                  { label: "Hero SubHeading", name: "hero-sub-heading", widget: "string" },
+                  { label: "Hero Heading", name: "heroHeading", widget: "markdown" },
+                  { label: "Hero SubHeading", name: "heroSubHeading", widget: "string" },
                   {
                     label: "Hero Btn",
                     name: "heroBtn",
@@ -86,6 +82,7 @@ collections:
                   }
                 ]
           }
+          - { label: "Image", name: "image", widget: "image" }
           - { label: Heading, name: heading, widget: string }
           - { label: Subheading, name: subheading, widget: string }
           - {
