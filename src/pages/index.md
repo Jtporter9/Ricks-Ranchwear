@@ -1,5 +1,7 @@
 ---
 templateKey: index-page
+heading: The world brought to your doorstep
+subheading: test
 hero-content:
   heroBootsIcon: /img/grouped-boots-white.svg
   heroImage: /img/homepage-hero.jpg
@@ -23,8 +25,6 @@ hero-content:
     get 2 pair free!
   heroSubHeading: Seriously, we aren’t kidding
   heroHeadingOne: Buy 1 pair,
-heading: The world brought to your doorstep
-subheading: test
 mainpitch:
   title: What is My Store?
   description: >
@@ -69,6 +69,21 @@ main:
 bigimage:
   image: /img/bazaar-home.jpg
   alt: Bazaar
+heroContent:
+  heroHeading: |-
+    Buy 1 pair,
+
+    get 2 pair free!
+  heroImage:
+    image: /img/homepage-hero.jpg
+    altText: Imageof boots lined up
+  heroBootsIcon:
+    image: /img/grouped-boots-white.svg
+    altText: Buy one get two free boot icon
+  heroSubHeading: Seriously, we aren’t kidding
+  heroBtn:
+    text: Learn More
+    link: /
 image: /img/homepage-hero.jpg
 description: test
 ---
