@@ -45,6 +45,9 @@ introContent:
     can now shop our incredible buy 1, get 2 free deal no matter where you are.
     Whether you choose to shop online or at one of our stores (link to stores
     page), you'll get the best price on boots in the industry.
+  viewStoresBtn:
+    text: View Our Stores
+    link: /stores
 intro:
   blurbs:
     - image: /img/close-up-cloth.jpg
