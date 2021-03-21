@@ -40,38 +40,38 @@ collections:
           }
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Hero Content",
-              name: "hero-content",
+              name: "heroContent",
               widget: "object",
               collapsed: true,
               fields:
                 [
                   {
                     label: "Hero Image",
-                    name: "hero-image",
+                    name: "heroImage",
                     widget: "object",
                     collapsed: true,
                     fields:
                       [
                         { label: "Image", name: "image", widget: "image" },
-                        { label: 'Alt Text', name: "alt-text", widget: "string" },
+                        { label: 'Alt Text', name: "altText", widget: "string" },
                       ]
                   },
                   {
                     label: "Hero Boots Icon",
-                    name: "hero-boots-icon",
+                    name: "heroBootsIcon",
                     widget: "object",
                     collapsed: true,
                     fields:
                       [
                         { label: "Image", name: "image", widget: "image" },
-                        { label: "Alt Text", name: "alt-text", widget: "string" },
+                        { label: "Alt Text", name: "altText", widget: "string" },
                       ]
                   },
-                  { label: "Hero Heading", name: "hero-heading", widget: "markdown" },
-                  { label: "Hero SubHeading", name: "hero-sub-heading", widget: "string" },
+                  { label: "Hero Heading", name: "heroHeading", widget: "markdown" },
+                  { label: "Hero SubHeading", name: "heroSubHeading", widget: "string" },
                   {
                     label: "Hero Btn",
-                    name: "hero-btn",
+                    name: "heroBtn",
                     widget: "object",
                     collapsed: true,
                     fields:
