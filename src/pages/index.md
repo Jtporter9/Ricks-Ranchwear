@@ -32,6 +32,19 @@ mainpitch:
     An  ever changing collection of products that are meant to help broaden
     your  daily life through the creation of others.
 hero-image: /img/homepage-hero.jpg
+introContent:
+  logoImage:
+    image: /img/logo.png
+    altText: Boot factory outlet logo
+  bootCountryLogoImage:
+    image: /img/boot-country-logo.png
+    altText: Boot country logo
+  welcomeHeading: Welcome To Our New Site!
+  welcomeSubHeading: Keeping you looking good, no matter the occasion
+  introDescription: After over 40 years in business with our retail stores, you
+    can now shop our incredible buy 1, get 2 free deal no matter where you are.
+    Whether you choose to shop online or at one of our stores (link to stores
+    page), you'll get the best price on boots in the industry.
 intro:
   blurbs:
     - image: /img/close-up-cloth.jpg
