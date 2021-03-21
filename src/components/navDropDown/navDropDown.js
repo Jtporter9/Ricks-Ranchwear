@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from 'gatsby';
 
 import { options } from './navDropDownOptions';
 
 export default function NavDropDown({ type }) {
+    // const [appState, setAppState ] = useContext(AppContext);
+
+    // console.log(1, appState)
     const [typeObject, setTypeObject] = useState(false)
 
     useEffect(() => {
@@ -13,13 +16,13 @@ export default function NavDropDown({ type }) {
     return (
             <div className="nav-drop-down">
                 <div>
-                    <Link className="all-link" to="/mens">{typeObject.head}</Link>
+                    <Link className="all-link" to={`${typeObject.slug}`}>{typeObject.head}</Link>
                 </div>
                 {typeObject && typeObject.dropdownList.map((list, i) => (
                     <div key={i}>
                         <h3>{list.head}</h3>
                         {list.listItems.map((item, i) => (
-                            <Link to={item.location} key={i}>{item.name}</Link>
+                            <Link to={ `${item.location}?type=${list.head}&value=${item.name}`} key={i}>{item.name}</Link>
                         ))}
                     </div>
                 ))}

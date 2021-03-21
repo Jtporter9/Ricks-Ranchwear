@@ -3,14 +3,28 @@ templateKey: index-page
 title: The world brought to your doorstep
 image: /img/homepage-hero.jpg
 hero-content:
-  heroImage: /img/grouped-boots-white.svg
-  heroHeadingOne: Buy 1 pair,
-  heroHeadingTwo: get 2 pair free!
-  heroSubHeading: Seriously, we aren’t kidding
-  heroImageAltText: Hero Boot Image
+  heroBootsIcon: /img/grouped-boots-white.svg
+  heroImage: /img/homepage-hero.jpg
   heroBtn:
     text: Learn More
     link: /
+  hero-sub-heading: Seriously, we aren’t kidding
+  heroHeadingTwo: get 2 pair free!
+  hero-image: /img/homepage-hero.jpg
+  hero-heading-one: Buy 1 pair,
+  hero-heading-two: get 2 pair free!
+  hero-heading: |-
+    Buy 1 pair,
+    get 2 pair free!
+  heroImageAltText: Hero Boot Image
+  hero-image-alt-text: Image of boots
+  hero-boots-icon: /img/grouped-boots-white.svg
+  hero-heading': |-
+    Buy 1 pair,
+
+    get 2 pair free!
+  heroSubHeading: Seriously, we aren’t kidding
+  heroHeadingOne: Buy 1 pair,
 heading: The world brought to your doorstep
 subheading: test
 mainpitch:
@@ -19,6 +33,7 @@ mainpitch:
     My Store is a journey waiting to be had, from our journeys in the past.
     An  ever changing collection of products that are meant to help broaden
     your  daily life through the creation of others.
+hero-image: /img/homepage-hero.jpg
 intro:
   blurbs:
     - image: /img/close-up-cloth.jpg

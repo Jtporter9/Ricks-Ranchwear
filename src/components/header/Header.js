@@ -4,6 +4,9 @@ import { Link } from 'gatsby';
 // COMPONENTS
 import InfoModal from '../infoModal/infoModal';
 import NavDropDown from '../navDropDown/navDropDown';
+import MobileMenuDropDown from '../mobileMenuDropDown/mobileMenuDropDown';
+
+import { options } from '../navDropDown/navDropDownOptions';
 
 //ASSESTS
 import logo from '../../assets/logo.png';
@@ -12,6 +15,7 @@ import searchLogo from '../../assets/search.svg';
 import cartIcon from '../../assets/cart-icon.svg';
 import cartIconWhite from '../../assets/cart-icon-white.svg';
 import caretDown from '../../assets/caret-down.svg';
+import caretUp from '../../assets/caret-up-dark.svg';
 import groupedBootsWhite from '../../assets/grouped-boots-white.svg';
 import infoIconWhite from '../../assets/info-icon-white.svg';
 import upArrowWhite from '../../assets/up-arrow-white.svg';
@@ -34,7 +38,7 @@ export default function Header() {
     setNavBarActive(!navBarActive);
   };
 
-  function toggleDropdownNav (type) {
+  function toggleDropdownNav(type) {
     setDropdownType(type)
     setDropdownNavActive(true)
   }
@@ -80,61 +84,28 @@ export default function Header() {
               onClick={toggleHamburger} />
             <div className={`opaque-background ${navBarActive && `is-active`}`} onClick={toggleHamburger}></div>
             <div className={`mobile-menu-drawer ${navBarActive && `is-active`} ${navBarActive && `animated fadeInLeft`}`}>
-              {/* <div className="mobile-search-container">
-                <input className="mobile-search" placeholder="Search" />
-              </div> */}
-              <Link to="/mens">
-                <div className="mobile-menu-dropdown-container">
-                  <span>
-                    Mens
-                    {/* <img src={cartIcon} /> */}
-                  </span>
-                  <ul>
-                    <li></li>
-                  </ul>
+              <div className="mobile-menu-scrollable">
+                {/* <div className="mobile-search-container">
+                  <input className="mobile-search" placeholder="Search" />
+                </div> */}
+                {options.map((option, i) => <MobileMenuDropDown data={option} key={i} />)}
+
+                <div className="mobile-menu-links">
+                  <Link to="/about">
+                    About
+                  </Link>
                 </div>
-              </Link>
-              <Link to="/womens">
-                <div className="mobile-menu-dropdown-container">
-                  <span>Womens
-                    {/* <img src={cartIcon} /> */}
-                  </span>
-                  <ul>
-                    <li></li>
-                  </ul>
+                <div className="mobile-menu-links">
+                  <Link to="/help">
+                    Help
+                  </Link>
                 </div>
-              </Link>
-              <Link to="/kids">
-                <div className="mobile-menu-dropdown-container">
-                  <span>
-                    Kids
-                    {/* <img src={cartIcon} /> */}
-                  </span>
-                  <ul>
-                    <li></li>
-                  </ul>
-                </div>
-              </Link>
-              <div className="mobile-menu-links">
-                <Link to="/stores">
-                  Stores
-                </Link>
+                {/* <div className="mobile-menu-links">
+                  <Link to="/">
+                    Account
+                  </Link>
+                </div> */}
               </div>
-              <div className="mobile-menu-links">
-                <Link to="/about">
-                  About
-                </Link>
-              </div>
-              <div className="mobile-menu-links">
-                <Link to="/help">
-                  Help
-                </Link>
-              </div>
-              {/* <div className="mobile-menu-links">
-                <Link to="/">
-                  Account
-                </Link>
-              </div> */}
               <div className="mobile-menu-checkout-container">
                 <CartContext.Consumer>
                   {value => {

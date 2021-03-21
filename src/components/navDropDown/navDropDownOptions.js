@@ -2,6 +2,7 @@ export const options = [
     {
         key: "Mens",
         head: "All Mens",
+        slug: '/mens',
         dropdownList: [
             {
                 head: "Style",
@@ -38,6 +39,7 @@ export const options = [
     {
         key: "Womens",
         head: "All Womens",
+        slug: '/womens',
         dropdownList: [
             {
                 head: "Style",
@@ -70,6 +72,7 @@ export const options = [
     {
         key: "Kids",
         head: "All Kids",
+        slug: '/kids',
         dropdownList: [
             {
                 head: "Style",
@@ -98,6 +101,7 @@ export const options = [
     {
         key: "Stores",
         head: "All Stores",
+        slug: '/stores',
         dropdownList: [
             {
                 head: "OHIO",

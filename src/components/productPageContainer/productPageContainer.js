@@ -4,6 +4,7 @@ import ProductCard from '../bigcommerce/ProductCard';
 import TopSelling from '../topSelling/topSelling.js';
 import Dropdown from '../dropdown/dropdown.js';
 import InfoModal from '../infoModal/infoModal';
+import { useLocation } from '@reach/router';
 
 // ASSESTS
 import logo from '../../assets/logo.png';
@@ -24,6 +25,18 @@ export default function ProductPageContainer({
     products,
     brands
 }) {
+    const location = useLocation();
+    function getJsonFromUrl(url) {
+        if (!url) url = location.search;
+        var query = url.substr(1);
+        var result = {};
+        query.split("&").forEach(function (part) {
+            var item = part.split("=");
+            result[item[0]] = decodeURIComponent(item[1]);
+        });
+        return result;
+    }
+
     let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) === index)
 
     let colorOptions = [];
@@ -55,7 +68,7 @@ export default function ProductPageContainer({
                     colorOptions.push(colors[i])
                     product.variantsList = [...new Set(findDuplicates([...product.variantsList, colors[i]]))];
                 }
-            } 
+            }
             product.variantsList = [...new Set(findDuplicates([...product.variantsList, field.value]))];
         })
     })
@@ -91,6 +104,7 @@ export default function ProductPageContainer({
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [numberOfFilters, setNumberOfFilters] = useState(null);
     const [categoryDropDown, setCategoryDropDown] = useState(false);
+    const [params, setParams] = useState(false);
 
     function toggleFilterDrawer() {
         setFilterDrawerOpen(!filterDrawerOpen);
@@ -117,7 +131,6 @@ export default function ProductPageContainer({
     }
 
     function getProductsFilteredByVariant(arr) {
-        console.log(arr)
         if (numberOfFilters > 0 && arr.length === 0) {
             arr.length > 1 ?
                 arr.map(item => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...filteredProducts.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)]))])) :
@@ -194,6 +207,19 @@ export default function ProductPageContainer({
             window.removeEventListener('scroll', () => handleScroll);
         };
     }, [numberOfFilters, filter, brandsFilter, colorFilter, sizeFilter, widthFilter, materialFilter, toeStyleFilter, styleNumberFilter]);
+
+    useEffect(() => {
+        let currentParams = getJsonFromUrl(location.search);
+        params.value !== currentParams.value && clearAllFilters();
+        (!params || params.value !== currentParams.value) && setParams(getJsonFromUrl(location.search));
+        if (params) {
+            if (params.type === "Style" && params.value.slice(-1) === 's') {
+                params.value = params.value.substring(0, params.value.length - 1);
+            }
+            (params.type === "Style" && styleNumberFilter.length === 0) && toggleFilter(styleNumberFilter, params.value, params.type);
+            (params.type === "Toe Shape" && toeStyleFilter.length === 0) && toggleFilter(toeStyleFilter, params.value, params.type);
+        }
+    }, [params, location])
 
     return (
         <div className="product-page">
