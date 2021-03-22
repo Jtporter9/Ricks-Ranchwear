@@ -48,6 +48,22 @@ introContent:
   viewStoresBtn:
     text: View Our Stores
     link: /stores
+categoryCardsContent:
+  - image: /img/mens-category-image.png
+    categoryText: Mens
+    linkBtn:
+      text: Shop
+      link: /mens
+  - image: /img/womans-category-image.png
+    categoryText: Womens
+    linkBtn:
+      text: Shop
+      link: /womens
+  - image: /img/kids-4x.png
+    categoryText: Kids
+    linkBtn:
+      text: Shop
+      link: /kids
 intro:
   blurbs:
     - image: /img/close-up-cloth.jpg
