@@ -137,13 +137,13 @@ collections:
                   { label: "Category Text", name: "categoryText", widget: "string" },
                   { label: "Link Button",
                     name: "linkBtn",
-                    widget: "object"
+                    widget: "object",
                     fields:
                       [
                         { label: "Text", name: "text", widget: "string" },
                         { label: "Link", name: "link", widget: "string" },
                       ]
-                  },
+                  }
                 ]
           }
           - { label: "Image", name: "image", widget: "image" }
