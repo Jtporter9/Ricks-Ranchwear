@@ -54,16 +54,37 @@ categoryCardsContent:
     linkBtn:
       text: Shop
       link: /mens
+    categoryImage:
+      image: /img/mens-category-image.png
+      altText: Mens boots image
   - image: /img/womans-category-image.png
     categoryText: Womens
     linkBtn:
       text: Shop
       link: /womens
+    categoryImage:
+      image: /img/womans-category-image.png
+      altText: Female boots image
   - image: /img/kids-4x.png
     categoryText: Kids
     linkBtn:
       text: Shop
       link: /kids
+    categoryImage:
+      image: /img/kids-4x.png
+      altText: Kids boots image
+dynamicProductContent:
+  productImage:
+    image: /img/boots-blue-bg.jpg
+    altText: JB Dillon boots
+  heading: Avens
+  subHeading: By J.B. Dillon Reserve
+  description: This stunning handmade boot is in a league of its own. Utilizing
+    only the highest quality materials and leathers available, the Avens has a
+    beautiful hand-stitched design and a cream inlay.
+  linkBtn:
+    text: Shop Avens
+    link: /
 intro:
   blurbs:
     - image: /img/close-up-cloth.jpg
