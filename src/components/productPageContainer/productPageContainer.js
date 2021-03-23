@@ -217,7 +217,7 @@ export default function ProductPageContainer({
                 params.value = params.value.substring(0, params.value.length - 1);
             }
             (params.type === "Style" && styleNumberFilter.length === 0) && toggleFilter(styleNumberFilter, params.value, params.type);
-            (params.type === "Toe Shape" && toeStyleFilter.length === 0) && toggleFilter(toeStyleFilter, params.value, params.type);
+            (params.type === "Toe Shape" && toeStyleFilter.length === 0) && toggleFilter(toeStyleFilter, "R-Toe", params.type);
         }
     }, [params, location])
 
