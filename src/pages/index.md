@@ -1,5 +1,12 @@
 ---
 templateKey: index-page
+siteCookiesBannerContent:
+  mainText: Boot Factory outlet Uses cookies to improve the user experience. To
+    learn more about our cookie policy, please check our
+  linkBtn:
+    text: Privacy Policy
+    link: /about
+  closeText: Okay
 heading: The world brought to your doorstep
 subheading: test
 hero-content:
