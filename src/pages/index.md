@@ -25,6 +25,18 @@ hero-content:
     get 2 pair free!
   heroSubHeading: Seriously, we aren’t kidding
   heroHeadingOne: Buy 1 pair,
+storesSectionContent:
+  heading: Our Stores
+  subHeading: 8 Different Retail Locations
+  description: Our retail stores offer an incredible selection of boots, with many
+    additional brands and styles not offered online. Our highly trained sales
+    staff  can help find the perfect boots for you!
+  linkBtn:
+    text: View Stores
+    link: /stores
+  storeImage:
+    image: /img/tennessee-store.jpg
+    altText: Boot country store face
 mainpitch:
   title: What is My Store?
   description: >
