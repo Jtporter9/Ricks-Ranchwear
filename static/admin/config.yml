@@ -220,6 +220,26 @@ collections:
                   }
                 ]
           }
+          - {
+              label: "Site Cookies Banner Content",
+              name: "siteCookiesBannerContent",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  {label: 'Main Text', name: "mainText", widget: "string"},
+                  { label: "Link Button",
+                    name: "linkBtn",
+                    widget: "object",
+                    fields:
+                      [
+                        { label: "Text", name: "text", widget: "string" },
+                        { label: "Link", name: "link", widget: "string" },
+                      ]
+                  },
+                  {label: 'Close Text', name: "closeText", widget: "string"}
+                ]
+          }
           - { label: "Image", name: "image", widget: "image" }
           - { label: Heading, name: heading, widget: string }
           - { label: Subheading, name: subheading, widget: string }
