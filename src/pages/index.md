@@ -1,56 +1,21 @@
 ---
 templateKey: index-page
-siteCookiesBannerContent:
-  mainText: Boot Factory outlet Uses cookies to improve the user experience. To
-    learn more about our cookie policy, please check our
-  linkBtn:
-    text: Privacy Policy
-    link: /about
-  closeText: Okay
-heading: The world brought to your doorstep
-subheading: test
-hero-content:
-  heroBootsIcon: /img/grouped-boots-white.svg
-  heroImage: /img/homepage-hero.jpg
+title: The world brought to your doorstep
+heroContent:
+  heroHeading: |-
+    Buy 1 Pair,
+
+    Get Two Pair Free!
+  heroImage:
+    image: /img/homepage-hero.jpg
+    altText: Imageof boots lined up
+  heroBootsIcon:
+    image: /img/grouped-boots-white.svg
+    altText: Buy one get two free boot icon
+  heroSubHeading: Seriously, we aren’t kidding
   heroBtn:
     text: Learn More
     link: /
-  hero-sub-heading: "Seriously, we aren’t kidding   "
-  heroHeadingTwo: get 2 pair free!
-  hero-image: /img/homepage-hero.jpg
-  hero-heading-one: Buy 1 pair,
-  hero-heading-two: get 2 pair free!
-  hero-heading: |-
-    Buy 1 pair,
-    get 2 pair free!
-  heroImageAltText: Hero Boot Image
-  hero-image-alt-text: Image of boots
-  hero-boots-icon: /img/grouped-boots-white.svg
-  hero-heading': |-
-    Buy 1 pair,
-
-    get 2 pair free!
-  heroSubHeading: Seriously, we aren’t kidding
-  heroHeadingOne: Buy 1 pair,
-storesSectionContent:
-  heading: Our Stores
-  subHeading: 8 Different Retail Locations
-  description: Our retail stores offer an incredible selection of boots, with many
-    additional brands and styles not offered online. Our highly trained sales
-    staff  can help find the perfect boots for you!
-  linkBtn:
-    text: View Stores
-    link: /stores
-  storeImage:
-    image: /img/tennessee-store.jpg
-    altText: Boot country store face
-mainpitch:
-  title: What is My Store?
-  description: >
-    My Store is a journey waiting to be had, from our journeys in the past.
-    An  ever changing collection of products that are meant to help broaden
-    your  daily life through the creation of others.
-hero-image: /img/homepage-hero.jpg
 introContent:
   logoImage:
     image: /img/logo.png
@@ -61,9 +26,9 @@ introContent:
   welcomeHeading: Welcome To Our New Site!
   welcomeSubHeading: Keeping you looking good, no matter the occasion
   introDescription: After over 40 years in business with our retail stores, you
-    can now shop our incredible buy 1, get 2 free deal no matter where you are.
-    Whether you choose to shop online or at one of our stores (link to stores
-    page), you'll get the best price on boots in the industry.
+    can now shop our incredible buy 1, get two free deal no matter where you
+    are. Whether you choose to shop online or at one of our stores, you'll get
+    the best price on boots in the industry.
   viewStoresBtn:
     text: View Our Stores
     link: /stores
@@ -104,6 +69,59 @@ dynamicProductContent:
   linkBtn:
     text: Shop Avens
     link: /
+storesSectionContent:
+  heading: Our Stores
+  subHeading: 8 Different Retail Locations
+  description: Our retail stores offer an incredible selection of boots, with many
+    additional brands and styles not offered online. Our highly trained sales
+    staff  can help find the perfect boots for you!
+  linkBtn:
+    text: View Stores
+    link: /stores
+  storeImage:
+    image: /img/tennessee-store.jpg
+    altText: Boot country store face
+siteCookiesBannerContent:
+  mainText: Boot Factory outlet Uses cookies to improve the user experience. To
+    learn more about our cookie policy, please check our
+  linkBtn:
+    text: Privacy Policy
+    link: /about
+  closeText: Okay
+image: /img/homepage-hero.jpg
+heading: The world brought to your doorstep
+subheading: test
+hero-content:
+  heroBootsIcon: /img/grouped-boots-white.svg
+  heroImage: /img/homepage-hero.jpg
+  heroBtn:
+    text: Learn More
+    link: /
+  hero-sub-heading: "Seriously, we aren’t kidding   "
+  heroHeadingTwo: get 2 pair free!
+  hero-image: /img/homepage-hero.jpg
+  hero-heading-one: Buy 1 pair,
+  hero-heading-two: get 2 pair free!
+  hero-heading: |-
+    Buy 1 pair,
+    get 2 pair free!
+  heroImageAltText: Hero Boot Image
+  hero-image-alt-text: Image of boots
+  hero-boots-icon: /img/grouped-boots-white.svg
+  hero-heading': |-
+    Buy 1 pair,
+
+    get 2 pair free!
+  heroSubHeading: Seriously, we aren’t kidding
+  heroHeadingOne: Buy 1 pair,
+mainpitch:
+  title: What is My Store?
+  description: >
+    My Store is a journey waiting to be had, from our journeys in the past.
+    An  ever changing collection of products that are meant to help broaden
+    your  daily life through the creation of others.
+hero-image: /img/homepage-hero.jpg
+description: test
 intro:
   blurbs:
     - image: /img/close-up-cloth.jpg
@@ -125,7 +143,6 @@ intro:
     of apparel that tells a story all it's own? That's what we seek out and hope
     you'll find here.
 subtitle: Your one-stop shop for unique products you'll love
-title: The world brought to your doorstep
 main:
   heading: test
   description: test
@@ -141,21 +158,4 @@ main:
 bigimage:
   image: /img/bazaar-home.jpg
   alt: Bazaar
-heroContent:
-  heroHeading: |-
-    Buy 1 pair,
-
-    get 2 pair free!
-  heroImage:
-    image: /img/homepage-hero.jpg
-    altText: Imageof boots lined up
-  heroBootsIcon:
-    image: /img/grouped-boots-white.svg
-    altText: Buy one get two free boot icon
-  heroSubHeading: Seriously, we aren’t kidding
-  heroBtn:
-    text: Learn More
-    link: /
-image: /img/homepage-hero.jpg
-description: test
 ---
