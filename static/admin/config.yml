@@ -188,6 +188,38 @@ collections:
                   }
                 ]
           }
+          - {
+              label: "Stores Section Content",
+              name: "storesSectionContent",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  { label: 'Heading', name: "heading", widget: "string" },
+                  { label: 'Sub Heading', name: "subHeading", widget: "string" },
+                  { label: 'Description', name: "description", widget: "string" },
+                  { label: "Link Button",
+                    name: "linkBtn",
+                    widget: "object",
+                    fields:
+                      [
+                        { label: "Text", name: "text", widget: "string" },
+                        { label: "Link", name: "link", widget: "string" },
+                      ]
+                  },
+                  {
+                    label: "store Image",
+                    name: "storeImage",
+                    widget: "object",
+                    collapsed: true,
+                    fields:
+                      [
+                        { label: "Image", name: "image", widget: "image" },
+                        { label: 'Alt Text', name: "altText", widget: "string" },
+                      ]
+                  }
+                ]
+          }
           - { label: "Image", name: "image", widget: "image" }
           - { label: Heading, name: heading, widget: string }
           - { label: Subheading, name: subheading, widget: string }
