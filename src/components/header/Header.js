@@ -155,16 +155,16 @@ export default function Header() {
         </div>
         <nav className="desktop-links">
           <div className="desktop-links-inner">
-            <span className="menu-link" onClick={() => toggleDropdownNav('Mens')}>
+            <span className="menu-link" onMouseEnter={() => toggleDropdownNav('Mens')}>
               Mens
           </span>
-            <span className="menu-link" onClick={() => toggleDropdownNav('Womens')}>
+            <span className="menu-link" onMouseEnter={() => toggleDropdownNav('Womens')}>
               Womens
           </span>
-            <span className="menu-link" onClick={() => toggleDropdownNav('Kids')}>
+            <span className="menu-link" onMouseEnter={() => toggleDropdownNav('Kids')}>
               Kids
           </span>
-            <span className="menu-link" onClick={() => toggleDropdownNav('Stores')}>
+            <span className="menu-link" onMouseEnter={() => toggleDropdownNav('Stores')}>
               Stores
           </span>
           </div>
