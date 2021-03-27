@@ -1,37 +1,22 @@
+//Node Mdoules
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
 
+//Components
 import Layout from '../components/Layout';
-import HomePageContainer from '../components/homePageContainer/homePageContainer.js'
-import PhotoGrid from '../components/PhotoGrid';
-import BlogItem from '../components/BlogItem';
+import HomePageContainer from '../components/homePageContainer/homePageContainer'
+import {ContentProvider} from '../context/ContentContext';
 
 export const IndexPageTemplate = ({
-  image,
-  title,
-  subtitle,
-  heading,
-  mainpitch,
-  bigimage,
-  description,
-  intro,
   post,
   products
 }) => (
-  <HomePageContainer 
-    image={image}
-    title={title}
-    subtitle={subtitle}
-    heading={heading}
-    mainpitch={mainpitch}
-    bigimage={bigimage}
-    description={description}
-    intro={intro}
-    post={post}
-    products={products}
-  />
-);
+      <HomePageContainer
+        post={post}
+        products={products}
+      />
+  );
 
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -63,18 +48,12 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <IndexPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        subtitle={frontmatter.subtitle}
-        heading={frontmatter.heading}
-        mainpitch={frontmatter.mainpitch}
-        bigimage={frontmatter.bigimage}
-        description={frontmatter.description}
-        intro={frontmatter.intro}
-        post={data.allMarkdownRemark.edges[0].node}
-        products={products}
-      />
+      <ContentProvider value={frontmatter}>
+        <IndexPageTemplate
+          post={data.allMarkdownRemark.edges[0].node}
+          products={products}
+        />
+    </ContentProvider>
     </Layout>
   );
 };
@@ -143,6 +122,122 @@ export const pageQuery = graphql`
       frontmatter {
         title
         subtitle
+        categoryCardsContent {
+          categoryImage {
+            altText
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          categoryText
+          linkBtn {
+            link
+            text
+          }
+        }
+        heroContent {
+          heroBootsIcon {
+            altText
+            image {
+              publicURL
+            }
+          }
+          heroBtn {
+            text
+            link
+          }
+          heroHeading
+          heroImage {
+            altText
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                    ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          heroSubHeading
+        }
+        introContent {
+          bootCountryLogoImage {
+            altText
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 2048, quality: 100) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+            }
+          }
+          introDescription
+          logoImage {
+            altText
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          viewStoresBtn {
+            link
+            text
+          }
+          welcomeHeading
+          welcomeSubHeading
+        }
+        dynamicProductContent {
+          productImage {
+            altText
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          heading
+          subHeading
+          description
+          linkBtn {
+            link
+            text
+          }
+        }
+        storesSectionContent {
+          heading
+          subHeading
+          description
+          linkBtn {
+            link
+            text
+          }
+          storeImage {
+            altText
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+        siteCookiesBannerContent {
+          mainText
+          linkBtn {
+            link
+            text
+          }
+          closeText
+        }
         image {
           childImageSharp {
             fluid(maxWidth: 2048, quality: 100) {

@@ -1,4 +1,5 @@
 var proxy = require('http-proxy-middleware');
+const path = require('path');
 const cookiesMiddleware = require('universal-cookie-express');
 require('dotenv').config();
 
@@ -9,6 +10,26 @@ module.exports = {
       'Boot Factory Outlet.'
   },
   plugins: [
+    {
+      // keep as first gatsby-source-filesystem plugin for gatsby image support
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/static/img`,
+        name: 'uploads'
+      }
+    },
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        src: path.join(__dirname, 'src'),
+        assets: path.join(__dirname, 'src/assets'),
+        pages: path.join(__dirname, 'src/pages'),
+        components: path.join(__dirname, 'src/components'),
+        static: path.join(__dirname, 'static'),
+      }
+    },
     {
       resolve: 'gatsby-source-bigcommerce',
       options: {
@@ -25,32 +46,6 @@ module.exports = {
         }
       }
     },
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sass',
-    {
-      // keep as first gatsby-source-filesystem plugin for gatsby image support
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/static/img`,
-        name: 'uploads'
-      }
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages'
-      }
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/img`,
-        name: 'images'
-      }
-    },
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -77,6 +72,22 @@ module.exports = {
             }
           }
         ]
+      }
+    },
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sass',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: 'pages'
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/img`,
+        name: 'images'
       }
     },
     {

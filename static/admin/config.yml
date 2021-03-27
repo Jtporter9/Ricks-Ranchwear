@@ -133,7 +133,17 @@ collections:
               widget: "list",
               fields:
                 [
-                  { label: "Image", name: "image", widget: "image" },
+                  {
+                    label: "Category Image",
+                    name: "categoryImage",
+                    widget: "object",
+                    collapsed: true,
+                    fields:
+                      [
+                        { label: "Image", name: "image", widget: "image" },
+                        { label: 'Alt Text', name: "altText", widget: "string" },
+                      ]
+                  },
                   { label: "Category Text", name: "categoryText", widget: "string" },
                   { label: "Link Button",
                     name: "linkBtn",
@@ -144,6 +154,90 @@ collections:
                         { label: "Link", name: "link", widget: "string" },
                       ]
                   }
+                ]
+          }
+          - {
+              label: "Dynamic Product Content",
+              name: "dynamicProductContent",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  {
+                    label: "Product Image",
+                    name: "productImage",
+                    widget: "object",
+                    collapsed: true,
+                    fields:
+                      [
+                        { label: "Image", name: "image", widget: "image" },
+                        { label: 'Alt Text', name: "altText", widget: "string" },
+                      ]
+                  },
+                  { label: 'Heading', name: "heading", widget: "string" },
+                  { label: 'Sub Heading', name: "subHeading", widget: "string" },
+                  { label: 'Description', name: "description", widget: "string" },
+                  { label: "Link Button",
+                    name: "linkBtn",
+                    widget: "object",
+                    fields:
+                      [
+                        { label: "Text", name: "text", widget: "string" },
+                        { label: "Link", name: "link", widget: "string" },
+                      ]
+                  }
+                ]
+          }
+          - {
+              label: "Stores Section Content",
+              name: "storesSectionContent",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  { label: 'Heading', name: "heading", widget: "string" },
+                  { label: 'Sub Heading', name: "subHeading", widget: "string" },
+                  { label: 'Description', name: "description", widget: "string" },
+                  { label: "Link Button",
+                    name: "linkBtn",
+                    widget: "object",
+                    fields:
+                      [
+                        { label: "Text", name: "text", widget: "string" },
+                        { label: "Link", name: "link", widget: "string" },
+                      ]
+                  },
+                  {
+                    label: "store Image",
+                    name: "storeImage",
+                    widget: "object",
+                    collapsed: true,
+                    fields:
+                      [
+                        { label: "Image", name: "image", widget: "image" },
+                        { label: 'Alt Text', name: "altText", widget: "string" },
+                      ]
+                  }
+                ]
+          }
+          - {
+              label: "Site Cookies Banner Content",
+              name: "siteCookiesBannerContent",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  {label: 'Main Text', name: "mainText", widget: "string"},
+                  { label: "Link Button",
+                    name: "linkBtn",
+                    widget: "object",
+                    fields:
+                      [
+                        { label: "Text", name: "text", widget: "string" },
+                        { label: "Link", name: "link", widget: "string" },
+                      ]
+                  },
+                  {label: 'Close Text', name: "closeText", widget: "string"}
                 ]
           }
           - { label: "Image", name: "image", widget: "image" }
@@ -176,46 +270,6 @@ collections:
                     [
                       { label: Image, name: image, widget: image },
                       { label: Text, name: text, widget: text },
-                    ],
-                },
-              ],
-          }
-          - {
-            label: Main,
-            name: main,
-            widget: object,
-            fields:
-              [
-                { label: Heading, name: heading, widget: string },
-                { label: Description, name: description, widget: text },
-                {
-                  label: Image1,
-                  name: image1,
-                  widget: object,
-                  fields:
-                    [
-                      { label: Image, name: image, widget: image },
-                      { label: Alt, name: alt, widget: string },
-                    ],
-                },
-                {
-                  label: Image2,
-                  name: image2,
-                  widget: object,
-                  fields:
-                    [
-                      { label: Image, name: image, widget: image },
-                      { label: Alt, name: alt, widget: string },
-                    ],
-                },
-                {
-                  label: Image3,
-                  name: image3,
-                  widget: object,
-                  fields:
-                    [
-                      { label: Image, name: image, widget: image },
-                      { label: Alt, name: alt, widget: string },
                     ],
                 },
               ],

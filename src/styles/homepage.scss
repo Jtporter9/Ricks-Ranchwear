@@ -101,6 +101,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
         img {
             margin: 0 1rem;
         }
@@ -109,6 +110,10 @@
         display: flex;
         justify-content: center;
         .head-content {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
             padding: 4rem;
             width: 700px;
@@ -133,6 +138,20 @@
                 color: $red-mid;
                 font-weight: bold;
             }
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 30px;
+                width: 80%;
+                max-width: 220px;
+                min-height: 48px;
+                background-color: $functional-darkest;
+                color: $white;
+                font-weight: 200;
+                font-size: 17px;
+                text-transform: uppercase;
+            }
         }
     }
 
@@ -142,21 +161,37 @@
         align-items: center;
         width: 100%;
         margin: auto;
-        .boot-block-link {
-            margin: .5rem;
-            width: 100%;
+        .boot-block-card {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 0.5rem 1.5rem;
+            width: 350px;
             border: 1px solid $functional-light;
-            max-width: 400px;
             &:hover {
                 border: 1px solid $functional-darkest;
                 opacity: .8;
             }
+            div.image-container {
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                height: 300px;
+            }
+            img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+            }
             .image-block {
                 height: 300px;
                 width: 100%;
+                background-repeat: no-repeat;
                 background-size: cover;
             }
-            .boot-block-container {
+            .boot-block-info-container {
                 text-align: center;
                 padding: 1.5rem 0;
 
@@ -191,7 +226,7 @@
     .first-content-block {
         .lower {
             width: 90%;
-            .boot-block-link h2 {
+            .boot-block-card h2 {
                 font-size: 32px;
             }
         }
@@ -210,9 +245,10 @@
     .first-content-block {
         .lower {
             display: block;
-            .boot-block-link {
+            .boot-block-card {
                 margin: 1rem auto;
-                width: 350px;
+                min-width: 0;
+                max-width: 320px;
             }
         }
     }
