@@ -12,6 +12,7 @@ import SizeChart from '../components/sizeChart/sizeChart';
 // ASSETS
 import groupedBoots from '../assets/grouped-boots.svg';
 import infoIcon from '../assets/info-icon.svg';
+import { divide } from 'lodash';
 
 export default (context) => {
   const { data: { allBigCommerceProducts, allBigCommerceBrands }, pageContext: { productId } } = context;
@@ -52,6 +53,8 @@ export default (context) => {
   let colorOptions = [];
   let sizeOptions = [];
   let widthOptions = [];
+
+  let variantsInStock = [];
 
   const colorKey = "Color";
   const sizeKey = "Size";
@@ -105,6 +108,23 @@ export default (context) => {
     type === sizeKey && setActiveSize(data);
   }
 
+  function checkVariantQuantities() {
+    activeColor && variants.forEach(variant => {
+      console.log(activeColor);
+      (variant.option_values[0].label === activeColor && variant.inventory_level > 0) && variantsInStock.push(variant);
+    })
+    activeWidth && variantsInStock.forEach((variant, i) => {
+      console.log(activeWidth);
+      (variant.option_values[2].label !== activeWidth && variant.inventory_level === 0) && variantsInStock.splice(i, 1);
+    })
+    activeSize && variantsInStock.forEach(variant => {
+      (variant.option_values[1].label === activeSize && variant.inventory_level > 0) && variantsInStock.push(variant);
+    })
+    variantsInStock.forEach(variant => {
+      console.log(variant.option_values[0].label, variant.option_values[1].label, variant.option_values[2].label);
+    })
+  }
+
   // THIS CAN BE BETTER 
   function getProductVariant() {
     variants.forEach(variant => {
@@ -122,13 +142,14 @@ export default (context) => {
   }
 
   useEffect(() => {
+    (activeSize || activeWidth) && checkVariantQuantities();
     // SELECTS VARIANT WHEN COLOR, WIDTH, AND SIZE ARE SET
-    (activeSize && activeWidth) && getProductVariant()
+    (activeSize && activeWidth) && getProductVariant();
     // UPDATE SIDE PHOTOS
     activeColor && (activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor()))
     // UPDATE MAIN IMAGE
     activeImagesByColor[0].description ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
-  });
+  }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage]);
 
   return (
     <Layout>
@@ -181,6 +202,17 @@ export default (context) => {
               <div>
                 Some kind of rating system :)
               </div> */}
+{/* 
+              {colorOptions.length > 0 && (
+                <div className="swatch-container">
+                  <label>Color</label>
+                  <div className="color-swatches">
+                    {variants.map(variant => variant.option_values.map((option, i) => {
+                      return option.option_display_name === "Color" && <button key={i} className={`swatch ${option.label === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, option.label)}>{option.label}</button>
+                    }))}
+                  </div>
+                </div>
+              )} */}
 
               {colorOptions.length > 0 && (
                 <div className="swatch-container">
@@ -209,8 +241,8 @@ export default (context) => {
                 {/* TODO: make swatches into a component  */}
                 <div className="size-swatches">
                   {sizeOptions.map((size, i) => (
-                      <button style={{ minWidth: size.length <= 4 ? '66px' : '120px'}} key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(sizeKey, size)}>{size}</button>
-                    )
+                    <button style={{ minWidth: size.length <= 4 ? '66px' : '120px' }} key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(sizeKey, size)}>{size}</button>
+                  )
                   )}
                   <a className="size-chart-link" onClick={() => setActiveSizeChart(true)}>Size Chart</a>
                 </div>
@@ -225,7 +257,7 @@ export default (context) => {
 
               <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
                 <img src={groupedBoots} alt="grouped boots" />
-                <strong>Buy 1 pair, get 2 pair free!</strong>
+                <strong>Buy 1 pair, get Two pair free!</strong>
                 <img src={infoIcon} alt="discount info" />
               </div>
             </div>
@@ -248,8 +280,8 @@ export default (context) => {
 
         <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
         <SizeChart activeSizeChart={activeSizeChart} setActiveSizeChart={setActiveSizeChart} />
-      </div>
-    </Layout>
+      </div >
+    </Layout >
   );
 };
 

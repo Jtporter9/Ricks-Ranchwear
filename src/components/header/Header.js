@@ -43,6 +43,10 @@ export default function Header() {
     setDropdownNavActive(true)
   }
 
+  function closeDropDownNav() {
+    setDropdownNavActive(false)
+  }
+
   const handleScroll = () => {
     if (ref.current) {
       setSticky(ref.current.getBoundingClientRect().top <= 0);
@@ -72,7 +76,7 @@ export default function Header() {
     <header id="header" className='sticky' ref={ref}>
       <div className="global-announcement-bar" onClick={() => setActiveInfoModal(true)} >
         <img src={groupedBootsWhite} />
-        <span>Buy 1 pair, get 2 pair free!</span>
+        <span>Buy 1 pair, get Two pair free!</span>
         <img src={infoIconWhite} />
       </div>
       <div className="navbar-menu" role="navigation" aria-label="main-navigation">
@@ -155,18 +159,18 @@ export default function Header() {
         </div>
         <nav className="desktop-links">
           <div className="desktop-links-inner">
-            <span className="menu-link" onMouseEnter={() => toggleDropdownNav('Mens')}>
+            <Link to="/mens" className="menu-link" onMouseEnter={() => toggleDropdownNav('Mens')}>
               Mens
-          </span>
-            <span className="menu-link" onMouseEnter={() => toggleDropdownNav('Womens')}>
+          </Link>
+            <Link to="/womens" className="menu-link" onMouseEnter={() => toggleDropdownNav('Womens')}>
               Womens
-          </span>
-            <span className="menu-link" onMouseEnter={() => toggleDropdownNav('Kids')}>
+          </Link>
+            <Link to="/kids" className="menu-link" onMouseEnter={() => toggleDropdownNav('Kids')}>
               Kids
-          </span>
-            <span className="menu-link" onMouseEnter={() => toggleDropdownNav('Stores')}>
+          </Link>
+            <Link to="/stores" className="menu-link" onMouseEnter={() => toggleDropdownNav('Stores')}>
               Stores
-          </span>
+          </Link>
           </div>
         </nav>
         <div className="navbar-right">
@@ -198,7 +202,7 @@ export default function Header() {
         </div>
       </div>
       {dropdownNavActive && (
-        <NavDropDown type={dropdownType} />
+        <NavDropDown type={dropdownType} closeDropDownNav={closeDropDownNav} />
       )}
 
       <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />

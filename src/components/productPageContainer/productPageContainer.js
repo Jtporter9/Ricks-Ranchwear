@@ -217,9 +217,18 @@ export default function ProductPageContainer({
                 params.value = params.value.substring(0, params.value.length - 1);
             }
             (params.type === "Style" && styleNumberFilter.length === 0) && toggleFilter(styleNumberFilter, params.value, params.type);
-            (params.type === "Toe Shape" && toeStyleFilter.length === 0) && toggleFilter(toeStyleFilter, "R-Toe", params.type);
-        }
-    }, [params, location])
+            if (params.type === "Toe Shape" && toeStyleFilter.length === 0) {
+                if (params.value === "Traditional Toe") {
+                    params.value = "R-Toe"
+                }
+                    if (params.value === "Square Toe" && location.pathname === "/mens") {
+                        toggleFilter([...toeStyleFilter, params.value] , "Broad Square Toe", params.type);
+                    } else {
+                        toggleFilter(toeStyleFilter, params.value, params.type);
+                    }
+                }
+            }
+        }, [params, location])
 
     return (
         <div className="product-page">
@@ -244,7 +253,7 @@ export default function ProductPageContainer({
                             </button>
                             <div className="coupon-banner" onClick={() => setActiveInfoModal(true)}>
                                 <img src={groupedBoots} />
-                                <strong>Buy 1 pair, get 2 pair free!</strong>
+                                <strong>Buy 1 pair, get Two pair free!</strong>
                                 <img src={infoIcon} />
                             </div>
                         </div>
