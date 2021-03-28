@@ -47,6 +47,8 @@ export default (context) => {
     price
   } = product;
 
+  console.log(variants);
+
   // FIND PRODUCTS OPTIONS
   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) === index)
 
@@ -89,6 +91,7 @@ export default (context) => {
   const [activeImagesByColor, setActiveImagesByColor] = useState(() => getActiveImagesByColor());
   const [activeInfoModal, setActiveInfoModal] = useState(false);
   const [activeSizeChart, setActiveSizeChart] = useState(false);
+  const [filteredInventory, setFilteredInventory] = useState([]);
 
   function getActiveImagesByColor() {
     let imagesByColor = []
@@ -109,18 +112,23 @@ export default (context) => {
   }
 
   function checkVariantQuantities() {
+    let colorsInStock = [];
+    let widthsInStock = [];
+    let sizesInStock = [];
+
     activeColor && variants.forEach(variant => {
-      console.log(activeColor);
-      (variant.option_values[0].label === activeColor && variant.inventory_level > 0) && variantsInStock.push(variant);
+      (variant.option_values[0].label === activeColor && variant.inventory_level > 0) && colorsInStock.push(variant);
     })
-    activeWidth && variantsInStock.forEach((variant, i) => {
-      console.log(activeWidth);
-      (variant.option_values[2].label !== activeWidth && variant.inventory_level === 0) && variantsInStock.splice(i, 1);
+    activeWidth && colorsInStock.forEach(variant => {
+      (variant.option_values[2].label === activeWidth && variant.inventory_level > 0) && widthsInStock.push(variant);
     })
-    activeSize && variantsInStock.forEach(variant => {
-      (variant.option_values[1].label === activeSize && variant.inventory_level > 0) && variantsInStock.push(variant);
+    activeSize && widthsInStock.forEach(variant => {
+      (variant.option_values[1].label === activeSize && variant.inventory_level > 0) && sizesInStock.push(variant);
     })
-    variantsInStock.forEach(variant => {
+    activeColor && setFilteredInventory(colorsInStock);
+    (activeWidth && activeColor) && setFilteredInventory(widthsInStock);
+    (activeSize && activeWidth && activeColor) && setFilteredInventory(sizesInStock);
+    sizesInStock.forEach(variant => {
       console.log(variant.option_values[0].label, variant.option_values[1].label, variant.option_values[2].label);
     })
   }
@@ -128,21 +136,26 @@ export default (context) => {
   // THIS CAN BE BETTER 
   function getProductVariant() {
     variants.forEach(variant => {
-      if (variant.option_values.length == 3) {
-        return variant.option_values[0].label === activeColor &&
-          variant.option_values[1].label === activeSize &&
-          variant.option_values[2].label === activeWidth
-          && setActiveVariant(variant);
-      } else if (variant.option_values.length == 2) {
-        return variant.option_values[0].label === activeSize &&
-          variant.option_values[1].label === activeWidth
-          && setActiveVariant(variant);
-      }
+      let colorMatch = false;
+      let widthMatch = false;
+      let sizeMatch = false;
+      variant.option_values.forEach(option => {
+        if (option.option_display_name === 'Color' && option.label === activeColor) {
+          colorMatch = true;
+        }
+        if (option.option_display_name === 'Width' && option.label === activeWidth) {
+          widthMatch = true;
+        }
+        if (option.option_display_name === 'Size' && option.label === activeSize) {
+          sizeMatch = true;
+        }
+      })
+      colorMatch && widthMatch && sizeMatch && setActiveVariant(variant);
     })
   }
 
   useEffect(() => {
-    (activeSize || activeWidth) && checkVariantQuantities();
+    (activeColor || activeSize || activeWidth) && checkVariantQuantities();
     // SELECTS VARIANT WHEN COLOR, WIDTH, AND SIZE ARE SET
     (activeSize && activeWidth) && getProductVariant();
     // UPDATE SIDE PHOTOS
@@ -151,6 +164,7 @@ export default (context) => {
     activeImagesByColor[0].description ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
   }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage]);
 
+  // console.log(1, filteredInventory)
   return (
     <Layout>
       <div className="product-details">
@@ -202,14 +216,34 @@ export default (context) => {
               <div>
                 Some kind of rating system :)
               </div> */}
-{/* 
-              {colorOptions.length > 0 && (
-                <div className="swatch-container">
-                  <label>Color</label>
-                  <div className="color-swatches">
-                    {variants.map(variant => variant.option_values.map((option, i) => {
-                      return option.option_display_name === "Color" && <button key={i} className={`swatch ${option.label === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, option.label)}>{option.label}</button>
-                    }))}
+              {/* 
+              {variants && (
+                <div>
+                  <div className="swatch-container">
+                    <label>Color</label>
+                    <div className="color-swatches">
+                      {variants.map(variant => variant.option_values.map((option, i) => {
+                        return option.option_display_name === "Color" && <button key={i} className={`swatch ${variant.inventory_level === 0 && 'out-of-stock-swatch'} ${option.label === activeColor ? `active-swatch` : ''}`} onClick={() => variant.inventory_level !== 0 && updateSelectedDetail(colorKey, option.label)}>{option.label}</button>
+                      }))}
+                    </div>
+                  </div>
+
+                  <div className="swatch-container">
+                    <label>Color</label>
+                    <div className="width-swatches">
+                      {variants.map(variant => variant.option_values.map((option, i) => {
+                        return option.option_display_name === "Width" && <button key={i} className={`swatch ${variant.inventory_level === 0 && 'out-of-stock-swatch'} ${option.label === activeWidth ? `active-swatch` : ''}`} onClick={() => variant.inventory_level !== 0 && updateSelectedDetail(widthKey, option.label)}>{option.label}</button>
+                      }))}
+                    </div>
+                  </div>
+
+                  <div className="swatch-container">
+                    <label>Color</label>
+                    <div className="size-swatches">
+                      {variants.map(variant => variant.option_values.map((option, i) => {
+                        return option.option_display_name === "Size" && <button key={i} className={`swatch ${variant.inventory_level === 0 && 'out-of-stock-swatch'} ${option.label === activeSize ? `active-swatch` : ''}`} onClick={() => variant.inventory_level !== 0 && updateSelectedDetail(sizeKey, option.label)}>{option.label}</button>
+                      }))}
+                    </div>
                   </div>
                 </div>
               )} */}
@@ -218,9 +252,27 @@ export default (context) => {
                 <div className="swatch-container">
                   <label>Color</label>
                   <div className="color-swatches">
-                    {colorOptions.map((color, i) => (
-                      <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
-                    ))}
+                    {colorOptions.map((color, i) => {
+                      let colorInventoryStatus = false;
+                      if (filteredInventory.length > 0) {
+                        for (let i = 0; i < filteredInventory.length; i++) {
+                          for (let j = 0; j < filteredInventory[i].option_values.length; j++) {
+                            if (filteredInventory[i].option_values[j].option_display_name === 'Color' && filteredInventory[i].inventory_level !== 0) {
+                              colorInventoryStatus = true;
+                              break;
+                            }
+                          }
+                          if (colorInventoryStatus) {
+                            break;
+                          }
+                        }
+                      }
+                      return (
+                        // <button key={i} className={`swatch ${!colorInventoryStatus && 'out-of-stock-swatch'} ${color === activeColor ? `active-swatch` : ''}`} onClick={() => colorInventoryStatus && updateSelectedDetail(colorKey, color)}>{color}</button>
+                        <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
+                      )
+                    }
+                    )}
                   </div>
                 </div>
               )}
@@ -229,9 +281,27 @@ export default (context) => {
                 <div className="swatch-container">
                   <label>Width</label>
                   <div className="width-swatches">
-                    {widthOptions.map((width, i) => (
-                      <button key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(widthKey, width)}>{width}</button>
-                    ))}
+                    {widthOptions.map((width, i) => {
+                      let colorInventoryStatus = false;
+                      if (filteredInventory.length > 0) {
+                        for (let i = 0; i < filteredInventory.length; i++) {
+                          for (let j = 0; j < filteredInventory[i].option_values.length; j++) {
+                            if (filteredInventory[i].option_values[j].option_display_name === 'Width' && filteredInventory[i].inventory_level !== 0) {
+                              colorInventoryStatus = true;
+                              break;
+                            }
+                          }
+                          if (colorInventoryStatus) {
+                            break;
+                          }
+                        }
+                      }
+                      return (
+                        // <button key={i} className={`swatch ${!colorInventoryStatus && 'out-of-stock-swatch'} ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => colorInventoryStatus && updateSelectedDetail(widthKey, width)}>{width}</button>
+                        <button key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(widthKey, width)}>{width}</button>
+                      )
+                    }
+                    )}
                   </div>
                 </div>
               )}
@@ -240,9 +310,26 @@ export default (context) => {
                 <label>Size</label>
                 {/* TODO: make swatches into a component  */}
                 <div className="size-swatches">
-                  {sizeOptions.map((size, i) => (
-                    <button style={{ minWidth: size.length <= 4 ? '66px' : '120px' }} key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(sizeKey, size)}>{size}</button>
-                  )
+                  {sizeOptions.map((size, i) => {
+                    let colorInventoryStatus = false;
+                    if (filteredInventory.length > 0) {
+                      for (let i = 0; i < filteredInventory.length; i++) {
+                        for (let j = 0; j < filteredInventory[i].option_values.length; j++) {
+                          if (filteredInventory[i].option_values[j].option_display_name === 'Size' && filteredInventory[i].inventory_level !== 0) {
+                            colorInventoryStatus = true;
+                            break;
+                          }
+                        }
+                        if (colorInventoryStatus) {
+                          break;
+                        }
+                      }
+                    }
+                    return (
+                      // <button style={{ minWidth: size.length <= 4 ? '66px' : '120px' }} key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(sizeKey, size)}>{size}</button>
+                      <button style={{ minWidth: size.length <= 4 ? '66px' : '120px' }} key={i} className={`swatch ${size === activeSize ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(sizeKey, size)}>{size}</button>
+                    )
+                  }
                   )}
                   <a className="size-chart-link" onClick={() => setActiveSizeChart(true)}>Size Chart</a>
                 </div>

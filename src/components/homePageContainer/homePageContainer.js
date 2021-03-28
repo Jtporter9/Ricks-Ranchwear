@@ -109,7 +109,6 @@ export default function HomePageContainer({
                         backgroundImage: `url(${storesSectionContent.storeImage.image.childImageSharp.fluid.src})`
                     }}></div>
             </section>
-            {console.log(content)}
             {showAlertBanner && (
                 <div className="alert-banner">
                     <p>{siteCookiesBannerContent.mainText} <Link to={siteCookiesBannerContent.linkBtn.link}>{siteCookiesBannerContent.linkBtn.text}</Link></p>
