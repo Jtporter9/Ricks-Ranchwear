@@ -165,6 +165,7 @@
                         border: 1px solid $functional-darkest;
                         color: $white;
                     }
+
                     .out-of-stock-swatch {
                         background: $white;
                         border: 1px solid $functional-light;
@@ -181,8 +182,8 @@
                             position: absolute;
                             left: 0;
                             top: 0;
-                            height: 100%;
-                            background: url('../assets/cross.png');
+                            height: 100px;
+                            background: url('../assets/cross.png') no-repeat center;
                             content: "";
                             width: 100%;
                             display: block;
