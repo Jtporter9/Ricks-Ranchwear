@@ -55,7 +55,7 @@ categoryCardsContent:
       text: Shop
       link: /kids
     categoryImage:
-      image: /img/kids-4x.png
+      image: /img/kids-boot-2.jpg
       altText: Kids boots image
 dynamicProductContent:
   productImage:
