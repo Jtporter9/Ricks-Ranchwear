@@ -103,7 +103,7 @@ export default function ProductPageContainer({
     const [isMobileView, setIsMobileView] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [numberOfFilters, setNumberOfFilters] = useState(null);
-    const [categoryDropDown, setCategoryDropDown] = useState(false);
+    const [categoryDropDown, setCategoryDropDown] = useState(true);
     const [params, setParams] = useState(false);
 
     function toggleFilterDrawer() {
@@ -360,11 +360,12 @@ export default function ProductPageContainer({
                                 </div>
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Brand"
-                                    value="Brand"
-                                    onChange={v => toggleFilter(brandsFilter, v, "Brand")}
-                                    options={brandsFiltered}
-                                    selectedFilters={brandsFilter}
+                                    placeholder="Boot Style"
+                                    value="Boot Style"
+                                    onChange={v => toggleFilter(styleNumberFilter, v, "Style")}
+                                    options={bootTypeOptions}
+                                    selectedFilters={styleNumberFilter}
+                                    defaultOpenState={true}
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
@@ -373,6 +374,16 @@ export default function ProductPageContainer({
                                     onChange={v => toggleFilter(materialFilter, v, "Material")}
                                     options={materialOptions}
                                     selectedFilters={materialFilter}
+                                    defaultOpenState={true}
+                                />
+                                <Dropdown
+                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
+                                    placeholder="Toe Shape"
+                                    value="Toe Shape"
+                                    onChange={v => toggleFilter(toeStyleFilter, v, "Toe Shape")}
+                                    options={toeStyleOptions}
+                                    selectedFilters={toeStyleFilter}
+                                    defaultOpenState={true}
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
@@ -381,6 +392,7 @@ export default function ProductPageContainer({
                                     onChange={v => toggleFilter(colorFilter, v, "Color")}
                                     options={colorOptions}
                                     selectedFilters={colorFilter}
+                                    defaultOpenState={true}
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
@@ -400,22 +412,12 @@ export default function ProductPageContainer({
                                 />
                                 <Dropdown
                                     dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Toe Shape"
-                                    value="Toe Shape"
-                                    onChange={v => toggleFilter(toeStyleFilter, v, "Toe Shape")}
-                                    options={toeStyleOptions}
-                                    selectedFilters={toeStyleFilter}
+                                    placeholder="Brand"
+                                    value="Brand"
+                                    onChange={v => toggleFilter(brandsFilter, v, "Brand")}
+                                    options={brandsFiltered}
+                                    selectedFilters={brandsFilter}
                                 />
-                                <Dropdown
-                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Style"
-                                    value="Style"
-                                    onChange={v => toggleFilter(styleNumberFilter, v, "Style")}
-                                    options={bootTypeOptions}
-                                    selectedFilters={styleNumberFilter}
-                                />
-
-
                             </div>
                         </div>
                         <div className={`bc-product-grid bc-product-grid--archive ${isMobileView ? 'bc-product-grid--4col' : 'bc-product-grid--3col'}`}>
