@@ -165,6 +165,32 @@
                         border: 1px solid $functional-darkest;
                         color: $white;
                     }
+<<<<<<< Updated upstream
+=======
+                    .out-of-stock-swatch {
+                        background: $white;
+                        border: 1px solid $functional-light;
+                        color: $functional-dark;
+                        position: relative;
+                        // text-decoration: line-through;
+                        cursor: no-drop;
+                        &:hover, &:active, &:focus {
+                            background: $white;
+                            border: 1px solid $functional-light;
+                            color: $functional-dark;
+                        }
+                        &:after {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            height: 100px;
+                            background: url('../assets/cross.png') no-repeat center;
+                            content: "";
+                            width: 100%;
+                            display: block;
+                          }
+                    }
+>>>>>>> Stashed changes
                 }
             }
             .bc-product-card {
