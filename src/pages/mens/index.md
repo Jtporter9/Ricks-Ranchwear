@@ -3,7 +3,7 @@ heading: Testing
 path: /mens
 templateKey: mens-page
 title: Mens Boots
-image: /img/img.jpg
+image: /img/mens4x.png
 description: Testing
 intro:
   heading: Testing
