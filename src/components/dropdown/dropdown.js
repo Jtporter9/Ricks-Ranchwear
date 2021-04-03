@@ -2,10 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import caretDownLight from '../../assets/caret-down-light.svg';
 import caretUpDark from '../../assets/caret-up-dark.svg';
 
-const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onChange, selectedFilters = [] }) => {
+const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onChange, selectedFilters = [], defaultOpenState = false }) => {
   const node = useRef();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpenState);
 
   const handleClick = e => {
     if (node.current.contains(e.target)) {
@@ -58,7 +58,7 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
               //         </li>
               //       )
               // }
-              if (value === "Color" || value === "Brand" || value === "Material" || value === "Toe Shape" || value === "Style") {
+              if (value === "Color" || value === "Brand" || value === "Material" || value === "Toe Shape" || value === "Boot Style") {
                 return (
                   <div key={opt} className="dropdown-checkbox-container">
                     <input id={opt} type="checkbox" value={opt} className="dropdown-option" onChange={e => handleChange(opt)} checked={active} />

@@ -29,7 +29,7 @@ export const HelpPageTemplate = ({
 
       <div className="help-sub-menu">
         <div>
-          <a href="#buy-one-get-two" className="jump-to-link">Buy 1, get 2</a>
+          <a href="#buy-one-get-two" className="jump-to-link">Buy 1, get Two</a>
           <a href="#shipping" className="jump-to-link">Shipping</a>
           <a href="#returns" className="jump-to-link">Returns</a>
           <a href="#exchanges" className="jump-to-link">exchanges</a>
@@ -40,10 +40,10 @@ export const HelpPageTemplate = ({
       <section id="buy-one-get-two" className="buy-one-get-two">
         <div className="lined-header">
           <div className="dash"></div>
-          <h2>Buy 1, Get 2</h2>
+          <h2>Buy 1, Get Two</h2>
           <div className="dash"></div>
         </div>
-        <img src={redBootsIcon} alt="Buy 1, get 2" />
+        <img src={redBootsIcon} alt="Buy 1, get Two" />
         <div className="meta-container">
           <div className="info-block">
             <h3>We know what you’re thinking…</h3>

@@ -12,13 +12,14 @@ import SizeChart from '../components/sizeChart/sizeChart';
 // ASSETS
 import groupedBoots from '../assets/grouped-boots.svg';
 import infoIcon from '../assets/info-icon.svg';
+import { divide, filter } from 'lodash';
 
 const SelectionTooltip = ({message}) => (
-    <div className="tooltip-message">
-      <p>{message}</p>
-      <span className={"tooltip-message-carrot ttm-carrot-left"}/>
-      <span className={"tooltip-message-carrot ttm-carrot-right"}/>
-    </div>
+  <div className="tooltip-message">
+    <p>{message}</p>
+    <span className={"tooltip-message-carrot ttm-carrot-left"}/>
+    <span className={"tooltip-message-carrot ttm-carrot-right"}/>
+  </div>
 );
 
 export default (context) => {
@@ -61,6 +62,8 @@ export default (context) => {
   let sizeOptions = [];
   let widthOptions = [];
 
+  let variantsInStock = [];
+
   const colorKey = "Color";
   const sizeKey = "Size";
   const widthKey = "Width";
@@ -94,10 +97,11 @@ export default (context) => {
   const [activeImagesByColor, setActiveImagesByColor] = useState(() => getActiveImagesByColor());
   const [activeInfoModal, setActiveInfoModal] = useState(false);
   const [activeSizeChart, setActiveSizeChart] = useState(false);
+  const [filteredInventory, setFilteredInventory] = useState([]);
   const [activeVariantMessages, setActiveVariantMessages] = useState({
     width: "",
     size: ""
-  })
+  });
 
   function getActiveImagesByColor() {
     let imagesByColor = []
@@ -112,26 +116,63 @@ export default (context) => {
   }
 
   function updateSelectedDetail(type, data) {
-    type === colorKey && setActiveColor(data);
-    type === widthKey && setActiveWidth(data);
-    type === sizeKey && setActiveSize(data);
+    if (type === colorKey) {
+      activeColor !== data && setFilteredInventory(variants);
+      setActiveColor(data);
+    } 
+    if (type === widthKey) {
+      activeWidth !== data && setFilteredInventory(variants);
+      setActiveWidth(data);
+    } 
+    if (type === sizeKey) {
+      activeSize !== data && setFilteredInventory(variants);
+      setActiveSize(data);
+    } 
+  }
+
+  function checkVariantQuantities() {
+    let colorsInStock = [];
+    let widthsInStock = [];
+    let sizesInStock = [];
+
+    if (filteredInventory.length !== 0) {
+      activeColor && filteredInventory.forEach(variant => variant.option_values.forEach(option => {
+        (option.label === activeColor) && colorsInStock.push(variant);
+      }))
+      activeWidth && colorsInStock.forEach(variant => variant.option_values.forEach(option => {
+        (option.label === activeWidth) && widthsInStock.push(variant);
+      }))
+      // activeSize && widthsInStock.forEach(variant => variant.option_values.forEach(option => {
+      //   (option.label === activeSize) && sizesInStock.push(variant);
+      // }))
+      activeColor && setFilteredInventory(colorsInStock);
+      (activeWidth && activeColor) && setFilteredInventory(widthsInStock);
+      // (activeSize && activeWidth && activeColor) && setFilteredInventory(sizesInStock);
+    } else {
+      setFilteredInventory(variants)
+    }
   }
 
   // THIS CAN BE BETTER 
   function getProductVariant() {
     variants.forEach(variant => {
-      if (variant.option_values.length == 3) {
-        return variant.option_values[0].label === activeColor &&
-          variant.option_values[1].label === activeSize &&
-          variant.option_values[2].label === activeWidth
-          && setActiveVariant(variant);
-      } else if (variant.option_values.length == 2) {
-        return variant.option_values[0].label === activeSize &&
-          variant.option_values[1].label === activeWidth
-          && setActiveVariant(variant);
-      }
+      let colorMatch = false;
+      let widthMatch = false;
+      let sizeMatch = false;
+      variant.option_values.forEach(option => {
+        if (option.option_display_name === 'Color' && option.label === activeColor) {
+          colorMatch = true;
+        }
+        if (option.option_display_name === 'Width' && option.label === activeWidth) {
+          widthMatch = true;
+        }
+        if (option.option_display_name === 'Size' && option.label === activeSize) {
+          sizeMatch = true;
+        }
+      })
+      colorMatch && widthMatch && sizeMatch && setActiveVariant(variant);
     })
-  }
+  };
 
   const showTooltip = () => {
     const activeFlags = [{width: activeWidth}, {size: activeSize}];
@@ -147,16 +188,18 @@ export default (context) => {
   };
 
   useEffect(() => {
+    (activeColor || activeSize || activeWidth) && checkVariantQuantities();
     // SELECTS VARIANT WHEN COLOR, WIDTH, AND SIZE ARE SET
-    (activeSize && activeWidth) && getProductVariant()
+    (activeSize && activeWidth) && getProductVariant();
     // UPDATE SIDE PHOTOS
     activeColor && (activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor()))
     // UPDATE MAIN IMAGE
     activeImagesByColor[0].description ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
-  });
-
+  }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage]);
+ 
   return (
     <Layout>
+      {console.log(activeSize)}
       <div className="product-details">
         <section className="section container">
           <div className="products-details-head">
@@ -202,18 +245,17 @@ export default (context) => {
                 </div>
                 <ProductPrices product={product} />
               </div>
-              {/* 
-              <div>
-                Some kind of rating system :)
-              </div> */}
 
               {colorOptions.length > 0 && (
                 <div className="swatch-container">
                   <label>Color</label>
                   <div className="color-swatches">
-                    {colorOptions.map((color, i) => (
-                      <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
-                    ))}
+                    {colorOptions.map((color, i) => {
+                      return (
+                        <button key={i} className={`swatch ${color === activeColor ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(colorKey, color)}>{color}</button>
+                      )
+                    }
+                    )}
                   </div>
                 </div>
               )}
@@ -222,19 +264,22 @@ export default (context) => {
                 <div className="swatch-container">
                   <label>Width</label>
                   <div className="width-swatches">
-                    {activeVariantMessages.width !== "" && <SelectionTooltip message={activeVariantMessages.width}/> }
-                    {widthOptions.map((width, i) => (
-                      <button
-                        key={i}
-                        className={`swatch ${width === activeWidth ? `active-swatch` : ''}`}
-                        onClick={() => {
-                          setActiveVariantMessages({
+                    {activeVariantMessages.width !== "" && <SelectionTooltip message={activeVariantMessages.width}/>}
+                    {widthOptions.map((width, i) => {
+                      return (
+                        <button
+                          key={i}
+                          className={`swatch ${width === activeWidth ? `active-swatch` : ''}`}
+                          onClick={() => {
+                            setActiveVariantMessages({
                             ...activeVariantMessages,
                             width: ""
-                          })
-                          updateSelectedDetail(widthKey, width)
-                        }}>{width}</button>
-                    ))}
+                          });
+                            updateSelectedDetail(widthKey, width)}
+                          }>{width}</button>
+                      )
+                    }
+                    )}
                   </div>
                 </div>
               )}
@@ -244,19 +289,32 @@ export default (context) => {
                 {/* TODO: make swatches into a component  */}
                 <div className="size-swatches">
                   {activeVariantMessages.size !== "" && <SelectionTooltip message={activeVariantMessages.size}/> }
-                  {sizeOptions.map((size, i) => (
+                  {sizeOptions.map((size, i) => {
+                    let inventoryStatus = true;
+                    if (filteredInventory.length > 0) {
+                      inventoryStatus = false;
+                      for (let i = 0; i < filteredInventory.length; i++) {
+                        for (let j = 0; j < filteredInventory[i].option_values.length; j++) {
+                          if (filteredInventory[i].option_values[j].option_display_name === 'Size' && filteredInventory[i].option_values[j].label === size && filteredInventory[i].inventory_level !== 0) {
+                            inventoryStatus = true;
+                            break;
+                          }
+                        }
+                      }
+                    }
+                    return (
                       <button
-                        style={{ minWidth: size.length <= 4 ? '66px' : '120px'}}
-                        key={i}
-                        className={`swatch ${size === activeSize ? `active-swatch` : ''}`}
+                        style={{ minWidth: size.length <= 4 ? '66px' : '120px' }}
+                        key={i} className={`swatch ${!inventoryStatus && 'out-of-stock-swatch'} ${size === activeSize ? `active-swatch` : ''}`}
                         onClick={() => {
                           setActiveVariantMessages({
                             ...activeVariantMessages,
                             size: ""
-                          })
-                          updateSelectedDetail(sizeKey, size)
+                          });
+                          inventoryStatus && updateSelectedDetail(sizeKey, size)
                         }}>{size}</button>
                     )
+                  }
                   )}
                   <a className="size-chart-link" onClick={() => setActiveSizeChart(true)}>Size Chart</a>
                 </div>
@@ -272,7 +330,7 @@ export default (context) => {
 
               <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
                 <img src={groupedBoots} alt="grouped boots" />
-                <strong>Buy 1 pair, get 2 pair free!</strong>
+                <strong>Buy 1 pair, get Two pair free!</strong>
                 <img src={infoIcon} alt="discount info" />
               </div>
             </div>
@@ -295,8 +353,8 @@ export default (context) => {
 
         <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
         <SizeChart activeSizeChart={activeSizeChart} setActiveSizeChart={setActiveSizeChart} />
-      </div>
-    </Layout>
+      </div >
+    </Layout >
   );
 };
 

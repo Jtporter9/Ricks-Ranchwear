@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 
 import { options } from './navDropDownOptions';
 
-export default function NavDropDown({ type }) {
+export default function NavDropDown({ type, closeDropDownNav }) {
     // const [appState, setAppState ] = useContext(AppContext);
 
     // console.log(1, appState)
@@ -14,7 +14,7 @@ export default function NavDropDown({ type }) {
     }, [type, typeObject, options])
 
     return (
-            <div className="nav-drop-down">
+            <div className="nav-drop-down" onMouseLeave={closeDropDownNav}>
                 <div>
                     <Link className="all-link" to={`${typeObject.slug}`}>{typeObject.head}</Link>
                 </div>

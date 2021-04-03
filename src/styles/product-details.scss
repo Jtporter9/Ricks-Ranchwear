@@ -179,7 +179,7 @@
                     }
                     .swatch {
                         font-weight: 500;
-                        padding: 8px 16px;
+                        padding: .5rem;
                         background: $white;
                         border: 1px solid $functional-light;
                         margin: .25rem;
@@ -196,6 +196,29 @@
                         background: $functional-darkest;
                         border: 1px solid $functional-darkest;
                         color: $white;
+                    }
+                    .out-of-stock-swatch {
+                        background: $white;
+                        border: 1px solid $functional-light;
+                        color: $functional-dark;
+                        position: relative;
+                        // text-decoration: line-through;
+                        cursor: no-drop;
+                        &:hover, &:active, &:focus {
+                            background: $white;
+                            border: 1px solid $functional-light;
+                            color: $functional-dark;
+                        }
+                        &:after {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            height: 100%;
+                            background: url('../assets/cross.png') no-repeat center;
+                            content: "";
+                            width: 100%;
+                            display: block;
+                          }
                     }
                 }
             }

@@ -73,7 +73,7 @@ const Notification = ({ id, text, type }) => {
                 {value.state.cart.numberItems === 0 && (
                   <div>
                     <img src={GroupedBootsWhite} alt="discount" />
-                    <h3>Buy 1 and Get 2, Free</h3>
+                    <h3>Buy 1 and Get Two, Free</h3>
                     <p>Get 2 <strong>free.</strong> boots by adding 1 to your cart!</p>
                   </div>
                 )}
@@ -85,14 +85,14 @@ const Notification = ({ id, text, type }) => {
                     {value.state.cart.numberItems === 2 && (
                       <img src={BootsTwoCheck} alt="discount" />
                     )}
-                    <h3>Buy 1 and Get 2, Free</h3>
+                    <h3>Buy 1 and Get Two, Free</h3>
                     <p>Add up to {3 - (value.state.cart.numberItems - (Math.floor(value.state.cart.numberItems / 3) * 3))} more boot{value.state.cart.numberItems === 2 ? '' : 's'} to your cart for <strong>free.</strong></p>
                   </div>
                 )}
                 {(value.state.cart.numberItems === 3) && (
                   <div>
                     <img src={BootsThreeCheck} alt="discount" />
-                    <h3>Buy 1 and Get 2, Free</h3>
+                    <h3>Buy 1 and Get Two, Free</h3>
                     <p>You’ve added all your boots.</p>
                   </div>
                 )}
