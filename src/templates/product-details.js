@@ -199,7 +199,6 @@ export default (context) => {
  
   return (
     <Layout>
-      {console.log(activeSize)}
       <div className="product-details">
         <section className="section container">
           <div className="products-details-head">
