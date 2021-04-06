@@ -120,7 +120,39 @@
                 text-transform: uppercase;
             }
             .swatch-container {
+                position: relative;
                 padding: .5rem 0;
+                .tooltip-message {
+                    position: absolute;
+                    top: -30px;
+                    left: -30px;
+                    padding: 5px;
+                    background: $rock-dark;
+                    p {
+                        font-size: 0.8rem;
+                        color: $white;
+                    }
+                    .tooltip-message-carrot {
+                        display: block;
+                        position: absolute;
+                        top: 100%;
+                        width: 10px;
+                        height: 10px;
+                        background: $rock-dark;
+                    }
+                    .ttm-carrot-left {
+                        left: calc(50% - 10px);
+                        background: -moz-linear-gradient(225deg, $rock-dark 50%, rgba(148,0,56,0) 50%);
+                        background: -webkit-linear-gradient(225deg, $rock-dark 50%, rgba(148,0,56,0) 50%);
+                        background: linear-gradient(225deg, $rock-dark 50%, rgba(148,0,56,0) 50%);
+                    }
+                    .ttm-carrot-right {
+                        left: 50%;
+                        background: -moz-linear-gradient(135deg, $rock-dark 50%, rgba(148,0,56,0) 50%);
+                        background: -webkit-linear-gradient(135deg, $rock-dark 50%, rgba(148,0,56,0) 50%);
+                        background: linear-gradient(135deg, $rock-dark 50%, rgba(148,0,56,0) 50%);
+                    }
+                }
                 .size-chart-link {
                     margin: .25rem;
                 }
@@ -316,6 +348,17 @@
             .products-details-right {
                 width: 100%;
                 padding: 1rem;
+                .swatch-container {
+                    .tooltip-message {
+                        left: -10px;
+                        .ttm-carrot-left {
+                            left: 10px;
+                        }
+                        .ttm-carrot-right {
+                            left: 20px;
+                        }
+                    }
+                }
                 .name-price-container {
                     display: none;
                 }
@@ -370,9 +413,11 @@
 
 @media (max-width: $mobile-bp) {
     .product-details {
-        .product-details-container {
-            .collapsible {
-                padding: 1rem 0;
+        .products-details-head {
+            .product-details-container {
+                .collapsible {
+                    padding: 1rem 0;
+                }
             }
         }
     }

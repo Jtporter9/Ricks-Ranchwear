@@ -14,6 +14,14 @@ import groupedBoots from '../assets/grouped-boots.svg';
 import infoIcon from '../assets/info-icon.svg';
 import { divide, filter } from 'lodash';
 
+const SelectionTooltip = ({message}) => (
+  <div className="tooltip-message">
+    <p>{message}</p>
+    <span className={"tooltip-message-carrot ttm-carrot-left"}/>
+    <span className={"tooltip-message-carrot ttm-carrot-right"}/>
+  </div>
+);
+
 export default (context) => {
   const { data: { allBigCommerceProducts, allBigCommerceBrands }, pageContext: { productId } } = context;
 
@@ -90,6 +98,15 @@ export default (context) => {
   const [activeInfoModal, setActiveInfoModal] = useState(false);
   const [activeSizeChart, setActiveSizeChart] = useState(false);
   const [filteredInventory, setFilteredInventory] = useState([]);
+  const [activeVariantMessages, setActiveVariantMessages] = useState({
+    width: "",
+    size: ""
+  });
+
+  const tooltipMessages = {
+    width: "Please select a Width",
+    size: "Please select a Size",
+  }
 
   function getActiveImagesByColor() {
     let imagesByColor = []
@@ -160,7 +177,20 @@ export default (context) => {
       })
       colorMatch && widthMatch && sizeMatch && setActiveVariant(variant);
     })
-  }
+  };
+
+  const showTooltip = () => {
+    const activeFlags = [{width: activeWidth}, {size: activeSize}];
+    const updatedVariantMessages = {...activeVariantMessages};
+    activeFlags.forEach(flag => {
+      const flagEntry = Object.entries(flag);
+      const key = flagEntry[0][0];
+      const value = flagEntry[0][1];
+      const message = key === "width" ? tooltipMessages.width : tooltipMessages.size;
+      value === "" ? updatedVariantMessages[key] = message : updatedVariantMessages[key] = "";
+    });
+    setActiveVariantMessages(updatedVariantMessages);
+  };
 
   useEffect(() => {
     (activeColor || activeSize || activeWidth) && checkVariantQuantities();
@@ -182,7 +212,6 @@ export default (context) => {
                 {activeImagesByColor.length &&
                   activeImagesByColor.map((img, i) => (
                     <img
-                      key={i}
                       height="100px"
                       width="100px"
                       src={img.url_thumbnail}
@@ -233,14 +262,27 @@ export default (context) => {
                   </div>
                 </div>
               )}
-
               {widthOptions.length > 0 && (
                 <div className="swatch-container">
                   <label>Width</label>
                   <div className="width-swatches">
+                    {activeVariantMessages.width !== "" && <SelectionTooltip message={activeVariantMessages.width}/>}
                     {widthOptions.map((width, i) => {
                       return (
-                        <button key={i} className={`swatch ${width === activeWidth ? `active-swatch` : ''}`} onClick={() => updateSelectedDetail(widthKey, width)}>{width}</button>
+                        <button
+                          key={i}
+                          className={`swatch ${width === activeWidth ? `active-swatch` : ''}`}
+                          onClick={() => {
+                            if(activeWidth !== "") {
+                              setActiveSize("");
+                            }
+                            setActiveVariantMessages({
+                              size: activeWidth !== "" ? tooltipMessages.size : "",
+                              width: ""
+                            });
+                            updateSelectedDetail(widthKey, width);
+                          }
+                          }>{width}</button>
                       )
                     }
                     )}
@@ -252,6 +294,7 @@ export default (context) => {
                 <label>Size</label>
                 {/* TODO: make swatches into a component  */}
                 <div className="size-swatches">
+                  {activeVariantMessages.size !== "" && <SelectionTooltip message={activeVariantMessages.size}/> }
                   {sizeOptions.map((size, i) => {
                     let inventoryStatus = true;
                     if (filteredInventory.length > 0) {
@@ -266,7 +309,17 @@ export default (context) => {
                       }
                     }
                     return (
-                      <button style={{ minWidth: size.length <= 4 ? '66px' : '120px' }} key={i} className={`swatch ${!inventoryStatus && 'out-of-stock-swatch'} ${size === activeSize ? `active-swatch` : ''}`} onClick={() => inventoryStatus && updateSelectedDetail(sizeKey, size)}>{size}</button>
+                      <button
+                        style={{ minWidth: size.length <= 4 ? '66px' : '120px' }}
+                        key={i}
+                        className={`swatch ${!inventoryStatus && 'out-of-stock-swatch'} ${size === activeSize ? `active-swatch` : ''}`}
+                        onClick={() => {
+                          setActiveVariantMessages({
+                            ...activeVariantMessages,
+                            size: ""
+                          });
+                          inventoryStatus && updateSelectedDetail(sizeKey, size)
+                        }}>{size}</button>
                     )
                   }
                   )}
@@ -275,9 +328,10 @@ export default (context) => {
               </div>
 
               <AddToCartButton
-                disabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
+                simulateDisabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
-                variant={{ ...activeVariant, price }}>
+                variant={{ ...activeVariant, price }}
+                showTooltip={() => showTooltip()}>
                 {(activeSize && activeWidth) ? activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart' : 'Select Width & Size'}
               </AddToCartButton>
 
