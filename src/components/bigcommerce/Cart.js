@@ -128,13 +128,19 @@ const StandardItems = props => {
                 amount={item.list_price}
               /> */}
               <div className="bc-product__pricing--api bc-product__pricing--visible">
-                {item.originalPrice !== item.sale_price && (
+                {console.log(item.originalPrice, item.sale_price)}
+                {(item.originalPrice !== item.sale_price && item.sale_price !== 0) && (
                   <p className="original-price-node bc-product__original-price bc-show-current-price">
                     <CurrencyFormatter
                       currency={props.currency.code}
                       amount={item.originalPrice}
                     />
                   </p>
+                )}
+                {(item.originalPrice !== item.sale_price && item.sale_price === 0) && (
+                  <span className="special-deal-label">
+                    Buy 1 Get Two
+                  </span>
                 )}
                 <p className="sale-node bc-product__price bc-product__price--sale bc-show-current-price">
                   <CurrencyFormatter
