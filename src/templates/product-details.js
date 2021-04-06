@@ -103,6 +103,11 @@ export default (context) => {
     size: ""
   });
 
+  const tooltipMessages = {
+    width: "Please select a Width",
+    size: "Please select a Size",
+  }
+
   function getActiveImagesByColor() {
     let imagesByColor = []
     for (let j = 0; j < images.length; j++) {
@@ -181,7 +186,7 @@ export default (context) => {
       const flagEntry = Object.entries(flag);
       const key = flagEntry[0][0];
       const value = flagEntry[0][1];
-      const message = key === "width" ? "Please select a Width" : "Please select a Size";
+      const message = key === "width" ? tooltipMessages.width : tooltipMessages.size;
       value === "" ? updatedVariantMessages[key] = message : updatedVariantMessages[key] = "";
     });
     setActiveVariantMessages(updatedVariantMessages);
@@ -207,7 +212,6 @@ export default (context) => {
                 {activeImagesByColor.length &&
                   activeImagesByColor.map((img, i) => (
                     <img
-                      key={i}
                       height="100px"
                       width="100px"
                       src={img.url_thumbnail}
@@ -258,7 +262,6 @@ export default (context) => {
                   </div>
                 </div>
               )}
-
               {widthOptions.length > 0 && (
                 <div className="swatch-container">
                   <label>Width</label>
@@ -270,11 +273,15 @@ export default (context) => {
                           key={i}
                           className={`swatch ${width === activeWidth ? `active-swatch` : ''}`}
                           onClick={() => {
+                            if(activeWidth !== "") {
+                              setActiveSize("");
+                            }
                             setActiveVariantMessages({
-                            ...activeVariantMessages,
-                            width: ""
-                          });
-                            updateSelectedDetail(widthKey, width)}
+                              size: activeWidth !== "" ? tooltipMessages.size : "",
+                              width: ""
+                            });
+                            updateSelectedDetail(widthKey, width);
+                          }
                           }>{width}</button>
                       )
                     }
@@ -304,7 +311,8 @@ export default (context) => {
                     return (
                       <button
                         style={{ minWidth: size.length <= 4 ? '66px' : '120px' }}
-                        key={i} className={`swatch ${!inventoryStatus && 'out-of-stock-swatch'} ${size === activeSize ? `active-swatch` : ''}`}
+                        key={i}
+                        className={`swatch ${!inventoryStatus && 'out-of-stock-swatch'} ${size === activeSize ? `active-swatch` : ''}`}
                         onClick={() => {
                           setActiveVariantMessages({
                             ...activeVariantMessages,
