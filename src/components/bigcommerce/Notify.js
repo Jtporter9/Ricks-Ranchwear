@@ -92,7 +92,7 @@ const Notification = ({ id, text, type }) => {
                 <div>
                   <img src={BootsThreeCheck} alt="discount" />
                   <h3>Buy 1 and Get Two, Free</h3>
-                  <p>You’ve added all your boots.</p>
+                  <p>Get 2 free boots by adding 1 to your cart!</p>
                 </div>
               )}
               <a onClick={() => removeNotification(id)}>Continue Shopping</a>

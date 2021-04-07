@@ -112,10 +112,10 @@ const StandardItems = props => {
 
             <div className="cart-details-meta">
               <h3 className="bc-cart-item__product-title">{name}</h3>
-              
-                <span className="bc-cart-item__variant">
-                  {item.variant && item.variant.option_values.map((option, i, arr) => i === arr.length - 1 ? option.label : `${option.label}/`)}
-                </span>
+
+              <span className="bc-cart-item__variant">
+                {item.variant && item.variant.option_values.map((option, i, arr) => i === arr.length - 1 ? option.label : `${option.label}/`)}
+              </span>
 
               <AdjustItem {...props} item={item} cartType={cartType} />
             </div>
@@ -142,12 +142,21 @@ const StandardItems = props => {
                     Buy 1 Get Two
                   </span>
                 )}
-                <p className="sale-node bc-product__price bc-product__price--sale bc-show-current-price">
-                  <CurrencyFormatter
-                    currency={props.currency.code}
-                    amount={item.list_price}
-                  />
-                </p>
+                {(item.originalPrice !== item.sale_price && item.sale_price === 0) ? (
+                  <p className="original-price-node bc-product__original-price bc-show-current-price">
+                    <CurrencyFormatter
+                      currency={props.currency.code}
+                      amount={item.list_price}
+                    />
+                  </p>
+                ) : (
+                  <p className="sale-node bc-product__price bc-product__price--sale bc-show-current-price">
+                    <CurrencyFormatter
+                      currency={props.currency.code}
+                      amount={item.list_price}
+                    />
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -303,15 +312,15 @@ const Cart = class extends React.Component {
                     />
                   </div>
                 ) : (
-                      <div className="bc-cart__empty">
-                        <h2 className="bc-cart__title--empty">
-                          Your cart is empty.
+                  <div className="bc-cart__empty">
+                    <h2 className="bc-cart__title--empty">
+                      Your cart is empty.
                     </h2>
-                        <Link to="/products" className="bc-cart__continue-shopping">
-                          Take a look around.
+                    <Link to="/products" className="bc-cart__continue-shopping">
+                      Take a look around.
                     </Link>
-                      </div>
-                    )}
+                  </div>
+                )}
 
                 {cartFooter}
               </section>
