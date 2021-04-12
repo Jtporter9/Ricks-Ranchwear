@@ -73,7 +73,7 @@ store2:
     city: Nashville, TN
   location: Nashville, TN
   image: /img/tennessee-store.jpg
-  company: Boot Coutnry
+  company: Boot Country
 store3:
   body: >-
     Located in Nashville's Opry Mills Mall, Boot Factory Outlet offers thousands
@@ -99,7 +99,7 @@ store3:
     city: Orlando, FL
   location: Nashville, TN
   image: /img/nashville.jpg
-  company: Boot Factory outlet
+  company: Boot Factory Outlet
 store4:
   body: >-
     Our newest store, located in Las Vegas South Premium Outlet Mall, offers
@@ -142,7 +142,7 @@ store4:
     city: Las Vegas, NV
   location: Pigeon Forge TN
   image: /img/pigeon-forge.jpg
-  company: Boot Factory outlet
+  company: Boot Factory Outlet
 store5:
   phone: (865) 366-6111
   address:
@@ -166,7 +166,7 @@ store5:
 
 
     Buy 1 Pair, Get Two Pair Free!
-  company: Boot Factory outlet
+  company: Boot Factory Outlet
   state: TENNESSEE
   image: /img/sevierville.jpg
 store6:
@@ -222,13 +222,13 @@ store7:
 
     Buy 1 Pair, Get Two Pair Free!
   location: Lake City, Florida
-  company: Boot Factory outlet
+  company: Boot Factory Outlet
   state: FLORIDA
   image: /img/lakecity.jpg
 store8:
   state: NEVADA
   image: /img/nevada-store.jpg
-  company: Boot Factory outlet
+  company: Boot Factory Outlet
   location: Las Vegas, NV
   body: Our newest store, located in Las Vegas South Premium Outlet Mall, offers
     thousands of boots to choose from. You'll find national brands such as
