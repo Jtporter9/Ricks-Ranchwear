@@ -3,6 +3,15 @@ heading: Testing
 path: /mens
 templateKey: mens-page
 title: Mens Boots
+heroContent:
+  heroText: Mens Boots
+  heroImage:
+    image: /img/mens-category-image.png
+    altText: Mens boots background image
+sortOptionsContent:
+  - text: Best Price
+  - text: "Price: Low to High"
+  - text: "Price: High to Low"
 image: /img/mens4x.png
 description: Testing
 intro:
