@@ -274,13 +274,6 @@ collections:
                 },
               ],
           }
-      # - file: "src/pages/about/index.md"
-      #   label: "About"
-      #   name: "about"
-      #   fields:
-      #     - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
-      #     - {label: "Title", name: "title", widget: "string"}
-      #     - {label: "Body", name: "body", widget: "markdown"}
       - file: "src/pages/products/index.md"
         label: "Products Page"
         name: "products"
@@ -403,6 +396,36 @@ collections:
             default: "mens-page",
           }
           - { label: Title, name: title, widget: string }
+          - {
+              label: "Hero Content",
+              name: "heroContent",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  { label: 'Hero Text', name: "heroText", widget: "string" },
+                  {
+                    label: "Hero Image",
+                    name: "heroImage",
+                    widget: "object",
+                    collapsed: true,
+                    fields:
+                      [
+                        { label: "Image", name: "image", widget: "image" },
+                        { label: 'Alt Text', name: "altText", widget: "string" },
+                      ]
+                  },
+                ]
+            }
+          - {
+              label: "Sort Options Content",
+              name: "sortOptionsContent",
+              widget: "list",
+              fields:
+                [
+                  { label: "Text", name: "text", widget: "string" }
+                ]
+            }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
           - { label: Description, name: description, widget: string }
