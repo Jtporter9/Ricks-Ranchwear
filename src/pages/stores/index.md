@@ -102,29 +102,27 @@ store3:
   company: Boot Factory Outlet
 store4:
   body: >-
-    Our newest store, located in Las Vegas South Premium Outlet Mall, offers
-    thousands of boots to choose from. You'll find national brands such as
-    Rocky, Justin, Tony Lama, Ariat, Wolverine, J.B. Dillon, Masterson, Sterling
-    River, Harley Davidson, and more. You'll find boots for the entire family
-    with men's sizes 6 to 16 including hard to find widths, ladies sizes 5 to 12
-    including wide widths, and a large selection of children's boots. We carry
-    western, work, hiking, fashion, motorcycle boots, and more!Boot Factory
-    Outlet is located in Pigeon Forge, Tennessee at the foothills of the Smoky
-    Mountains, just minutes from the entrance of the Smoky Mountain National
-    Park and Gatlinburg, Tennessee.
+    Boot Factory Outlet is located in Pigeon Forge, Tennessee at the foothills
+    of the Smoky Mountains, just minutes from the entrance of the Smoky Mountain
+    National Park and Gatlinburg, Tennessee.\
 
+    \
 
-    With attractions such as Dollywood, Splash Country and Dixie Stampede, Smoky Mountain National Park, Pigeon Forge and Gatlinburg are a very family friendly year-round tourist attraction. With over 20,000 pairs of boots in stock along with a fun, friendly atmosphere, Boot Factory Outlet is also a must see in Pigeon Forge!
+    With attractions such as Dollywood, Splash Country and Dixie Stampede, Smoky Mountain National Park, Pigeon Forge and Gatlinburg are a very family friendly year-round tourist attraction. With over 20,000 pairs of boots in stock along with a fun, friendly atmosphere, Boot Factory Outlet is also a must see in Pigeon Forge!\
 
+    \
 
-    We carry national brands such as Rocky, Justin, Lucchese, Ariat, Wolverine, J.B. Dillon, Masterson, Santa Fe, Sterling River and more. You’ll find boots for the entire family with men’s sizes 6 to 16 including hard to find widths and ladies sizes 5-12 including wide widths and big selection of children’s boots. We carry western, work, hiking, fashion motorcycle boots and more!
+    We carry national brands such as Rocky, Justin, Lucchese, Ariat, Wolverine, J.B. Dillon, Masterson, Santa Fe, Sterling River and more. You’ll find boots for the entire family with men’s sizes 6 to 16 including hard to find widths and ladies sizes 5-12 including wide widths and big selection of children’s boots. We carry western, work, hiking, fashion motorcycle boots and more!\
 
+    \
 
-    We want you to go to Dollywood, we want you to visit the Smoky Mountain National Park, as well as take the family to a great dinner show. But don’t forget to visit us to keep the fun going!
+    We want you to go to Dollywood, we want you to visit the Smoky Mountain National Park, as well as take the family to a great dinner show. But don’t forget to visit us to keep the fun going!\
 
+    \
 
-    Not only will you get a great deal on boots for the entire family, but you will leave our store and tell your friends and family back home about the great time you had visiting Boot Factory Outlet.
+    Not only will you get a great deal on boots for the entire family, but you will leave our store and tell your friends and family back home about the great time you had visiting Boot Factory Outlet.\
 
+    \
 
     Buy One Pair, Get Two Pair Free!
   store-hours:
