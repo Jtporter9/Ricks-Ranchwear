@@ -440,13 +440,13 @@ collections:
                 ]
             }
           - {
-              label: "Sort Options Relation Content"
-              name: "sortOptionsRelationContent"
-              widget: "relation"
-              collection: "pages"
-              file: "shared"
-              search_fields: ["sortOptionsContent.text"]
-              value_field: "cities.text"
+              label: "Sort Options Relation Content",
+              name: "sortOptionsRelationContent",
+              widget: "relation",
+              collection: "pages",
+              file: "shared",
+              search_fields: ["sortOptionsContent.text"],
+              value_field: "cities.text",
           }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
