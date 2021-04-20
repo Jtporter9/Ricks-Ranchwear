@@ -445,8 +445,8 @@ collections:
               widget: "relation",
               collection: "pages",
               file: "shared",
-              search_fields: ["sortOptionsContent.text"],
-              value_field: "cities.text",
+              search_fields: ["sortOptionsContent"],
+              value_field: "sortOptionsContent",
           }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
