@@ -170,6 +170,7 @@ export default function ProductPageContainer({
             type === "Toe Shape" && setToeStyleFilter(arr.filter(a => a !== val));
             type === "Style" && setStyleNumberFilter(arr.filter(a => a !== val));
         }
+        document.getElementById("products-container") && document.getElementById("products-container").scrollIntoView({behavior: 'smooth'});
     }
 
     useEffect(() => {
@@ -243,7 +244,7 @@ export default function ProductPageContainer({
                     {title}
                 </h2>
             </div>
-            <section className="products-container">
+            <section id="products-container" className="products-container">
                 <div className="container">
                     <div className="products-header">
                         <div className="products-header-split">
