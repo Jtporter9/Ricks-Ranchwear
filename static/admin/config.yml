@@ -6,6 +6,20 @@ media_folder: static/img
 public_folder: /img
 
 collections:
+  - name: "shared"
+    label: "Shared"
+    folder: "src/pages/shared"
+    create: true
+    fields:
+      - {
+        label: "Sort Options Content",
+        name: "sortOptionsContent",
+        widget: "list",
+        fields:
+          [
+            { label: "Text", name: "text", widget: "string" }
+          ]
+      }
   - name: "blog"
     label: "Blog"
     folder: "src/pages/blog"
@@ -28,19 +42,6 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
-      - file: "src/page/shared.md"
-        label: "Shared Page Content"
-        name: "shared"
-        fields:
-          - {
-            label: "Sort Options Content",
-            name: "sortOptionsContent",
-            widget: "list",
-            fields:
-              [
-                { label: "Text", name: "text", widget: "string" }
-              ]
-          }
       - file: "src/pages/index.md"
         label: "Landing Page"
         name: "index"
@@ -443,9 +444,8 @@ collections:
               label: "Sort Options Relation Content",
               name: "sortOptionsRelationContent",
               widget: "relation",
-              collection: "pages",
-              file: "shared",
-              search_fields: ["sortOptionsContent"],
+              collection: "shared",
+              search_fields: ["sortOptionsContent.*"],
               value_field: "sortOptionsContent.*",
           }
           - { label: Image, name: image, widget: image }
