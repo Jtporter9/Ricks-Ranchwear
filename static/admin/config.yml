@@ -19,8 +19,8 @@ collections:
       }
       - { label: "Title", name: "title", widget: "string" }
       - {
-        label: "Sort Options Content",
-        name: "sortOptionsContent",
+        label: "Product Sort Options",
+        name: "productSortOptions",
         widget: "list",
         fields:
           [
@@ -448,12 +448,12 @@ collections:
                 ]
             }
           - {
-              label: "Sort Options Relation Content",
-              name: "sortOptionsRelationContent",
+              label: "Product Sort Options Reference",
+              name: "productSortOptionsReference",
               widget: "relation",
               collection: "shared",
-              search_fields: ["sortOptionsContent.*"],
-              value_field: "sortOptionsContent.*",
+              search_fields: ["productSortOptions.*"],
+              value_field: "productSortOptions.*",
           }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
