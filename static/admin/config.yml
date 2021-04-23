@@ -12,6 +12,13 @@ collections:
     create: true
     fields:
       - {
+        label: "Template Key",
+        name: "templateKey",
+        widget: "hidden",
+        default: "blog-post",
+      }
+      - { label: "Title", name: "title", widget: "string" }
+      - {
         label: "Sort Options Content",
         name: "sortOptionsContent",
         widget: "list",
