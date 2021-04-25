@@ -453,7 +453,7 @@ collections:
               widget: "relation",
               collection: "shared",
               value_field: "productSortOptions.*",
-              display_fields: ["productSortOptions.*.text"]
+              display_fields: ["productSortOptions.*.text"],
               search_fields: ["productSortOptions.*.text"],
           }
           - { label: Image, name: image, widget: image }
