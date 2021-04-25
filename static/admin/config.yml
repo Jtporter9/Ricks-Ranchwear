@@ -452,9 +452,8 @@ collections:
               name: "productSortOptionsReference",
               widget: "relation",
               collection: "shared",
-              search_fields: ["productSortOptions"],
-              value_field: "productSortOptions.*.text",
-              display_fields: ["productSortOptions.*.text"],
+              search_fields: ["productSortOptions.*"],
+              value_field: "productSortOptions.*",
           }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
