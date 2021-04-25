@@ -15,7 +15,6 @@ collections:
         label: "Template Key",
         name: "templateKey",
         widget: "hidden",
-        default: "blog-post",
       }
       - { label: "Title", name: "title", widget: "string" }
       - {
@@ -26,6 +25,76 @@ collections:
           [
             { label: "Text", name: "text", widget: "string" }
           ]
+      }
+      - {
+        label: "BOGO Announcement Bar",
+        name: "boboAnnouncementBar",
+        widget: "object",
+        collapsed: true,
+        fields:
+          [
+            {
+              label: "Boots Icon",
+              name: "bootsIcon",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  { label: "Image", name: "image", widget: "image" },
+                  { label: "Alt", name: "alt", widget: "string" },
+                ],
+            },
+            { label: "Text", name: "text", widget: "string" },
+            {
+              label: "Info Icon",
+              name: "infoIcon",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  { label: "Image", name: "image", widget: "image" },
+                  { label: "Alt", name: "alt", widget: "string" },
+                ],
+            },
+          ],
+      }
+      - {
+          label: "Product Filter Bar",
+          name: "productFilterBar",
+          widget: "object",
+          collapsed: true,
+          fields:
+            [
+              {
+                label: "Filter Icon",
+                name: "filterIcon",
+                widget: "object",
+                collapsed: true,
+                fields:
+                  [
+                    { label: "Image", name: "image", widget: "image" },
+                    { label: "Alt", name: "alt", widget: "string" },
+                  ],
+              },
+              {label: "Head Text", name: "headText", widget: "string"},
+              {label: "No Filter Selected Text", name: "noFilterSelectedText", widget: "string"},
+              {label: "Category Dropdown Text", name: "categoryDropdownText", widget: "string"},
+              {
+                label: "Category Options",
+                name: "categoryOptions",
+                widget: "list",
+                fields:
+                  [
+                    { label: "Text", name: "text", widget: "string" }
+                  ]
+              },
+              {label: "Boot Style Dropdown Text", name: "bootStyleDropdownText", widget: "string"},
+              {label: "Toe Shape Dropdown Text", name: "toeShapeDropdownText", widget: "string"},
+              {label: "Color Dropdown Text", name: "colorDropdownText", widget: "string"},
+              {label: "Width Dropdown Text", name: "widthDropdownText", widget: "string"},
+              {label: "Size Dropdown Text", name: "sizeDropdownText", widget: "string"},
+              {label: "Brand Dropdown Text", name: "brandDropdownText", widget: "string"},
+            ]
       }
   - name: "blog"
     label: "Blog"
@@ -439,17 +508,8 @@ collections:
                 ]
             }
           - {
-              label: "Sort Options Content",
-              name: "sortOptionsContent",
-              widget: "list",
-              fields:
-                [
-                  { label: "Text", name: "text", widget: "string" }
-                ]
-            }
-          - {
-              label: "Product Sort Options Reference",
-              name: "productSortOptionsReference",
+              label: "Sort Options",
+              name: "sortOptions",
               widget: "relation",
               collection: "shared",
               value_field: "productSortOptions.*.text",
