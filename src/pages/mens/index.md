@@ -12,6 +12,10 @@ sortOptionsContent:
   - text: Best Price
   - text: "Price: Low to High"
   - text: "Price: High to Low"
+productSortOptionsReference:
+  - Best Selling
+  - "Price: High to Low"
+  - "Price: Low to High"
 image: /img/mens4x.png
 description: Testing
 intro:
