@@ -13,6 +13,14 @@ boboAnnouncementBar:
   infoIcon:
     image: /img/info-icon-white.svg
     alt: Info Icon
+bogoAnnouncementBar:
+  bootsIcon:
+    image: /img/grouped-boots-white.svg
+    alt: Bogo Boot Icon
+  text: Buy 1 pair, get Two pair free!
+  infoIcon:
+    alt: Info Icon
+    image: /img/info-icon-white.svg
 productFilterBar:
   categoryOptions:
     - text: Mens
