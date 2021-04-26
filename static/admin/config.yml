@@ -15,6 +15,7 @@ collections:
         label: "Template Key",
         name: "templateKey",
         widget: "hidden",
+        default: "shared-content",
       }
       - { label: "Title", name: "title", widget: "string" }
       - {
@@ -28,7 +29,7 @@ collections:
       }
       - {
         label: "BOGO Announcement Bar",
-        name: "boboAnnouncementBar",
+        name: "bogoAnnouncementBar",
         widget: "object",
         collapsed: true,
         fields:
