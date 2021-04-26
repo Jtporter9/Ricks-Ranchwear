@@ -90,6 +90,7 @@ collections:
                   ]
               },
               {label: "Boot Style Dropdown Text", name: "bootStyleDropdownText", widget: "string"},
+              {label: "Material Dropdown Text", name: "materialDropdownText", widget: "string"},
               {label: "Toe Shape Dropdown Text", name: "toeShapeDropdownText", widget: "string"},
               {label: "Color Dropdown Text", name: "colorDropdownText", widget: "string"},
               {label: "Width Dropdown Text", name: "widthDropdownText", widget: "string"},
