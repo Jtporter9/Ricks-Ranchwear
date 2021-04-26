@@ -1,26 +1,23 @@
 ---
+sortOptions:
+  - Best Selling
+  - "Price: High to Low"
+  - "Price: Low to High"
 heading: Testing
 path: /mens
 templateKey: mens-page
 title: Mens Boots
-heroContent:
-  heroText: Mens Boots
-  heroImage:
-    image: /img/mens-category-image.png
-    altText: Mens boots background image
+intro:
+  heading: Testing
+  description: Testing
+full_image: /img/background-bags-bows.jpg
+pricing:
+  heading: Testing
+  description: Testing
 sortOptionsContent:
   - text: Best Price
   - text: "Price: Low to High"
   - text: "Price: High to Low"
-productSortOptionsReference:
-  - Best Selling
-  - "Price: High to Low"
-  - "Price: Low to High"
-image: /img/mens4x.png
-description: Testing
-intro:
-  heading: Testing
-  description: Testing
 main:
   heading: Testing
   description: Testing
@@ -33,8 +30,15 @@ main:
   image3:
     image: /img/assorted-boutique.jpg
     alt: Testing
-full_image: /img/background-bags-bows.jpg
-pricing:
-  heading: Testing
-  description: Testing
+productSortOptionsReference:
+  - Best Selling
+  - "Price: High to Low"
+  - "Price: Low to High"
+heroContent:
+  heroText: Mens Boots
+  heroImage:
+    image: /img/mens-category-image.png
+    altText: Mens boots background image
+image: /img/mens4x.png
+description: Testing
 ---
