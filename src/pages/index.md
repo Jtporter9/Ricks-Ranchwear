@@ -47,7 +47,7 @@ categoryCardsContent:
       text: Shop
       link: /womens
     categoryImage:
-      image: /img/womans-category-image.png
+      image: /img/womens-image-home.png
       altText: Female boots image
   - image: /img/kids-4x.png
     categoryText: Kids
