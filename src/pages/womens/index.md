@@ -3,7 +3,7 @@ heading: testing
 path: /womens
 templateKey: womens-page
 title: Womens Boots
-image: /img/womens4x.png
+image: /img/womens-category-image.png
 description: testing
 intro:
   heading: testing
