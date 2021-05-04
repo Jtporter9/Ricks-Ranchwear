@@ -2,7 +2,7 @@
 templateKey: shared-content
 title: Shared Content
 productSortOptions:
-  - text: Best Selling
+  - text: Best Selling test
   - text: "Price: Low to High"
   - text: "Price: High to Low"
   - text: test option
