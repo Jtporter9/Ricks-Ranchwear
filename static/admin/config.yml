@@ -510,14 +510,56 @@ collections:
                 ]
             }
           - {
-              label: "Sort Options",
-              name: "sortOptions",
-              widget: "relation",
-              collection: "shared",
-              value_field: "productSortOptions.*.text",
-              display_fields: ["productSortOptions.*.text"],
-              search_fields: ["productSortOptions.*.text"],
-              multiple: true,
+            label: "Sort Options",
+            name: "sortOptions",
+            widget: "relation",
+            collection: "shared",
+            value_field: "productSortOptions.*.text",
+            display_fields: ["productSortOptions.*.text"],
+            search_fields: ["productSortOptions.*.text"],
+            multiple: true,
+          }
+      - {
+        label: "BOGO Announcement Bar",
+        name: "bogoAnnouncementBar",
+        widget: "object",
+        collapsed: true,
+        fields:
+          [
+            {
+              label: "Boots Icon",
+              name: "bootsIcon",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  { label: "Image", name: "image", widget: "image" },
+                  { label: "Alt", name: "alt", widget: "string" },
+                ],
+            },
+            { label: "Text", name: "text", widget: "string" },
+            {
+              label: "Info Icon",
+              name: "infoIcon",
+              widget: "object",
+              collapsed: true,
+              fields:
+                [
+                  { label: "Image", name: "image", widget: "image" },
+                  { label: "Alt", name: "alt", widget: "string" },
+                ],
+            },
+          ],
+      }
+          - {
+            label: "BOGO Announcement",
+            name: "bogoAnnouncement",
+            widget: "relation",
+            collection: "shared",
+            value_field: "bogoAnnouncementBar.label",
+            display_fields: ["productSortOptions.*.bootsIcon"],
+            search_fields: ["productSortOptions.*.bootsIcon"],
+            multiple: true,
           }
           - { label: Image, name: image, widget: image }
           - { label: Heading, name: heading, widget: string }
