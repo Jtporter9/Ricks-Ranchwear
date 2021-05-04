@@ -259,7 +259,7 @@ export default function ProductPageContainer({
                             </div>
                         </div>
                         <div className="products-header-split">
-                            <span style={{ display: 'none' }} className="numbered-products-results">{filteredProducts ? filteredProducts.length : 0} Results</span>
+                            <span className="numbered-products-results">{filteredProducts ? filteredProducts.length : 0} Results</span>
                         </div>
                         <div className="products-header-split">
                             <Dropdown
@@ -359,66 +359,80 @@ export default function ProductPageContainer({
                                         </ul>
                                     )}
                                 </div>
-                                <Dropdown
-                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Boot Style"
-                                    value="Boot Style"
-                                    onChange={v => toggleFilter(styleNumberFilter, v, "Style")}
-                                    options={bootTypeOptions}
-                                    selectedFilters={styleNumberFilter}
-                                    defaultOpenState={true}
-                                />
-                                <Dropdown
-                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Material"
-                                    value="Material"
-                                    onChange={v => toggleFilter(materialFilter, v, "Material")}
-                                    options={materialOptions}
-                                    selectedFilters={materialFilter}
-                                    defaultOpenState={true}
-                                />
-                                <Dropdown
-                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Toe Shape"
-                                    value="Toe Shape"
-                                    onChange={v => toggleFilter(toeStyleFilter, v, "Toe Shape")}
-                                    options={toeStyleOptions}
-                                    selectedFilters={toeStyleFilter}
-                                    defaultOpenState={true}
-                                />
-                                <Dropdown
-                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Color"
-                                    value="Color"
-                                    onChange={v => toggleFilter(colorFilter, v, "Color")}
-                                    options={colorOptions}
-                                    selectedFilters={colorFilter}
-                                    defaultOpenState={true}
-                                />
-                                <Dropdown
-                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Width"
-                                    value="Width"
-                                    onChange={v => toggleFilter(widthFilter, v, "Width")}
-                                    options={widthOptions}
-                                    selectedFilters={widthFilter}
-                                />
-                                <Dropdown
-                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Size"
-                                    value="Size"
-                                    onChange={v => toggleFilter(sizeFilter, v, "Size")}
-                                    options={sizeOptions}
-                                    selectedFilters={sizeFilter}
-                                />
-                                <Dropdown
-                                    dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
-                                    placeholder="Brand"
-                                    value="Brand"
-                                    onChange={v => toggleFilter(brandsFilter, v, "Brand")}
-                                    options={brandsFiltered}
-                                    selectedFilters={brandsFilter}
-                                />
+                                {bootTypeOptions.length > 1 && (
+                                    <Dropdown
+                                        dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
+                                        placeholder="Boot Style"
+                                        value="Boot Style"
+                                        onChange={v => toggleFilter(styleNumberFilter, v, "Style")}
+                                        options={bootTypeOptions}
+                                        selectedFilters={styleNumberFilter}
+                                        defaultOpenState={true}
+                                    />
+                                )}
+                                {materialOptions.length > 1 && (
+                                    <Dropdown
+                                        dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
+                                        placeholder="Material"
+                                        value="Material"
+                                        onChange={v => toggleFilter(materialFilter, v, "Material")}
+                                        options={materialOptions}
+                                        selectedFilters={materialFilter}
+                                        defaultOpenState={true}
+                                    />
+                                )}
+                                {toeStyleOptions.length > 1 && (
+                                    <Dropdown
+                                        dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
+                                        placeholder="Toe Shape"
+                                        value="Toe Shape"
+                                        onChange={v => toggleFilter(toeStyleFilter, v, "Toe Shape")}
+                                        options={toeStyleOptions}
+                                        selectedFilters={toeStyleFilter}
+                                        defaultOpenState={true}
+                                    />
+                                )}
+                                {colorOptions.length > 1 && (
+                                    <Dropdown
+                                        dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
+                                        placeholder="Color"
+                                        value="Color"
+                                        onChange={v => toggleFilter(colorFilter, v, "Color")}
+                                        options={colorOptions}
+                                        selectedFilters={colorFilter}
+                                        defaultOpenState={true}
+                                    />
+                                )}
+                                {widthOptions.length > 1 && (
+                                    <Dropdown
+                                        dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
+                                        placeholder="Width"
+                                        value="Width"
+                                        onChange={v => toggleFilter(widthFilter, v, "Width")}
+                                        options={widthOptions}
+                                        selectedFilters={widthFilter}
+                                    />
+                                )}
+                                {sizeOptions.length > 1 && (
+                                    <Dropdown
+                                        dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
+                                        placeholder="Size"
+                                        value="Size"
+                                        onChange={v => toggleFilter(sizeFilter, v, "Size")}
+                                        options={sizeOptions}
+                                        selectedFilters={sizeFilter}
+                                    />
+                                )}
+                                {brandsFiltered.length > 1 && (
+                                    <Dropdown
+                                        dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
+                                        placeholder="Brand"
+                                        value="Brand"
+                                        onChange={v => toggleFilter(brandsFilter, v, "Brand")}
+                                        options={brandsFiltered}
+                                        selectedFilters={brandsFilter}
+                                    />
+                                )}
                             </div>
                         </div>
                         <div className={`bc-product-grid bc-product-grid--archive ${isMobileView ? 'bc-product-grid--4col' : 'bc-product-grid--3col'}`}>
