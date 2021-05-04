@@ -2,10 +2,9 @@
 templateKey: shared-content
 title: Shared Content
 productSortOptions:
-  - text: Best Selling test
+  - text: Best Selling
   - text: "Price: Low to High"
   - text: "Price: High to Low"
-  - text: test option
 bogoAnnouncementBar:
   text: Buy 1 pair, get Two pair free!
   bootsIcon:
