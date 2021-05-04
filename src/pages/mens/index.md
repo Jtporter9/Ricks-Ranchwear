@@ -1,9 +1,8 @@
 ---
 sortOptions:
-  - Best Selling test
+  - Best Selling
   - "Price: High to Low"
   - "Price: Low to High"
-  - test option
 heading: Testing
 path: /mens
 templateKey: mens-page
