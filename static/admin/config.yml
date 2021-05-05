@@ -525,8 +525,8 @@ collections:
             widget: "relation",
             collection: "shared",
             value_field: "bogoAnnouncementBar.label",
-            display_fields: ["productSortOptions.*.bootsIcon"],
-            search_fields: ["productSortOptions.*.bootsIcon"],
+            display_fields: ["bogoAnnouncementBar.label"],
+            search_fields: ["bogoAnnouncementBar.label"],
             multiple: true,
           }
           - { label: Image, name: image, widget: image }
