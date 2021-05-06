@@ -5,7 +5,7 @@ heroContent:
   heroHeading: |-
     Buy 1 Pair,
 
-    Get Two Pair Free!
+    Get TWO Pair Free!
   heroImage:
     image: /img/homepage-hero.jpg
     altText: Imageof boots lined up
