@@ -6,7 +6,7 @@ productSortOptions:
   - text: "Price: Low to High"
   - text: "Price: High to Low"
 bogoAnnouncementBar:
-  text: Buy 1 pair, get Two pair free!
+  text: Buy 1 pair, get TWO pair FREE!
   bootsIcon:
     image: /img/grouped-boots-white.svg
     alt: BOGO Boot Icon
