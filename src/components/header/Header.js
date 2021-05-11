@@ -76,7 +76,7 @@ export default function Header() {
     <header id="header" className='sticky' ref={ref}>
       <div className="global-announcement-bar" onClick={() => setActiveInfoModal(true)} >
         <img src={groupedBootsWhite} />
-        <span>Buy 1 pair, get Two pair free!</span>
+        <span>Buy 1 pair, get TWO pair FREE!</span>
         <img src={infoIconWhite} />
       </div>
       <div className="navbar-menu" role="navigation" aria-label="main-navigation">

@@ -337,7 +337,7 @@ export default (context) => {
 
               <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
                 <img src={groupedBoots} alt="grouped boots" />
-                <strong>Buy 1 pair, get Two pair free!</strong>
+                <strong>Buy 1 pair, get TWO pair FREE!</strong>
                 <img src={infoIcon} alt="discount info" />
               </div>
             </div>

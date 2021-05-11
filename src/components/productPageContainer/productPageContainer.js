@@ -254,7 +254,7 @@ export default function ProductPageContainer({
                             </button>
                             <div className="coupon-banner" onClick={() => setActiveInfoModal(true)}>
                                 <img src={groupedBoots} />
-                                <strong>Buy 1 pair, get Two pair free!</strong>
+                                <strong>Buy 1 pair, get TWO pair FREE!</strong>
                                 <img src={infoIcon} />
                             </div>
                         </div>
