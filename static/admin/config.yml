@@ -1581,39 +1581,7 @@ collections:
             default: "privacy-policy",
           }
           - { label: Title, name: title, widget: string }
-          - {
-            label: Store 1,
-            name: store1,
-            widget: object,
-            summary: "{{fields.state}}",
-            fields: [
-              { label: State, name: state, widget: string },
-              { label: Image, name: image, widget: image },
-              { label: Company, name: company, widget: string },
-              { label: Location, name: location, widget: string },
-              { label: "Body", name: "body", widget: "markdown" },
-              {
-                label: "Store Hours",
-                name: "store-hours",
-                widget: object,
-                fields: [
-                  { label: "Body", name: "body", widget: "markdown" }
-                ]
-              },
-              {
-                label: "Address",
-                name: "address",
-                widget: object,
-                collapsed: false,
-                fields: [
-                  {label: "Street Address", name: "street", widget: "string"},
-                  {label: "City, State", name: "city-state", widget: "string"},
-                  {label: "Postal Code", name: "post-code", widget: "string"}
-                ]
-              },
-              { label: "Phone", name: "phone", widget: "string" }
-            ]
-          }
+
 
 
 
