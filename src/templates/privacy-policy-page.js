@@ -5,8 +5,9 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 
 export const PrivacyPolicyTemplate = ({
-  image,
+  date,
   title,
+  body,
   content,
   contentComponent
 }) => {
@@ -313,7 +314,8 @@ export const PrivacyPolicyTemplate = ({
 }
 
 PrivacyPolicyTemplate.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  date: PropTypes.string,
+  body: PropTypes.string,
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
   contentComponent: PropTypes.func,
@@ -346,13 +348,8 @@ export const privacyPolicyPageQuery = graphql`
       html
       frontmatter {
         title
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
+        date
+        bodyContent
       }
     }
   }
