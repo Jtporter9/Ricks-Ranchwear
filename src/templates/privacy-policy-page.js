@@ -327,10 +327,11 @@ const PrivacyPolicyPage = ({ data }) => {
   return (
     <Layout>
       <PrivacyPolicyTemplate
-        image={post.frontmatter.image}
+        // image={post.frontmatter.image}
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
         content={post.html}
+        body={post.frontmatter.body}
       />
     </Layout>
   )
@@ -348,8 +349,7 @@ export const privacyPolicyPageQuery = graphql`
       html
       frontmatter {
         title
-        date
-        bodyContent
+        body
       }
     }
   }
