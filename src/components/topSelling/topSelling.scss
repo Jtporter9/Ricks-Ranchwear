@@ -29,10 +29,13 @@
     .bc-product-price,
     .bc-product__price--sale {
         font-weight: normal;
-        font-size: 16px;
+        font-size: 1rem;
         line-height: 24px;
         letter-spacing: 0.01em;
         color: $functional-darkest;
+    }
+    .bc-product-price {
+        font-size: 1.3rem;
     }
     .original-price-node {
         font-weight: normal;

@@ -349,8 +349,16 @@
         background-color: white;
     }
     .bc-product__meta {
-        padding-top: 1rem;
+        padding-top: 0.5rem;
         padding-bottom: 0;
+        span.brand-name {
+            font-size: 0.5rem;
+        }
+        .bc-product__title {
+            a {
+                font-size: 1rem;
+            }
+        }
     }
     .bc-product-card-image-anchor {
         &:hover,

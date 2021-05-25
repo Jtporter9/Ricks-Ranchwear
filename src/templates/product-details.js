@@ -11,7 +11,7 @@ import SizeChart from '../components/sizeChart/sizeChart';
 
 // ASSETS
 import groupedBoots from '../assets/grouped-boots.svg';
-import infoIcon from '../assets/info-icon.svg';
+import infoIcon from '../assets/info-icon-white.svg';
 import { divide, filter } from 'lodash';
 
 const SelectionTooltip = ({message}) => (
@@ -81,7 +81,7 @@ export default (context) => {
   // FIND PRODUCTS OPTIONS
   images.sort((a, b) => (a.sort_order > b.sort_order) ? 1 : -1)
 
-  // STATES 
+  // STATES
   const [selectedImage, updateSelectedImage] = useState(() => {
     for (let i = 0; i < images.length; i++) {
       if (images[i].is_thumbnail) {
@@ -124,15 +124,15 @@ export default (context) => {
     if (type === colorKey) {
       activeColor !== data && setFilteredInventory(variants);
       setActiveColor(data);
-    } 
+    }
     if (type === widthKey) {
       activeWidth !== data && setFilteredInventory(variants);
       setActiveWidth(data);
-    } 
+    }
     if (type === sizeKey) {
       activeSize !== data && setFilteredInventory(variants);
       setActiveSize(data);
-    } 
+    }
   }
 
   function checkVariantQuantities() {
@@ -158,7 +158,7 @@ export default (context) => {
     }
   }
 
-  // THIS CAN BE BETTER 
+  // THIS CAN BE BETTER
   function getProductVariant() {
     variants.forEach(variant => {
       let colorMatch = false;
@@ -201,7 +201,7 @@ export default (context) => {
     // UPDATE MAIN IMAGE
     activeImagesByColor[0].description ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
   }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage]);
- 
+
   return (
     <Layout>
       <div className="product-details">
@@ -336,9 +336,11 @@ export default (context) => {
               </AddToCartButton>
 
               <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
-                <img src={groupedBoots} alt="grouped boots" />
-                <strong>Buy 1 pair, get TWO pair FREE!</strong>
                 <img src={infoIcon} alt="discount info" />
+                <div className="text-wrapper">
+                  <h4>Qualified Order</h4>
+                  <p>Buy 1 pair, get TWO pair FREE!</p>
+                </div>
               </div>
             </div>
           </div>

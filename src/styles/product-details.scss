@@ -72,10 +72,13 @@
                 .bc-product-price,
                 .bc-product__price--sale {
                     font-weight: normal;
-                    font-size: 16px;
+                    font-size: 1rem;
                     line-height: 24px;
                     letter-spacing: 0.01em;
                     color: $functional-darkest;
+                }
+                .bc-product-price {
+                    font-size: 1.3rem;
                 }
                 .original-price-node {
                     font-weight: normal;
@@ -243,13 +246,36 @@
             }
             .coupon-banner {
                 display: flex;
-                justify-content: initial;
+                justify-content: space-evenly;
                 align-items: center;
                 margin-top: 1rem;
+                min-height: 3em;
+                padding: 0 5px;
+                color: $white;
+                background-color: $red-mid;
                 cursor: pointer;
-                strong {
-                    padding: 0 1rem;
-                    text-transform: uppercase;
+
+                img {
+                    width: 20px;
+                    margin-right: 5px;
+                }
+
+                div.text-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 90%;
+                    p, h4 {
+                        color: white;
+                    }
+                    h4 {
+                        text-transform: uppercase;
+                    }
+                    p {
+                        font-size: 0.7em;
+                        margin-right: 5%;
+                    }
                 }
             }
         }
@@ -362,6 +388,18 @@
                 .name-price-container {
                     display: none;
                 }
+                .coupon-banner {
+                    height: 5em;
+                    div.text-wrapper {
+                        flex-direction: column;
+                        justify-content: center;
+                        p {
+                            font-size: 0.8em;
+                            font-weight: 200;
+                            margin-right: 0;
+                        }
+                    }
+                }
             }
             .selected-image-container {
                 margin: 0;
@@ -421,4 +459,5 @@
             }
         }
     }
+
 }
