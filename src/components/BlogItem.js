@@ -36,7 +36,7 @@ class BlogItem extends React.Component {
               </Link>
               <span> &bull; </span>
               <span className="subtitle is-size-5 is-block">
-                {post.frontmatter.date}
+                {/* {post.frontmatter.date} */}
               </span>
             </p>
           </header>

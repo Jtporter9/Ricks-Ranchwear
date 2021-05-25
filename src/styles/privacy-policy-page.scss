@@ -3,6 +3,9 @@
         max-width: 900px;
         margin: 2rem auto;
         padding: 3rem 1rem;
+        .main-body {
+            white-space: pre-wrap;
+        }
         h1 {
             font-family: Rubik;
             font-style: normal;

@@ -1581,7 +1581,7 @@ collections:
             default: "privacy-policy",
           }
           - { label: Title, name: title, widget: string }
-          - { label: Date, name: date, widget: 'date', default: '', format: 'MMM Do YY' }
+          - { label: Date, name: date, widget: 'datetime', default: '', format: 'MMM Do YY' }
           - { label: "Body", name: "body", widget: "markdown" }
 
 
