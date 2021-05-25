@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ReactMarkDown from 'react-markdown';
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
@@ -19,9 +20,7 @@ export const PrivacyPolicyTemplate = ({
             <h1>Privacy Policy</h1>
             <p className="date">Last Updated: {date}</p>
 
-            <p className="main-body">
-                {body}
-            </p>
+            <ReactMarkDown className="main-body" children={body} />
 
             {/* <p className="text">
                 This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.

@@ -41,6 +41,7 @@
     "react-cookie": "^4.0.3",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
+    "react-markdown": "^6.0.2",
     "scheduler": "^0.14.0",
     "set-cookie-parser": "^2.3.5",
     "universal-cookie-express": "^4.0.3",
