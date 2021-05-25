@@ -11,11 +11,11 @@ We use Your Personal data to provide and improve the Service. By using the Servi
 
 ## Interpretation and Definitions
 
-INTERPRETATION
+### INTERPRETATION
 
 The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.
 
-DEFINITIONS
+### DEFINITIONS
 
 For the purposes of this Privacy Policy:
 
