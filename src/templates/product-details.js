@@ -11,7 +11,7 @@ import SizeChart from '../components/sizeChart/sizeChart';
 
 // ASSETS
 import groupedBoots from '../assets/grouped-boots.svg';
-import infoIcon from '../assets/info-icon-white.svg';
+import infoIcon from '../assets/info-icon.svg';
 import { divide, filter } from 'lodash';
 
 const SelectionTooltip = ({message}) => (
@@ -336,11 +336,9 @@ export default (context) => {
               </AddToCartButton>
 
               <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
+                <img src={groupedBoots} alt="grouped boots" />
+                <strong>Buy 1 pair, get TWO pair FREE!</strong>
                 <img src={infoIcon} alt="discount info" />
-                <div className="text-wrapper">
-                  <h4>Qualified Order</h4>
-                  <p>Buy 1 pair, get TWO pair FREE!</p>
-                </div>
               </div>
             </div>
           </div>

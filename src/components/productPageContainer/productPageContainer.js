@@ -253,9 +253,9 @@ export default function ProductPageContainer({
                                 <span>Filters {numberOfFilters > 0 && `(${numberOfFilters})`}</span>
                             </button>
                             <div className="coupon-banner" onClick={() => setActiveInfoModal(true)}>
-                                <img src={infoIcon} />
-                                <p>Qualified Order</p>
+                                <img src={groupedBoots} />
                                 <strong>Buy 1 pair, get TWO pair FREE!</strong>
+                                <img src={infoIcon} />
                             </div>
                         </div>
                         <div className="products-header-split">
