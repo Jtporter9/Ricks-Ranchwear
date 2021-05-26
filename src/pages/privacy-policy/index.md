@@ -260,6 +260,8 @@ We may use third-party Service providers to monitor and analyze the use of our S
 
   For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: https://policies.google.com/privacy
 
+
+
 ### Advertising
 
 We may use Service providers to show advertisements to You to help support and maintain Our Service.
@@ -289,6 +291,8 @@ We may use Email Marketing Service Providers to manage and send emails to You.
 
   Their Privacy Policy can be viewed at <https://mailchimp.com/legal/privacy/>
 
+
+
 ### Payments
 
 We may provide paid products and/or services within the Service. In that case, we may use third-party services for payment processing (e.g. payment processors).
@@ -298,6 +302,8 @@ We will not store or collect Your payment card details. That information is prov
 * **Payeezy**
 
   Their Privacy Policy can be viewed at https://developer.payeezy.com/privacy-policy
+
+
 
 ### Behavioral Remarketing
 
