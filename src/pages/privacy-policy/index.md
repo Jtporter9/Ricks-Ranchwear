@@ -252,31 +252,32 @@ Service Providers have access to Your Personal Data only to perform their tasks 
 
 We may use third-party Service providers to monitor and analyze the use of our Service.
 
-**\- Google Analytics**
+* **Google Analytics**
 
-Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network.
+  Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network.
 
-You can opt-out of having made your activity on the Service available to Google Analytics by installing the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js, analytics.js and dc.js) from sharing information with Google Analytics about visits activity.
+  You can opt-out of having made your activity on the Service available to Google Analytics by installing the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js, analytics.js and dc.js) from sharing information with Google Analytics about visits activity.
 
-For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: https://policies.google.com/privacy
+  For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: https://policies.google.com/privacy
 
 ### Advertising
 
 We may use Service providers to show advertisements to You to help support and maintain Our Service.
 
-**\- Google AdSense & DoubleClick Cookie**
+* **Google AdSense & DoubleClick Cookie**
 
-Google, as a third party vendor, uses cookies to serve ads on our Service. Google’s use of the DoubleClick cookie enables it and its partners to serve ads to our users based on their visit to our Service or other websites on the Internet.
+  Google, as a third party vendor, uses cookies to serve ads on our Service. Google’s use of the DoubleClick cookie enables it and its partners to serve ads to our users based on their visit to our Service or other websites on the Internet.
 
-You may opt out of the use of the DoubleClick Cookie for interest-based advertising by visiting the Google Ads Settings web page: http://www.google.com/ads/preferences/
+  You may opt out of the use of the DoubleClick Cookie for interest-based advertising by visiting the Google Ads Settings web page: http://www.google.com/ads/preferences/
 
-**\- Bing Ads**
 
-Bing Ads is an advertising service provided by Microsoft Inc.
+* **Bing Ads**
 
-You can opt-out from Bing Ads by following the instructions on Bing Ads Opt-out page: https://advertise.bingads.microsoft.com/en-us/resources/policies/personalized-ads
+  Bing Ads is an advertising service provided by Microsoft Inc.
 
-For more information about Bing Ads, please visit their Privacy Policy: https://privacy.microsoft.com/en-us/PrivacyStatement
+  You can opt-out from Bing Ads by following the instructions on Bing Ads Opt-out page: https://advertise.bingads.microsoft.com/en-us/resources/policies/personalized-ads
+
+  For more information about Bing Ads, please visit their Privacy Policy: https://privacy.microsoft.com/en-us/PrivacyStatement
 
 ### Email Marketing
 
@@ -284,9 +285,9 @@ We may use Your Personal Data to contact You with newsletters, marketing or prom
 
 We may use Email Marketing Service Providers to manage and send emails to You.
 
-**\- Mailchimp**
+* **Mailchimp**
 
-Their Privacy Policy can be viewed at <https://mailchimp.com/legal/privacy/>
+  Their Privacy Policy can be viewed at <https://mailchimp.com/legal/privacy/>
 
 ### Payments
 
@@ -294,59 +295,63 @@ We may provide paid products and/or services within the Service. In that case, w
 
 We will not store or collect Your payment card details. That information is provided directly to Our third-party payment processors whose use of Your personal information is governed by their Privacy Policy. These payment processors adhere to the standards set by PCI-DSS as managed by the PCI Security Standards Council, which is a joint effort of brands like Visa, Mastercard, American Express and Discover. PCI-DSS requirements help ensure the secure handling of payment information.
 
-**\- Payeezy**
+* **Payeezy**
 
-Their Privacy Policy can be viewed at https://developer.payeezy.com/privacy-policy
+  Their Privacy Policy can be viewed at https://developer.payeezy.com/privacy-policy
 
 ### Behavioral Remarketing
 
 The Company uses remarketing services to advertise on third party websites to You after You visited our Service. We and Our third-party vendors use cookies to inform, optimize and serve ads based on Your past visits to our Service.
 
-**\- Google Ads (AdWords)**
+* **Google Ads (AdWords)**
 
-Google Ads (AdWords) remarketing service is provided by Google Inc.
+  Google Ads (AdWords) remarketing service is provided by Google Inc.
 
-You can opt-out of Google Analytics for Display Advertising and customise the Google Display Network ads by visiting the Google Ads Settings page: http://www.google.com/settings/ads
+  You can opt-out of Google Analytics for Display Advertising and customise the Google Display Network ads by visiting the Google Ads Settings page: http://www.google.com/settings/ads
 
-Google also recommends installing the Google Analytics Opt-out Browser Add-on – https://tools.google.com/dlpage/gaoptout – for your web browser. Google Analytics Opt-out Browser Add-on provides visitors with the ability to prevent their data from being collected and used by Google Analytics.
+  Google also recommends installing the Google Analytics Opt-out Browser Add-on – https://tools.google.com/dlpage/gaoptout – for your web browser. Google Analytics Opt-out Browser Add-on provides visitors with the ability to prevent their data from being collected and used by Google Analytics.
 
-For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: https://policies.google.com/privacy
+  For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: https://policies.google.com/privacy
 
-**Twitter**
 
-Twitter remarketing service is provided by Twitter Inc.
+* **Twitter**
 
-You can opt-out from Twitter’s interest-based ads by following their instructions: https://support.twitter.com/articles/20170405
+  Twitter remarketing service is provided by Twitter Inc.
 
-You can learn more about the privacy practices and policies of Twitter by visiting their Privacy Policy page: https://twitter.com/privacy
+  You can opt-out from Twitter’s interest-based ads by following their instructions: https://support.twitter.com/articles/20170405
 
-**\- Facebook**
+  You can learn more about the privacy practices and policies of Twitter by visiting their Privacy Policy page: https://twitter.com/privacy
 
-Facebook remarketing service is provided by Facebook Inc.
 
-You can learn more about interest-based advertising from Facebook by visiting this page: https://www.facebook.com/help/164968693837950
+* **Facebook**
 
-To opt-out from Facebook’s interest-based ads, follow these instructions from Facebook: https://www.facebook.com/help/568137493302217
+  Facebook remarketing service is provided by Facebook Inc.
 
-Facebook adheres to the Self-Regulatory Principles for Online Behavioural Advertising established by the Digital Advertising Alliance. You can also opt-out from Facebook and other participating companies through the Digital Advertising Alliance in the USA http://www.aboutads.info/choices/, the Digital Advertising Alliance of Canada in Canada http://youradchoices.ca/ or the European Interactive Digital Advertising Alliance in Europe http://www.youronlinechoices.eu/, or opt-out using your mobile device settings.
+  You can learn more about interest-based advertising from Facebook by visiting this page: https://www.facebook.com/help/164968693837950
 
-For more information on the privacy practices of Facebook, please visit Facebook’s Data Policy: https://www.facebook.com/privacy/explanation
+  To opt-out from Facebook’s interest-based ads, follow these instructions from Facebook: https://www.facebook.com/help/568137493302217
 
-**\- Pinterest**
+  Facebook adheres to the Self-Regulatory Principles for Online Behavioural Advertising established by the Digital Advertising Alliance. You can also opt-out from Facebook and other participating companies through the Digital Advertising Alliance in the USA http://www.aboutads.info/choices/, the Digital Advertising Alliance of Canada in Canada http://youradchoices.ca/ or the European Interactive Digital Advertising Alliance in Europe http://www.youronlinechoices.eu/, or opt-out using your mobile device settings.
 
-Pinterest remarketing service is provided by Pinterest Inc.
+  For more information on the privacy practices of Facebook, please visit Facebook’s Data Policy: https://www.facebook.com/privacy/explanation
 
-You can opt-out from Pinterest’s interest-based ads by enabling the “Do Not Track” functionality of your web browser or by following Pinterest instructions: http://help.pinterest.com/en/articles/personalization-and-data
 
-You can learn more about the privacy practices and policies of Pinterest by visiting their Privacy Policy page: https://about.pinterest.com/en/privacy-policy
+* **Pinterest**
 
-**\- AdRoll**
+  Pinterest remarketing service is provided by Pinterest Inc.
 
-AdRoll remarketing service is provided by Semantic Sugar, Inc.
+  You can opt-out from Pinterest’s interest-based ads by enabling the “Do Not Track” functionality of your web browser or by following Pinterest instructions: http://help.pinterest.com/en/articles/personalization-and-data
 
-You can opt-out of AdRoll remarketing by visiting this AdRoll Advertising Preferences web page: http://info.evidon.com/pub_info/573?v=1&nt=1&nw=false
+  You can learn more about the privacy practices and policies of Pinterest by visiting their Privacy Policy page: https://about.pinterest.com/en/privacy-policy
 
-For more information on the privacy practices of AdRoll, please visit the AdRoll Privacy Policy web page: http://www.adroll.com/about/privacy
+
+* **AdRoll**
+
+  AdRoll remarketing service is provided by Semantic Sugar, Inc.
+
+  You can opt-out of AdRoll remarketing by visiting this AdRoll Advertising Preferences web page: http://info.evidon.com/pub_info/573?v=1&nt=1&nw=false
+
+  For more information on the privacy practices of AdRoll, please visit the AdRoll Privacy Policy web page: http://www.adroll.com/about/privacy
 
 ### CCPA Privacy
 Your Rights under the CCPA
