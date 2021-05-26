@@ -169,13 +169,13 @@ Service Providers have access to Your Personal Data only to perform their tasks 
 
 We may use third-party Service providers to monitor and analyze the use of our Service.
 
-* **`<p>`Google Analytics**
+* **Google Analytics**
 
   Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network.
 
   You can opt-out of having made your activity on the Service available to Google Analytics by installing the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js, analytics.js and dc.js) from sharing information with Google Analytics about visits activity.
 
-  For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: https://policies.google.com/privacy`<p/>`
+  For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: https://policies.google.com/privacy
 
 ### Advertising
 
@@ -200,9 +200,9 @@ We may use Your Personal Data to contact You with newsletters, marketing or prom
 
 We may use Email Marketing Service Providers to manage and send emails to You.
 
-* **`<p>`Mailchimp**
+* **Mailchimp**
 
-  Their Privacy Policy can be viewed at <https://mailchimp.com/legal/privacy/>`<p/>`
+  Their Privacy Policy can be viewed at <https://mailchimp.com/legal/privacy/>
 
 ### Payments
 
@@ -210,9 +210,9 @@ We may provide paid products and/or services within the Service. In that case, w
 
 We will not store or collect Your payment card details. That information is provided directly to Our third-party payment processors whose use of Your personal information is governed by their Privacy Policy. These payment processors adhere to the standards set by PCI-DSS as managed by the PCI Security Standards Council, which is a joint effort of brands like Visa, Mastercard, American Express and Discover. PCI-DSS requirements help ensure the secure handling of payment information.
 
-* **`<p>`Payeezy**
+* **Payeezy**
 
-  Their Privacy Policy can be viewed at https://developer.payeezy.com/privacy-policy`<p/>`
+  Their Privacy Policy can be viewed at https://developer.payeezy.com/privacy-policy
 
 ### Behavioral Remarketing
 
