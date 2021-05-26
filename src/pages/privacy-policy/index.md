@@ -112,26 +112,43 @@ We use both session and persistent Cookies for the purposes set out below:
 
 *  **Necessary / Essential Cookies**
 
+
+
   Type: Session Cookies
 
+
+
   Administered by: Us
+
+
 
   Purpose: These Cookies are essential to provide You with services available through the Website and to enable You to use some of its features. They help to authenticate users and prevent fraudulent use of user accounts. Without these Cookies, the services that You have asked for cannot be provided, and We only use these Cookies to provide You with those services.
 
-  Cookies Policy / Notice Acceptance Cookies
+
+* **Cookies Policy / Notice Acceptance Cookies**
 
   Type: Persistent Cookies
 
+
+
   Administered by: Us
+
+
 
   Purpose: These Cookies identify if users have accepted the use of cookies on the Website.
 
 
 * **Functionality Cookies**
 
+
+
   Type: Persistent Cookies
 
+
+
   Administered by: Us
+
+
 
   Purpose: These Cookies allow us to remember choices You make when You use the Website, such as remembering your login details or language preference. The purpose of these Cookies is to provide You with a more personal experience and to avoid You having to re-enter your preferences every time You use the Website.
 
@@ -140,7 +157,11 @@ We use both session and persistent Cookies for the purposes set out below:
 
   Type: Persistent Cookies
 
+
+
   Administered by: Third-Parties
+
+
 
   Purpose: These Cookies are used to track information about traffic to the Website and how users use the Website. The information gathered via these Cookies may directly or indirectly identify you as an individual visitor. This is because the information collected is typically linked to a pseudonymous identifier associated with the device you use to access the Website. We may also use these Cookies to test new advertisements, pages, features or new functionality of the Website to see how our users react to them.
 
@@ -149,9 +170,15 @@ We use both session and persistent Cookies for the purposes set out below:
 
   Type: Persistent Cookies
 
+
+
   Administered by: Third-Parties
 
+
+
   Purpose: These Cookies track your browsing habits to enable Us to show advertising which is more likely to be of interest to You. These Cookies use information about your browsing history to group You with other users who have similar interests. Based on that information, and with Our permission, third party advertisers can place Cookies to enable them to show adverts which We think will be relevant to your interests while You are on third party websites.
+
+
 
   For more information about the cookies we use and your choices regarding cookies, please visit our Cookies Policy or the Cookies section of our Privacy Policy.
 
