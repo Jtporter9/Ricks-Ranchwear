@@ -50,6 +50,14 @@
             }
             h3 {
                 font-style: normal;
+                font-weight: 900;
+                font-size: 24px;
+                line-height: 32px;
+                letter-spacing: 0.04em;
+                color: $functional-darkest;
+            }
+            h4 {
+                font-style: normal;
                 font-weight: 500;
                 font-size: 18px;
                 line-height: 24px;
@@ -62,6 +70,7 @@
                 padding-left: 40px;
                 li {
                     list-style-type: disc;
+                    list-style-type: none;
                     font-style: normal;
                     font-weight: normal;
                     font-size: 16px;
@@ -85,6 +94,7 @@
                 }
                 li::before {
                     content: "●";
+                    display: inline-block;
                     min-width:20px;
                     height:20px;
                     background:$functional-darkest;
