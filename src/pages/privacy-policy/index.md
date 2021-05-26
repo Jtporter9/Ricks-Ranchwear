@@ -388,3 +388,75 @@ Under this Privacy Policy, and by law if You are a resident of California, You h
 In order to exercise any of Your rights under the CCPA, and if you are a California resident, You can email or call us or visit our “Do Not Sell My Personal Information” section or web page.
 
 The Company will disclose and deliver the required information free of charge within 45 days of receiving Your verifiable request. The time period to provide the required information may be extended once by an additional 45 days when reasonable necessary and with prior notice.
+
+### Do Not Sell My Personal Information
+
+We do not sell personal information. However, the Service Providers we partner with (for example, our advertising partners) may use technology on the Service that “sells” personal information as defined by the CCPA law.
+
+If you wish to opt out of the use of your personal information for interest-based advertising purposes and these potential sales as defined under CCPA law, you may do so by following the instructions below.
+
+Please note that any opt out is specific to the browser You use. You may need to opt out on every browser that you use.
+
+#### Website
+
+You can opt out of receiving ads that are personalized as served by our Service Providers by following our instructions presented on the Service:
+
+* From Our “Cookie Consent” notice banner
+
+* Or from Our “Do Not Use My Data” link
+
+
+
+The opt out will place a cookie on Your computer that is unique to the browser You use to opt out. If you change browsers or delete the cookies saved by your browser, you will need to opt out again.
+
+#### Mobile Devices
+
+Your mobile device may give you the ability to opt out of the use of information about the apps you use in order to serve you ads that are targeted to your interests:
+
+* “Opt out of Interest-Based Ads” or “Opt out of Ads Personalization” on Android devices
+
+* “Limit Ad Tracking” on iOS devices
+
+
+
+You can also stop the collection of location information from Your mobile device by changing the preferences on your mobile device.
+
+### “Do Not Track” Policy as Required by California Online Privacy Protection Act (CalOPPA)
+
+Our Service does not respond to Do Not Track signals.
+
+However, some third party websites do keep track of Your browsing activities. If You are visiting such websites, You can set Your preferences in Your web browser to inform websites that You do not want to be tracked. You can enable or disable DNT by visiting the preferences or settings page of Your web browser.
+
+### Your California Privacy Rights (California’s Shine the Light law)
+
+Under California Civil Code Section 1798 (California’s Shine the Light law), California residents with an established business relationship with us can request information once a year about sharing their Personal Data with third parties for the third parties’ direct marketing purposes.
+
+If you’d like to request more information under the California Shine the Light law, and if you are a California resident, You can contact Us using the contact information provided below.
+
+### California Privacy Rights for Minor Users (California Business and Professions Code Section 22581)
+
+California Business and Professions Code section 22581 allow California residents under the age of 18 who are registered users of online sites, services or applications to request and obtain removal of content or information they have publicly posted.
+
+To request removal of such data, and if you are a California resident, You can contact Us using the contact information provided below, and include the email address associated with Your account.
+
+Be aware that Your request does not guarantee complete or comprehensive removal of content or information posted online and that the law may not permit or require removal in certain circumstances.
+
+### Links to Other Websites
+
+Our Service may contain links to other websites that are not operated by Us. If You click on a third party link, You will be directed to that third party’s site. We strongly advise You to review the Privacy Policy of every site You visit.
+
+We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.
+
+### Changes to this Privacy Policy
+
+We may update our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.
+
+We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the “Last updated” date at the top of this Privacy Policy.
+
+You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+
+### Contact US
+
+If you have any questions about this Privacy Policy, You can contact us:
+
+* By email: info@jbxfer1.wpengine.com
