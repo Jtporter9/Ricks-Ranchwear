@@ -3,8 +3,10 @@ import { Link } from 'gatsby';
 import { useCookies } from 'react-cookie';
 import TopSelling from '../topSelling/topSelling.js';
 
+import closeIcon from '../../assets/close-icon.svg';
+
 //Context
-import {useContentContext} from 'src/context/ContentContext';
+import { useContentContext } from 'src/context/ContentContext';
 
 export default function HomePageContainer({
     post,
@@ -23,6 +25,7 @@ export default function HomePageContainer({
     // STATES 
     const [cookies, setCookie, removeCookie] = useCookies([]);
     const [showAlertBanner, setShowAlertBanner] = useState(false);
+    const [showOptOutModal, setShowOptOutModal] = useState(false);
     function closeAlertBanner() {
         setShowAlertBanner(false)
         setCookie('alertBanner', true);
@@ -34,12 +37,13 @@ export default function HomePageContainer({
         setCookie('alertBanner', true);
         setCookie('allowCookies', false);
         setCookie('emailSubscriptionExpiration', false)
+        setShowOptOutModal(false);
     }
-    
+
     useEffect(() => {
         !cookies.alertBanner && setShowAlertBanner(true)
     }, [cookies])
-    
+
     return (
         <div className="homepage">
             <div className="homepage-hero"
@@ -49,7 +53,7 @@ export default function HomePageContainer({
                 }}>
                 <div className="opaque-overlay"></div>
                 <div className="hero-content-container">
-                    <img src={heroContent.heroBootsIcon.image.publicURL}  alt={heroContent.heroBootsIcon.altText}/>
+                    <img src={heroContent.heroBootsIcon.image.publicURL} alt={heroContent.heroBootsIcon.altText} />
                     <h1>{heroContent.heroHeading}</h1>
                     <p>{heroContent.heroSubHeading}</p>
                     <Link to={heroContent.heroBtn.link}>{heroContent.heroBtn.text}</Link>
@@ -60,8 +64,8 @@ export default function HomePageContainer({
                 <div className="head">
                     <div className="head-content">
                         <div className="logos-split">
-                            <img style={{ width: '125px' }} src={introContent.logoImage.image.childImageSharp.fluid.src} alt={introContent.logoImage.altText}/>
-                            <img style={{ width: '200px' }} src={introContent.bootCountryLogoImage.image.childImageSharp.fluid.src}  alt={introContent.bootCountryLogoImage.altText}/>
+                            <img style={{ width: '125px' }} src={introContent.logoImage.image.childImageSharp.fluid.src} alt={introContent.logoImage.altText} />
+                            <img style={{ width: '200px' }} src={introContent.bootCountryLogoImage.image.childImageSharp.fluid.src} alt={introContent.bootCountryLogoImage.altText} />
                         </div>
                         <h2>{introContent.welcomeHeading}</h2>
                         <p className="subtitle subtitle_2">{introContent.welcomeSubHeading}</p>
@@ -71,15 +75,15 @@ export default function HomePageContainer({
                 </div>
                 <div className="lower">
                     {categoryCardsContent.map((categoryCard, id) => (
-                      <div className="boot-block-card" key={id}>
-                          <Link to={categoryCard.linkBtn.link}>
-                              <img src={categoryCard.categoryImage.image.childImageSharp.fluid.src} alt={categoryCard.categoryImage.altText}/>
-                              <div className="boot-block-info-container">
-                                  <h2>{categoryCard.categoryText}</h2>
-                                  <span>{categoryCard.linkBtn.text}</span>
-                              </div>
-                          </Link>
-                      </div>
+                        <div className="boot-block-card" key={id}>
+                            <Link to={categoryCard.linkBtn.link}>
+                                <img src={categoryCard.categoryImage.image.childImageSharp.fluid.src} alt={categoryCard.categoryImage.altText} />
+                                <div className="boot-block-info-container">
+                                    <h2>{categoryCard.categoryText}</h2>
+                                    <span>{categoryCard.linkBtn.text}</span>
+                                </div>
+                            </Link>
+                        </div>
                     ))}
                 </div>
             </section>
@@ -121,12 +125,38 @@ export default function HomePageContainer({
                 <div className="alert-banner">
                     <p>{siteCookiesBannerContent.mainText} <Link to={siteCookiesBannerContent.linkBtn.link}>{siteCookiesBannerContent.linkBtn.text}</Link></p>
                     <div>
-                        <button className="opt-out" onClick={denyCookies}>OPT OUT</button>
+                        <button className="opt-out" onClick={()=> setShowOptOutModal(true)}>OPT OUT</button>
                         <button className="accept" onClick={closeAlertBanner}>{siteCookiesBannerContent.closeText}</button>
                     </div>
                 </div>
             )
             }
+
+            {showOptOutModal && (
+                <div className="email-subscription-modal-opaque-background">
+                    <div className="email-subscription-modal">
+                        <div className="email-subscription-head">
+                            <img src={closeIcon} alt="close" onClick={()=> setShowOptOutModal(false)} />
+                        </div>
+                        <div>
+                            <h3 style={{marginBottom: '1rem'}}>Cookies Opt Out</h3>
+                            <p style={{marginBottom: '1rem'}} className="email-subscription-description">
+                                The opt out will place a cookie on your computer that is unique to the browser You use to opt out.
+                            </p>
+                            <p style={{marginBottom: '1rem'}} className="email-subscription-description">
+                                If you change browsers or delete the cookies saved by your browser, you will need to opt out again.
+                            </p>
+                            <div className="opt-out-btn-container">
+                                <button className="cancel" onClick={()=> setShowOptOutModal(false)}>CANCEL</button>
+                                <button className="opt-out" onClick={denyCookies}>OPT OUT</button>
+                            </div>                        
+
+                        </div>
+                        <p className="email-subscription-sub-text">
+                            By opting out you agree to understanding the need to opt out again if you remove the opt out cookie that we use to opt you out.                     </p>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

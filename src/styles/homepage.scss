@@ -536,3 +536,39 @@
         padding: 1rem;
     }
 }
+
+.opt-out-btn-container {
+    display: flex;
+    flex-direction: column;
+    .cancel {
+        font-size: 14px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        background-color: transparent;
+        border: 1px solid $white;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        border: 1px solid #14181F;
+        margin: .5rem 0;
+        &:hover {
+            color: white;
+            background-color: $functional-darkest;
+        }
+    }
+    .opt-out {
+        font-size: 14px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        background-color: #14181F;
+        color: white;
+        border: 1px solid $white;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        border: 1px solid #14181F;
+        margin: .5rem 0;
+    }
+    &:hover {
+        color: $functional-darkest;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+}
