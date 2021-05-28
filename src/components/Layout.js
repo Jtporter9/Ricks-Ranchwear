@@ -28,6 +28,7 @@ const TemplateWrapper = ({ children }) => {
     if (cookies.emailSubscriptionExpiration) {
       cookies.emailSubscriptionExpiration < Date.now() && removeCookie('emailSubscriptionExpiration')
     }
+    cookies.allowCookies === undefined && setCookie('allowCookies', true);
   })
 
   function setPassword(e) {
@@ -89,7 +90,8 @@ const TemplateWrapper = ({ children }) => {
       )}
       <Header />
       <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
-      {activeEmailSubscriptionModal && cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && !cookies.emailSubscriptionExpiration && (
+      {console.log(cookies.allowCookies && activeEmailSubscriptionModal && cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && !cookies.emailSubscriptionExpiration)}
+      {cookies.allowCookies && activeEmailSubscriptionModal && cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && !cookies.emailSubscriptionExpiration && (
         <EmailSubscriptionModal toggleModal={v => setActiveEmailSubscriptionModal(v)} />
       )}
       <Footer />

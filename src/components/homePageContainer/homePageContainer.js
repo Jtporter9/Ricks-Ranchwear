@@ -26,6 +26,14 @@ export default function HomePageContainer({
     function closeAlertBanner() {
         setShowAlertBanner(false)
         setCookie('alertBanner', true);
+        setCookie('allowCookies', true);
+    }
+
+    function denyCookies() {
+        setShowAlertBanner(false)
+        setCookie('alertBanner', true);
+        setCookie('allowCookies', false);
+        setCookie('emailSubscriptionExpiration', false)
     }
     
     useEffect(() => {
@@ -112,7 +120,10 @@ export default function HomePageContainer({
             {showAlertBanner && (
                 <div className="alert-banner">
                     <p>{siteCookiesBannerContent.mainText} <Link to={siteCookiesBannerContent.linkBtn.link}>{siteCookiesBannerContent.linkBtn.text}</Link></p>
-                    <button onClick={closeAlertBanner}>{siteCookiesBannerContent.closeText}</button>
+                    <div>
+                        <button className="opt-out" onClick={denyCookies}>OPT OUT</button>
+                        <button className="accept" onClick={closeAlertBanner}>{siteCookiesBannerContent.closeText}</button>
+                    </div>
                 </div>
             )
             }

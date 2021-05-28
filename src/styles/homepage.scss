@@ -1,7 +1,6 @@
 // HERO
 .homepage {
     .alert-banner {
-        background-color: $functional-darkest;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -12,14 +11,14 @@
         left: 0;
         z-index: 999;
         box-shadow: 0px -10px 1px -10px $functional-dark;
+        background: #EDEDED;
+        border: 1px solid #C9C9C9;
         p {
-            color: $white;
             font-size: 12px;
             line-height: 16px;
             padding-right: 1rem;
         }
-        button {
-            color: $white;
+        .opt-out {
             font-size: 14px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -27,7 +26,25 @@
             border: 1px solid $white;
             padding: 0.5rem 2rem;
             cursor: pointer;
+            border: 1px solid #14181F;
+            margin: 0 .5rem;
             &:hover {
+                background-color: black;
+                color: white;
+            }
+        }
+        .accept {
+            color: $white;
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background-color: black;
+            border: 1px solid #14181F;
+            padding: 0.5rem 2rem;
+            cursor: pointer;
+            margin: 0 .5rem;
+            &:hover {
+                color: $functional-darkest;
                 background-color: rgba(255, 255, 255, 0.2);
             }
         }
@@ -490,6 +507,20 @@
         div {
             width: 500px;
             margin: auto;
+        }
+    }
+}
+
+@media (max-width: 1226px) {
+    .homepage .alert-banner {
+        > div {
+            display: flex;
+            flex-direction: column;
+        }
+        .opt-out,
+        .accept {
+            margin: .5rem 0;
+            width:150px
         }
     }
 }
