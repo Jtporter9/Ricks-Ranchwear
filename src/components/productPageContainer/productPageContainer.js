@@ -240,7 +240,6 @@ export default function ProductPageContainer({
             }
         }, [params, location])
 
-        console.log(featureFilter);
     return (
         <div className="product-page">
             <div
