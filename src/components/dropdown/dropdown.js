@@ -58,7 +58,7 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
               //         </li>
               //       )
               // }
-              if (value === "Color" || value === "Brand" || value === "Material" || value === "Toe Shape" || value === "Boot Style") {
+              if (value !== "Size" || value !== "Width") {
                 return (
                   <div key={opt} className="dropdown-checkbox-container">
                     <input id={opt} type="checkbox" value={opt} className="dropdown-option" onChange={e => handleChange(opt)} checked={active} />

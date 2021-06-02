@@ -45,6 +45,7 @@ export default function ProductPageContainer({
     let bootTypeOptions = [];
     let materialOptions = [];
     let toeStyleOptions = [];
+    let featureOptions = [];
 
     const colorKey = "Generic Colors";
     const sizeKey = "Size";
@@ -62,6 +63,7 @@ export default function ProductPageContainer({
             field.name === "Material" && materialOptions.push(field.value)
             field.name === "Toe Style" && toeStyleOptions.push(field.value)
             field.name === "Boot Type" && bootTypeOptions.push(field.value)
+            field.name === "Feature" && featureOptions.push(field.value)
             if (field.name === colorKey) {
                 let colors = field.value.split(',');
                 for (let i = 0; i < colors.length; i++) {
@@ -79,6 +81,7 @@ export default function ProductPageContainer({
     materialOptions = [...new Set(findDuplicates(materialOptions))]; // Unique duplicates
     toeStyleOptions = [...new Set(findDuplicates(toeStyleOptions))]; // Unique duplicates
     bootTypeOptions = [...new Set(findDuplicates(bootTypeOptions))]; // Unique duplicates
+    featureOptions = [...new Set(findDuplicates(featureOptions))]; // Unique duplicates
     // styleNumberOptions = [...new Set(findDuplicates(styleNumberOptions))]; // Unique duplicates
     sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
 
@@ -97,6 +100,7 @@ export default function ProductPageContainer({
     const [materialFilter, setMaterialFilter] = useState([]);
     const [toeStyleFilter, setToeStyleFilter] = useState([]);
     const [styleNumberFilter, setStyleNumberFilter] = useState([]);
+    const [featureFilter, setFeatureFilter] = useState([]);
 
     const [isSticky, setSticky] = useState(false);
     const [activeInfoModal, setActiveInfoModal] = useState(false);
@@ -150,6 +154,7 @@ export default function ProductPageContainer({
         setMaterialFilter([]);
         setToeStyleFilter([]);
         setStyleNumberFilter([]);
+        setFeatureFilter([]);
     }
 
     function toggleFilter(arr, val, type) {
@@ -161,6 +166,7 @@ export default function ProductPageContainer({
             type === "Material" && setMaterialFilter([...arr, val]);
             type === "Toe Shape" && setToeStyleFilter([...arr, val]);
             type === "Style" && setStyleNumberFilter([...arr, val]);
+            type === "Feature" && setFeatureFilter([...arr, val]);
         } else {
             type === "Brand" && setBrandsFilter(arr.filter(a => a !== val));
             type === "Color" && setColorFilter(arr.filter(a => a !== val));
@@ -169,6 +175,7 @@ export default function ProductPageContainer({
             type === "Material" && setMaterialFilter(arr.filter(a => a !== val));
             type === "Toe Shape" && setToeStyleFilter(arr.filter(a => a !== val));
             type === "Style" && setStyleNumberFilter(arr.filter(a => a !== val));
+            type === "Feature" && setFeatureFilter(arr.filter(a => a !== val));
         }
         document.getElementById("products-container") && document.getElementById("products-container").scrollIntoView({behavior: 'smooth'});
     }
@@ -181,7 +188,8 @@ export default function ProductPageContainer({
             widthFilter.length +
             materialFilter.length +
             toeStyleFilter.length +
-            styleNumberFilter.length
+            styleNumberFilter.length +
+            featureFilter.length
         );
         filteredProducts.length === 0 && setFilteredProducts(products);
         numberOfFilters === 0 && setFilteredProducts(products);
@@ -203,11 +211,12 @@ export default function ProductPageContainer({
         materialFilter.length > 0 && getProductsFilteredByVariant(materialFilter);
         toeStyleFilter.length > 0 && getProductsFilteredByVariant(toeStyleFilter);
         styleNumberFilter.length > 0 && getProductsFilteredByVariant(styleNumberFilter);
+        featureFilter.length > 0 && getProductsFilteredByVariant(featureFilter);
 
         return () => {
             window.removeEventListener('scroll', () => handleScroll);
         };
-    }, [numberOfFilters, filter, brandsFilter, colorFilter, sizeFilter, widthFilter, materialFilter, toeStyleFilter, styleNumberFilter]);
+    }, [numberOfFilters, filter, brandsFilter, colorFilter, sizeFilter, widthFilter, materialFilter, toeStyleFilter, styleNumberFilter, featureFilter]);
 
     useEffect(() => {
         let currentParams = getJsonFromUrl(location.search);
@@ -231,6 +240,7 @@ export default function ProductPageContainer({
             }
         }, [params, location])
 
+        console.log(featureFilter);
     return (
         <div className="product-page">
             <div
@@ -333,6 +343,12 @@ export default function ProductPageContainer({
                                             <span>{style}</span>
                                         </div>
                                     ))}
+                                    {featureFilter && featureFilter.map((feature, i) => (
+                                        <div key={i} className="filter-swatch">
+                                            <img src={CloseIconWhite} alt="remove" onClick={() => { setFeatureFilter(featureFilter.filter(a => a !== feature)); getProductsFilteredByVariant(featureFilter.filter(a => a !== feature)); }} />
+                                            <span>{feature}</span>
+                                        </div>
+                                    ))}
                                 </div>
                                 <div className="filter-drop-down">
                                     <div className="products-side-filter-head" onClick={() => setCategoryDropDown(!categoryDropDown)}>
@@ -401,6 +417,17 @@ export default function ProductPageContainer({
                                         options={colorOptions}
                                         selectedFilters={colorFilter}
                                         defaultOpenState={true}
+                                    />
+                                )}
+                                {featureOptions.length > 1 && (
+                                    <Dropdown
+                                        dropDownClasses={{ head: 'products-side-filter-head', optionContainer: 'side-filter-dropdown-container' }}
+                                        placeholder="Feature"
+                                        value="Feature"
+                                        onChange={v => toggleFilter(featureFilter, v, "Feature")}
+                                        options={featureOptions}
+                                        selectedFilters={featureFilter}
+                                        defaultOpenState={false}
                                     />
                                 )}
                                 {widthOptions.length > 1 && (
