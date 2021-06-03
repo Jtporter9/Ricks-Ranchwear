@@ -1,8 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+// Node Modules
+import React, {useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import Layout from '../components/Layout'
-import StoreCollapsible from '../components/storeCollapsible/storeCollapsible'
+import Layout from '../components/Layout';
+import StoreCollapsible from '../components/storeCollapsible/storeCollapsible';
+import { useLocation } from '@reach/router';
+import {parse} from "query-string"
+
 
 // ASSETS
 import redStore from '../assets/red-store.svg'
@@ -11,6 +15,9 @@ export const StoresPageTemplate = ({
   title,
   locations
 }) => {
+  const router = useLocation();
+  const [queryStrings, setQueryStrings] = useState(parse(router.search));
+
   return (
     <div className="stores-page">
       <div className="stores-page-hero">
@@ -18,11 +25,22 @@ export const StoresPageTemplate = ({
         <h2>Store Locations</h2>
         <p className="hero-subtext">Boot Factory Outlet</p>
       </div>
-
       <section style={{ marginBottom: '7rem' }} className="collapsibles-section">
-        {locations.map((location, i) => (
-            <StoreCollapsible key={i} location={location} last={(i + 1) === locations.length ? true : false} />
-          )
+        {locations.map((location, i) => {
+            let defaultCollapsibleValue = false;
+            if(location.stateStores[0].state === queryStrings.type) {
+              defaultCollapsibleValue = true;
+            }
+            return (
+              <StoreCollapsible
+                defaultCollapsibleValue={defaultCollapsibleValue}
+                key={i}
+                location={location}
+                last={(i + 1) === locations.length ? true : false}
+                selectedStore={queryStrings.value ? queryStrings.value.replaceAll(" ", "") : false}
+              />
+            )
+          }
         )}
 
       </section>
