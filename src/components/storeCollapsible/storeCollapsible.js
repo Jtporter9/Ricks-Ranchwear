@@ -50,7 +50,9 @@ export default function StoreCollapsible(props) {
           },
           i
         ) => {
-          const anchorName = location.split(",")[0].replaceAll(" ", "");
+          const anchorName = location.split(",")[0].replace(/\s/g, "");
+
+          console.log(anchorName)
           return (
             <>
               <a href={`#${selectedStore}`} id={clickedAnchorLink}/>

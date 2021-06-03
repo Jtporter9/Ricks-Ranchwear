@@ -37,7 +37,7 @@ export const StoresPageTemplate = ({
                 key={i}
                 location={location}
                 last={(i + 1) === locations.length ? true : false}
-                selectedStore={queryStrings.value ? queryStrings.value.replaceAll(" ", "") : false}
+                selectedStore={queryStrings.value ? queryStrings.value.replace(/\s/g, "") : false}
               />
             )
           }
