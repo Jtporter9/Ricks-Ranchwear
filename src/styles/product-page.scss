@@ -392,6 +392,16 @@
             border: 2px solid $functional-darkest;
         }
     }
+
+    .product-card-image-options {
+        img {
+            width: 40px;
+            margin: .5rem 5px;
+        }
+        img:first-child {
+            margin-left: 0;
+        }
+    }
 }
 
 @media (max-width: 1215px) {

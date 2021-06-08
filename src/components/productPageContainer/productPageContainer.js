@@ -67,8 +67,8 @@ export default function ProductPageContainer({
             if (field.name === colorKey) {
                 let colors = field.value.split(',');
                 for (let i = 0; i < colors.length; i++) {
-                    colorOptions.push(colors[i])
-                    product.variantsList = [...new Set(findDuplicates([...product.variantsList, colors[i]]))];
+                    colorOptions.push(colors[i].trim())
+                    product.variantsList = [...new Set(findDuplicates([...product.variantsList, colors[i].trim()]))];
                 }
             }
             product.variantsList = [...new Set(findDuplicates([...product.variantsList, field.value]))];
