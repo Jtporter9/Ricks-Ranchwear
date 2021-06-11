@@ -5,16 +5,20 @@ import ProductPrices from './ProductPrices';
 
 const ProductCard = ({ product }) => {
   const { images } = product;
-  let defaultImage = "";
 
+  const [defaultImage, setDefaultImage] = useState(findDefaultImage());
   const [imageOptions, setImageOptions] = useState(getActiveImagesByColor());
 
+function findDefaultImage() {
+  let defaultImage;
   for (let i = 0; i < images.length; i++) {
     if (images[i].is_thumbnail) {
       defaultImage = images[i].url_standard
       break;
     }
   }
+  return defaultImage;
+}
 
   function getActiveImagesByColor() {
     images.sort((a, b) => (a.sort_order > b.sort_order) ? 1 : -1)
@@ -60,6 +64,7 @@ const ProductCard = ({ product }) => {
             src={img.url_thumbnail}
             alt="Thumb"
             key={JSON.stringify(img)}
+            onClick={() => setDefaultImage(img.url_standard)}
           />
         ))}
       </div>
