@@ -21,7 +21,7 @@ function findDefaultImage() {
 }
 
   function getActiveImagesByColor() {
-    images.sort((a, b) => (a.sort_order > b.sort_order) ? 1 : -1)
+    images.sort((a, b) => (a.sort_order < b.sort_order) ? 1 : -1)
     images.sort((a, b) => (a.description > b.description) ? 1 : -1)
     let tmpColor;
     let imagesByColor = []
