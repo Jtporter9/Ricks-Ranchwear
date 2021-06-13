@@ -308,7 +308,7 @@ export default (context) => {
                         }
                       }
                     }
-                    console.log(1, inventoryStatus);
+                    // console.log(1, inventoryStatus);
                     return (
                       <button
                         style={{ minWidth: size.length <= 4 ? '66px' : '120px' }}

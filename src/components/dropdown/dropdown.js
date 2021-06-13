@@ -6,6 +6,7 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
   const node = useRef();
 
   const [open, setOpen] = useState(defaultOpenState);
+  const [toolTipActive, setToolTipActive] = useState(false);
 
   const handleClick = e => {
     if (node.current.contains(e.target)) {
@@ -30,13 +31,13 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
   }, []);
 
   return (
-    <div ref={node} className="filter-drop-down">
+    <div ref={node} className={`filter-drop-down`}>
       <div className={`${dropDownClasses.head}`} onClick={e => setOpen(!open)}>
         <span className={`${open && 'dropdown-open'}`}>{value || placeholder}</span>
         <img src={open ? caretUpDark : caretDownLight} alt="Dropdown" />
       </div>
       {open && (
-        <ul className={`${dropDownClasses.optionContainer}`}>
+        <ul className={`${dropDownClasses.optionContainer} ${value === "Color" && 'row'}`}>
           {options.map(opt => {
             let active = selectedFilters.indexOf(opt) !== -1;
             if (placeholder === "Best Selling") {
@@ -58,7 +59,17 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
               //         </li>
               //       )
               // }
-              if (value !== "Size" || value !== "Width") {
+              if (value === "Color") {
+                return (
+                  <div key={opt} style={{position: 'relative'}} className="dropdown-checkbox-container">
+                    <div className="color-swatch" style={{backgroundColor: opt}} onMouseEnter={() => setToolTipActive(opt)} onMouseLeave={() => setToolTipActive(false)} onClick={e => handleChange(opt)}></div>
+                    {toolTipActive === opt && (
+                      <div onMouseEnter={() => setToolTipActive(opt)} onMouseLeave={() => setToolTipActive(false)} className="color-swatch-tool-tip">{opt}</div>
+                    )}
+                  </div>
+                )
+              }
+              if (value !== "Size" || value !== "Width" || value !== "Color") {
                 return (
                   <div key={opt} className="dropdown-checkbox-container">
                     <input id={opt} type="checkbox" value={opt} className="dropdown-option" onChange={e => handleChange(opt)} checked={active} />

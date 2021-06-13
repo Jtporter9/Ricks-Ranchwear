@@ -89,10 +89,11 @@ export const WomensPageQuery = graphql`
           url
         }
         images {
-          url_thumbnail
           url_standard
+          url_thumbnail
           description
           is_thumbnail
+          sort_order
           url_zoom
         }
         variants {
