@@ -1,4 +1,8 @@
 .product-page {
+    .container {
+        margin-top: 3em;
+    }
+
     .hero {
         display: flex;
         justify-content: center;
@@ -21,6 +25,31 @@
             bottom: 0;
             background-color: rgba(0,0,0,0.2);
             z-index: 990;
+        }
+
+
+        .stores-link-banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: -3em;
+            height: 3em;
+            width: 100%;
+            background-color: $functional-lightest;
+
+            svg {
+                margin-right: 1em;
+                width: 2em;
+            }
+            p {
+                font-size: 0.8em;
+                font-weight: 400;
+
+                a {
+                    color: $rock-dark;
+                }
+            }
         }
     }
     
@@ -437,6 +466,11 @@
                 padding: .5rem;
                 background: $functional-darkest
             }
+            .stores-link-banner {
+                svg {
+                    width: 1.5em;
+                }
+            }
         }
         .products-container {
             .products-header .products-header-split {
@@ -454,6 +488,18 @@
 
 @media (max-width: $mobile-bp) {
     .product-page {
+        .hero {
+            .stores-link-banner {
+                padding: 0 2em;
+
+                svg {
+                    width: 3em;
+                }
+                p {
+                    font-size: 0.5em;
+                }
+            }
+        }
         .products-container {
             .products-header {
                 .filter-drop-down {

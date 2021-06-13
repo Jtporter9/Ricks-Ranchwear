@@ -16,6 +16,7 @@ import groupedBoots from '../../assets/grouped-boots.svg';
 import CloseIcon from '../../assets/close-icon.svg';
 import CloseIconWhite from '../../assets/close-icon-white.svg';
 import { number } from 'prop-types';
+import StoreSvg from "src/assets/StoreSvg";
 
 export default function ProductPageContainer({
     image,
@@ -252,6 +253,11 @@ export default function ProductPageContainer({
                 <h2 className="hero-title">
                     {title}
                 </h2>
+
+                <div className="stores-link-banner">
+                    <StoreSvg stroke="#333"/>
+                    <p>Visit <Link to="/stores">our retail stores</Link> for an expanded selection of styles and brands!</p>
+                </div>
             </div>
             <section id="products-container" className="products-container">
                 <div className="container">
