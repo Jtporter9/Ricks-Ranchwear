@@ -469,7 +469,7 @@ export default function ProductPageContainer({
                         </div>
                         <div className={`bc-product-grid bc-product-grid--archive ${isMobileView ? 'bc-product-grid--4col' : 'bc-product-grid--3col'}`}>
                             {filteredProducts && filteredProducts.map(product => (
-                                <ProductCard key={product.id} product={product} />
+                                <ProductCard key={product.id} product={product} topSelling={false} />
                             ))}
                         </div>
                     </div>

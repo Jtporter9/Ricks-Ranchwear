@@ -11,7 +11,7 @@ export default function TopSelling({ products }) {
                 {
                     products.map((product, i) => {
                         product.images.length === 0 && topSellingLength++
-                        return i < topSellingLength && product.images.length !== 0 && <ProductCard key={product.id} product={product} />
+                        return i < topSellingLength && product.images.length !== 0 && <ProductCard key={product.id} product={product} topSelling={true} />
                     })
                 }
             </div>

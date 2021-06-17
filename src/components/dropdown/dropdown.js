@@ -59,17 +59,17 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
               //         </li>
               //       )
               // }
-              if (value === "Color") {
-                return (
-                  <div key={opt} style={{position: 'relative'}} className="dropdown-checkbox-container">
-                    <div className="color-swatch" style={{backgroundColor: opt}} onMouseEnter={() => setToolTipActive(opt)} onMouseLeave={() => setToolTipActive(false)} onClick={e => handleChange(opt)}></div>
-                    {toolTipActive === opt && (
-                      <div onMouseEnter={() => setToolTipActive(opt)} onMouseLeave={() => setToolTipActive(false)} className="color-swatch-tool-tip">{opt}</div>
-                    )}
-                  </div>
-                )
-              }
-              if (value !== "Size" || value !== "Width" || value !== "Color") {
+              // if (value === "Color") {
+              //   return (
+              //     <div key={opt} style={{position: 'relative'}} className="dropdown-checkbox-container">
+              //       <div className="color-swatch" style={{backgroundColor: opt}} onMouseEnter={() => setToolTipActive(opt)} onMouseLeave={() => setToolTipActive(false)} onClick={e => handleChange(opt)}></div>
+              //       {toolTipActive === opt && (
+              //         <div onMouseEnter={() => setToolTipActive(opt)} onMouseLeave={() => setToolTipActive(false)} className="color-swatch-tool-tip">{opt}</div>
+              //       )}
+              //     </div>
+              //   )
+              // }
+              if (value !== "Size" || value !== "Width") {
                 return (
                   <div key={opt} className="dropdown-checkbox-container">
                     <input id={opt} type="checkbox" value={opt} className="dropdown-option" onChange={e => handleChange(opt)} checked={active} />

@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import AddToCartButton from './AddToCartButton';
 import ProductPrices from './ProductPrices';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, topSelling = false }) => {
   const { images } = product;
 
   const [defaultImage, setDefaultImage] = useState(findDefaultImage());
@@ -55,19 +55,21 @@ function findDefaultImage() {
 
         <ProductPrices product={product} />
       </div>
-
-      <div className="product-card-image-options">
-        {imageOptions.map((img, i) => (
-          <img
-            height="100px"
-            width="100px"
-            src={img.url_thumbnail}
-            alt="Thumb"
-            key={JSON.stringify(img)}
-            onClick={() => setDefaultImage(img.url_standard)}
-          />
-        ))}
-      </div>
+      
+      {!topSelling && imageOptions.length > 1 && (
+        <div className="product-card-image-options">
+          {imageOptions.map((img, i) => (
+            <img
+              height="100px"
+              width="100px"
+              src={img.url_thumbnail}
+              alt="Thumb"
+              key={JSON.stringify(img)}
+              onClick={() => setDefaultImage(img.url_standard)}
+            />
+          ))}
+        </div>
+      )}
 
       {/* <AddToCartButton
           productId={product.variants[0].product_id}
