@@ -197,9 +197,9 @@ export default (context) => {
     // SELECTS VARIANT WHEN COLOR, WIDTH, AND SIZE ARE SET
     (activeSize && activeWidth) && getProductVariant();
     // UPDATE SIDE PHOTOS
-    activeColor && (activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor()))
+    (activeColor && activeImagesByColor.length) && (activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor()));
     // UPDATE MAIN IMAGE
-    activeImagesByColor[0].description ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
+      (activeImagesByColor.length && activeImagesByColor[0].description) ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
   }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage]);
 
   return (
