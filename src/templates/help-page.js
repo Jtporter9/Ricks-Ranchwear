@@ -133,9 +133,6 @@ export const HelpPageTemplate = ({
             <p>
               <strong>Returns on unworn boots</strong> - $15 return shipping cost per 3 pairs of boots (or free in-store).
             </p>
-            <p>
-              <strong>Exchanges on unworn boots</strong> - $12 exchange fee per 1 pair of boots or $30 per 3 pairs. (or free in-store).
-            </p>
           </div>
         </div>
       </section>
@@ -151,6 +148,12 @@ export const HelpPageTemplate = ({
             <h3>Exchanges</h3>
             <p>
               Did you order something, but don’t like the style or the way it fits? We are happy to exchange unworn footwear for up to 90 days from the date of purchase. We charge a flat exchange rate of $12 per pair to cover the cost of return shipping and shipping out the new pair. If you want to exchange all 3 pairs, we can reduce this fee to $30 total (it costs us less per pair when we ship in bulk). Please contact us and we can provide you a return shipping label for your exchange. Alternatively, feel free to make exchanges at one of our retail stores and avoid the exchange shipping fee.            </p>
+          </div>
+          <div className="info-block">
+            <h3>Simplified  Policy</h3>
+            <p>
+              <strong>Exchanges on unworn boots</strong> - $12 exchange fee per 1 pair of boots or $30 per 3 pairs. (or free in-store).
+            </p>
           </div>
         </div>
       </section>
