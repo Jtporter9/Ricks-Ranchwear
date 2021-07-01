@@ -320,6 +320,22 @@
                         }
                     }
                 }
+                .video-container {
+                    position: relative;
+                    width: 100%;
+                    height:60vh;
+                    margin: 10px auto;
+
+                    iframe {
+                        position:absolute;
+                        top:0;
+                        left:0;
+                        width:100%;
+                        height:100%;
+                        //width: 100%;
+                        //height: 65vh;
+                    }
+                }
             }
             .collapsible-closed {
                 visibility: hidden;
@@ -415,6 +431,15 @@
                 }
             }
         }
+        .product-details-container {
+            .collapsible {
+                .collapsible-details-container {
+                    .video-container {
+                        height: 40vh;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -433,9 +458,14 @@
                     }
                 }
             }
-            .product-details-container {
-                .collapsible {
-                    padding: 1rem 0;
+        }
+        .product-details-container {
+            .collapsible {
+                padding: 1rem 0;
+                .collapsible-details-container {
+                    .video-container {
+                        height: 25vh;
+                    }
                 }
             }
         }

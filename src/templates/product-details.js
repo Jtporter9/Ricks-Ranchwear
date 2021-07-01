@@ -348,7 +348,7 @@ export default (context) => {
         <section className="section container">
           <div className="product-details-container">
 
-            <ProductDetailsCollapsible title="Description" description={description} custom_fields={custom_fields} />
+            <ProductDetailsCollapsible title="Description" description={description} custom_fields={custom_fields} showVideo={true}/>
             <ProductDetailsCollapsible title="Features" description={description} custom_fields={custom_fields} />
             <ProductDetailsCollapsible title="Shipping and Returns" description={description} custom_fields={custom_fields} />
 

@@ -5,8 +5,7 @@ import { Link } from 'gatsby'
 import closeCollapsible from '../../assets/close-collapsible.svg';
 import openCollapsible from '../../assets/open-collapsible.svg';
 
-export default function ProductDetailsCollapsible(props) {
-    const { title, description, custom_fields } = props;
+export default function ProductDetailsCollapsible({ custom_fields, description, showVideo, title }) {
     const [activeCollapsible, setActiveCollapsible] = useState(true);
 
     return (
@@ -19,10 +18,21 @@ export default function ProductDetailsCollapsible(props) {
                 <div className="collapsible-details-container">
                     {/* DESCRIPTION  */}
                     {title === 'Description' && (
+                      <>
                         <div
                             className="field-detail"
                             dangerouslySetInnerHTML={{ __html: description }}>
                         </div>
+                        {showVideo && (
+                          <div className="video-container">
+                            <iframe
+                              src="https://player.vimeo.com/video/443964200"
+                              frameBorder="0"
+                              allow="autoplay; fullscreen; picture-in-picture"
+                              allowFullScreen/>
+                          </div>
+                        )}
+                        </>
                     )}
                     {title === 'Description' && custom_fields.map((field, i) => (
                         field.name === 'Style Number' && <div className="field-detail" key={i}><strong>{field.name}:</strong> <span>{field.value}</span></div>
