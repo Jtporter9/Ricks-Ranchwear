@@ -98,6 +98,7 @@ export default (context) => {
   const [activeInfoModal, setActiveInfoModal] = useState(false);
   const [activeSizeChart, setActiveSizeChart] = useState(false);
   const [filteredInventory, setFilteredInventory] = useState([]);
+  const [isWidthPresent, setIsWidthPresent] = useState(false);
   const [activeVariantMessages, setActiveVariantMessages] = useState({
     width: "",
     size: ""
@@ -151,7 +152,7 @@ export default (context) => {
       //   (option.label === activeSize) && sizesInStock.push(variant);
       // }))
       activeColor && setFilteredInventory(colorsInStock);
-      (activeWidth && activeColor) && setFilteredInventory(widthsInStock);
+      isWidthPresent && (activeWidth && activeColor) && setFilteredInventory(widthsInStock);
       // (activeSize && activeWidth && activeColor) && setFilteredInventory(sizesInStock);
     } else {
       setFilteredInventory(variants)
@@ -170,12 +171,13 @@ export default (context) => {
         }
         if (option.option_display_name === 'Width' && option.label === activeWidth) {
           widthMatch = true;
+          setIsWidthPresent(true);
         }
         if (option.option_display_name === 'Size' && option.label === activeSize) {
           sizeMatch = true;
         }
       })
-      colorMatch && widthMatch && sizeMatch && setActiveVariant(variant);
+      colorMatch && sizeMatch && setActiveVariant(variant)
     })
   };
 
@@ -200,8 +202,8 @@ export default (context) => {
     (activeColor && activeImagesByColor.length) && (activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor()));
     // UPDATE MAIN IMAGE
       (activeImagesByColor.length && activeImagesByColor[0].description) ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
-  }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage]);
-
+  }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage, isWidthPresent]);
+  
   return (
     <Layout>
       <div className="product-details">
@@ -308,7 +310,7 @@ export default (context) => {
                         }
                       }
                     }
-                    // console.log(1, inventoryStatus);
+
                     return (
                       <button
                         style={{ minWidth: size.length <= 4 ? '66px' : '120px' }}
