@@ -4,7 +4,7 @@ import PriceContext from '../../context/PriceProvider';
 
 const currencyCode = 'USD'; // TODO: Move this to use settings merchant sets up in BigCommerce (v2 Currencies API)
 
-const ProductPrices = ({ product }) => {
+const ProductPrices = ({ product, variantPrice = null }) => {
   const prices = useContext(PriceContext);
   // TODO: Why is this not getting all prices, and just some
   const latestProduct =
@@ -15,7 +15,6 @@ const ProductPrices = ({ product }) => {
           calculated_price: null,
           sale_price: null
         };
-
   return (
     <div className="bc-product__pricing initialized">
       {product.sale_price !== 0 ? (
@@ -38,7 +37,7 @@ const ProductPrices = ({ product }) => {
           <span className="price-node bc-product-price bc-product__price--base bc-show-current-price">
             <CurrencyFormatter
               currency={currencyCode}
-              amount={product.calculated_price}
+              amount={variantPrice !== null ? variantPrice : product.calculated_price}
             />
           </span>
         </p>

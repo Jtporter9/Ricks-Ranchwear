@@ -238,7 +238,7 @@ export default (context) => {
                   <span className="brand-name">{brandName}</span>
                   <h1>{name}</h1>
                 </div>
-                <ProductPrices product={product} />
+                <ProductPrices product={product} variantPrice={activeVariant.price} />
               </div>
             </div>
 
@@ -248,7 +248,7 @@ export default (context) => {
                   <span>{brandName}</span>
                   <h1>{name}</h1>
                 </div>
-                <ProductPrices product={product} />
+              <ProductPrices product={product} variantPrice={activeVariant.price} />
               </div>
 
               {colorOptions.length > 0 && (
@@ -404,6 +404,7 @@ export const query = graphql`
           }
           sku
           inventory_level
+          price
         }
         custom_fields {
           id
