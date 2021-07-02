@@ -129,7 +129,7 @@ const StandardItems = props => {
               /> */}
               <div className="bc-product__pricing--api bc-product__pricing--visible">
                 {console.log(item.originalPrice, item.sale_price)}
-                {(item.originalPrice !== item.sale_price && item.sale_price !== 0) && (
+                {(item.originalPrice !== item.sale_price && item.sale_price !== 0) && item.originalPrice > item.sale_price && (
                   <p className="original-price-node bc-product__original-price bc-show-current-price">
                     <CurrencyFormatter
                       currency={props.currency.code}
