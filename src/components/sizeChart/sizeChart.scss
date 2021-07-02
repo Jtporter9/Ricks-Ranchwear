@@ -9,16 +9,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    //.margin-block {
+    //    display: block;
+    //    width: 100%;
+    //    height: 1px;
+    //    margin: 2.5rem 0;
+    //}
     .size-chart-modal {
         background-color: $white;
-        padding: 3rem 2rem;
+        padding: 0 2rem 3rem 2rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        height: 95%;
+        min-width: 55%;
         margin: 0 10%;
         overflow-y: scroll;
         overflow-x: hidden;
-        padding-top: 0;
         .size-chart-head {
             display: flex;
             justify-content: space-between;
@@ -34,6 +41,22 @@
             img {
                 cursor: pointer;
                 padding: 2rem 0;
+            }
+        }
+        .chart-switcher {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            p {
+                margin: 0 10px;
+                font-size: 25px;
+                font-weight: 400;
+                color: $functional-dark;
+                cursor: pointer;
+            }
+            p.active {
+                color: $functional-darkest;
+                border-bottom: 2px solid $red-mid;
             }
         }
         table {
@@ -55,6 +78,9 @@
             
             tbody {
                 text-align: center;
+                tr td.inches-display {
+                    width: 10rem;
+                }
                 tr:nth-child(even) {
                     background-color: $functional-lightest;
                 }
@@ -98,6 +124,7 @@
     .size-chart-modal-opaque-background {
         .size-chart-modal {
             width: 100%;
+            height: 100%;
             margin: 0;
             table {
                 thead {
