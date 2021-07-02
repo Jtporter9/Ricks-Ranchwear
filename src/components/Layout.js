@@ -91,9 +91,9 @@ const TemplateWrapper = ({ children }) => {
       <Header />
       <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
       {/* {console.log(cookies.allowCookies && activeEmailSubscriptionModal && cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && !cookies.emailSubscriptionExpiration)} */}
-      {cookies.allowCookies && activeEmailSubscriptionModal && cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && !cookies.emailSubscriptionExpiration && (
+      {/* {cookies.allowCookies && activeEmailSubscriptionModal && cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && !cookies.emailSubscriptionExpiration && (
         <EmailSubscriptionModal toggleModal={v => setActiveEmailSubscriptionModal(v)} />
-      )}
+      )} */}
       <Footer />
     </div>
   );
