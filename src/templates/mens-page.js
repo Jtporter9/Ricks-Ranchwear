@@ -19,6 +19,7 @@ export const MensPageTemplate = ({
     description={description}
     products={products}
     brands={brands}
+    pageCategory={"mens"}
   />
 );
 

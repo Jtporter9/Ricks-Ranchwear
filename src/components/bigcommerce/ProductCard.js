@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import AddToCartButton from './AddToCartButton';
 import ProductPrices from './ProductPrices';
 
-const ProductCard = ({ product, topSelling = false }) => {
+const ProductCard = ({ product, topSelling = false, pageCategory = "mens" }) => {
   const { images } = product;
 
   const [defaultImage, setDefaultImage] = useState(findDefaultImage());
@@ -32,9 +32,11 @@ function findDefaultImage() {
     return imagesByColor;
   }
 
+  const customUrl = `/products${product.custom_url.url}?pageCategory=${pageCategory}`
+
   return (
     <div className="bc-product-card">
-      <Link to={`/products${product.custom_url.url}`} className="bc-product-card-image-anchor" title={product.name}>
+      <Link to={customUrl} className="bc-product-card-image-anchor" title={product.name}>
         <div className="bc-product-card__featured-image">
           <img
             className="attachment-bc-medium size-bc-medium"
@@ -50,7 +52,7 @@ function findDefaultImage() {
       <div className="bc-product__meta">
         <span className="brand-name">{product.brand.name}</span>
         <h3 className="bc-product__title">
-          <Link to={`/products${product.custom_url.url}`} className="bc-product__title-link" title={product.name}>{product.name}</Link>
+          <Link to={customUrl} className="bc-product__title-link" title={product.name}>{product.name}</Link>
         </h3>
 
         <ProductPrices product={product} />

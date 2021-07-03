@@ -24,7 +24,8 @@ export default function ProductPageContainer({
     heading,
     description,
     products,
-    brands
+    brands,
+    pageCategory,
 }) {
     const location = useLocation();
     function getJsonFromUrl(url) {
@@ -469,7 +470,12 @@ export default function ProductPageContainer({
                         </div>
                         <div className={`bc-product-grid bc-product-grid--archive ${isMobileView ? 'bc-product-grid--4col' : 'bc-product-grid--3col'}`}>
                             {filteredProducts && filteredProducts.map(product => (
-                                <ProductCard key={product.id} product={product} topSelling={false} />
+                                <ProductCard
+                                  key={product.id}
+                                  product={product}
+                                  topSelling={false}
+                                  pageCategory={pageCategory}
+                                />
                             ))}
                         </div>
                     </div>

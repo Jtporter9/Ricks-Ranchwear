@@ -1,10 +1,15 @@
-
-import React, {useState} from 'react'
+// Node Modules
+import React, {useState} from 'react';
+import { Link } from 'gatsby';
+import { useLocation } from '@reach/router';
+import {parse} from 'query-string';
 
 //ASSESTS
 import CloseIconBlack from '../../assets/close-icon-black.svg';
 
 export default function SizeChart(props) {
+
+    const location = useLocation();
     const { activeSizeChart, setActiveSizeChart, defaultToAdult = true } = props;
 
     const [adultChart, setAdultChart] = useState(defaultToAdult ? true : false);
@@ -145,10 +150,13 @@ export default function SizeChart(props) {
         30.2,
         31,
         31.8
-    ]
+    ];
+
+    const queryStrings = parse(location.search);
 
     return (
         <div>
+            {console.log(queryStrings)}
             { activeSizeChart && (
                 <div className="size-chart-modal-opaque-background">
                     <div className="size-chart-modal">
@@ -175,6 +183,7 @@ export default function SizeChart(props) {
                                     <th>US W</th>
                                     <th>EU</th>
                                     <th>CM</th>
+                                    <th>Shop</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -188,6 +197,9 @@ export default function SizeChart(props) {
                                         <td>{usWomens[i]}</td>
                                         <td>{EU[i]}</td>
                                         <td>{CM[i]}</td>
+                                        <td>
+                                            <Link to={`/${queryStrings.pageCategory}`}>Shop</Link>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
