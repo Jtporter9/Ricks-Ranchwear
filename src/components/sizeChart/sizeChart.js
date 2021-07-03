@@ -198,7 +198,7 @@ export default function SizeChart(props) {
                                         <td>{EU[i]}</td>
                                         <td>{CM[i]}</td>
                                         <td>
-                                            <Link to={`/${queryStrings.pageCategory}`}>Shop</Link>
+                                            <Link to={`/${queryStrings.pageCategory ? queryStrings.pageCategory : "mens"}`}>Shop</Link>
                                         </td>
                                     </tr>
                                 ))}
