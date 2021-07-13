@@ -261,8 +261,10 @@
                       position: absolute;
                       left: 0;
                       top: 0;
-                      width: 1.4em;
-                      height: 1.4em;
+                      right: 0;
+                      bottom: 0;
+                      width: 24px;
+                      height: 24px;
                       border: 1px solid $functional-dark;
                       background: #FFF;
                       &:hover {
