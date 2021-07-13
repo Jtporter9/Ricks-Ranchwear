@@ -23,10 +23,9 @@
             right: 0;
             left: 0;
             bottom: 0;
-            background-color: rgba(0,0,0,0.2);
+            background-color: rgba(0, 0, 0, 0.2);
             z-index: 990;
         }
-
 
         .stores-link-banner {
             display: flex;
@@ -52,7 +51,7 @@
             }
         }
     }
-    
+
     .products-container {
         .products-header {
             display: flex;
@@ -75,7 +74,7 @@
                     color: $functional-dark;
                     background: $white;
                     border: 1px solid $functional-light;
-                    padding: .5rem 1rem;
+                    padding: 0.5rem 1rem;
                     font-size: 16px;
                     -moz-appearance: none;
                     -webkit-appearance: none;
@@ -86,8 +85,9 @@
                     justify-content: space-around;
                     align-items: center;
                     cursor: pointer;
-                    img, span {
-                        padding: 0 .5rem;
+                    img,
+                    span {
+                        padding: 0 0.5rem;
                     }
                 }
             }
@@ -110,7 +110,7 @@
             .products-quick-filter {
                 background: $white;
                 border: 1px solid $functional-light;
-                padding: .5rem 1rem;
+                padding: 0.5rem 1rem;
                 font-size: 16px;
                 -moz-appearance: none;
                 -webkit-appearance: none;
@@ -127,7 +127,6 @@
                     white-space: nowrap;
                 }
             }
-
         }
         .filter-drop-down {
             position: relative;
@@ -143,7 +142,7 @@
                     line-height: 24px;
                     letter-spacing: 0.01em;
                     color: $functional-dark;
-                    padding: .5rem 1rem;
+                    padding: 0.5rem 1rem;
                     text-align: left;
                     cursor: pointer;
                     &:hover {
@@ -182,7 +181,7 @@
                 // flex-wrap: wrap;
             }
             .side-filter-dropdown-container {
-                padding: .5rem 0;
+                padding: 0.5rem 0;
                 .dropdown-option-selected {
                     background-color: $functional-lightest;
                 }
@@ -192,7 +191,7 @@
                     border: 1px solid $functional-light;
                     padding: 8px;
                     font-weight: 500;
-                    margin: .25rem;
+                    margin: 0.25rem;
                     cursor: pointer;
                     min-width: 66px;
                     text-align: center;
@@ -206,19 +205,19 @@
                     span {
                         color: $white;
                     }
-                }             
+                }
 
                 .dropdown-checkbox-container {
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
-                    padding: 0 .5rem;
-                    
+                    padding: 0 0.5rem;
+
                     .color-swatch {
-                        width:40px;
-                        height:40px;
-                        border: 1px solid #C9C9C9;
-                        margin: .5rem 0;
+                        width: 40px;
+                        height: 40px;
+                        border: 1px solid #c9c9c9;
+                        margin: 0.5rem 0;
                         cursor: pointer;
                     }
 
@@ -241,87 +240,97 @@
                     // }
                     [type="checkbox"]:not(:checked),
                     [type="checkbox"]:checked {
-                      position: absolute;
-                      left: 0;
-                      opacity: 0.01;
+                        position: absolute;
+                        left: 0;
+                        opacity: 0.01;
                     }
                     [type="checkbox"]:not(:checked) + label,
                     [type="checkbox"]:checked + label {
-                      position: relative;
-                      padding-left: 2.3em;
-                      font-size: 1.05em;
-                      line-height: 1.7;
-                      cursor: pointer;
+                        position: relative;
+                        padding-left: 2.3em;
+                        font-size: 1.05em;
+                        line-height: 1.7;
+                        cursor: pointer;
                     }
-                  
+
                     /* checkbox aspect */
                     [type="checkbox"]:not(:checked) + label:before,
                     [type="checkbox"]:checked + label:before {
-                      content: '';
-                      position: absolute;
-                      left: 0;
-                      top: 0;
-                      right: 0;
-                      bottom: 0;
-                      width: 24px;
-                      height: 24px;
-                      border: 1px solid $functional-dark;
-                      background: #FFF;
-                      &:hover {
-                        border: 2px solid $functional-dark;
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 24px;
+                        height: 24px;
+                        border: 1px solid $functional-dark;
+                        background: #fff;
+                        &:hover {
+                            border: 2px solid $functional-dark;
                         }
                     }
-                  
+
                     /* checked mark aspect */
                     [type="checkbox"]:not(:checked) + label:after,
                     [type="checkbox"]:checked + label:after {
-                      content: '■';
-                      position: absolute;
-                      top: 11px;
-                      left: -1.5px;
-                      font-size: 3rem;
-                      color: $functional-darkest;
-                      line-height: 0;
-                      -webkit-transition: all .2s;
-                          transition: all .2s;
+                        content: "■";
+                        position: absolute;
+                        top: 11px;
+                        left: -1.5px;
+                        font-size: 3rem;
+                        color: $functional-darkest;
+                        line-height: 0;
+                        -webkit-transition: all 0.2s;
+                        transition: all 0.2s;
                     }
-                  
+
+                    /* Portrait and Landscape */
+                    @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+                        /* checked mark aspect */
+                        [type="checkbox"]:not(:checked) + label:after,
+                        [type="checkbox"]:checked + label:after {
+                            top: 12px;
+                            left: -1px;
+                            font-size: 26px;
+                        }
+                    }
+
                     /* checked mark aspect changes */
                     [type="checkbox"]:not(:checked) + label:after {
-                      opacity: 0;
-                      -webkit-transform: scale(0) rotate(45deg);
-                          transform: scale(0) rotate(45deg);
+                        opacity: 0;
+                        -webkit-transform: scale(0) rotate(45deg);
+                        transform: scale(0) rotate(45deg);
                     }
-                  
+
                     [type="checkbox"]:checked + label:after {
-                      opacity: 1;
-                      -webkit-transform: scale(1) rotate(0);
-                          transform: scale(1) rotate(0);
+                        opacity: 1;
+                        -webkit-transform: scale(1) rotate(0);
+                        transform: scale(1) rotate(0);
                     }
-                  
+
                     /* Disabled checkbox */
                     [type="checkbox"]:disabled:not(:checked) + label:before,
                     [type="checkbox"]:disabled:checked + label:before {
-                      box-shadow: none;
-                      border-color: #c9c9c9;
-                      background-color: #fff;
+                        box-shadow: none;
+                        border-color: #c9c9c9;
+                        background-color: #fff;
                     }
-                  
+
                     [type="checkbox"]:disabled:checked + label:after {
-                      color: $functional-darkest;
+                        color: $functional-darkest;
                     }
-                  
+
                     [type="checkbox"]:disabled + label {
-                      color: #aaa;
+                        color: #aaa;
                     }
-                  
                 }
                 li {
                     color: $functional-dark;
                     font-size: 16px;
                     line-height: 24px;
                     letter-spacing: 0.01em;
-                    padding: .5rem 1rem;
+                    padding: 0.5rem 1rem;
                     cursor: pointer;
                     &:hover {
                         background-color: $functional-lightest;
@@ -344,7 +353,7 @@
                 width: 100%;
                 height: fit-content;
             }
-            .mobile-opaque-background { 
+            .mobile-opaque-background {
                 display: none;
             }
         }
@@ -364,9 +373,9 @@
                 letter-spacing: 0.12em;
                 border-top: 1px solid $functional-light;
                 border-bottom: 1px solid $functional-light;
-                padding: .5rem;
+                padding: 0.5rem;
                 img {
-                    padding: 0 .5rem;
+                    padding: 0 0.5rem;
                 }
             }
             .selected-filters {
@@ -376,14 +385,14 @@
                 padding: 1rem 0;
                 .filter-swatch {
                     margin: 5px;
-                    padding: .5rem;
+                    padding: 0.5rem;
                     border: 1px solid $functional-light;
                     display: flex;
                     align-items: center;
                     background-color: $functional-darkest;
                     img {
                         cursor: pointer;
-                        margin-right: .5rem;
+                        margin-right: 0.5rem;
                     }
                     span {
                         font-weight: normal;
@@ -427,7 +436,7 @@
     .product-card-image-options {
         img {
             width: 40px;
-            margin: .5rem 5px;
+            margin: 0.5rem 5px;
             padding: 0;
             cursor: pointer;
         }
@@ -469,7 +478,7 @@
                     right: 0;
                     left: 0;
                     bottom: 0;
-                    background-color: rgba(0,0,0,0.5);
+                    background-color: rgba(0, 0, 0, 0.5);
                     z-index: 999;
                     &.filter-drawer-open {
                         display: block;
@@ -485,7 +494,7 @@
                     display: flex;
                 }
                 .coupon-banner {
-                    display: none
+                    display: none;
                 }
             }
         }
@@ -497,13 +506,13 @@
         .hero {
             height: 200px;
             justify-content: flex-end;
-            margin-bottom: .5rem;
+            margin-bottom: 0.5rem;
             .hero-title {
                 font-size: 20px;
                 line-height: 24px;
                 letter-spacing: 0.04em;
-                padding: .5rem;
-                background: $functional-darkest
+                padding: 0.5rem;
+                background: $functional-darkest;
             }
             .stores-link-banner {
                 svg {
@@ -519,7 +528,7 @@
                 }
             }
             .products-section {
-                padding: .5rem 0;
+                padding: 0.5rem 0;
             }
         }
     }
@@ -545,15 +554,14 @@
                     width: 100%;
                 }
                 .products-header-split {
-                    .toggle-filters, .products-quick-filter {
+                    .toggle-filters,
+                    .products-quick-filter {
                         width: 100%;
                         margin: 0;
                         max-height: 40px;
                     }
-                }  
-            } 
+                }
+            }
         }
     }
 }
-
-
