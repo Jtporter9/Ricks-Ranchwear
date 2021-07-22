@@ -1583,6 +1583,19 @@ collections:
           - { label: Title, name: title, widget: string }
           - { label: Date, name: date, widget: 'datetime', default: '', format: 'MMM Do YY' }
           - { label: "Body", name: "body", widget: "markdown" }
+      - file: "src/pages/card/balance/index.md"
+        label: "Card Balance"
+        name: "Card Balance"
+        fields:
+          - {
+            label: "Template Key",
+            name: "templateKey",
+            widget: "hidden",
+            default: "card-balance",
+          }
+          - { label: Title, name: title, widget: string }
+          - { label: Date, name: date, widget: 'datetime', default: '', format: 'MMM Do YY' }
+          - { label: "Body", name: "body", widget: "markdown" }
 
 
 
