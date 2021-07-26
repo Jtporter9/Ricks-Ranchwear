@@ -1,0 +1,94 @@
+div.card-balance-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25vh auto 20vh auto;
+  width: 80%;
+  max-width: 320px;
+
+  h1, h3, p {
+    text-align: center;
+  }
+
+  h1, div.balance-wrapper, form {
+    margin-bottom: 15px;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 1.9rem;
+  }
+
+  div.balance-wrapper {
+    display: flex;
+    align-items: center;
+
+    h3, p {
+      color: $functional-dark;
+      font-size: 1.1rem;
+    }
+    h3 {
+      margin-right: 0.5em;
+      font-weight: bold;
+    }
+
+    p {
+      font-weight: 200;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    input, button {
+      height: 45px;
+      width: 100%;
+    }
+
+    label {
+      font-weight: 400;
+      font-size: 0.9rem;
+      align-self: flex-start;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+      padding: 0 0.5rem;
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+      border: 1px solid $functional-dark;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    button {
+      border: none;
+      color: white;
+      background-color: black;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  }
+
+  p.disclaimer-text {
+    font-size: 0.7rem;
+    font-weight: 200;
+    color: $functional-dark;
+  }
+
+  // tablet and down
+  @media (max-width: $tablet-bp) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}

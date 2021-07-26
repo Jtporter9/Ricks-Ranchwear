@@ -1591,7 +1591,7 @@ collections:
             label: "Template Key",
             name: "templateKey",
             widget: "hidden",
-            default: "card-balance",
+            default: "card-balance-page",
           }
           - { label: Title, name: title, widget: string }
           - { label: Date, name: date, widget: 'datetime', default: '', format: 'MMM Do YY' }
