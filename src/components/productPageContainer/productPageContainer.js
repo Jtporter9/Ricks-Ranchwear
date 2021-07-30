@@ -55,11 +55,17 @@ export default function ProductPageContainer({
 
     products.map(product => {
         product.variantsList = []
+        product.variantsList.push(product.brand.name);
         product.variants.map(variant => variant.option_values.map(option => {
             // option.option_display_name === colorKey && colorOptions.push(option.label)
             option.option_display_name === sizeKey && sizeOptions.push(option.label)
             option.option_display_name === widthKey && widthOptions.push(option.label)
-            product.variantsList = [...new Set(findDuplicates([...product.variantsList, option.label]))];
+            if(variant.inventory_level !== 0) {
+                product.variantsList.push(option.label)
+            }
+            else {
+                product.variantsList = [...new Set(findDuplicates(product.variantsList))];
+            }
         }))
         product.custom_fields.map(field => {
             field.name === "Material" && materialOptions.push(field.value)
@@ -111,6 +117,7 @@ export default function ProductPageContainer({
     const [numberOfFilters, setNumberOfFilters] = useState(null);
     const [categoryDropDown, setCategoryDropDown] = useState(true);
     const [params, setParams] = useState(false);
+    const multipleFiltersRef = useRef([]);
 
     function toggleFilterDrawer() {
         setFilterDrawerOpen(!filterDrawerOpen);
@@ -126,18 +133,48 @@ export default function ProductPageContainer({
         }
     };
 
-    function getProductsFilteredByBrand(brands) {
-        if (numberOfFilters > 0 && brands.length === 0) {
-            brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...filteredProducts.filter(product => product.brand.name === brand)]))])) :
-                brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(filteredProducts.filter(product => product.brand.name === brand)))])));
-        } else {
-            brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...products.filter(product => product.brand.name === brand)]))])) :
-                brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(products.filter(product => product.brand.name === brand)))])));
-        }
-    }
+    // function getProductsFilteredByBrand(brands) {
+    //     multipleFiltersRef.current.sort((a, b) => b.type > a.type ? -1 : 1);
+    //     let prev = {};
+    //     let hasMultipleTypes = false; 
+
+    //     if (multipleFiltersRef.current.length > 1) {
+    //         for (let i = 0; i < multipleFiltersRef.current.length; i ++) {
+    //             if (prev.type !== multipleFiltersRef.current[i].type) {
+    //                 hasMultipleTypes = true;
+    //                 break;
+    //             } 
+    //             prev = multipleFiltersRef.current[i];
+    //         }
+    //     } 
+
+    //     if (hasMultipleTypes) {
+    //     // if (numberOfFilters > 0 && brands.length === 0) {
+    //         brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...filteredProducts.filter(product => product.brand.name === brand)]))])) :
+    //             brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(filteredProducts.filter(product => product.brand.name === brand)))])));
+    //     } else {
+    //         brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...products.filter(product => product.brand.name === brand)]))])) :
+    //             brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(products.filter(product => product.brand.name === brand)))])));
+    //     }
+    // }
 
     function getProductsFilteredByVariant(arr) {
-        if (numberOfFilters > 0 && arr.length === 0) {
+        multipleFiltersRef.current.sort((a, b) => b.type > a.type ? -1 : 1);
+        let prev = {};
+        let hasMultipleTypes = false; 
+
+        if (multipleFiltersRef.current.length > 1) {
+            for (let i = 0; i < multipleFiltersRef.current.length; i ++) {
+                if (prev.type !== multipleFiltersRef.current[i].type) {
+                    hasMultipleTypes = true;
+                    break;
+                } 
+                prev = multipleFiltersRef.current[i];
+            }
+        } 
+
+        if (hasMultipleTypes) {
+        // if (numberOfFilters > 0 && arr.length === 0) {
             arr.length > 1 ?
                 arr.map(item => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...filteredProducts.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)]))])) :
                 arr.map(item => setFilteredProducts([...new Set(findDuplicates(filteredProducts.filter(product => product.variantsList.indexOf(item) === -1 ? false : true)))]));
@@ -161,6 +198,10 @@ export default function ProductPageContainer({
 
     function toggleFilter(arr, val, type) {
         if (arr.indexOf(val) === -1) {
+            multipleFiltersRef.current.push({
+                type: type,
+                value: val
+            });
             type === "Brand" && setBrandsFilter([...arr, val]);
             type === "Color" && setColorFilter([...arr, val]);
             type === "Width" && setWidthFilter([...arr, val]);
@@ -170,6 +211,9 @@ export default function ProductPageContainer({
             type === "Style" && setStyleNumberFilter([...arr, val]);
             type === "Feature" && setFeatureFilter([...arr, val]);
         } else {
+            multipleFiltersRef.current.filter(obj => {
+                return obj.value !== val
+            });
             type === "Brand" && setBrandsFilter(arr.filter(a => a !== val));
             type === "Color" && setColorFilter(arr.filter(a => a !== val));
             type === "Width" && setWidthFilter(arr.filter(a => a !== val));
@@ -206,7 +250,7 @@ export default function ProductPageContainer({
         (filter === optionsList[1] && filteredProducts) && filteredProducts.sort((a, b) => (a.price > b.price) ? 1 : -1);
         (filter === optionsList[2] && filteredProducts) && filteredProducts.sort((a, b) => (a.price < b.price) ? 1 : -1);
 
-        brandsFilter.length > 0 && getProductsFilteredByBrand(brandsFilter);
+        brandsFilter.length > 0 && getProductsFilteredByVariant(brandsFilter);
         colorFilter.length > 0 && getProductsFilteredByVariant(colorFilter);
         sizeFilter.length > 0 && getProductsFilteredByVariant(sizeFilter);
         widthFilter.length > 0 && getProductsFilteredByVariant(widthFilter);
