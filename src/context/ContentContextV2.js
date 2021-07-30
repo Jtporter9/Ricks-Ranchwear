@@ -21,26 +21,16 @@ const initialContentState = {};
 
 const ContentContext = React.createContext(initialContentState);
 
-const ContentProvider = ({ value = initialContentState, children, query }) => {
+const ContentProvider = ({ value = initialContentState, children }) => {
   const [contentState, contentDispatch] = React.useReducer(
     contentReducer,
     value
   );
 
-  const [fetchedContent, updateFetchedContent] = useState({});
-
   const setContent = content => contentDispatch({type: contentActions.setContent, payload: content});
 
-    useEffect(async () => {
-      if (query) {
-        const graphCMSContent = await getContent(query);
-        updateFetchedContent(Object.values(graphCMSContent)[0]);
-      }
-    }, []);
-
-
   const structuredValue = {
-    content: query ? {...fetchedContent} : {...contentState},
+    content: {...contentState},
     setContent
   };
 

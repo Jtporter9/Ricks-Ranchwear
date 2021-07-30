@@ -97,6 +97,18 @@ module.exports = {
       }
     },
     {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "GraphCMS",
+        fieldName: "graphCMS",
+        url: process.env.GRAPH_CMS_API_ENDPOINT,
+        // HTTP headers
+        headers: {
+          Authorization: `Bearer ${process.env.GRAPH_CMS_BEARER}`,
+        },
+      },
+    },
+    {
       resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
       options: {
         develop: true, // Activates purging in npm run develop

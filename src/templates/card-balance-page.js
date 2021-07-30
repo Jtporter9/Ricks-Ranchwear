@@ -10,9 +10,6 @@ import CardBalanceForm from "src/components/card/balance/CheckBalanceForm";
 //Contexts
 import {ContentProvider} from '../context/ContentContextV2';
 
-//Services
-import {getContent} from "src/services/graphCmsService";
-
 //Constants
 import graphCmsEntries from "src/consants/graphCmsEntries";
 
@@ -27,24 +24,9 @@ CardBalancePageTemplate.propTypes = {
 };
 
 const CardBalancePage = ({ data }) => {
-
-    const cardBalanceQuery = `
-          cardBalancePage(where: {id: "${graphCmsEntries.cardBalanceEntryId}"}) {
-              cardBalanceHeader
-              cardNumberLabel
-              cardNumberPlaceholder
-              checkBalanceButtonText
-              giftCardDisclaimerText
-              pinLabel
-              pinPlaceholder
-              preFetchedBalanceText
-              yourBalanceText
-          }
-      `
-
   return (
     <Layout>
-      <ContentProvider query={cardBalanceQuery}>
+      <ContentProvider value={data.graphCMS.cardBalancePage}>
         <CardBalancePageTemplate
         />
       </ContentProvider>
@@ -297,6 +279,19 @@ export const pageQuery = graphql`
                         }
                     }
                 }
+            }
+        }
+        graphCMS {
+            cardBalancePage(where: {id: "ckregj5kokfxt0d762849d0oo"}) {
+                cardBalanceHeader
+                cardNumberLabel
+                cardNumberPlaceholder
+                checkBalanceButtonText
+                giftCardDisclaimerText
+                pinLabel
+                pinPlaceholder
+                preFetchedBalanceText
+                yourBalanceText
             }
         }
     }
