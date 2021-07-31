@@ -14,27 +14,9 @@ export default function SizeChart(props) {
 
     const [adultChart, setAdultChart] = useState(defaultToAdult ? true : false);
 
-    const kidSizes = [
-      '3',
-      '3',
-      '4',
-      '4',
-      '4',
-      '5',
-      '5',
-      '5',
-      '6',
-      '6',
-      '6',
-      '7',
-      '7',
-      '7',
-      '8',
-      '8',
-      '8',
-    ];
 
-    const adultSizes = [
+    // Adult size chart variables
+    const adultInches = [
         '9',
         '9',
         '9',
@@ -54,9 +36,7 @@ export default function SizeChart(props) {
         '12'
     ];
 
-    const inches = adultChart ? adultSizes : kidSizes;
-
-    const inchesFraction = [
+    const adultInchesFractions = [
         '1/4',
         '1/2 ',
         '5/8',
@@ -74,8 +54,9 @@ export default function SizeChart(props) {
         '7/8',
         '3/16',
         '1/2'
-    ]
-    const usMens = [
+    ];
+
+    const adultUSMens = [
         6,
         6.5,
         7,
@@ -93,8 +74,9 @@ export default function SizeChart(props) {
         14,
         15,
         16
-    ]
-    const usWomens = [
+    ];
+
+    const adultUSWomens = [
         4,
         4.5,
         5,
@@ -112,8 +94,9 @@ export default function SizeChart(props) {
         11,
         11.5,
         12
-    ]
-    const EU = [
+    ];
+
+    const adultEU = [
         '39',
         '39',
         '40',
@@ -131,7 +114,8 @@ export default function SizeChart(props) {
         '47',
         '48',
         '49'
-    ]
+    ];
+
     const CM = [
         23.5,
         24.1,
@@ -152,11 +136,155 @@ export default function SizeChart(props) {
         31.8
     ];
 
+    // Kids size chart variables
+    const kidsInches = [
+        '3',
+        '3',
+        '4',
+        '4',
+        '4',
+        '5',
+        '5',
+        '5',
+        '6',
+        '6',
+        '6',
+        '7',
+        '7',
+        '7',
+        '8',
+        '8',
+        '8',
+        '9',
+        '9',
+        '9',
+    ];
+
+    const kidsInchesFractions = [
+        '1/2',
+        '3/4 ',
+        '1/8',
+        '1/2',
+        '3/4',
+        '1/8',
+        '1/2',
+        '3/4',
+        '1/8',
+        '1/2',
+        '3/4',
+        '1/8',
+        '1/5',
+        '3/4',
+        '1/8',
+        '5/8',
+        '7/8',
+        '1/4',
+        '5/8',
+        '7/8',
+    ];
+
+    const kidsUSMens = [
+        '1C',
+        '2C',
+        '3C',
+        '4C',
+        '5C',
+        '6C',
+        '7C',
+        '8C',
+        '9C',
+        '10C',
+        '11C',
+        '12C',
+        '13C',
+        '1Y',
+        '2Y',
+        '3Y',
+        '4Y',
+        '5Y',
+        '6Y',
+        '7Y',
+    ];
+
+    const kidsUSWomens = [
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+    ];
+
+    const kidsEU = [
+        '8.9',
+        '9.5',
+        '10.5',
+        '11.4',
+        '12.1',
+        '13',
+        '14',
+        '14.6',
+        '15.6',
+        '16.5',
+        '17.1',
+        '18.1',
+        '19.1',
+        '19.7',
+        '20.6',
+        '21.8',
+        '22.6',
+        '23.5',
+        '24.3',
+        '25.2',
+    ];
+
+    const kidsAge = [
+        '1-3 m',
+        '3-6 m',
+        '6-9 m',
+        '10-12 m',
+        '15-18 m',
+        '1.5-2 y',
+        '2-2.5 y',
+        '3-4 y',
+        '4-4.5 y',
+        '5 y',
+        '5-5.5 y',
+        '5.5-6 y',
+        '7 y',
+        '8 y',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+    ];
+
+    const inches = adultChart ? adultInches : kidsInches;
+    const fractions = adultChart ? adultInchesFractions : kidsInchesFractions;
+    const usMensSizes = adultChart ? adultUSMens : kidsUSMens;
+    const usWomensSizes = adultChart ? adultUSWomens : kidsUSWomens;
+    const EUSizes = adultChart ? adultEU : kidsEU;
+
     const queryStrings = parse(location.search);
 
     return (
         <div>
-            {console.log(queryStrings)}
             { activeSizeChart && (
                 <div className="size-chart-modal-opaque-background">
                     <div className="size-chart-modal">
@@ -182,7 +310,7 @@ export default function SizeChart(props) {
                                     <th>US M</th>
                                     <th>US W</th>
                                     <th>EU</th>
-                                    <th>CM</th>
+                                    <th>{adultChart ? "CM" : "AGE"}</th>
                                     <th>Shop</th>
                                 </tr>
                             </thead>
@@ -190,13 +318,13 @@ export default function SizeChart(props) {
                                 {inches.map((value, i) => (
                                     <tr>
                                         {i % 2 === 0 ?
-                                            <td className="inches-display">{value}<sup>{inchesFraction[i]}</sup></td> :
-                                            <td className="even-dark-background ">{value}<sup>{inchesFraction[i]}</sup></td>
+                                            <td className="inches-display">{value}<sup>{fractions[i]}</sup></td> :
+                                            <td className="even-dark-background ">{value}<sup>{fractions[i]}</sup></td>
                                         }
-                                        <td>{usMens[i]}</td>
-                                        <td>{usWomens[i]}</td>
-                                        <td>{EU[i]}</td>
-                                        <td>{CM[i]}</td>
+                                        <td>{usMensSizes[i]}</td>
+                                        <td>{usWomensSizes[i]}</td>
+                                        <td>{EUSizes[i]}</td>
+                                        <td>{adultChart ? CM[i] : kidsAge[i]}</td>
                                         <td>
                                             <Link to={`/${queryStrings.pageCategory ? queryStrings.pageCategory : "mens"}`}>Shop</Link>
                                         </td>
