@@ -25,12 +25,11 @@ CardBalancePageTemplate.propTypes = {
 
 const CardBalancePage = ({ data }) => {
   return (
-    <Layout>
-      <ContentProvider value={data.graphCMS.cardBalancePage}>
-        <CardBalancePageTemplate
-        />
-      </ContentProvider>
-    </Layout>
+    <ContentProvider value={data.graphCMS.cardBalancePage}>
+      <Layout>
+          <CardBalancePageTemplate />
+      </Layout>
+    </ContentProvider>
   );
 };
 
@@ -292,6 +291,72 @@ export const pageQuery = graphql`
                 pinPlaceholder
                 preFetchedBalanceText
                 yourBalanceText
+                shared {
+                    navbar {
+                        navbarContent {
+                            dropdownIdentifier
+                            sectionHeader
+                            sectionHeaderLink
+                            navbarItems {
+                                itemHeader
+                                navbarSubitems {
+                                    text
+                                    link
+                                }
+                            }
+                        }
+                        mobileHamburgerLogo {
+                            url
+                        }
+                        cartIconBlack {
+                            url
+                        }
+                        cartIconWhite {
+                            url
+                        }
+                        bootFactoryLogo {
+                            url
+                        }
+                        navbarHeaders {
+                            text
+                            link
+                        }
+                        aboutLink {
+                            text
+                            link
+                        }
+                        helpLink {
+                            text
+                            link
+                        }
+                        viewCartText
+                    }
+                    footer {
+                        footerHeader
+                        footerSubHeader
+                        infoLinksHeader
+                        infoLinks {
+                            link
+                            text
+                        }
+                        emailSubscriptionInput {
+                            label
+                            placeholder
+                            errorContent
+                        }
+                        bootFactoryLogos {
+                            url
+                        }
+                        socialMediaLinks {
+                            imageOrAsset {
+                                url
+                            }
+                            link
+                            externalLink
+                        }
+                        copyrightText
+                    }
+                }
             }
         }
     }

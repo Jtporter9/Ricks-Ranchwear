@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useCookies } from 'react-cookie';
 import Footer from './footer/Footer';
+import FooterV2 from './footer/FooterV2';
 import Header from './header/Header';
+import HeaderV2 from './header/HeaderV2';
 import Notify from './bigcommerce/Notify';
-import EmailSubscriptionModal from './emailSubscriptionModal/emailSubscriptionModal';
+import { useLocation } from '@reach/router';
+import {parse} from 'query-string';
 
 import './all.scss';
 import './Layout.css';
@@ -15,9 +18,9 @@ const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
   const [headerHeight, setHeaderHeight] = useState(0)
   const [cookies, setCookie, removeCookie] = useCookies(['password'])
-  const [activeEmailSubscriptionModal, setActiveEmailSubscriptionModal] = useState(true);
-
   const { password } = cookies;
+  const location = useLocation();
+  const queryStrings = parse(location.search);
 
   useEffect(() => {
     const offset = document.getElementById("header").offsetHeight;
@@ -34,7 +37,6 @@ const TemplateWrapper = ({ children }) => {
   function setPassword(e) {
     setCookie('password', e.target.previousSibling.value);
   }
-
 
   return (
     <div>
@@ -88,13 +90,9 @@ const TemplateWrapper = ({ children }) => {
           )}
         </div>
       )}
-      <Header />
+      {(queryStrings.useGraphCMSContent && queryStrings.useGraphCMSContent === "true") ? <HeaderV2 /> : <Header />}
       <div style={{ marginTop: `${headerHeight}px` }}>{children}</div>
-      {/* {console.log(cookies.allowCookies && activeEmailSubscriptionModal && cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && !cookies.emailSubscriptionExpiration)} */}
-      {/* {cookies.allowCookies && activeEmailSubscriptionModal && cookies.siteVisits >= 2 && !cookies.emailSubscriptionSubmitted && !cookies.emailSubscriptionExpiration && (
-        <EmailSubscriptionModal toggleModal={v => setActiveEmailSubscriptionModal(v)} />
-      )} */}
-      <Footer />
+      {(queryStrings.useGraphCMSContent && queryStrings.useGraphCMSContent === "true") ? <FooterV2 /> : <Footer />}
     </div>
   );
 };
