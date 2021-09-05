@@ -9,7 +9,6 @@ export default function NavDropDown({ closeDropDownNav, content }) {
     navbarItems = []
   } = content[0];
 
-
   // Experiment with the structure of the links since some of the store links dont properly work due to the query strings
 
   return (

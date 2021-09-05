@@ -6,8 +6,6 @@ import InfoModal from '../infoModal/infoModal';
 import NavDropDownV2 from '../navDropDown/navDropDownV2';
 import MobileMenuDropDownV2 from '../mobileMenuDropDown/MobileMenuDropDownV2';
 
-import { options } from '../navDropDown/navDropDownOptions';
-
 //ASSESTS
 import groupedBootsWhite from '../../assets/grouped-boots-white.svg';
 import infoIconWhite from '../../assets/info-icon-white.svg';
@@ -19,7 +17,6 @@ import {useContentContext} from "src/context/ContentContextV2";
 const HeaderV2 = () => {
   // STATES
   const [navBarActive, setNavBarActive] = useState(false);
-  const [isSticky, setSticky] = useState(false);
   const [activeInfoModal, setActiveInfoModal] = useState(false);
   const [dropdownNavActive, setDropdownNavActive] = useState(false);
   const [dropdownType, setDropdownType] = useState('');
@@ -43,12 +40,6 @@ const HeaderV2 = () => {
     setDropdownNavActive(false)
   }
 
-  const handleScroll = () => {
-    if (ref.current) {
-      setSticky(ref.current.getBoundingClientRect().top <= 0);
-    }
-  };
-
   const handleClick = e => {
     if (!ref.current.contains(e.target)) {
       setDropdownNavActive(false);
@@ -61,10 +52,6 @@ const HeaderV2 = () => {
     return () => {
       window.removeEventListener('mousedown', handleClick)
     };
-    // window.addEventListener('scroll', handleScroll);
-    // return () => {
-    //   window.removeEventListener('scroll', () => handleScroll);
-    // };
   }, []);
 
   return (
