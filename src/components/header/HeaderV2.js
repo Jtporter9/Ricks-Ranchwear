@@ -126,11 +126,19 @@ const HeaderV2 = () => {
         </div>
         <nav className="desktop-links">
           <div className="desktop-links-inner">
-            {content.shared.navbar.navbarHeaders.map(i => {
+            {content.shared.navbar.desktopHeaders.map(header => {
               const formatDropdownType = string => string.toLowerCase().charAt(0).toUpperCase() + string.slice(1);
               return (
-                <Link key={i.text} to={i.link} className="menu-link" onMouseEnter={() => toggleDropdownNav(formatDropdownType(i.text))}>
-                  {i.text}
+                <Link
+                  key={header.headerLink.text}
+                  to={header.headerLink.link}
+                  className="menu-link"
+                  onMouseEnter={() => {
+                    if(header.hasDropdown){
+                      toggleDropdownNav(formatDropdownType(header.headerLink.text))
+                    }
+                  }}>
+                  {header.headerLink.text}
                 </Link>
               )
             })}

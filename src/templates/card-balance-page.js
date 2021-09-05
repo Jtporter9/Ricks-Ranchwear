@@ -317,9 +317,12 @@ export const pageQuery = graphql`
                         bootFactoryLogo {
                             url
                         }
-                        navbarHeaders {
-                            text
-                            link
+                        desktopHeaders {
+                            hasDropdown
+                            headerLink {
+                                link
+                                text
+                            }
                         }
                         aboutLink {
                             text
