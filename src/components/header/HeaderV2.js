@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'gatsby';
 
 // COMPONENTS
-import InfoModal from '../infoModal/infoModal';
-import NavDropDownV2 from '../navDropDown/navDropDownV2';
-import MobileMenuDropDownV2 from '../mobileMenuDropDown/MobileMenuDropDownV2';
+import InfoModal from 'src/components/infoModal/infoModal';
+import NavDropDownV2 from 'src/components/navDropDown/navDropDownV2';
+import MobileMenuDropDownV2 from 'src/components/mobileMenuDropDown/MobileMenuDropDownV2';
 
 //ASSESTS
 import groupedBootsWhite from '../../assets/grouped-boots-white.svg';
