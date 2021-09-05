@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from 'gatsby';
 
-export default function NavDropDown({ closeDropDownNav, content }) {
-
+const NavDropDown = ({ closeDropDownNav, content }) => {
   const {
     sectionHeader = "",
     sectionHeaderLink = "",
@@ -27,3 +26,5 @@ export default function NavDropDown({ closeDropDownNav, content }) {
     </div>
   )
 }
+
+export default NavDropDown
