@@ -6,7 +6,7 @@ import { Link, graphql } from 'gatsby';
 //Components
 import Layout from '../components/Layout';
 import HomePageContainer from '../components/homePageContainer/homePageContainer'
-import {ContentProvider} from '../context/ContentContext';
+import {ContentProvider} from '../context/ContentContextV2';
 
 export const IndexPageTemplate = ({
   post,
@@ -45,14 +45,14 @@ const IndexPage = ({ data }) => {
   const products = data.allBigCommerceProducts.nodes;
 
   return (
-    <Layout>
-      <ContentProvider value={data.graphCMS.indexPage}>
-        <IndexPageTemplate
-          post={data.allMarkdownRemark.edges[0].node}
-          products={products}
-        />
+    <ContentProvider value={data.graphCMS.indexPage}>
+      <Layout>
+          <IndexPageTemplate
+            post={data.allMarkdownRemark.edges[0].node}
+            products={products}
+          />
+      </Layout>
     </ContentProvider>
-    </Layout>
   );
 };
 
@@ -274,7 +274,7 @@ export const pageQuery = graphql`
                         externalLink
                     }
                     copyrightText
-                 }
+                  }
               }
           }
       }

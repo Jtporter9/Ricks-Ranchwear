@@ -6,13 +6,15 @@ import TopSelling from '../topSelling/topSelling.js';
 import closeIcon from '../../assets/close-icon.svg';
 
 //Context
-import { useContentContext } from 'src/context/ContentContext';
+import { useContentContext } from 'src/context/ContentContextV2';
 
 export default function HomePageContainer({
     products
 }) {
 
-    const content = useContentContext();
+    const {
+        content
+    } = useContentContext();
 
     const {
         heroImage = {},
@@ -45,7 +47,8 @@ export default function HomePageContainer({
         cookiesModalCancelButtonText = "",
         cookiesModalOptOutButtonText = "",
         cookiesModalDisclaimerText = "",
-    } = content || {}
+    } = content || {};
+
     // STATES 
     const [cookies, setCookie, removeCookie] = useCookies([]);
     const [showAlertBanner, setShowAlertBanner] = useState(false);
@@ -180,7 +183,7 @@ export default function HomePageContainer({
                                 <button className="opt-out" onClick={denyCookies}>
                                     {cookiesModalOptOutButtonText}
                                 </button>
-                            </div>                        
+                            </div>
 
                         </div>
                         <p className="email-subscription-sub-text">
