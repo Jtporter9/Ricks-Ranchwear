@@ -9,18 +9,42 @@ import closeIcon from '../../assets/close-icon.svg';
 import { useContentContext } from 'src/context/ContentContext';
 
 export default function HomePageContainer({
-    post,
     products
 }) {
 
     const content = useContentContext();
+
     const {
-        categoryCardsContent = [],
-        dynamicProductContent = {},
-        heroContent = {},
-        introContent = {},
-        storesSectionContent = {},
-        siteCookiesBannerContent = {}
+        heroImage = {},
+        heroBogoBootIcon = {},
+        heroHeaderText = "",
+        heroSubText = "",
+        heroButton = {},
+        bootFactoryLogos = [],
+        newSiteMessageText = "",
+        newSiteSubMessageText = "",
+        newSiteMessageInfoText = "",
+        viewStoresButton = {},
+        categoryCards = [],
+        productHighlightImage = {},
+        productHighlightHeaderText = "",
+        productHighlightBrandText = "",
+        productHighlightDescriptionText = "",
+        productHighlightButton = {},
+        storesHeaderText = "",
+        storesSubHeaderText = "",
+        storesDescriptionText = "",
+        storesButton = {},
+        storeImage = {},
+        cookiesBannerText = "",
+        optOutButtonText = "",
+        acceptButtonText  = "",
+        cookiesModalHeader = "",
+        cookiesModalOptOutText = "",
+        cookiesModalBrowserText = "",
+        cookiesModalCancelButtonText = "",
+        cookiesModalOptOutButtonText = "",
+        cookiesModalDisclaimerText = "",
     } = content || {}
     // STATES 
     const [cookies, setCookie, removeCookie] = useCookies([]);
@@ -40,6 +64,10 @@ export default function HomePageContainer({
         setShowOptOutModal(false);
     }
 
+    const createCookiesText = () => ({
+        __html: cookiesBannerText ? cookiesBannerText : "",
+    })
+
     useEffect(() => {
         !cookies.alertBanner && setShowAlertBanner(true)
     }, [cookies])
@@ -47,16 +75,13 @@ export default function HomePageContainer({
     return (
         <div className="homepage">
             <div className="homepage-hero"
-                style={{
-                    backgroundImage: `url(${!!heroContent.heroImage.image.childImageSharp ? heroContent.heroImage.image.childImageSharp.fluid.src : heroContent.heroImage.image
-                        })`
-                }}>
+                style={{backgroundImage: `url(${heroImage.url})`}}>
                 <div className="opaque-overlay"></div>
                 <div className="hero-content-container">
-                    <img src={heroContent.heroBootsIcon.image.publicURL} alt={heroContent.heroBootsIcon.altText} />
-                    <h1>{heroContent.heroHeading}</h1>
-                    <p>{heroContent.heroSubHeading}</p>
-                    <Link to={heroContent.heroBtn.link}>{heroContent.heroBtn.text}</Link>
+                    <img src={heroBogoBootIcon.url} alt="Bogo boots Icon" />
+                    <h1>{heroHeaderText}</h1>
+                    <p>{heroSubText}</p>
+                    <Link to={heroButton.link}>{heroButton.text}</Link>
                 </div>
             </div>
 
@@ -64,45 +89,49 @@ export default function HomePageContainer({
                 <div className="head">
                     <div className="head-content">
                         <div className="logos-split">
-                            <img style={{ width: '125px' }} src={introContent.logoImage.image.childImageSharp.fluid.src} alt={introContent.logoImage.altText} />
-                            <img style={{ width: '200px' }} src={introContent.bootCountryLogoImage.image.childImageSharp.fluid.src} alt={introContent.bootCountryLogoImage.altText} />
+                            <img
+                              style={{ width: '125px' }}
+                              src={bootFactoryLogos[0].url}
+                              alt="Boot Factory Outlet logo" />
+                            <img
+                              style={{ width: '200px' }}
+                              src={bootFactoryLogos[1].url}
+                              alt="Boot Country logo" />
                         </div>
-                        <h2>{introContent.welcomeHeading}</h2>
-                        <p className="subtitle subtitle_2">{introContent.welcomeSubHeading}</p>
-                        <p className="description">{introContent.introDescription}</p>
-                        <Link to={introContent.viewStoresBtn.link}>{introContent.viewStoresBtn.text}</Link>
+                        <h2>{newSiteMessageText}</h2>
+                        <p className="subtitle subtitle_2">{newSiteSubMessageText}</p>
+                        <p className="description">{newSiteMessageInfoText}</p>
+                        <Link to={viewStoresButton.link}>{viewStoresButton.text}</Link>
                     </div>
                 </div>
                 <div className="lower">
-                    {categoryCardsContent.map((categoryCard, id) => (
-                        <div className="boot-block-card" key={id}>
-                            <Link to={categoryCard.linkBtn.link}>
-                                <img src={categoryCard.categoryImage.image.childImageSharp.fluid.src} alt={categoryCard.categoryImage.altText} />
-                                <div className="boot-block-info-container">
-                                    <h2>{categoryCard.categoryText}</h2>
-                                    <span>{categoryCard.linkBtn.text}</span>
-                                </div>
-                            </Link>
-                        </div>
+                    {categoryCards.length > 0 && categoryCards.map((i, id) => (
+                      <div className="boot-block-card" key={id}>
+                          <Link to={i.cardLink}>
+                              <img src={i.cardImage.url} alt="Product category image" />
+                              <div className="boot-block-info-container">
+                                  <h2>{i.cardHeaderText}</h2>
+                                  <span>{i.cardLinkText}</span>
+                              </div>
+                          </Link>
+                      </div>
                     ))}
                 </div>
             </section>
-
             <section className="homepage-hero-2">
                 <div className="hero-left-image half-hero full-width-image margin-top-0"
-                    style={{
-                        backgroundImage: `url(${dynamicProductContent.productImage.image.childImageSharp.fluid.src})`
-                    }}></div>
+                    style={{backgroundImage: `url(${productHighlightImage.url})`}}></div>
                 <div className="half-hero half-hero-right">
                     <div>
-                        <h2>{dynamicProductContent.heading}</h2>
-                        <p className="subtitle subtitle_2">{dynamicProductContent.subHeading}</p>
-                        <p className="description">{dynamicProductContent.description}</p>
-                        <Link to={dynamicProductContent.linkBtn.link}>{dynamicProductContent.linkBtn.text}</Link>
+                        <h2>{productHighlightHeaderText}</h2>
+                        <p className="subtitle subtitle_2">{productHighlightBrandText}</p>
+                        <p className="description">{productHighlightDescriptionText}</p>
+                        <Link to={productHighlightButton.link}>{productHighlightButton.text}</Link>
                     </div>
                 </div>
             </section>
 
+            {/*FINISH ADDING GRAPHCMS CONTENT*/}
             <section className="container second-content-block">
                 <TopSelling products={products} />
             </section>
@@ -110,23 +139,21 @@ export default function HomePageContainer({
             <section className="homepage-hero-3">
                 <div className="half-hero half-hero-left">
                     <div>
-                        <h2>{storesSectionContent.heading}</h2>
-                        <p className="subtitle subtitle_2">{storesSectionContent.subHeading}</p>
-                        <p className="description">{storesSectionContent.description}</p>
-                        <Link to={storesSectionContent.linkBtn.link}>{storesSectionContent.linkBtn.text}</Link>
+                        <h2>{storesHeaderText}</h2>
+                        <p className="subtitle subtitle_2">{storesSubHeaderText}</p>
+                        <p className="description">{storesDescriptionText}</p>
+                        <Link to={storesButton.link}>{storesButton.text}</Link>
                     </div>
                 </div>
                 <div className="hero-right-image half-hero full-width-image margin-top-0"
-                    style={{
-                        backgroundImage: `url(${storesSectionContent.storeImage.image.childImageSharp.fluid.src})`
-                    }}></div>
+                    style={{backgroundImage: `url(${storeImage.url})`}}></div>
             </section>
             {showAlertBanner && (
                 <div className="alert-banner">
-                    <p>{siteCookiesBannerContent.mainText} <Link to={siteCookiesBannerContent.linkBtn.link}>{siteCookiesBannerContent.linkBtn.text}</Link></p>
+                    <p dangerouslySetInnerHTML={createCookiesText()}></p>
                     <div>
-                        <button className="opt-out" onClick={()=> setShowOptOutModal(true)}>OPT OUT</button>
-                        <button className="accept" onClick={closeAlertBanner}>{siteCookiesBannerContent.closeText}</button>
+                        <button className="opt-out" onClick={()=> setShowOptOutModal(true)}>{optOutButtonText}</button>
+                        <button className="accept" onClick={closeAlertBanner}>{acceptButtonText}</button>
                     </div>
                 </div>
             )
@@ -139,21 +166,26 @@ export default function HomePageContainer({
                             <img src={closeIcon} alt="close" onClick={()=> setShowOptOutModal(false)} />
                         </div>
                         <div>
-                            <h3 style={{marginBottom: '1rem'}}>Cookies Opt Out</h3>
+                            <h3 style={{marginBottom: '1rem'}}>{cookiesModalHeader}</h3>
                             <p style={{marginBottom: '1rem'}} className="email-subscription-description">
-                                The opt out will place a cookie on your computer that is unique to the browser You use to opt out.
+                                {cookiesModalOptOutText}
                             </p>
                             <p style={{marginBottom: '1rem'}} className="email-subscription-description">
-                                If you change browsers or delete the cookies saved by your browser, you will need to opt out again.
+                                {cookiesModalBrowserText}
                             </p>
                             <div className="opt-out-btn-container">
-                                <button className="cancel" onClick={()=> setShowOptOutModal(false)}>CANCEL</button>
-                                <button className="opt-out" onClick={denyCookies}>OPT OUT</button>
+                                <button className="cancel" onClick={()=> setShowOptOutModal(false)}>
+                                    {cookiesModalCancelButtonText}
+                                </button>
+                                <button className="opt-out" onClick={denyCookies}>
+                                    {cookiesModalOptOutButtonText}
+                                </button>
                             </div>                        
 
                         </div>
                         <p className="email-subscription-sub-text">
-                            By opting out you agree to understanding the need to opt out again if you remove the opt out cookie that we use to opt you out.                     </p>
+                            {cookiesModalDisclaimerText}
+                        </p>
                     </div>
                 </div>
             )}
