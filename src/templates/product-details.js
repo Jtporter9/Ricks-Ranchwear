@@ -177,7 +177,7 @@ export default (context) => {
           sizeMatch = true;
         }
       })
-      colorMatch && sizeMatch && setActiveVariant(variant)
+      colorMatch && sizeMatch && widthMatch && setActiveVariant(variant)
     })
   };
 
@@ -329,6 +329,8 @@ export default (context) => {
                   <a className="size-chart-link" onClick={() => setActiveSizeChart(true)}>Size Chart</a>
                 </div>
               </div>
+
+              {console.log(activeVariant.sku, activeVariant.inventory_level)}
 
               <AddToCartButton
                 simulateDisabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
