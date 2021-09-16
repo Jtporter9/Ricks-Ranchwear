@@ -14,11 +14,11 @@ import groupedBoots from '../assets/grouped-boots.svg';
 import infoIcon from '../assets/info-icon.svg';
 import { divide, filter } from 'lodash';
 
-const SelectionTooltip = ({message}) => (
+const SelectionTooltip = ({ message }) => (
   <div className="tooltip-message">
     <p>{message}</p>
-    <span className={"tooltip-message-carrot ttm-carrot-left"}/>
-    <span className={"tooltip-message-carrot ttm-carrot-right"}/>
+    <span className={"tooltip-message-carrot ttm-carrot-left"} />
+    <span className={"tooltip-message-carrot ttm-carrot-right"} />
   </div>
 );
 
@@ -182,8 +182,8 @@ export default (context) => {
   };
 
   const showTooltip = () => {
-    const activeFlags = [{width: activeWidth}, {size: activeSize}];
-    const updatedVariantMessages = {...activeVariantMessages};
+    const activeFlags = [{ width: activeWidth }, { size: activeSize }];
+    const updatedVariantMessages = { ...activeVariantMessages };
     activeFlags.forEach(flag => {
       const flagEntry = Object.entries(flag);
       const key = flagEntry[0][0];
@@ -201,9 +201,26 @@ export default (context) => {
     // UPDATE SIDE PHOTOS
     (activeColor && activeImagesByColor.length) && (activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor()));
     // UPDATE MAIN IMAGE
-      (activeImagesByColor.length && activeImagesByColor[0].description) ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
+    (activeImagesByColor.length && activeImagesByColor[0].description) ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
+    //GETTING REALTIME DATA 
+    fetch(`https://api.bigcommerce.com/stores/${process.env.GATSBY_API_STORE_HASH}/v3/catalog/products/${product.bigcommerce_id}/variants/${activeVariant.id}`, {
+        header: new Headers({
+            'content-type': 'application/json',
+            'accept': 'application/json',
+            'x-auth-client': process.env.GATSBY_API_CLIENT_ID,
+            'x-auth-token': process.env.GATSBY_API_TOKEN,
+            'Access-Control-Allow-Origin': '*'
+        })
+    })
+    .then(data => data.json())
+    .then(data => console.log(2, data))
+    // fetch(`https://randomuser.me/api`)
+    // .then(response => response.json()) // parse JSON from request
+    // .then(resultData => {
+    //   console.log(resultData)
+    // }) // set data for the number of stars
   }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage, isWidthPresent]);
-  
+
   return (
     <Layout>
       <div className="product-details">
@@ -248,7 +265,7 @@ export default (context) => {
                   <span>{brandName}</span>
                   <h1>{name}</h1>
                 </div>
-              <ProductPrices product={product} variantPrice={activeVariant.price} />
+                <ProductPrices product={product} variantPrice={activeVariant.price} />
               </div>
 
               {colorOptions.length > 0 && (
@@ -268,14 +285,14 @@ export default (context) => {
                 <div className="swatch-container">
                   <label>Width</label>
                   <div className="width-swatches">
-                    {activeVariantMessages.width !== "" && <SelectionTooltip message={activeVariantMessages.width}/>}
+                    {activeVariantMessages.width !== "" && <SelectionTooltip message={activeVariantMessages.width} />}
                     {widthOptions.map((width, i) => {
                       return (
                         <button
                           key={i}
                           className={`swatch ${width === activeWidth ? `active-swatch` : ''}`}
                           onClick={() => {
-                            if(activeWidth !== "") {
+                            if (activeWidth !== "") {
                               setActiveSize("");
                             }
                             setActiveVariantMessages({
@@ -296,7 +313,7 @@ export default (context) => {
                 <label>Size</label>
                 {/* TODO: make swatches into a component  */}
                 <div className="size-swatches">
-                  {activeVariantMessages.size !== "" && <SelectionTooltip message={activeVariantMessages.size}/> }
+                  {activeVariantMessages.size !== "" && <SelectionTooltip message={activeVariantMessages.size} />}
                   {sizeOptions.map((size, i) => {
                     let inventoryStatus = true;
                     if (filteredInventory.length > 0) {
@@ -352,7 +369,7 @@ export default (context) => {
         <section className="section container">
           <div className="product-details-container">
 
-            <ProductDetailsCollapsible title="Description" description={description} custom_fields={custom_fields} showVideo={true}/>
+            <ProductDetailsCollapsible title="Description" description={description} custom_fields={custom_fields} showVideo={true} />
             <ProductDetailsCollapsible title="Features" description={description} custom_fields={custom_fields} />
             <ProductDetailsCollapsible title="Shipping and Returns" description={description} custom_fields={custom_fields} />
 
