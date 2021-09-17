@@ -46,14 +46,16 @@ export default (context) => {
     bigcommerce_id,
     description,
     images,
-    name,
+    name = '',
     sku,
     variants,
     weight,
-    brand: { name: brandName },
+    brand = {},
     custom_fields,
     price
   } = product;
+
+  const { name: brandName = '' } = brand;
 
   // FIND PRODUCTS OPTIONS
   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) === index)
@@ -346,8 +348,6 @@ export default (context) => {
                   <a className="size-chart-link" onClick={() => setActiveSizeChart(true)}>Size Chart</a>
                 </div>
               </div>
-
-              {console.log(activeVariant.sku, activeVariant.inventory_level)}
 
               <AddToCartButton
                 simulateDisabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
