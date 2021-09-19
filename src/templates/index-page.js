@@ -5,7 +5,9 @@ import { Link, graphql } from 'gatsby';
 
 //Components
 import Layout from '../components/Layout';
-import HomePageContainer from '../components/homePageContainer/homePageContainer'
+import HomePageContainer from '../components/homePageContainer/homePageContainer';
+
+//Contexts
 import {ContentProvider} from '../context/ContentContextV2';
 
 export const IndexPageTemplate = ({
@@ -275,6 +277,28 @@ export const pageQuery = graphql`
                     }
                     copyrightText
                   }
+                buyOneGetTwoBanner {
+                    buyOneGetTwoText
+                    modalHeader
+                    modalContent
+                    continueButtonText
+                    policiesButton {
+                        text
+                        link
+                    }
+                    bootsIconWhite {
+                        url
+                    }
+                    bootsIconRed {
+                        url
+                    }
+                    infoIconWhite {
+                        url
+                    }
+                    infoIconBlack {
+                        url
+                    }
+                }
               }
           }
       }

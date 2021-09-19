@@ -380,6 +380,7 @@ export default (context) => {
           <TopSelling products={products} />
         </section>
 
+        {/*When adding graphCMS to this page remove the content fallback from this component*/}
         <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
         <SizeChart activeSizeChart={activeSizeChart} setActiveSizeChart={setActiveSizeChart} />
       </div >

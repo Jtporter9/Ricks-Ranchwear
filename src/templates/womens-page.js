@@ -1,8 +1,14 @@
+//Node Modules
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+
+//Components
 import Layout from '../components/Layout';
 import ProductPageContainer from '../components/productPageContainer/productPageContainer.js';
+
+//Contexts
+import {ContentProvider} from '../context/ContentContextV2';
 
 export const WomensPageTemplate = ({
   image,
@@ -46,16 +52,18 @@ const WomensPage = ({ data }) => {
   const brands = data.allBigCommerceBrands.edges;
 
   return (
-    <Layout>
-      <WomensPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        description={frontmatter.description}
-        products={products}
-        brands={brands}
-      />
-    </Layout>
+    <ContentProvider value={data.graphCMS.categoryPage}>
+      <Layout>
+        <WomensPageTemplate
+          image={frontmatter.image}
+          title={frontmatter.title}
+          heading={frontmatter.heading}
+          description={frontmatter.description}
+          products={products}
+          brands={brands}
+        />
+      </Layout>
+    </ContentProvider>
   );
 };
 
@@ -137,5 +145,131 @@ export const WomensPageQuery = graphql`
         }
       }
     }
+    graphCMS {
+        categoryPage(where: {id: "cktmf0v1co68r0b706lgptnm1"}) {
+              pageTitle
+              heroHeaderText
+              heroImage {
+                  url
+              }
+              storeBanner {
+                  bannerText
+                  bannerLink {
+                      text
+                      link
+                  }
+                  bannerStoreIcon {
+                      url
+                  }
+              }
+              filterContent {
+                  filterIcon {
+                      url
+                  }
+                  filterHeaderText
+                  noFiltersSelectedText
+                  clearAllText
+                  categoryOptionText
+                  categoryOptions {
+                      text
+                      link
+                  }
+              }
+              resultsText
+              quickFilters
+              topSellingText
+              shared {
+                  navbar {
+                      navbarContent {
+                          dropdownIdentifier
+                          sectionHeader
+                          sectionHeaderLink
+                          navbarItems {
+                              itemHeader
+                              navbarSubitems {
+                                  text
+                                  link
+                              }
+                          }
+                      }
+                      mobileHamburgerLogo {
+                          url
+                      }
+                      cartIconBlack {
+                          url
+                      }
+                      cartIconWhite {
+                          url
+                      }
+                      bootFactoryLogo {
+                          url
+                      }
+                      desktopHeaders {
+                          hasDropdown
+                          headerLink {
+                              link
+                              text
+                          }
+                      }
+                      aboutLink {
+                          text
+                          link
+                      }
+                      helpLink {
+                          text
+                          link
+                      }
+                      viewCartText
+                  }
+                  footer {
+                      footerHeader
+                      footerSubHeader
+                      infoLinksHeader
+                      infoLinks {
+                          link
+                          text
+                      }
+                      emailSubscriptionInput {
+                          label
+                          placeholder
+                          errorContent
+                      }
+                      bootFactoryLogos {
+                          url
+                      }
+                      socialMediaLinks {
+                          imageOrAsset {
+                              url
+                          }
+                          link
+                          externalLink
+                      }
+                      copyrightText
+                  }
+                  buyOneGetTwoBanner {
+                      buyOneGetTwoText
+                      modalHeader
+                      modalContent
+                      continueButtonText
+                      policiesButton {
+                          text
+                          link
+                      }
+                      bootsIconWhite {
+                          url
+                      }
+                      bootsIconRed {
+                          url
+                      }
+                      infoIconWhite {
+                          url
+                      }
+                      infoIconBlack {
+                          url
+                      }
+                  }
+              }
+          }
+      }
   }
 `;

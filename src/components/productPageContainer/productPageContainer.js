@@ -1,33 +1,30 @@
+//Node Modules
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'gatsby';
+import { useLocation } from '@reach/router';
+
+//Components
 import ProductCard from '../bigcommerce/ProductCard';
 import TopSelling from '../topSelling/topSelling.js';
 import Dropdown from '../dropdown/dropdown.js';
 import InfoModal from '../infoModal/infoModal';
-import { useLocation } from '@reach/router';
+
+//Contexts
+import { useContentContext } from 'src/context/ContentContextV2';
 
 // ASSESTS
-import logo from '../../assets/logo.png';
 import caretDownLight from '../../assets/caret-down-light.svg';
 import caretUpDark from '../../assets/caret-up-dark.svg';
-import filterIcon from '../../assets/filter.svg';
-import infoIcon from '../../assets/info-icon.svg';
-import groupedBoots from '../../assets/grouped-boots.svg';
 import CloseIcon from '../../assets/close-icon.svg';
 import CloseIconWhite from '../../assets/close-icon-white.svg';
-import { number } from 'prop-types';
-import StoreSvg from "src/assets/StoreSvg";
 
-export default function ProductPageContainer({
-    image,
-    title,
-    heading,
-    description,
+const ProductPageContainer = ({
     products,
     brands,
     pageCategory,
-}) {
+}) => {
     const location = useLocation();
+    const {content} = useContentContext()
     function getJsonFromUrl(url) {
         if (!url) url = location.search;
         var query = url.substr(1);
@@ -90,12 +87,12 @@ export default function ProductPageContainer({
     toeStyleOptions = [...new Set(findDuplicates(toeStyleOptions))]; // Unique duplicates
     bootTypeOptions = [...new Set(findDuplicates(bootTypeOptions))]; // Unique duplicates
     featureOptions = [...new Set(findDuplicates(featureOptions))]; // Unique duplicates
-    // styleNumberOptions = [...new Set(findDuplicates(styleNumberOptions))]; // Unique duplicates
     sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
 
     const brandsFiltered = brands.map(obj => obj.node.name);
-    const optionsList = ["Best Selling", "Price: Low to High", "Price: High to Low"];
-    const categoryList = ["Category 1", "Category 2", "Category 3"]
+    // Figure out the issue with quick filters not matching up
+    const optionsList = content.quickFilters || [];
+
     // STATES
     const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
     const [filterDrawerActiveClass, setFilterDrawerActiveClass] = useState('');
@@ -132,31 +129,6 @@ export default function ProductPageContainer({
             setSticky(ref.current.getBoundingClientRect().top <= 0);
         }
     };
-
-    // function getProductsFilteredByBrand(brands) {
-    //     multipleFiltersRef.current.sort((a, b) => b.type > a.type ? -1 : 1);
-    //     let prev = {};
-    //     let hasMultipleTypes = false; 
-
-    //     if (multipleFiltersRef.current.length > 1) {
-    //         for (let i = 0; i < multipleFiltersRef.current.length; i ++) {
-    //             if (prev.type !== multipleFiltersRef.current[i].type) {
-    //                 hasMultipleTypes = true;
-    //                 break;
-    //             } 
-    //             prev = multipleFiltersRef.current[i];
-    //         }
-    //     } 
-
-    //     if (hasMultipleTypes) {
-    //     // if (numberOfFilters > 0 && brands.length === 0) {
-    //         brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...filteredProducts.filter(product => product.brand.name === brand)]))])) :
-    //             brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(filteredProducts.filter(product => product.brand.name === brand)))])));
-    //     } else {
-    //         brands.length > 1 ? brands.map(brand => setFilteredProducts([...new Set(findDuplicates([...filteredProducts, ...products.filter(product => product.brand.name === brand)]))])) :
-    //             brands.map(brand => setFilteredProducts(([...new Set(findDuplicates(products.filter(product => product.brand.name === brand)))])));
-    //     }
-    // }
 
     function getProductsFilteredByVariant(arr) {
         multipleFiltersRef.current.sort((a, b) => b.type > a.type ? -1 : 1);
@@ -291,17 +263,20 @@ export default function ProductPageContainer({
             <div
                 className="hero full-width-image-container margin-top-0"
                 style={{
-                    backgroundImage: `url(${!!image.childImageSharp ? image.childImageSharp.fluid.src : image
-                        })`
+                    backgroundImage: `url(${content.heroImage.url ? content.heroImage.url : ""})`
                 }}>
                 <div className="opaque-overlay"></div>
                 <h2 className="hero-title">
-                    {title}
+                    {content.heroHeaderText}
                 </h2>
 
                 <div className="stores-link-banner">
-                    <StoreSvg stroke="#333"/>
-                    <p>Visit <Link to="/stores">our retail stores</Link> for an expanded selection of styles and brands!</p>
+                    <img src={content.storeBanner.bannerStoreIcon.url} alt="Mobile Filters" />
+                    <p>
+                        {content.storeBanner.bannerText.split("{STORES_LINK}")[0] + " "}
+                        <Link to={content.storeBanner.bannerLink.link}>{content.storeBanner.bannerLink.text}</Link>
+                        {" " + content.storeBanner.bannerText.split("{STORES_LINK}")[1]}
+                    </p>
                 </div>
             </div>
             <section id="products-container" className="products-container">
@@ -309,17 +284,21 @@ export default function ProductPageContainer({
                     <div className="products-header">
                         <div className="products-header-split">
                             <button className="toggle-filters" onClick={toggleFilterDrawer}>
-                                <img src={filterIcon} alt="Mobile Filters" />
-                                <span>Filters {numberOfFilters > 0 && `(${numberOfFilters})`}</span>
+                                <img src={content.filterContent.filterIcon.url} alt="Mobile filter icon" />
+                                <span>
+                                    {content.filterContent.filterHeaderText} {numberOfFilters > 0 && `(${numberOfFilters})`}
+                                </span>
                             </button>
                             <div className="coupon-banner" onClick={() => setActiveInfoModal(true)}>
-                                <img src={groupedBoots} />
-                                <strong>Buy 1 pair, get TWO pair FREE!</strong>
-                                <img src={infoIcon} />
+                                <img src={content.shared.buyOneGetTwoBanner.bootsIconRed.url} alt="Red grouped boots icon"/>
+                                <strong>{content.shared.buyOneGetTwoBanner.buyOneGetTwoText}</strong>
+                                <img src={content.shared.buyOneGetTwoBanner.infoIconBlack.url} alt="Black info icon"/>
                             </div>
                         </div>
                         <div className="products-header-split">
-                            <span className="numbered-products-results">{filteredProducts ? filteredProducts.length : 0} Results</span>
+                            <span className="numbered-products-results">
+                                {filteredProducts ? filteredProducts.length : 0} {content.resultsText}
+                            </span>
                         </div>
                         <div className="products-header-split">
                             <Dropdown
@@ -336,19 +315,19 @@ export default function ProductPageContainer({
                         <div className={`products-filter-container ${filterDrawerActiveClass}`}>
                             <div className={`${isSticky ? ' sticky' : ''}`}>
                                 <div className="products-filter-head">
-                                    <img src={filterIcon} alt="Mobile Menu" />
+                                    <img src={content.filterContent.filterIcon.url} alt="Mobile filter icon" />
                                     <span>Filters</span>
                                 </div>
                                 <div className="selected-filters">
                                     {numberOfFilters < 1 && (
                                         <div style={{ padding: '0 1rem' }}>
-                                            <span>No Filters Selected</span>
+                                            <span>{content.filterContent.noFiltersSelectedText}</span>
                                         </div>
                                     )}
                                     {numberOfFilters > 0 && (
                                         <div className="filter-swatch" style={{ backgroundColor: 'white' }} onClick={clearAllFilters}>
                                             <img src={CloseIcon} alt="Clear All" />
-                                            <span style={{ color: '#767676' }}>Clear All</span>
+                                            <span style={{ color: '#767676' }}>{content.filterContent.clearAllText}</span>
                                         </div>
                                     )}
                                     {brandsFilter && brandsFilter.map((brand, i) => (
@@ -402,28 +381,24 @@ export default function ProductPageContainer({
                                 </div>
                                 <div className="filter-drop-down">
                                     <div className="products-side-filter-head" onClick={() => setCategoryDropDown(!categoryDropDown)}>
-                                        <span className={`${categoryDropDown && 'dropdown-open'}`}>Category</span>
+                                        <span className={`${categoryDropDown && 'dropdown-open'}`}>{content.filterContent.categoryOptionText}</span>
                                         <img src={categoryDropDown ? caretUpDark : caretDownLight} alt="Dropdown" />
                                     </div>
-                                    {categoryDropDown && (
-                                        <ul className="side-filter-dropdown-container">
-                                            <Link to='/mens'>
-                                                <li className="dropdown-option">
-                                                    Mens
-                                                </li>
-                                            </Link>
-                                            <Link to='/womens'>
-                                                <li className="dropdown-option">
-                                                    Womens
-                                                </li>
-                                            </Link>
-                                            <Link to='/kids'>
-                                                <li className="dropdown-option">
-                                                    Kids
-                                                </li>
-                                            </Link>
-                                        </ul>
-                                    )}
+
+                                    <ul className="side-filter-dropdown-container">
+                                        {
+                                            categoryDropDown &&
+                                            content.filterContent.categoryOptions.length > 0 &&
+                                            content.filterContent.categoryOptions.map((option, id) => (
+                                                <Link to={option.link} key={id}>
+                                                    <li className="dropdown-option">
+                                                        {option.text}
+                                                    </li>
+                                                </Link>
+                                                )
+                                            )
+                                        }
+                                    </ul>
                                 </div>
                                 {bootTypeOptions.length > 1 && (
                                     <Dropdown
@@ -524,11 +499,16 @@ export default function ProductPageContainer({
                         </div>
                     </div>
                     <section className="section">
-                        <TopSelling products={products} />
+                        <TopSelling headerText={content.topSellingText} products={products} />
                     </section>
                 </div>
             </section >
-            <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
+            <InfoModal
+              activeInfoModal={activeInfoModal}
+              setActiveInfoModal={setActiveInfoModal}
+              content={content.shared.buyOneGetTwoBanner}/>
         </div >
     )
 }
+
+export default ProductPageContainer;

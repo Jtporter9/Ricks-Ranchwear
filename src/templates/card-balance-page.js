@@ -359,6 +359,28 @@ export const pageQuery = graphql`
                         }
                         copyrightText
                     }
+                    buyOneGetTwoBanner {
+                        buyOneGetTwoText
+                        modalHeader
+                        modalContent
+                        continueButtonText
+                        policiesButton {
+                            text
+                            link
+                        }
+                        bootsIconWhite {
+                            url
+                        }
+                        bootsIconRed {
+                            url
+                        }
+                        infoIconWhite {
+                            url
+                        }
+                        infoIconBlack {
+                            url
+                        }
+                    }
                 }
             }
         }

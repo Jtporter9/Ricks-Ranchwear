@@ -6,10 +6,6 @@ import InfoModal from 'src/components/infoModal/infoModal';
 import NavDropDownV2 from 'src/components/navDropDown/NavDropDownV2';
 import MobileMenuDropDownV2 from 'src/components/mobileMenuDropDown/MobileMenuDropDownV2';
 
-//ASSESTS
-import groupedBootsWhite from '../../assets/grouped-boots-white.svg';
-import infoIconWhite from '../../assets/info-icon-white.svg';
-
 // Contexts
 import CartContext from '../../context/CartProvider';
 import {useContentContext} from "src/context/ContentContextV2";
@@ -57,9 +53,9 @@ const HeaderV2 = () => {
   return (
     <header id="header" className='sticky' ref={ref}>
       <div className="global-announcement-bar" onClick={() => setActiveInfoModal(true)} >
-        <img src={groupedBootsWhite} />
-        <span>Buy 1 pair, get TWO pair FREE!</span>
-        <img src={infoIconWhite} />
+        <img src={content.shared.buyOneGetTwoBanner.bootsIconWhite.url} alt="White grouped boots icon"/>
+        <span>{content.shared.buyOneGetTwoBanner.buyOneGetTwoText}</span>
+        <img src={content.shared.buyOneGetTwoBanner.infoIconWhite.url} alt="White info icon"/>
       </div>
       <div className="navbar-menu" role="navigation" aria-label="main-navigation">
         <div className="logo-container">
@@ -172,7 +168,10 @@ const HeaderV2 = () => {
           )
         }/>
       )}
-      <InfoModal activeInfoModal={activeInfoModal} setActiveInfoModal={setActiveInfoModal} />
+      <InfoModal
+        activeInfoModal={activeInfoModal}
+        setActiveInfoModal={setActiveInfoModal}
+        content={content.shared.buyOneGetTwoBanner}/>
     </header>
   )
 }
