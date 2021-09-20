@@ -24,13 +24,17 @@ const ProductPageContainer = ({
     pageCategory,
 }) => {
     const location = useLocation();
-    const {content} = useContentContext()
+    const {content} = useContentContext();
+
+    // Figure out the issue with quick filters not matching up
+    const optionsList = content.quickFilters.length > 0 ? [...content.quickFilters] : [];
+
     function getJsonFromUrl(url) {
         if (!url) url = location.search;
-        var query = url.substr(1);
-        var result = {};
+        const query = url.substr(1);
+        const result = {};
         query.split("&").forEach(function (part) {
-            var item = part.split("=");
+            const item = part.split("=");
             result[item[0]] = decodeURIComponent(item[1]);
         });
         return result;
@@ -90,8 +94,6 @@ const ProductPageContainer = ({
     sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
 
     const brandsFiltered = brands.map(obj => obj.node.name);
-    // Figure out the issue with quick filters not matching up
-    const optionsList = content.quickFilters || [];
 
     // STATES
     const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);

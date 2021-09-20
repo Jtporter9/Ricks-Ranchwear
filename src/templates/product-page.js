@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
-import ProductPageContainer from '../components/productPageContainer/productPageContainer.js';
 
 export const ProductPageTemplate = ({
   image,

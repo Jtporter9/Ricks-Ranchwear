@@ -1,22 +1,20 @@
+//Node Modules
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+
+//Components
 import Layout from '../components/Layout';
 import ProductPageContainer from '../components/productPageContainer/productPageContainer.js';
 
+//Contexts
+import {ContentProvider} from '../context/ContentContextV2';
+
 export const AccessoriesPageTemplate = ({
-  image,
-  title,
-  heading,
-  description,
   products,
   brands
 }) => (
-  <ProductPageContainer 
-    image={image}
-    title={title}
-    heading={heading}
-    description={description}
+  <ProductPageContainer
     products={products}
     brands={brands}
   />
@@ -31,8 +29,6 @@ AccessoriesPageTemplate.propTypes = {
 };
 
 const AccessoriesPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
   for(let i = 0; i < data.allBigCommerceProducts.nodes.length; i++) {
     for(let j = 0; j < data.allBigCommerceBrands.edges.length; j++) {
       if (data.allBigCommerceProducts.nodes[i].brand_id === data.allBigCommerceBrands.edges[j].node.bigcommerce_id) {
@@ -45,16 +41,14 @@ const AccessoriesPage = ({ data }) => {
   const brands = data.allBigCommerceBrands.edges;
 
   return (
-    <Layout>
-      <AccessoriesPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        description={frontmatter.description}
-        products={products}
-        brands={brands}
-      />
-    </Layout>
+    <ContentProvider value={data.graphCMS.categoryPage}>
+      <Layout>
+        <AccessoriesPageTemplate
+          products={products}
+          brands={brands}
+        />
+      </Layout>
+    </ContentProvider>
   );
 };
 
@@ -72,7 +66,7 @@ AccessoriesPage.propTypes = {
 export default AccessoriesPage;
 
 export const AccessoriesPageQuery = graphql`
-  query AccessoriesPage($id: String!) {
+  query AccessoriesPage {
     allBigCommerceProducts(filter: {categories: {eq: 26}, is_visible: {eq: true}}) {
       nodes {
         id
@@ -121,17 +115,131 @@ export const AccessoriesPageQuery = graphql`
         }
       }
     }
-    markdownRemark(id: { eq: $id }) {
-      frontmatter {
-        title
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
+    graphCMS {
+        categoryPage(where: {id: "ckts7kbk0722p0b745dvt8qn3"}) {
+            pageTitle
+            heroHeaderText
+            heroImage {
+                url
             }
-          }
+            storeBanner {
+                bannerText
+                bannerLink {
+                    text
+                    link
+                }
+                bannerStoreIcon {
+                    url
+                }
+            }
+            filterContent {
+                filterIcon {
+                    url
+                }
+                filterHeaderText
+                noFiltersSelectedText
+                clearAllText
+                categoryOptionText
+                categoryOptions {
+                    text
+                    link
+                }
+            }
+            resultsText
+            quickFilters
+            topSellingText
+            shared {
+                navbar {
+                    navbarContent {
+                        dropdownIdentifier
+                        sectionHeader
+                        sectionHeaderLink
+                        navbarItems {
+                            itemHeader
+                            navbarSubitems {
+                                text
+                                link
+                            }
+                        }
+                    }
+                    mobileHamburgerLogo {
+                        url
+                    }
+                    cartIconBlack {
+                        url
+                    }
+                    cartIconWhite {
+                        url
+                    }
+                    bootFactoryLogo {
+                        url
+                    }
+                    desktopHeaders {
+                        hasDropdown
+                        headerLink {
+                            link
+                            text
+                        }
+                    }
+                    aboutLink {
+                        text
+                        link
+                    }
+                    helpLink {
+                        text
+                        link
+                    }
+                    viewCartText
+                }
+                footer {
+                    footerHeader
+                    footerSubHeader
+                    infoLinksHeader
+                    infoLinks {
+                        link
+                        text
+                    }
+                    emailSubscriptionInput {
+                        label
+                        placeholder
+                        errorContent
+                    }
+                    bootFactoryLogos {
+                        url
+                    }
+                    socialMediaLinks {
+                        imageOrAsset {
+                            url
+                        }
+                        link
+                        externalLink
+                    }
+                    copyrightText
+                }
+                buyOneGetTwoBanner {
+                    buyOneGetTwoText
+                    modalHeader
+                    modalContent
+                    continueButtonText
+                    policiesButton {
+                        text
+                        link
+                    }
+                    bootsIconWhite {
+                        url
+                    }
+                    bootsIconRed {
+                        url
+                    }
+                    infoIconWhite {
+                        url
+                    }
+                    infoIconBlack {
+                        url
+                    }
+                }
+            }
         }
       }
-    }
   }
 `;
