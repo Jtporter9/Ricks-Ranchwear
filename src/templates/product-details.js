@@ -205,6 +205,7 @@ export default (context) => {
     // UPDATE MAIN IMAGE
     (activeImagesByColor.length && activeImagesByColor[0].description) ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
     //GETTING REALTIME DATA 
+    console.log(product.bigcommerce_id, activeVariant.id)
     fetch(`https://api.bigcommerce.com/stores/${process.env.GATSBY_API_STORE_HASH}/v3/catalog/products/${product.bigcommerce_id}/variants/${activeVariant.id}`, {
         header: new Headers({
             'content-type': 'application/json',
