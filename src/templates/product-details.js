@@ -42,6 +42,7 @@ export default (context) => {
     }
   })
 
+  
   const {
     bigcommerce_id,
     description,
@@ -55,6 +56,8 @@ export default (context) => {
     price
   } = product;
 
+  const [activeVariants, setActiveVariants] = useState(variants);
+  
   const { name: brandName = '' } = brand;
 
   // FIND PRODUCTS OPTIONS
@@ -70,7 +73,7 @@ export default (context) => {
   const sizeKey = "Size";
   const widthKey = "Width";
 
-  variants.map(variant => variant.option_values.map(option => {
+  activeVariants.map(variant => variant.option_values.map(option => {
     option.option_display_name === colorKey && colorOptions.push(option.label)
     option.option_display_name === sizeKey && sizeOptions.push(option.label)
     option.option_display_name === widthKey && widthOptions.push(option.label)
@@ -95,7 +98,7 @@ export default (context) => {
   const [activeColor, setActiveColor] = useState(colorOptions.length > 0 ? colorOptions[0] : "");
   const [activeWidth, setActiveWidth] = useState(widthOptions.length === 0 ? true : '');
   const [activeSize, setActiveSize] = useState('');
-  const [activeVariant, setActiveVariant] = useState(variants[0]);
+  const [activeVariant, setActiveVariant] = useState(activeVariants[0]);
   const [activeImagesByColor, setActiveImagesByColor] = useState(() => getActiveImagesByColor());
   const [activeInfoModal, setActiveInfoModal] = useState(false);
   const [activeSizeChart, setActiveSizeChart] = useState(false);
@@ -125,15 +128,15 @@ export default (context) => {
 
   function updateSelectedDetail(type, data) {
     if (type === colorKey) {
-      activeColor !== data && setFilteredInventory(variants);
+      activeColor !== data && setFilteredInventory(activeVariants);
       setActiveColor(data);
     }
     if (type === widthKey) {
-      activeWidth !== data && setFilteredInventory(variants);
+      activeWidth !== data && setFilteredInventory(activeVariants);
       setActiveWidth(data);
     }
     if (type === sizeKey) {
-      activeSize !== data && setFilteredInventory(variants);
+      activeSize !== data && setFilteredInventory(activeVariants);
       setActiveSize(data);
     }
   }
@@ -157,13 +160,13 @@ export default (context) => {
       isWidthPresent && (activeWidth && activeColor) && setFilteredInventory(widthsInStock);
       // (activeSize && activeWidth && activeColor) && setFilteredInventory(sizesInStock);
     } else {
-      setFilteredInventory(variants)
+      setFilteredInventory(activeVariants)
     }
   }
 
   // THIS CAN BE BETTER
   function getProductVariant() {
-    variants.forEach(variant => {
+    activeVariants.forEach(variant => {
       let colorMatch = false;
       let widthMatch = false;
       let sizeMatch = false;
@@ -204,25 +207,16 @@ export default (context) => {
     (activeColor && activeImagesByColor.length) && (activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor()));
     // UPDATE MAIN IMAGE
     (activeImagesByColor.length && activeImagesByColor[0].description) ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
-    //GETTING REALTIME DATA 
-    console.log(product.bigcommerce_id, activeVariant.id)
-    fetch(`https://api.bigcommerce.com/stores/${process.env.GATSBY_API_STORE_HASH}/v3/catalog/products/${product.bigcommerce_id}/variants/${activeVariant.id}`, {
-        header: new Headers({
-            'content-type': 'application/json',
-            'accept': 'application/json',
-            'x-auth-client': process.env.GATSBY_API_CLIENT_ID,
-            'x-auth-token': process.env.GATSBY_API_TOKEN,
-            'Access-Control-Allow-Origin': '*'
-        })
-    })
-    .then(data => data.json())
-    .then(data => console.log(2, data))
-    // fetch(`https://randomuser.me/api`)
-    // .then(response => response.json()) // parse JSON from request
-    // .then(resultData => {
-    //   console.log(resultData)
-    // }) // set data for the number of stars
   }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage, isWidthPresent]);
+
+  useEffect(() => {
+    //GETTING REALTIME DATA 
+    fetch(`/.netlify/functions/bigcommerce?endpoint=product&productId=${product.bigcommerce_id}`, {
+      method: 'GET',
+    })
+      .then(data => data.json())
+      .then(data => setActiveVariants(data.data))
+  }, []);
 
   return (
     <Layout>

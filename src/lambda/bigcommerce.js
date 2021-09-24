@@ -66,6 +66,8 @@ export function handler(event, context, callback) {
       } else {
         return `${ROOT_URL}carts?include=redirect_urls`;
       }
+    } else if (ENDPOINT_QUERY_STRING === 'product') {
+        return `${ROOT_URL}catalog/products/${event.queryStringParameters.productId}/variants`;
     } else {
       return ROOT_URL + ENDPOINT_QUERY_STRING;
     }
