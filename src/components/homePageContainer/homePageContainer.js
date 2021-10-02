@@ -17,27 +17,63 @@ export default function HomePageContainer({
     } = useContentContext();
 
     const {
-        heroImage = {},
-        heroBogoBootIcon = {},
+        heroImage = {
+            url: ""
+        },
+        heroBogoBootIcon = {
+            url: ""
+        },
         heroHeaderText = "",
         heroSubText = "",
-        heroButton = {},
-        bootFactoryLogos = [],
+        heroButton = {
+            link: "",
+            text: ""
+        },
+        bootFactoryLogos = [
+            {
+                url: ""
+            },
+            {
+                url: ""
+            }
+        ],
         newSiteMessageText = "",
         newSiteSubMessageText = "",
         newSiteMessageInfoText = "",
-        viewStoresButton = {},
-        categoryCards = [],
-        productHighlightImage = {},
+        viewStoresButton = {
+            link: "",
+            text: ""
+        },
+        categoryCards = [
+            {
+                cardLink: "",
+                cardImage: {
+                    url: ""
+                },
+                cardHeaderText: "",
+                cardLinkText: ""
+            }
+        ],
+        productHighlightImage = {
+            url: ""
+        },
         productHighlightHeaderText = "",
         productHighlightBrandText = "",
         productHighlightDescriptionText = "",
-        productHighlightButton = {},
+        productHighlightButton = {
+            link: "",
+            text: ""
+        },
         storesHeaderText = "",
         storesSubHeaderText = "",
         storesDescriptionText = "",
-        storesButton = {},
-        storeImage = {},
+        storesButton = {
+            link: "",
+            text: ""
+        },
+        storeImage = {
+            url: ""
+        },
         cookiesBannerText = "",
         optOutButtonText = "",
         acceptButtonText  = "",

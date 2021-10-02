@@ -1,5 +1,5 @@
 //Node Mdoules
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
 
@@ -36,6 +36,7 @@ IndexPageTemplate.propTypes = {
 };
 
 const IndexPage = ({ data }) => {
+  const [content, setContent] = useState({});
   for(let i = 0; i < data.allBigCommerceProducts.nodes.length; i++) {
     for(let j = 0; j < data.allBigCommerceBrands.edges.length; j++) {
       if (data.allBigCommerceProducts.nodes[i].brand_id === data.allBigCommerceBrands.edges[j].node.bigcommerce_id) {
@@ -46,15 +47,30 @@ const IndexPage = ({ data }) => {
   
   const products = data.allBigCommerceProducts.nodes;
 
+  useEffect(() => {
+    fetch(`/.netlify/functions/graphCms?page=homePage`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => setContent(data.data.indexPage))
+      .catch(err => console.log(err));
+  }, []);
+
   return (
-    <ContentProvider value={data.graphCMS.indexPage}>
-      <Layout>
-          <IndexPageTemplate
-            post={data.allMarkdownRemark.edges[0].node}
-            products={products}
-          />
-      </Layout>
-    </ContentProvider>
+    <>
+      {
+        content &&
+        Object.keys(content).length &&
+        <ContentProvider value={content}>
+          <Layout>
+            <IndexPageTemplate
+              post={data.allMarkdownRemark.edges[0].node}
+              products={products}
+            />
+          </Layout>
+        </ContentProvider>
+      }
+    </>
   );
 };
 
@@ -145,162 +161,6 @@ export const pageQuery = graphql`
           }
         }
       }
-    }
-    graphCMS {
-        indexPage(where: {id: "ckrtolstcubny0b61tspdqkgr"}) {
-            heroBogoBootIcon {
-              url
-            }
-            heroButton {
-              text,
-              link,
-              externalLink
-            }
-            heroImage {
-              url
-            }
-            heroHeaderText
-            heroSubText
-            bootFactoryLogos {
-              url
-            }
-            newSiteMessageInfoText
-            newSiteMessageText
-            newSiteSubMessageText
-            viewStoresButton {
-              link
-              text
-            }
-            categoryCards {
-              cardImage {
-                url
-              }
-              cardHeaderText
-              cardLinkText
-              cardLink
-            }
-            productHighlightImage {
-                url
-            }
-            productCardsHeaderText
-            productHighlightBrandText
-            productHighlightDescriptionText
-            productHighlightHeaderText
-            productHighlightButton {
-                link
-                text
-            }
-            storesHeaderText
-            storesSubHeaderText
-            storesDescriptionText
-            storesButton {
-                link
-                text
-            }
-            storeImage {
-                url
-            }
-            cookiesBannerText
-            acceptButtonText
-            optOutButtonText
-            cookiesModalHeader
-            cookiesModalOptOutText
-            cookiesModalBrowserText
-            cookiesModalCancelButtonText
-            cookiesModalOptOutButtonText
-            cookiesModalDisclaimerText
-            shared {
-                navbar {
-                    navbarContent {
-                        dropdownIdentifier
-                        sectionHeader
-                        sectionHeaderLink
-                        navbarItems {
-                            itemHeader
-                            navbarSubitems {
-                                text
-                                link
-                            }
-                        }
-                    }
-                    mobileHamburgerLogo {
-                        url
-                    }
-                    cartIconBlack {
-                        url
-                    }
-                    cartIconWhite {
-                        url
-                    }
-                    bootFactoryLogo {
-                        url
-                    }
-                    desktopHeaders {
-                        hasDropdown
-                        headerLink {
-                            link
-                            text
-                        }
-                    }
-                    aboutLink {
-                        text
-                        link
-                    }
-                    helpLink {
-                        text
-                        link
-                    }
-                    viewCartText
-                }
-                footer {
-                    footerHeader
-                    footerSubHeader
-                    infoLinksHeader
-                    infoLinks {
-                        link
-                        text
-                    }
-                    emailSubscriptionInput {
-                        label
-                        placeholder
-                        errorContent
-                    }
-                    bootFactoryLogos {
-                        url
-                    }
-                    socialMediaLinks {
-                        imageOrAsset {
-                            url
-                        }
-                        link
-                        externalLink
-                    }
-                    copyrightText
-                  }
-                buyOneGetTwoBanner {
-                    buyOneGetTwoText
-                    modalHeader
-                    modalContent
-                    continueButtonText
-                    policiesButton {
-                        text
-                        link
-                    }
-                    bootsIconWhite {
-                        url
-                    }
-                    bootsIconRed {
-                        url
-                    }
-                    infoIconWhite {
-                        url
-                    }
-                    infoIconBlack {
-                        url
-                    }
-                }
-              }
-          }
-      }
+    } 
   }
 `;

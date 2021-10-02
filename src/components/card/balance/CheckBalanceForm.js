@@ -67,7 +67,7 @@ const CardBalanceForm = () => {
       <h1>{cardBalanceHeader}</h1>
       <div className="balance-wrapper">
         <h3>{yourBalanceText}:</h3>
-        <p>{cardBalance.length ? cardBalance : preFetchedBalanceText}</p>
+        <p>{cardBalance.length === 0 ? cardBalance : preFetchedBalanceText}</p>
       </div>
       <form id="cardBalanceForm" onSubmit={onSubmit}>
         <label for="cardNumber">{cardNumberLabel}</label>
