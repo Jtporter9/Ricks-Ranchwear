@@ -1,5 +1,5 @@
 //Node Modules
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
@@ -11,18 +11,10 @@ import ProductPageContainer from '../components/productPageContainer/productPage
 import {ContentProvider} from '../context/ContentContextV2';
 
 export const KidsPageTemplate = ({
-  image,
-  title,
-  heading,
-  description,
   products,
   brands
 }) => (
-  <ProductPageContainer 
-    image={image}
-    title={title}
-    heading={heading}
-    description={description}
+  <ProductPageContainer
     products={products}
     brands={brands}
     pageCategory={"kids"}
@@ -30,15 +22,11 @@ export const KidsPageTemplate = ({
 );
 
 KidsPageTemplate.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
-  heading: PropTypes.string,
-  description: PropTypes.string,
   products: PropTypes.array
 };
 
 const KidsPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
+  const [content, setContent] = useState({});
 
   for(let i = 0; i < data.allBigCommerceProducts.nodes.length; i++) {
     for(let j = 0; j < data.allBigCommerceBrands.edges.length; j++) {
@@ -51,19 +39,30 @@ const KidsPage = ({ data }) => {
   const products = data.allBigCommerceProducts.nodes;
   const brands = data.allBigCommerceBrands.edges;
 
+  useEffect(() => {
+    fetch(`/.netlify/functions/graphCms?page=kidsPage`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => setContent(data.data.categoryPage))
+      .catch(err => console.log(err));
+  }, []);
+
   return (
-    <ContentProvider value={data.graphCMS.categoryPage}>
-      <Layout>
-        <KidsPageTemplate
-          image={frontmatter.image}
-          title={frontmatter.title}
-          heading={frontmatter.heading}
-          description={frontmatter.description}
-          products={products}
-          brands={brands}
-        />
-      </Layout>
-    </ContentProvider>
+    <>
+      {
+        content &&
+        Object.keys(content).length !== 0 &&
+        <ContentProvider value={content}>
+          <Layout>
+            <KidsPageTemplate
+              products={products}
+              brands={brands}
+            />
+          </Layout>
+        </ContentProvider>
+      }
+    </>
   );
 };
 
@@ -149,131 +148,5 @@ export const kidsPageQuery = graphql`
         }
       }
     }
-    graphCMS {
-        categoryPage(where: {id: "cktmfr160o7qw0b70faxh9g6d"}) {
-              pageTitle
-              heroHeaderText
-              heroImage {
-                  url
-              }
-              storeBanner {
-                  bannerText
-                  bannerLink {
-                      text
-                      link
-                  }
-                  bannerStoreIcon {
-                      url
-                  }
-              }
-              filterContent {
-                  filterIcon {
-                      url
-                  }
-                  filterHeaderText
-                  noFiltersSelectedText
-                  clearAllText
-                  categoryOptionText
-                  categoryOptions {
-                      text
-                      link
-                  }
-              }
-              resultsText
-              quickFilters
-              topSellingText
-              shared {
-                  navbar {
-                      navbarContent {
-                          dropdownIdentifier
-                          sectionHeader
-                          sectionHeaderLink
-                          navbarItems {
-                              itemHeader
-                              navbarSubitems {
-                                  text
-                                  link
-                              }
-                          }
-                      }
-                      mobileHamburgerLogo {
-                          url
-                      }
-                      cartIconBlack {
-                          url
-                      }
-                      cartIconWhite {
-                          url
-                      }
-                      bootFactoryLogo {
-                          url
-                      }
-                      desktopHeaders {
-                          hasDropdown
-                          headerLink {
-                              link
-                              text
-                          }
-                      }
-                      aboutLink {
-                          text
-                          link
-                      }
-                      helpLink {
-                          text
-                          link
-                      }
-                      viewCartText
-                  }
-                  footer {
-                      footerHeader
-                      footerSubHeader
-                      infoLinksHeader
-                      infoLinks {
-                          link
-                          text
-                      }
-                      emailSubscriptionInput {
-                          label
-                          placeholder
-                          errorContent
-                      }
-                      bootFactoryLogos {
-                          url
-                      }
-                      socialMediaLinks {
-                          imageOrAsset {
-                              url
-                          }
-                          link
-                          externalLink
-                      }
-                      copyrightText
-                  }
-                  buyOneGetTwoBanner {
-                      buyOneGetTwoText
-                      modalHeader
-                      modalContent
-                      continueButtonText
-                      policiesButton {
-                          text
-                          link
-                      }
-                      bootsIconWhite {
-                          url
-                      }
-                      bootsIconRed {
-                          url
-                      }
-                      infoIconWhite {
-                          url
-                      }
-                      infoIconBlack {
-                          url
-                      }
-                  }
-              }
-          }
-      }
   }
 `;

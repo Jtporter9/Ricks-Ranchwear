@@ -35,7 +35,7 @@ const CardBalancePage = ({ data }) => {
     <>
         {
             content &&
-            Object.keys(content).length &&
+            Object.keys(content).length !== 0 &&
             <ContentProvider value={content}>
                 <Layout>
                     <CardBalancePageTemplate />

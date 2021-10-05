@@ -1,5 +1,5 @@
 //Node Modules
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
@@ -30,6 +30,8 @@ MensPageTemplate.propTypes = {
 };
 
 const MensPage = ({ data }) => {
+  const [content, setContent] = useState({});
+
   for(let i = 0; i < data.allBigCommerceProducts.nodes.length; i++) {
     for(let j = 0; j < data.allBigCommerceBrands.edges.length; j++) {
       if (data.allBigCommerceProducts.nodes[i].brand_id === data.allBigCommerceBrands.edges[j].node.bigcommerce_id) {
@@ -41,15 +43,30 @@ const MensPage = ({ data }) => {
   const products = data.allBigCommerceProducts.nodes;
   const brands = data.allBigCommerceBrands.edges;
 
+  useEffect(() => {
+    fetch(`/.netlify/functions/graphCms?page=mensPage`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => setContent(data.data.categoryPage))
+      .catch(err => console.log(err));
+  }, []);
+
   return (
-    <ContentProvider value={data.graphCMS.categoryPage}>
-      <Layout>
-        <MensPageTemplate
-          products={products}
-          brands={brands}
-        />
-      </Layout>
-      </ContentProvider>
+    <>
+      {
+        content &&
+        Object.keys(content).length !== 0 &&
+        <ContentProvider value={content}>
+          <Layout>
+            <MensPageTemplate
+              products={products}
+              brands={brands}
+            />
+          </Layout>
+        </ContentProvider>
+      }
+    </>
   );
 };
 
@@ -121,131 +138,5 @@ export const mensPageQuery = graphql`
         }
       }
     }
-    graphCMS {
-      categoryPage(where: {id: "cktjlwr205i4g0a20iyuvh3ef"}) {
-        pageTitle
-        heroHeaderText
-        heroImage {
-            url
-        }
-        storeBanner {
-            bannerText
-            bannerLink {
-                text
-                link
-            }
-            bannerStoreIcon {
-                url
-            }
-        }
-        filterContent {
-            filterIcon {
-                url
-            }
-            filterHeaderText
-            noFiltersSelectedText
-            clearAllText
-            categoryOptionText
-            categoryOptions {
-                text
-                link
-            }
-        }
-        resultsText
-        quickFilters
-        topSellingText
-        shared {
-            navbar {
-                navbarContent {
-                    dropdownIdentifier
-                    sectionHeader
-                    sectionHeaderLink
-                    navbarItems {
-                        itemHeader
-                        navbarSubitems {
-                            text
-                            link
-                        }
-                    }
-                }
-                mobileHamburgerLogo {
-                    url
-                }
-                cartIconBlack {
-                    url
-                }
-                cartIconWhite {
-                    url
-                }
-                bootFactoryLogo {
-                    url
-                }
-                desktopHeaders {
-                    hasDropdown
-                    headerLink {
-                        link
-                        text
-                    }
-                }
-                aboutLink {
-                    text
-                    link
-                }
-                helpLink {
-                    text
-                    link
-                }
-                viewCartText
-            }
-            footer {
-                footerHeader
-                footerSubHeader
-                infoLinksHeader
-                infoLinks {
-                    link
-                    text
-                }
-                emailSubscriptionInput {
-                    label
-                    placeholder
-                    errorContent
-                }
-                bootFactoryLogos {
-                    url
-                }
-                socialMediaLinks {
-                    imageOrAsset {
-                        url
-                    }
-                    link
-                    externalLink
-                }
-                copyrightText
-            }
-            buyOneGetTwoBanner {
-                buyOneGetTwoText
-                modalHeader
-                modalContent
-                continueButtonText
-                policiesButton {
-                    text
-                    link
-                }
-                bootsIconWhite {
-                    url
-                }
-                bootsIconRed {
-                    url
-                }
-                infoIconWhite {
-                    url
-                }
-                infoIconBlack {
-                    url
-                }
-            }
-          }
-        }
-      }
   }
 `;

@@ -1,5 +1,5 @@
 //Node Modules
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
@@ -29,6 +29,7 @@ AccessoriesPageTemplate.propTypes = {
 };
 
 const AccessoriesPage = ({ data }) => {
+  const [content, setContent] = useState({});
   for(let i = 0; i < data.allBigCommerceProducts.nodes.length; i++) {
     for(let j = 0; j < data.allBigCommerceBrands.edges.length; j++) {
       if (data.allBigCommerceProducts.nodes[i].brand_id === data.allBigCommerceBrands.edges[j].node.bigcommerce_id) {
@@ -40,15 +41,30 @@ const AccessoriesPage = ({ data }) => {
   const products = data.allBigCommerceProducts.nodes;
   const brands = data.allBigCommerceBrands.edges;
 
+  useEffect(() => {
+    fetch(`/.netlify/functions/graphCms?page=accessoriesPage`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => setContent(data.data.categoryPage))
+      .catch(err => console.log(err));
+  }, []);
+
   return (
-    <ContentProvider value={data.graphCMS.categoryPage}>
-      <Layout>
-        <AccessoriesPageTemplate
-          products={products}
-          brands={brands}
-        />
-      </Layout>
-    </ContentProvider>
+    <>
+      {
+        content &&
+        Object.keys(content).length !== 0 &&
+        <ContentProvider value={content}>
+          <Layout>
+            <AccessoriesPageTemplate
+              products={products}
+              brands={brands}
+            />
+          </Layout>
+        </ContentProvider>
+      }
+    </>
   );
 };
 

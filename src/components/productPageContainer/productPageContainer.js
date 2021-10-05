@@ -25,9 +25,48 @@ const ProductPageContainer = ({
 }) => {
     const location = useLocation();
     const {content} = useContentContext();
+    const {
+        filterContent = {
+            categoryOptionText: "",
+            categoryOptions: [],
+            clearAllText: "",
+            filterHeaderText: "",
+            filterIcon: {
+                url: ""
+            },
+            noFiltersSelectedText: ""
+        },
+        heroImage = {
+            url: ""
+        },
+        heroHeaderText = "",
+        quickFilters = [],
+        shared = {
+            buyOneGetTwoBanner: {
+                bootsIconRed: {
+                    url: ""
+                },
+                infoIconBlack: {
+                    url: ""
+                }
+            },
+            buyOneGetTwoText: ""
+        },
+        storeBanner = {
+            bannerStoreIcon: {
+                url: ""
+            },
+            bannerText: "",
+            bannerLink: {
+                link: "",
+                text: ""
+            }
+        },
+        topSellingText = ""
+    } = content;
 
     // Figure out the issue with quick filters not matching up
-    const optionsList = content.quickFilters.length > 0 ? [...content.quickFilters] : [];
+    const optionsList = quickFilters.length > 0 ? [...quickFilters] : [];
 
     function getJsonFromUrl(url) {
         if (!url) url = location.search;
@@ -258,26 +297,26 @@ const ProductPageContainer = ({
                     }
                 }
             }
-        }, [params, location])
+        }, [params, location]);
 
     return (
         <div className="product-page">
             <div
                 className="hero full-width-image-container margin-top-0"
                 style={{
-                    backgroundImage: `url(${content.heroImage.url ? content.heroImage.url : ""})`
+                    backgroundImage: `url(${heroImage.url ? heroImage.url : ""})`
                 }}>
                 <div className="opaque-overlay"></div>
                 <h2 className="hero-title">
-                    {content.heroHeaderText}
+                    {heroHeaderText}
                 </h2>
 
                 <div className="stores-link-banner">
-                    <img src={content.storeBanner.bannerStoreIcon.url} alt="Mobile Filters" />
+                    <img src={storeBanner.bannerStoreIcon.url} alt="Mobile Filters" />
                     <p>
-                        {content.storeBanner.bannerText.split("{STORES_LINK}")[0] + " "}
-                        <Link to={content.storeBanner.bannerLink.link}>{content.storeBanner.bannerLink.text}</Link>
-                        {" " + content.storeBanner.bannerText.split("{STORES_LINK}")[1]}
+                        {storeBanner.bannerText.split("{STORES_LINK}")[0] + " "}
+                        <Link to={storeBanner.bannerLink.link}>{storeBanner.bannerLink.text}</Link>
+                        {" " + storeBanner.bannerText.split("{STORES_LINK}")[1]}
                     </p>
                 </div>
             </div>
@@ -286,15 +325,15 @@ const ProductPageContainer = ({
                     <div className="products-header">
                         <div className="products-header-split">
                             <button className="toggle-filters" onClick={toggleFilterDrawer}>
-                                <img src={content.filterContent.filterIcon.url} alt="Mobile filter icon" />
+                                <img src={filterContent.filterIcon.url} alt="Mobile filter icon" />
                                 <span>
-                                    {content.filterContent.filterHeaderText} {numberOfFilters > 0 && `(${numberOfFilters})`}
+                                    {filterContent.filterHeaderText} {numberOfFilters > 0 && `(${numberOfFilters})`}
                                 </span>
                             </button>
                             <div className="coupon-banner" onClick={() => setActiveInfoModal(true)}>
-                                <img src={content.shared.buyOneGetTwoBanner.bootsIconRed.url} alt="Red grouped boots icon"/>
-                                <strong>{content.shared.buyOneGetTwoBanner.buyOneGetTwoText}</strong>
-                                <img src={content.shared.buyOneGetTwoBanner.infoIconBlack.url} alt="Black info icon"/>
+                                <img src={shared.buyOneGetTwoBanner.bootsIconRed.url} alt="Red grouped boots icon"/>
+                                <strong>{shared.buyOneGetTwoBanner.buyOneGetTwoText}</strong>
+                                <img src={shared.buyOneGetTwoBanner.infoIconBlack.url} alt="Black info icon"/>
                             </div>
                         </div>
                         <div className="products-header-split">
@@ -317,19 +356,19 @@ const ProductPageContainer = ({
                         <div className={`products-filter-container ${filterDrawerActiveClass}`}>
                             <div className={`${isSticky ? ' sticky' : ''}`}>
                                 <div className="products-filter-head">
-                                    <img src={content.filterContent.filterIcon.url} alt="Mobile filter icon" />
+                                    <img src={filterContent.filterIcon.url} alt="Mobile filter icon" />
                                     <span>Filters</span>
                                 </div>
                                 <div className="selected-filters">
                                     {numberOfFilters < 1 && (
                                         <div style={{ padding: '0 1rem' }}>
-                                            <span>{content.filterContent.noFiltersSelectedText}</span>
+                                            <span>{filterContent.noFiltersSelectedText}</span>
                                         </div>
                                     )}
                                     {numberOfFilters > 0 && (
                                         <div className="filter-swatch" style={{ backgroundColor: 'white' }} onClick={clearAllFilters}>
                                             <img src={CloseIcon} alt="Clear All" />
-                                            <span style={{ color: '#767676' }}>{content.filterContent.clearAllText}</span>
+                                            <span style={{ color: '#767676' }}>{filterContent.clearAllText}</span>
                                         </div>
                                     )}
                                     {brandsFilter && brandsFilter.map((brand, i) => (
@@ -383,15 +422,15 @@ const ProductPageContainer = ({
                                 </div>
                                 <div className="filter-drop-down">
                                     <div className="products-side-filter-head" onClick={() => setCategoryDropDown(!categoryDropDown)}>
-                                        <span className={`${categoryDropDown && 'dropdown-open'}`}>{content.filterContent.categoryOptionText}</span>
+                                        <span className={`${categoryDropDown && 'dropdown-open'}`}>{filterContent.categoryOptionText}</span>
                                         <img src={categoryDropDown ? caretUpDark : caretDownLight} alt="Dropdown" />
                                     </div>
 
                                     <ul className="side-filter-dropdown-container">
                                         {
                                             categoryDropDown &&
-                                            content.filterContent.categoryOptions.length > 0 &&
-                                            content.filterContent.categoryOptions.map((option, id) => (
+                                            filterContent.categoryOptions.length > 0 &&
+                                            filterContent.categoryOptions.map((option, id) => (
                                                 <Link to={option.link} key={id}>
                                                     <li className="dropdown-option">
                                                         {option.text}
@@ -501,14 +540,14 @@ const ProductPageContainer = ({
                         </div>
                     </div>
                     <section className="section">
-                        <TopSelling headerText={content.topSellingText} products={products} />
+                        <TopSelling headerText={topSellingText} products={products} />
                     </section>
                 </div>
             </section >
             <InfoModal
               activeInfoModal={activeInfoModal}
               setActiveInfoModal={setActiveInfoModal}
-              content={content.shared.buyOneGetTwoBanner}/>
+              content={shared.buyOneGetTwoBanner}/>
         </div >
     )
 }
