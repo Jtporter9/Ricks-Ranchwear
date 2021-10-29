@@ -104,7 +104,7 @@ export const CartProvider = ({ children }) => {
 
       allLineItems.forEach(item => {
         itemCount += item.quantity
-      })
+      });
 
       getData().then(data => {
         lineItems.physical_items = data;
@@ -122,12 +122,10 @@ export const CartProvider = ({ children }) => {
           }
         });
       })
-
     }
   };
 
   const addToCart = (productId, variant, retry) => {
-    console.log('addToCart: ', productId)
     const { id: variantId, price: originalPrice } = variant;
     setState({ ...state, addingToCart: productId });
     fetch(`/.netlify/functions/bigcommerce?endpoint=carts/items`, {
@@ -242,10 +240,10 @@ export const CartProvider = ({ children }) => {
         body: JSON.stringify(updatedItemData)
       }
     )
-      .then(res => res.json())
-      .then(response => {
-        refreshCart(response);
+      .then(res => {
+        return res.json()
       })
+      .then(response => response && refreshCart(response))
       .catch(error => {
         setState({ ...state, cartLoading: false, cartError: error });
       });
