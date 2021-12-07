@@ -1,12 +1,31 @@
 export const entryIds = {
+  aboutPage: "ckvfktt2o0th70b756b1ob23j",
   accessoriesPage: "ckts7kbk0722p0b745dvt8qn3",
   cardBalancePage: "ckregj5kokfxt0d762849d0oo",
   homePage: "ckrtolstcubny0b61tspdqkgr",
   kidsPage: "cktmfr160o7qw0b70faxh9g6d",
   mensPage: "cktjlwr205i4g0a20iyuvh3ef",
   womensPage: "cktmf0v1co68r0b706lgptnm1",
+};
 
-}
+// WHEN ADDING A NEW QUERY MAKE SURE THAT IT DOES NOT HAVE A CLOSING CURLY BRACKET IN THE STRING
+// THIS NEEDS TO BE DONE DUE TO THE WAY THE QUERY IS STRUCTURED IN THE NETLIFY SERVERLESS FUNCTION
+// IF THE CURLY BRACKET IS LEFT IN THE STRING IT WILL CAUSE THE FUNCTION TO BUILD A BADLY
+// STRUCTURED QUERY TO SEND GRAPHCMS RESULTING IN A BAD RESPONSE FROM THE API - USE THE EXISTING QUERIES AS
+// AN EXAMPLE
+
+export const aboutPageQuery = `
+aboutPage(where: {id: "ckvfktt2o0th70b756b1ob23j"})  {
+  heroHeaderText
+  heroSubText
+  heroImage {
+    url
+  }
+  aboutContentBlock1 {
+    html
+    raw
+  }
+`;
 
 export const categoryPageQuery = (id) => `
   categoryPage(where: {id: "${id}"}) {
@@ -216,6 +235,7 @@ export const sharedQuery = `
 `;
 
 export default {
+  aboutPageQuery,
   categoryPageQuery,
   cardBalanceQuery,
   entryIds,

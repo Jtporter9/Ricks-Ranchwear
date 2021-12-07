@@ -2,6 +2,7 @@
 require('dotenv').config();
 const axios = require('axios');
 import {
+  aboutPageQuery,
   categoryPageQuery,
   cardBalanceQuery,
   entryIds,
@@ -24,6 +25,7 @@ const replacerFunc = () => {
 
 exports.handler = async (event, context) => {
   const pageQueries = {
+    aboutpage: aboutPageQuery,
     accessoriespage: categoryPageQuery(entryIds.accessoriesPage),
     cardbalancepage: cardBalanceQuery,
     homepage: homePageQuery,

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import AboutPageContainer from "src/components/about-page-container/AboutPageContainer";
 
 // ASSETS
 import ownerImg from '../assets/owner.jpg'
@@ -11,6 +12,8 @@ import redStore from '../assets/red-store.svg'
 import logo from '../assets/logo.png';
 import caretRightDark from '../assets/caret-right-dark.svg'
 import ricksRanchwearLogo from '../assets/ricks-ranchwear-logo.svg'
+import {ContentProvider} from "src/context/ContentContextV2";
+import {CardBalancePageTemplate} from "src/templates/card-balance-page";
 
 export const AboutPageTemplate = ({
   image,
@@ -18,10 +21,27 @@ export const AboutPageTemplate = ({
   content,
   contentComponent
 }) => {
-  const PageContent = contentComponent || Content
+  const PageContent = contentComponent || Content;
+
+  const [graphCMSContent, setGraphCMSContent] = useState({});
+
+  useEffect(() => {
+    fetch(`/.netlify/functions/graphCms?page=aboutPage`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => setGraphCMSContent(data.data.aboutPage))
+      .catch(err => console.log(err));
+  }, []);
 
   return (
-    <div className="about-page">
+    <>
+      {
+        graphCMSContent &&
+        Object.keys(graphCMSContent).length !== 0 &&
+        <AboutPageContainer content={graphCMSContent} />
+      }
+      <div className="about-page">
       <div className="hero"
         style={{
           backgroundImage: `url(${!!image.childImageSharp ? image.childImageSharp.fluid.src : image
@@ -135,8 +155,8 @@ export const AboutPageTemplate = ({
           </div>
         </div>
       </section>
-
     </div>
+    </>
   )
 }
 

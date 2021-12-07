@@ -1,0 +1,53 @@
+.rich-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 1em;
+
+  h1,h2,h3,h4,h5,h6 {
+    line-height: 40px;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+
+  h1 { font-size: 3.5rem }
+
+  h2 { font-size: 2.2rem }
+
+  h3 { font-size: 1.8rem }
+
+  h4 { font-size: 1.6rem }
+
+  h5 { font-size: 1.4rem }
+
+  h6 { font-size: 1.3rem }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .italic {
+    font-style: italic;
+  }
+
+  .underline {
+    text-decoration: underline;
+  }
+
+  p {
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0.01em;
+    color: #767676;
+    margin-bottom: 1rem;
+  }
+
+  .set-by-string {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
