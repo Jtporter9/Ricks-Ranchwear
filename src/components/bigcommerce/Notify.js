@@ -1,8 +1,14 @@
+// Node Modules
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'gatsby';
-import CartContext from '../../context/CartProvider';
+
+// Components
 import CurrencyFormatter from './CurrencyFormatter';
 import Cart from './Cart'
+
+// Contexts
+import { useContentContext } from 'src/context/ContentContextV2';
+import CartContext from '../../context/CartProvider';
 
 // ASSETS 
 import CartIconWhite from '../../assets/cart-icon-white.svg';
@@ -12,14 +18,17 @@ import BootsOneCheck from '../../assets/boots-one-check.svg';
 import BootsTwoCheck from '../../assets/boots-two-check.svg';
 import BootsThreeCheck from '../../assets/boots-three-check.svg';
 
-
+// Styles
 import './Notify.css';
 
+// Helpers
+import {structureLineItems} from "src/shared/utils";
+
 export default () => {
-  const value = useContext(CartContext);
-  const notifications = value && value.notifications;
+  const cartContextValue = useContext(CartContext);
+  const notifications = cartContextValue && cartContextValue.notifications;
   const hasNotifications = Array.isArray(notifications) && notifications.length;
-  const removeNotification = value && value.removeNotification;
+  const removeNotification = cartContextValue && cartContextValue.removeNotification;
 
   return hasNotifications ? (
     <div className="side-cart-container">
@@ -34,43 +43,114 @@ export default () => {
 };
 
 const Notification = ({ id, text, type }) => {
+  const {content} = useContentContext();
   const value = useContext(CartContext);
   const removeNotification = value && value.removeNotification;
-  const { state, removeItemFromCart, updateCartItemQuantity } = value;
+  const { state, removeItemFromCartWithResponse, updateCartItemQuantity } = value;
   const {
     currency,
     cartAmount,
     baseAmount
   } = state.cart;
 
-  const [discountModalActive, setDiscountModalActive] = useState(false);
+  // These variables have the option to be destrucutred from a hard coded object till full graphCMS integration
+  const {
+    discountModal: {
+      addMoreBootsButtonText,
+      checkoutButtonText,
+      heading: discountModalHeading,
+      informationText
+    },
+    quantityIssueModal: {
+      inventoryLevelText,
+      heading: quantityIssueModalHeading,
+      removeButtonText,
+      removeItemsFromCartText,
+    }
+  } = typeof content !== "undefined" ? content.shared : {
+    discountModal: {
+      addMoreBootsButtonText: "ADD MORE BOOTS",
+      checkoutButtonText: "CONTINUE TO CHECKOUT",
+      heading: "Wait, You’re Missing Out on Free Boots!",
+      informationText: [
+        "It looks like you haven’t taken advantage of our Buy 1 Pair Get Two Pair Free deal.",
+        "Would you like to add more boots before checking out?"
+      ]
+    },
+    quantityIssueModal: {
+      inventoryLevelText: "Current Inventory Level:",
+      heading: "SOME ITEMS IN YOUR CART HAVE INSUFFICIENT INVENTORY.",
+      removeButtonText: "REMOVE",
+      removeItemsFromCartText: "Please remove the following items from your cart or adjust their inventory level (if applicable) to continue:",
+    }
+  };
 
-  function checkDiscount (url) {
-    if (value.state.cart.numberItems % 3 !== 0) {
-      setDiscountModalActive(true);
-    } else {
+  const [discountModalActive, setDiscountModalActive] = useState(false);
+  const [quantityModalActive, setQuantityModalActive] = useState(false);
+  const [preCheckoutChecks, setPreCheckoutChecks] = useState({
+    discountNotApplied: true,
+    quantityIssues: false,
+    quantityIssueItems: []
+  });
+
+  const checkDiscountAndAvailability = url => {
+    const {
+      discountNotApplied,
+      quantityIssues,
+      quantityIssueItems
+    } = preCheckoutChecks;
+    const redirect = () => {
       removeNotification(id);
       window.location.href = url;
-    }
-  }
+    };
 
-  function selectMoreBoots () {
+    if (quantityIssues && quantityIssueItems.length) {
+      setQuantityModalActive(true);
+    } else {
+      discountNotApplied ? setDiscountModalActive(true) : redirect();
+    }
+  };
+
+  const removeQuantityIssueItem = async itemId => {
+    await removeItemFromCartWithResponse(itemId).then(() => setPreCheckoutChecks({
+      ...preCheckoutChecks,
+      quantityIssueItems: preCheckoutChecks.quantityIssueItems.filter(item => item.id !== itemId)}));
+  };
+
+  const selectMoreBoots = () => {
     setDiscountModalActive(false); 
     removeNotification(id);
   }
   
   useEffect(() => {
-    // const timer = setTimeout(() => {
-    //   removeNotification(id);
-    // }, 7000);
-    // return () => clearTimeout(timer);
-    document.getElementById("cart-page").style.height = `calc(100vh - ${document.getElementById("Actions").clientHeight + document.getElementById("Title").clientHeight + 16}px)`
+    document.getElementById("cart-page").style.height = `calc(100vh - ${document.getElementById("Actions").clientHeight + document.getElementById("Title").clientHeight + 16}px)`;
   }, []);
 
-  console.log(discountModalActive)
+  useEffect(() => {
+    // THIS IS WHERE WE NEED TO CHECK IF ALL ITEMS IN THE CART HAVE INVENTORY
+    // ASK ABOUT THE DIFFERENT TYPE OF ITEMS THAT CAN BE IN THE CART TO VERIFY WHAT NEEDS TO BE DONE HERE
+    const cartHasItems = state.cart.lineItems.physical_items !== undefined;
+    const itemsWithInsufficientQuantity = cartHasItems ? state.cart.lineItems.physical_items.filter(item => item.quantity > item.variant.inventory_level) : [];
+
+    let updatedChecks = {...preCheckoutChecks};
+
+    if (itemsWithInsufficientQuantity.length) {
+      updatedChecks = {
+        ...updatedChecks,
+        quantityIssues: true,
+        quantityIssueItems: itemsWithInsufficientQuantity
+      }
+    }
+    updatedChecks = {
+      ...updatedChecks,
+      discountNotApplied: state.cart.numberItems % 3 !== 0
+    }
+
+    setPreCheckoutChecks(updatedChecks);
+  }, [value]);
+
   return (
     <div>
-
       <article className="Notification Animate">
         <div className="Content">
           <div className="Message">
@@ -82,9 +162,6 @@ const Notification = ({ id, text, type }) => {
                 <img src={CloseIcon} alt="Close" />
               </div>
             </div>
-            {/* <div className="bc-ajax-add-to-cart__message-wrapper">
-              <p className="bc-ajax-add-to-cart__message bc-alert bc-alert--success">{text}</p>
-            </div> */}
             <Cart cartType="overlay" />
             <div id="Actions" className="Actions">
               <div className="discount-banner">
@@ -151,11 +228,7 @@ const Notification = ({ id, text, type }) => {
                   </span>
                 </div>
               </div>
-
-
-              {/* <Link to="/cart" className="bc-btn" onClick={() => removeNotification(id)}>View Cart</Link> */}
-              {/* href={value.state.cart.redirectUrls.checkout_url} */}
-              <a className="bc-btn" onClick={() => checkDiscount(value.state.cart.redirectUrls.checkout_url)}>
+              <a className="bc-btn" onClick={() => value.state.cart.redirectUrls.checkout_url && checkDiscountAndAvailability(value.state.cart.redirectUrls.checkout_url)}>
                 <img src={CartIconWhite} alt="Cart" />
                 <span>Checkout</span>
               </a>
@@ -163,23 +236,80 @@ const Notification = ({ id, text, type }) => {
           </div>
         </div>
       </article>
+      {quantityModalActive &&  preCheckoutChecks.quantityIssueItems.length && (
+        <div className="modal-opaque-background">
+          <div className="quantity-issue-modal">
+            <div className="modal-head">
+              <button className="modal-close-btn" onClick={() => setQuantityModalActive(false)}>
+                <img src={CloseIcon} alt="close"/>
+              </button>
+            </div>
+            <div className="modal-body">
+              <h3>{quantityIssueModalHeading}</h3>
+              <p className="remove-items-from-cart">{removeItemsFromCartText}</p>
+              <ul className="items-to-remove">
+                {structureLineItems(preCheckoutChecks.quantityIssueItems).map(lineItems => lineItems.map((item, id) => {
+                  if (id === 0) {
+                    const { inventory_level } = item.variant;
+                    const inventoryAboveZero = inventory_level >= 1;
+                    const canAddQuantity = inventoryAboveZero && item.quantity < inventory_level;
+                    const size = item.variant.option_values[1].label;
+                    const reducer = (accu, currentValue) => (accu + currentValue.quantity);
+                    const quantity = lineItems.reduce(reducer, 0);
+
+                    return (
+                      <li key={item.id}>
+                        <img src={item.image_url} alt="Product Image"/>
+                        <div className="item-content">
+                          <p className="item-name">{item.name} - <span className="size-display">Size: {size}</span></p>
+                          <div className={`actions-container ${inventoryAboveZero && "adjustment-action"}`}>
+                            <p className="inventory-level-display">{inventoryLevelText} {inventory_level}</p>
+                            <div className="quantity-adjustment-container">
+                              {inventoryAboveZero && (
+                                <>
+                                  <div className="quantity-adjuster">
+                                    <button
+                                      className="reduce-quantity"
+                                      onClick={() => updateCartItemQuantity(item, "minus")}>
+                                      -
+                                    </button>
+                                    <p className="quantity-text">{quantity}</p>
+                                    <button
+                                      className={`add-quantity ${canAddQuantity ? "can-add-quantity" : ""}`}
+                                      onClick={() => {
+                                        if (canAddQuantity) updateCartItemQuantity(item)
+                                      }}>
+                                      +
+                                    </button>
+                                  </div>
+                                  <p className="or-text">OR</p>
+                                </>
+                              )}
+                              <button className="remove-item" onClick={() => removeQuantityIssueItem(item.id)}>{removeButtonText}</button>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    )
+                  }
+                }))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
       {discountModalActive && (
-        <div className="discount-warning-modal-opaque-background">
+        <div className="modal-opaque-background">
           <div className="discount-warning-modal">
             <div className="discount-warning-head">
-              <img src={CloseIcon} alt="close" onClick={() => setDiscountModalActive(false)} />
+              <img className="modal-close-btn" src={CloseIcon} alt="close" onClick={() => setDiscountModalActive(false)} />
             </div>
             <div>
-                <h3>Wait, You’re Missing Out on Free Boots!</h3>
-                <p className="discount-warning-description">
-                  It looks like you haven’t taken advantage of our Buy 1 Pair Get Two Pair Free deal.           
-                </p>
-                <p className="discount-warning-description">
-                  Would you like to add more boots before checking out? 
-                </p>
+                <h3>{discountModalHeading}</h3>
+              {informationText.map((text,id) => (<p className="discount-warning-description">{text}</p>))}
             <div className="discount-warning-buttons-split">
-                <button onClick={() => selectMoreBoots()}>Add More Boots</button>
-                <button className="btn-dark" onClick={() => window.location.href = value.state.cart.redirectUrls.checkout_url}>Continue to Checkout</button>
+                <button onClick={() => selectMoreBoots()}>{addMoreBootsButtonText}</button>
+                <button className="btn-dark" onClick={() => window.location.href = value.state.cart.redirectUrls.checkout_url}>{checkoutButtonText}</button>
             </div>
             </div>
           </div>

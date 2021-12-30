@@ -212,6 +212,18 @@ export const sharedQuery = `
             url
         }
      }
+   discountModal {
+      heading
+      informationText
+      addMoreBootsButtonText
+      checkoutButtonText
+    }
+    quantityIssueModal {
+      inventoryLevelText
+      heading
+      removeButtonText
+      removeItemsFromCartText
+    }
   }
 `;
 

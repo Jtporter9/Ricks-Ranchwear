@@ -1,4 +1,4 @@
-.discount-warning-modal-opaque-background {
+.modal-opaque-background {
     position: fixed;
     top: 0;
     right: 0;
@@ -10,6 +10,126 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .quantity-issue-modal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 500px;
+        width: 50%;
+        height: 50%;
+        min-height: 350px;
+        padding: 0.8rem 1rem;
+        background-color: white;
+
+        .modal-head {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+
+            .modal-close-btn {
+                border: none;
+                background-color: transparent;
+
+                img {
+                    width: 30px;
+                    cursor: pointer;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+        .modal-body {
+            overflow-x: scroll;
+
+            h3 {
+                font-size: 1.5em;
+                font-weight: 500;
+                margin-bottom: 1rem;
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            p.remove-items-from-cart {
+                margin: 0 0.8rem 0.8rem;
+            }
+
+            ul.items-to-remove {
+                li {
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    margin-bottom: 0.5rem;
+
+                    img {
+                        height: 10rem;
+                    }
+
+                    div.item-content {
+                        display: flex;
+                        flex-direction: column;
+
+                        p.item-name {
+                            font-weight: 300;
+                        }
+
+                        div.actions-container {
+                            display: flex;
+                            flex-direction: column;
+                            flex-wrap: wrap;
+                            justify-content: center;
+                            align-items: center;
+
+                            div.quantity-adjustment-container {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-end;
+                                align-items: center;
+                                width: 30%;
+
+                                &.adjustment-action {
+                                    flex-direction: column;
+                                    justify-content: center;
+                                }
+
+                                div.quantity-adjuster {
+                                    display: flex;
+                                    justify-content: space-evenly;
+                                    align-items: center;
+                                    width: 5%;
+
+                                    button.reduce-quantity, button.add-quantity {
+                                        font-size: 1.5rem;
+                                        border: none;
+                                        background-color: transparent;
+                                        cursor: pointer;
+                                    }
+
+                                    button.add-quantity {
+                                        color: $functional-dark;
+                                        cursor: not-allowed;
+                                    }
+
+                                    button.add-quantity.can-add-quantity {
+                                        color: black;
+                                        cursor: pointer;
+                                    }
+                                }
+
+                                button.remove-item {
+                                    border: none;
+                                    background-color: transparent;
+                                    font-weight: 500;
+                                    color: $red-mid;
+                                    text-decoration: underline;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     .discount-warning-modal {
         background-color: $white;
         padding: 1rem 2rem;
@@ -157,7 +277,12 @@
 }
 
 @media (max-width: 600px) {
-    .discount-warning-modal-opaque-background {
+    .modal-opaque-background {
+        .quantity-issue-modal {
+            min-width: 0;
+            width: 100%;
+            height: 70%;
+        }
         .discount-warning-modal {
             width: 100%;
         }
@@ -304,6 +429,24 @@
                 margin-left: .5rem;
                 position: relative;
                 top: 2px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 450px) {
+    .modal-opaque-background {
+        .quantity-issue-modal {
+            .modal-body {
+                ul.items-to-remove {
+                    li {
+                        div.item-content {
+                            div.actions-container {
+                                flex-direction: row;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

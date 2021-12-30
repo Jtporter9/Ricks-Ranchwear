@@ -275,8 +275,36 @@ export const CartProvider = ({ children }) => {
       });
   };
 
-  const updateCartItemQuantity = (item, action) => {
-    const newQuantity = item.quantity + (action === 'minus' ? -1 : 1);
+  const removeItemFromCartWithResponse = itemId => (
+    fetch(
+      `/.netlify/functions/bigcommerce?endpoint=carts/items&itemId=${itemId}`,
+      {
+        credentials: 'same-origin',
+        mode: 'same-origin',
+        method: 'delete'
+      }
+    )
+      .then(res => {
+        // addNotification('Item removed successfully');
+        if (res.status === 204) {
+          setState(initialState);
+          return;
+        }
+        // addNotification('Item removed successfully');
+        return res.json();
+      })
+      .then(response => {
+        response && refreshCart(response);
+        return response;
+      })
+      .catch(error => {
+        setState({ ...state, cartLoading: false, cartError: error });
+        console.log("There was an erorr: ", error);
+      })
+  );
+
+  const updateCartItemQuantity = (item, action, quantityOverride = 0) => {
+    const newQuantity = quantityOverride !== 0 ? quantityOverride : item.quantity + (action === 'minus' ? -1 : 1);
     setState({ ...state, updatingItem: item.id });
     if (newQuantity < 1) {
       return removeItemFromCart(item.id);
@@ -304,6 +332,7 @@ export const CartProvider = ({ children }) => {
         state,
         addToCart,
         removeItemFromCart,
+        removeItemFromCartWithResponse,
         updateCartItemQuantity,
         notifications,
         addNotification,
