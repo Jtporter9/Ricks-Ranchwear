@@ -1,12 +1,22 @@
+// Node Modules
 import React, { useEffect, useState, useRef } from "react";
+
+//Assets
 import caretDownLight from '../../assets/caret-down-light.svg';
 import caretUpDark from '../../assets/caret-up-dark.svg';
 
-const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onChange, selectedFilters = [], defaultOpenState = false }) => {
+const Dropdown = ({
+  dropDownClasses,
+  value,
+  options,
+  placeholder = "Select",
+  onChange,
+  selectedFilters = [],
+  defaultOpenState = false
+}) => {
   const node = useRef();
 
   const [open, setOpen] = useState(defaultOpenState);
-  const [toolTipActive, setToolTipActive] = useState(false);
 
   const handleClick = e => {
     if (node.current.contains(e.target)) {
@@ -52,27 +62,10 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
                   <span>{opt}</span>
                   </button>
               }
-              // if (value === "Color") {
-              //       return (
-              //         <li key={opt} className={`dropdown-option ${active ? 'dropdown-option-selected' : ''}`} onClick={e => handleChange(opt)}>
-              //           <span>{opt}</span>
-              //         </li>
-              //       )
-              // }
-              // if (value === "Color") {
-              //   return (
-              //     <div key={opt} style={{position: 'relative'}} className="dropdown-checkbox-container">
-              //       <div className="color-swatch" style={{backgroundColor: opt}} onMouseEnter={() => setToolTipActive(opt)} onMouseLeave={() => setToolTipActive(false)} onClick={e => handleChange(opt)}></div>
-              //       {toolTipActive === opt && (
-              //         <div onMouseEnter={() => setToolTipActive(opt)} onMouseLeave={() => setToolTipActive(false)} className="color-swatch-tool-tip">{opt}</div>
-              //       )}
-              //     </div>
-              //   )
-              // }
               if (value !== "Size" || value !== "Width") {
                 return (
                   <div key={opt} className="dropdown-checkbox-container">
-                    <input id={opt} type="checkbox" value={opt} className="dropdown-option" onChange={e => handleChange(opt)} checked={active} />
+                    <input id={opt} type="checkbox" value={opt} className="dropdown-option" onChange={() => handleChange(opt)} checked={active} />
                     <label htmlFor={opt}>{opt}</label>
                   </div>
                 )
