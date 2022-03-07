@@ -18,11 +18,28 @@ import caretUpDark from '../../assets/caret-up-dark.svg';
 import CloseIcon from '../../assets/close-icon.svg';
 import CloseIconWhite from '../../assets/close-icon-white.svg';
 
+//Functions
+const stateSetterLookupString = (type, useLowerCase = false) => {
+  let lookupString = '';
+  switch(type) {
+    case "Toe Shape":
+      lookupString = "ToeStyle";
+      break;
+    case "Style":
+      lookupString = "StyleNumber";
+      break;
+    default:
+      lookupString = type;
+  }
+
+  return useLowerCase ? lookupString[0].toLowerCase() + lookupString.substring(1) : lookupString;
+};
+
 const ProductPageContainer = ({
-                                products,
-                                brands,
-                                pageCategory,
-                              }) => {
+    products,
+    brands,
+    pageCategory,
+  }) => {
   const location = useLocation();
   const {content} = useContentContext();
   const {
@@ -96,7 +113,6 @@ const ProductPageContainer = ({
     product.variantsList = [];
     product.variantsList.push(product.brand.name);
     product.variants.map(variant => variant.option_values.map(option => {
-      // option.option_display_name === colorKey && colorOptions.push(option.label)
       option.option_display_name === sizeKey && sizeOptions.push(option.label);
       option.option_display_name === widthKey && widthOptions.push(option.label);
       if(variant.inventory_level !== 0) {
@@ -155,6 +171,7 @@ const ProductPageContainer = ({
   const [categoryDropDown, setCategoryDropDown] = useState(true);
   const [params, setParams] = useState(false);
   const multipleFiltersRef = useRef([]);
+  const changedFilterRef = useRef('');
 
   const toggleFilterDrawer = () => {
     setFilterDrawerOpen(!filterDrawerOpen);
@@ -170,37 +187,37 @@ const ProductPageContainer = ({
     }
   };
 
-  const getProductsFilteredByVariant = (arr) => {
-    const filterValue = arr[0];
+  const getProductsFilteredByVariant = () => {
     const createFilteredSet = arr => new Set(findDuplicates(arr));
-    const productsFilteredByItem = (item, array) => array.filter(product => product.variantsList.includes(item));
-    const createFilteredProducts = (filterArray, productsArray) => {
+    const createFilteredProducts = (filterValue, productsArray) => {
       const updatedProducts = [];
-      filterArray.forEach(
-        filter => (
-          productsArray.forEach(product => {
-            if(product.variantsList.includes(filter)) {
-              updatedProducts.push(product);
-            }
-          })
-        )
-      );
+      productsArray.forEach(product => {
+        if(product.variantsList.includes(filterValue)) {
+          updatedProducts.push(product);
+        }
+      });
+
+      return updatedProducts;
     };
 
-    if (multipleFiltersRef.current.length > 1) {
-      createFilteredProducts(arr, filteredProducts);
+    if (multipleFiltersRef.current.length >= 1) {
+      let tempProductArray = [];
+      multipleFiltersRef.current.forEach(filter => {
+        tempProductArray = createFilteredProducts(filter.value, tempProductArray.length ? tempProductArray : products);
+      });
+
       setFilteredProducts(
-        [...createFilteredSet(productsFilteredByItem(filterValue, filteredProducts))]
+        [...createFilteredSet(tempProductArray)]
       );
     } else {
-      createFilteredProducts(arr, products);
       setFilteredProducts(
-        [...createFilteredSet(productsFilteredByItem(filterValue, products))]
+        [...createFilteredSet(products)]
       )
     }
   };
 
   const clearAllFilters = () => {
+    multipleFiltersRef.current = [];
     setBrandsFilter([]);
     setColorFilter([]);
     setWidthFilter([]);
@@ -223,31 +240,26 @@ const ProductPageContainer = ({
       setFeatureFilter: updatedFeatureFilter => setFeatureFilter(updatedFeatureFilter),
     };
 
-    const stateSetterLookupString = () => {
-      switch(type) {
-        case "Toe Shape":
-          return "ToeStyle";
-        case "Style":
-          return "StyleNumber";
-        default:
-          return type;
-      }
-    };
+    const setter = `set${stateSetterLookupString(type)}Filter`;
 
-    // Remove the filter from the multipleFiltersRef
-    multipleFiltersRef.current = multipleFiltersRef.current.filter(filter => filter.type !== type);
-    if (arr[0] === value) {
-      // Remove the value from the array
-      stateSetters[`set${stateSetterLookupString()}Filter`]([]);
-    } else {
-      // Add value to the array
-      stateSetters[`set${stateSetterLookupString()}Filter`]([value]);
-      multipleFiltersRef.current.push({type, value});
+    if(!arr.length || value !== arr[0]) {
+      // Remove the filter from the multipleFiltersRef
+      multipleFiltersRef.current = multipleFiltersRef.current.filter(filter => filter.type !== type);
+      // Adds filter that was changed as current value to ref to run logic in useEffect with filter dependencies
+      changedFilterRef.current = stateSetterLookupString(type);
+      if (arr.length && arr[0] === value) {
+        changedFilterRef.current = '';
+        // Remove the value from the array
+        stateSetters[setter]([]);
+      } else {
+        // Add value to the array
+        stateSetters[setter]([value]);
+        multipleFiltersRef.current.push({type, value});
+      }
+      document.getElementById("products-container") && document.getElementById("products-container").scrollIntoView({behavior: 'smooth'});
     }
-    document.getElementById("products-container") && document.getElementById("products-container").scrollIntoView({behavior: 'smooth'});
   };
 
-  //Model this after the toggleFilter function
   const removeFilter = (type, setStateCallback) => {
     multipleFiltersRef.current = multipleFiltersRef.current.filter(filter => filter.type.toLowerCase() !== type.toLowerCase());
     setStateCallback([]);
@@ -281,14 +293,34 @@ const ProductPageContainer = ({
     // price high to low
     (filter === optionsList[2] && filteredProducts) && filteredProducts.sort((a, b) => (a.price < b.price) ? 1 : -1);
 
-    brandsFilter.length > 0 && getProductsFilteredByVariant(brandsFilter);
-    colorFilter.length > 0 && getProductsFilteredByVariant(colorFilter);
-    sizeFilter.length > 0 && getProductsFilteredByVariant(sizeFilter);
-    widthFilter.length > 0 && getProductsFilteredByVariant(widthFilter);
-    materialFilter.length > 0 && getProductsFilteredByVariant(materialFilter);
-    toeStyleFilter.length > 0 && getProductsFilteredByVariant(toeStyleFilter);
-    styleNumberFilter.length > 0 && getProductsFilteredByVariant(styleNumberFilter);
-    featureFilter.length > 0 && getProductsFilteredByVariant(featureFilter);
+    switch(changedFilterRef.current) {
+      case 'Brand':
+        getProductsFilteredByVariant(brandsFilter[0]);
+        break;
+      case 'Color':
+        getProductsFilteredByVariant(colorFilter[0]);
+        break;
+      case 'Feature':
+        getProductsFilteredByVariant(featureFilter[0]);
+        break;
+      case 'Material':
+        getProductsFilteredByVariant(materialFilter[0]);
+        break;
+      case 'Size':
+        getProductsFilteredByVariant(sizeFilter[0]);
+        break;
+      case 'StyleNumber':
+        getProductsFilteredByVariant(styleNumberFilter[0]);
+        break;
+      case 'ToeShape':
+        getProductsFilteredByVariant(toeStyleFilter[0]);
+        break;
+      case 'Width':
+        getProductsFilteredByVariant(widthFilter[0]);
+        break;
+      default:
+        break;
+    };
 
     return () => {
       window.removeEventListener('scroll', () => handleScroll);
