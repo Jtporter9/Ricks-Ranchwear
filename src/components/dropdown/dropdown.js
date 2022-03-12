@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import caretDownLight from '../../assets/caret-down-light.svg';
 import caretUpDark from '../../assets/caret-up-dark.svg';
 
-const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onChange, selectedFilters = [], defaultOpenState = false }) => {
+const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onChange, selectedFilters = [], defaultOpenState = false, listDropDown = false }) => {
   const node = useRef();
 
   const [open, setOpen] = useState(defaultOpenState);
@@ -40,7 +40,7 @@ const Dropdown = ({ dropDownClasses, value, options, placeholder = "Select", onC
         <ul className={`${dropDownClasses.optionContainer} ${value === "Color" && 'row'}`}>
           {options.map(opt => {
             let active = selectedFilters.indexOf(opt) !== -1;
-            if (placeholder === "Best Selling") {
+            if (listDropDown) {
               return (
                 <li key={opt} className="dropdown-option" onClick={e => handleChange(opt)}>
                   {opt}

@@ -83,7 +83,8 @@ const ProductPageContainer = ({
   } = content;
 
   // Figure out the issue with quick filters not matching up
-  const optionsList = quickFilters.length > 0 ? [...quickFilters] : [];
+  /*The options list is filtering out the Best Selling option right now because we currently dont have a way to filter by best selling. Once that data is available from big commerce we will be able to filter by that criteria*/
+  const optionsList = quickFilters.length > 0 ? [...quickFilters].filter(option => option.toLowerCase() !== "best selling") : [];
 
   const getJsonFromUrl = (url = location.search) => {
     const query = url.substr(1);
@@ -152,7 +153,7 @@ const ProductPageContainer = ({
   // STATES
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const [filterDrawerActiveClass, setFilterDrawerActiveClass] = useState('');
-  const [filter, setFilter] = useState(null);
+  const [quickFilter, setQuickFilter] = useState(null);
   const [brandsFilter, setBrandsFilter] = useState([]);
   const [colorFilter, setColorFilter] = useState([]);
   const [widthFilter, setWidthFilter] = useState([]);
@@ -188,6 +189,7 @@ const ProductPageContainer = ({
   };
 
   const getProductsFilteredByVariant = () => {
+    setQuickFilter(null);
     const createFilteredSet = arr => new Set(findDuplicates(arr));
     const createFilteredProducts = (filterValue, productsArray) => {
       const updatedProducts = [];
@@ -226,6 +228,8 @@ const ProductPageContainer = ({
     setToeStyleFilter([]);
     setStyleNumberFilter([]);
     setFeatureFilter([]);
+    setFilteredProducts(products);
+    setQuickFilter(null);
   };
 
   const toggleFilter = (arr, value, type) => {
@@ -265,6 +269,25 @@ const ProductPageContainer = ({
     setStateCallback([]);
   };
 
+  const applyQuickFilter = (filterValue) => {
+    let updatedFilteredProducts = filteredProducts;
+    setQuickFilter(filterValue);
+    switch (filterValue) {
+      case 'Best Selling':
+        break;
+      case 'Price: Low to High':
+        updatedFilteredProducts = updatedFilteredProducts.sort((a, b) => (a.price > b.price) ? 1 : -1);
+        break;
+      case 'Price: High to Low':
+        updatedFilteredProducts = updatedFilteredProducts.sort((a, b) => (a.price < b.price) ? 1 : -1);
+        break;
+      default:
+        break;
+    }
+
+    setFilteredProducts(updatedFilteredProducts);
+  };
+
   useEffect(() => {
     setNumberOfFilters(
       brandsFilter.length +
@@ -278,20 +301,10 @@ const ProductPageContainer = ({
     );
     filteredProducts.length === 0 && setFilteredProducts(products);
     numberOfFilters === 0 && setFilteredProducts(products);
-    (!filter && filteredProducts.length !== 0) && setFilter(optionsList[0]);
 
     window.addEventListener('load', setIsMobileView(window.matchMedia('(max-width: 1000px)').matches));
     window.addEventListener('resize', setIsMobileView(window.matchMedia('(max-width: 1000px)').matches));
     window.addEventListener('scroll', handleScroll);
-
-    // FILTER PRODUCTS
-    // best selling
-    // This does nothing we need to figure out how to determine the best selling boots hierarchy
-    (filter === optionsList[0] && filteredProducts) && filteredProducts.sort((a, b) => (a.bigcommerce_id > b.bigcommerce_id) ? 1 : -1);
-    // price low to high
-    (filter === optionsList[1] && filteredProducts) && filteredProducts.sort((a, b) => (a.price > b.price) ? 1 : -1);
-    // price high to low
-    (filter === optionsList[2] && filteredProducts) && filteredProducts.sort((a, b) => (a.price < b.price) ? 1 : -1);
 
     switch(changedFilterRef.current) {
       case 'Brand':
@@ -325,7 +338,7 @@ const ProductPageContainer = ({
     return () => {
       window.removeEventListener('scroll', () => handleScroll);
     };
-  }, [numberOfFilters, filter, brandsFilter, colorFilter, sizeFilter, widthFilter, materialFilter, toeStyleFilter, styleNumberFilter, featureFilter]);
+  }, [numberOfFilters, brandsFilter, colorFilter, sizeFilter, widthFilter, materialFilter, toeStyleFilter, styleNumberFilter, featureFilter]);
 
   useEffect(() => {
     let currentParams = getJsonFromUrl(location.search);
@@ -393,10 +406,11 @@ const ProductPageContainer = ({
             </div>
             <div className="products-header-split">
               <Dropdown
+                listDropDown
                 dropDownClasses={{ head: 'products-quick-filter', optionContainer: 'dropdown-options-container' }}
-                placeholder="Best Selling"
-                value={filter}
-                onChange={v => setFilter(v)}
+                placeholder="Select Quick Filter"
+                value={quickFilter}
+                onChange={filterValue => applyQuickFilter(filterValue)}
                 options={optionsList}
               />
             </div>
