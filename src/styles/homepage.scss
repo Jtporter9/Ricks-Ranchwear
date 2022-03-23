@@ -187,6 +187,7 @@
             margin: 0.5rem 1.5rem;
             width: 350px;
             border: 1px solid $functional-light;
+            overflow: hidden;
             &:hover {
                 border: 1px solid $functional-darkest;
                 opacity: .8;
@@ -199,6 +200,7 @@
             }
             img {
                 width: 100%;
+                min-width: 400px;
                 height: 300px;
                 object-fit: cover;
             }

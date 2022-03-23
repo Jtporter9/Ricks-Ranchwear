@@ -55,12 +55,12 @@ const CardBalanceForm = () => {
     });
   };
 
+  // TODO: Use the info that kevin gave you about calling the server port he set up and put that functionality into a serverless function
   const onSubmit = e => {
     e.preventDefault();
 
     console.log(form)
   };
-
 
   return (
     <div className="card-balance-form-container">

@@ -348,10 +348,7 @@ export default (context) => {
                 simulateDisabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
                 variant={{ ...activeVariant, price }}
-                showTooltip={() => showTooltip()}>
-                {(activeSize && activeWidth) ? activeVariant.inventory_level === 0 ? 'Out of Stock' : 'Add to Cart' : 'Select Width & Size'}
-              </AddToCartButton>
-
+                showTooltip={() => showTooltip()}>Add to Cart</AddToCartButton>
               <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
                 <img src={groupedBoots} alt="grouped boots" />
                 <strong>Buy 1 pair, get TWO pair FREE!</strong>
