@@ -343,11 +343,10 @@ export default (context) => {
                   <a className="size-chart-link" onClick={() => setActiveSizeChart(true)}>Size Chart</a>
                 </div>
               </div>
-
               <AddToCartButton
                 simulateDisabled={activeSize && activeWidth ? (activeVariant.inventory_level === 0 ? true : false) : true}
                 productId={bigcommerce_id}
-                variant={{ ...activeVariant, price }}
+                variant={activeVariant.id}
                 showTooltip={() => showTooltip()}>Add to Cart</AddToCartButton>
               <div className="coupon-banner" onClick={() => setActiveInfoModal(true)} >
                 <img src={groupedBoots} alt="grouped boots" />

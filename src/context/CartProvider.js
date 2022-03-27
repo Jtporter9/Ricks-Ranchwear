@@ -126,17 +126,16 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (productId, variant, retry) => {
-    const { id: variantId, price: originalPrice } = variant;
     const body = {
       line_items: [
         {
           quantity: 1,
           product_id: parseInt(productId, 10),
-          variant_id: parseInt(variantId, 10)
+          variant_id: parseInt(variant, 10)
         }
       ]
     };
-    
+
     setState({ ...state, addingToCart: productId });
 
     await fetch(`/.netlify/functions/bigcommerce?endpoint=carts/items`, {
@@ -145,14 +144,16 @@ export const CartProvider = ({ children }) => {
       mode: 'same-origin',
       body: JSON.stringify(body)
     })
-      .then(async res => ({ response: await res.json(), status: res.status }))
+      .then(async res => {
+        return { response: await res.json(), status: res.status }
+      })
       .then(({ response, status }) => {
         if (status === 404 && !retry) {
           // re create a cart if cart was destroyed
           return fetch(`/.netlify/functions/bigcommerce?endpoint=carts`, {
             credentials: 'same-origin',
             mode: 'same-origin'
-          }).then(() => addToCart(productId, variantId, true));
+          }).then(() => addToCart(productId, variant, true));
         }
         status < 300 && addNotification('Item added successfully');
         const lineItems = response.data.line_items;
@@ -302,7 +303,6 @@ export const CartProvider = ({ children }) => {
       })
       .catch(error => {
         setState({ ...state, cartLoading: false, cartError: error });
-        console.log("There was an erorr: ", error);
       })
   );
 
