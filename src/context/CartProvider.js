@@ -125,22 +125,25 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const addToCart = (productId, variant, retry) => {
+  const addToCart = async (productId, variant, retry) => {
     const { id: variantId, price: originalPrice } = variant;
+    const body = {
+      line_items: [
+        {
+          quantity: 1,
+          product_id: parseInt(productId, 10),
+          variant_id: parseInt(variantId, 10)
+        }
+      ]
+    };
+    
     setState({ ...state, addingToCart: productId });
-    fetch(`/.netlify/functions/bigcommerce?endpoint=carts/items`, {
+
+    await fetch(`/.netlify/functions/bigcommerce?endpoint=carts/items`, {
       method: 'POST',
       credentials: 'same-origin',
       mode: 'same-origin',
-      body: JSON.stringify({
-        line_items: [
-          {
-            quantity: 1,
-            product_id: parseInt(productId, 10),
-            variant_id: parseInt(variantId, 10)
-          }
-        ]
-      })
+      body: JSON.stringify(body)
     })
       .then(async res => ({ response: await res.json(), status: res.status }))
       .then(({ response, status }) => {
@@ -194,15 +197,15 @@ export const CartProvider = ({ children }) => {
           }))
         }
 
-        const allLineItems = [ 
+        const allLineItems = [
           ...lineItems.physical_items,
           ...lineItems.digital_items,
           ...lineItems.custom_items,
-          ...lineItems.gift_certificates 
+          ...lineItems.gift_certificates
         ];
 
         let itemCount = 0;
- 
+
         allLineItems.forEach(item => {
           itemCount += item.quantity
         })
