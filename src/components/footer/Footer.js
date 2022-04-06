@@ -23,7 +23,7 @@ const Footer = class extends React.Component {
               <input style={{ color: "black" }} type="email" placeholder="Email Address" />
               <input style={{ backgroundImage: "url(" + caret + ")" }} type="submit" value="" />
             </form>
-            <p className="sub-text white-text copyright">ⓒ 2020 Boot Factory Outlet. Privacy Policy, Do Not Sell, MAP Policy, Terms.</p>
+            <p className="sub-text white-text copyright">ⓒ {new Date().getFullYear()} Boot Factory Outlet</p>
           </div>
           <div>
             <p className="footer-label white-text">Information</p>
@@ -77,7 +77,7 @@ const Footer = class extends React.Component {
                 <Link to="https://twitter.com/twofreeboots"><img src={twitter} alt="" /></Link>
                 <Link to="http://www.facebook.com/bootcountrynashville"><img src={facebook} alt="" /></Link>
               </div>
-              <p className="sub-text white-text copyright">ⓒ 2020 Boot Factory Outlet. Privacy Policy, Do Not Sell, MAP Policy, Terms.</p>
+              <p className="sub-text white-text copyright">ⓒ {new Date().getFullYear()} Boot Factory Outlet</p>
             </div>
           </div>
         </div>

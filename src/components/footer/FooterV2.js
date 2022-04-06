@@ -23,7 +23,7 @@ const FooterV2 = () => {
             <input style={{ color: "black" }} type="email" placeholder={shared.footer.emailSubscriptionInput.placeholder} />
             <input style={{ backgroundImage: "url(" + caret + ")" }} type="submit" value="" />
           </form>
-          <p className="sub-text white-text copyright">ⓒ {shared.footer.copyrightText}</p>
+          <p className="sub-text white-text copyright">ⓒ {new Date().getFullYear()} {shared.footer.copyrightText}</p>
         </div>
         <div>
           <p className="footer-label white-text">{shared.footer.infoLinksHeader}</p>
@@ -52,7 +52,7 @@ const FooterV2 = () => {
                 </a>
               ))}
             </div>
-            <p className="sub-text white-text copyright">ⓒ {shared.footer.copyrightText}</p>
+            <p className="sub-text white-text copyright">ⓒ {new Date().getFullYear()} {shared.footer.copyrightText}</p>
           </div>
         </div>
       </div>
