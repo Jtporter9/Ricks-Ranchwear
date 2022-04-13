@@ -66,6 +66,12 @@ const Notification = ({ id, text, type }) => {
       heading: quantityIssueModalHeading,
       removeButtonText,
       removeItemsFromCartText,
+      issuesToFixText,
+      issuesFixedText,
+      quantityInCartText,
+      doneButtonText,
+      checkIcon,
+      alertIcon
     }
   } = typeof content !== "undefined" ? content.shared : {
     discountModal: {
@@ -78,10 +84,20 @@ const Notification = ({ id, text, type }) => {
       ]
     },
     quantityIssueModal: {
-      inventoryLevelText: "Current Inventory Level:",
-      heading: "SOME ITEMS IN YOUR CART HAVE INSUFFICIENT INVENTORY.",
-      removeButtonText: "REMOVE",
-      removeItemsFromCartText: "Please remove the following items from your cart or adjust their inventory level (if applicable) to continue:",
+      inventoryLevelText: "Qty Available",
+      heading: "INSUFFICIENT INVENTORY",
+      removeButtonText: "REMOVE ALL",
+      removeItemsFromCartText: "Please remove or adjust the inventory of the following items in your cart.",
+      issuesToFixText: "ISSUES TO FIX",
+      issuesFixedText: "ALL ISSUES FIXED",
+      quantityInCartText: "Qty in Cart",
+      doneButtonText: "DONE",
+      checkIcon: {
+        url: "https://media.graphassets.com/wS5OOj5mQGOQX8zA8CPE"
+      },
+      alertIcon: {
+        url: "https://media.graphassets.com/iIkcoKrRIunRrNqbaJzu"
+      }
     }
   };
 
@@ -92,7 +108,7 @@ const Notification = ({ id, text, type }) => {
     quantityIssues: false,
     quantityIssueItems: []
   });
-
+  const hasQuantityIssues = preCheckoutChecks.quantityIssueItems.length;
   const checkDiscountAndAvailability = url => {
     const {
       discountNotApplied,
@@ -111,10 +127,32 @@ const Notification = ({ id, text, type }) => {
     }
   };
 
-  const removeQuantityIssueItem = async itemId => {
-    await removeItemFromCartWithResponse(itemId).then(() => setPreCheckoutChecks({
-      ...preCheckoutChecks,
-      quantityIssueItems: preCheckoutChecks.quantityIssueItems.filter(item => item.id !== itemId)}));
+  // TODO fix this function to actually remove all items from the cart.
+  //  Related task: https://app.asana.com/0/1200039209361585/1202105529312542
+  const removeAllQuantityIssueItems = async items => {
+    let ok = false;
+    let updatedIssueItems = [];
+    await items.forEach(item => {
+      removeItemFromCartWithResponse(item.id)
+        .then(() => {
+          ok = true;
+          updatedIssueItems = updatedIssueItems.length ?
+            updatedIssueItems.filter(item => item.id !== item.id) :
+            preCheckoutChecks.quantityIssueItems.filter(item => item.id !== item.id);
+        })
+        .catch(error => {
+          console.log("ERROR REMOVING ITEM FROM CART: ", error);
+          ok = false;
+        })
+    });
+
+    if (ok) {
+      setPreCheckoutChecks({
+        ...preCheckoutChecks,
+        quantityIssueItems: preCheckoutChecks.quantityIssueItems.filter(item => item.id !== item.id)
+        }
+      );
+    }
   };
 
   const selectMoreBoots = () => {
@@ -141,6 +179,12 @@ const Notification = ({ id, text, type }) => {
         quantityIssueItems: itemsWithInsufficientQuantity
       }
     }
+
+    updatedChecks = {
+      ...updatedChecks,
+      discountNotApplied: state.cart.numberItems % 3 !== 0
+    }
+
     updatedChecks = {
       ...updatedChecks,
       discountNotApplied: state.cart.numberItems % 3 !== 0
@@ -236,7 +280,7 @@ const Notification = ({ id, text, type }) => {
           </div>
         </div>
       </article>
-      {quantityModalActive &&  preCheckoutChecks.quantityIssueItems.length && (
+      {quantityModalActive && preCheckoutChecks.quantityIssueItems.length && (
         <div className="modal-opaque-background">
           <div className="quantity-issue-modal">
             <div className="modal-head">
@@ -247,6 +291,15 @@ const Notification = ({ id, text, type }) => {
             <div className="modal-body">
               <h3>{quantityIssueModalHeading}</h3>
               <p className="remove-items-from-cart">{removeItemsFromCartText}</p>
+              <div className={`issues-display ${hasQuantityIssues && 'has-issue'}`}>
+                <img
+                  src={hasQuantityIssues ? alertIcon.url : checkIcon.url}
+                  alt={hasQuantityIssues ? 'alert icon' : 'check icon'}/>
+                {hasQuantityIssues && <p className="amount-of-issues">
+                  {structureLineItems(preCheckoutChecks.quantityIssueItems).length}
+                </p>}
+                <p className="issues-text">{hasQuantityIssues ? issuesToFixText : issuesFixedText}</p>
+              </div>
               <ul className="items-to-remove">
                 {structureLineItems(preCheckoutChecks.quantityIssueItems).map(lineItems => lineItems.map((item, id) => {
                   if (id === 0) {
@@ -263,7 +316,11 @@ const Notification = ({ id, text, type }) => {
                         <div className="item-content">
                           <p className="item-name">{item.name} - <span className="size-display">Size: {size}</span></p>
                           <div className={`actions-container ${inventoryAboveZero && "adjustment-action"}`}>
-                            <p className="inventory-level-display">{inventoryLevelText} {inventory_level}</p>
+                            <div className="quantity-displays">
+                              <p className={`cart-quantity-display ${inventory_level >= quantity ? 
+                              'sufficient-inventory' : ''}`}>{quantityInCartText}: {quantity}</p>
+                              <p className="inventory-level-display">{inventoryLevelText}: {inventory_level}</p>
+                            </div>
                             <div className="quantity-adjustment-container">
                               {inventoryAboveZero && (
                                 <>
@@ -282,10 +339,9 @@ const Notification = ({ id, text, type }) => {
                                       +
                                     </button>
                                   </div>
-                                  <p className="or-text">OR</p>
                                 </>
                               )}
-                              <button className="remove-item" onClick={() => removeQuantityIssueItem(item.id)}>{removeButtonText}</button>
+                              <button className="remove-item" onClick={() => removeAllQuantityIssueItems(lineItems)}>{removeButtonText}</button>
                             </div>
                           </div>
                         </div>
@@ -294,6 +350,13 @@ const Notification = ({ id, text, type }) => {
                   }
                 }))}
               </ul>
+            </div>
+            <div className="modal-footer">
+              <button
+                onClick={() => setQuantityModalActive(false)}
+                className="quantity-issue-modal-done-btn bc-btn">
+                {doneButtonText}
+              </button>
             </div>
           </div>
         </div>
