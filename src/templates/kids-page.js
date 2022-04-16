@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 
 //Components
 import Layout from '../components/Layout';
-import ProductPageContainer from '../components/productPageContainer/productPageContainer.js';
+import ProductsPageContainer from '../components/productsPageContainer/productsPageContainer.js';
 
 //Contexts
 import {ContentProvider} from '../context/ContentContextV2';
@@ -14,7 +14,7 @@ export const KidsPageTemplate = ({
   products,
   brands
 }) => (
-  <ProductPageContainer
+  <ProductsPageContainer
     products={products}
     brands={brands}
     pageCategory={"kids"}

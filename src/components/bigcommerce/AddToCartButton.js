@@ -10,6 +10,7 @@ const AddToCartButton = ({ children, productId, variant, disabled, id, showToolt
     cursor: "not-allowed"
   };
   const onlClickCallback = e => {
+    e.preventDefault();
     if(simulateDisabled) {
       showTooltip();
     } else {
