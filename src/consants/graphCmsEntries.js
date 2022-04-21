@@ -222,7 +222,17 @@ export const sharedQuery = `
       inventoryLevelText
       heading
       removeButtonText
-      removeItemsFromCartText
+      removeItemsFromCartText,
+      issuesToFixText,
+      issuesFixedText,
+      quantityInCartText,
+      doneButtonText,
+      checkIcon {
+        url
+      },
+      alertIcon {
+        url
+      }
     }
   }
 `;
