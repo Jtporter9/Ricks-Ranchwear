@@ -19,7 +19,9 @@ import { useContentContext } from 'src/context/ContentContextV2';
 import groupedBoots from "src/assets/grouped-boots.svg";
 import infoIcon from "src/assets/info-icon.svg";
 
-// ASSESTS
+// Constants
+const kidsWidth = 'no option';
+
 const ProductPageContainer = ({
     activeProduct,
     products
@@ -43,24 +45,16 @@ const ProductPageContainer = ({
   // FIND PRODUCTS OPTIONS
   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) === index)
 
-  let colorOptions = [];
-  let sizeOptions = [];
-  let widthOptions = [];
+  const [colorOptions, setColorOptions] = useState([]);
+  const [sizeOptions, setSizeOptions] = useState([]);
+  const [widthOptions, setWidthOptions] = useState([]);
 
   const colorKey = "Color";
   const sizeKey = "Size";
   const widthKey = "Width";
 
-  activeVariants.map(variant => variant.option_values.map(option => {
-    option.option_display_name === colorKey && colorOptions.push(option.label)
-    option.option_display_name === sizeKey && sizeOptions.push(option.label)
-    option.option_display_name === widthKey && widthOptions.push(option.label)
-  }))
-
-  colorOptions = [...new Set(findDuplicates(colorOptions))]; // Unique duplicates
-  sizeOptions = [...new Set(findDuplicates(sizeOptions))]; // Unique duplicates
-  widthOptions = [...new Set(findDuplicates(widthOptions))]; // Unique duplicates
-  sizeOptions = sizeOptions.sort(function (a, b) { return a - b });
+  // FIND PRODUCTS OPTIONS
+  images.sort((a, b) => (a.sort_order > b.sort_order) ? 1 : -1)
   // FIND PRODUCTS OPTIONS
   images.sort((a, b) => (a.sort_order > b.sort_order) ? 1 : -1)
 
@@ -72,9 +66,8 @@ const ProductPageContainer = ({
       }
     }
   });
-
-  const [activeColor, setActiveColor] = useState(colorOptions.length > 0 ? colorOptions[0] : "");
-  const [activeWidth, setActiveWidth] = useState(widthOptions.length === 0 ? true : '');
+  const [activeColor, setActiveColor] = useState('');
+  const [activeWidth, setActiveWidth] = useState('');
   const [activeSize, setActiveSize] = useState('');
   const [activeVariant, setActiveVariant] = useState(activeVariants[0]);
   const [activeImagesByColor, setActiveImagesByColor] = useState(() => getActiveImagesByColor());
@@ -126,7 +119,6 @@ const ProductPageContainer = ({
   function checkVariantQuantities() {
     let colorsInStock = [];
     let widthsInStock = [];
-    let sizesInStock = [];
 
     if (filteredInventory.length !== 0) {
       activeColor && filteredInventory.forEach(variant => variant.option_values.forEach(option => {
@@ -154,16 +146,13 @@ const ProductPageContainer = ({
         }
         if (option.option_display_name === 'Width' && option.label === activeWidth) {
           widthMatch = true;
-          setIsWidthPresent(true);
         }
         if (option.option_display_name === 'Size' && option.label === activeSize) {
           sizeMatch = true;
         }
       });
 
-      const widthCheck = (queryStrings.pageCategory.toLowerCase() === 'kids' || widthMatch);
-
-      colorMatch && sizeMatch && widthCheck && setActiveVariant(variant);
+      colorMatch && sizeMatch && widthMatch && setActiveVariant(variant);
     })
   }
 
@@ -196,7 +185,30 @@ const ProductPageContainer = ({
       method: 'GET',
     })
       .then(data => data.json())
-      .then(data => setActiveVariants(data.data))
+      .then(data => {
+        const variants = data.data;
+        let tempColorOptions = [];
+        let tempSizeOptions = [];
+        let tempWidthOptions = [];
+        variants.map(variant => variant.option_values.map(option => {
+          option.option_display_name === colorKey && tempColorOptions.push(option.label)
+          option.option_display_name === sizeKey && tempSizeOptions.push(option.label)
+          option.option_display_name === widthKey && tempWidthOptions.push(option.label);
+        }));
+
+        const colorSet = [...new Set(findDuplicates(tempColorOptions))];
+        const sizeSet = [...new Set(findDuplicates(tempSizeOptions))].sort(function (a, b) { return a - b });
+        const widthSet = [...new Set(findDuplicates(tempWidthOptions))];
+
+        setColorOptions(colorSet); // Unique duplicates
+        setSizeOptions(sizeSet); // Unique duplicates
+        setWidthOptions(widthSet); // Unique duplicates
+
+        if (widthSet.length === 1) setActiveWidth(widthSet[0]);
+        if (colorSet.length === 1) setActiveColor(colorSet[0]);
+
+        setActiveVariants(variants);
+      })
   }, []);
 
   return (
@@ -264,10 +276,13 @@ const ProductPageContainer = ({
                 <div className="width-swatches">
                   {activeVariantMessages.width !== "" && <SelectionTooltip message={activeVariantMessages.width} />}
                   {widthOptions.map((width, i) => {
+                      /* Check if widthOptions has only one value so it can select that value as the default */
+                      const setActive = widthOptions.length === 1;
+
                       return (
                         <button
                           key={i}
-                          className={`swatch ${width === activeWidth ? `active-swatch` : ''}`}
+                          className={`swatch ${setActive ? `active-swatch` : ''}`}
                           onClick={() => {
                             if (activeWidth !== "") {
                               setActiveSize("");

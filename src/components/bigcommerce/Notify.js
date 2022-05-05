@@ -272,7 +272,9 @@ const Notification = ({ id, text, type }) => {
                   </span>
                 </div>
               </div>
-              <a className="bc-btn" onClick={() => value.state.cart.redirectUrls.checkout_url && checkDiscountAndAvailability(value.state.cart.redirectUrls.checkout_url)}>
+              <a className="bc-btn" onClick={() =>
+                value.state.cart.redirectUrls.checkout_url &&
+                checkDiscountAndAvailability(value.state.cart.redirectUrls.checkout_url)}>
                 <img src={CartIconWhite} alt="Cart" />
                 <span>Checkout</span>
               </a>
