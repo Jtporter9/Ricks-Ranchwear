@@ -1,7 +1,5 @@
 //Node Modules
 import React, { useState, useEffect } from 'react';
-import { useLocation } from '@reach/router';
-import {parse} from 'query-string';
 
 //Components
 import ProductPrices from "src/components/bigcommerce/ProductPrices";
@@ -19,15 +17,10 @@ import { useContentContext } from 'src/context/ContentContextV2';
 import groupedBoots from "src/assets/grouped-boots.svg";
 import infoIcon from "src/assets/info-icon.svg";
 
-// Constants
-const kidsWidth = 'no option';
-
 const ProductPageContainer = ({
     activeProduct,
     products
   }) => {
-  const location = useLocation();
-  const queryStrings = parse(location.search);
   const {
     bigcommerce_id,
     description,
@@ -74,7 +67,6 @@ const ProductPageContainer = ({
   const [activeInfoModal, setActiveInfoModal] = useState(false);
   const [activeSizeChart, setActiveSizeChart] = useState(false);
   const [filteredInventory, setFilteredInventory] = useState([]);
-  const [isWidthPresent, setIsWidthPresent] = useState(false);
   const [activeVariantMessages, setActiveVariantMessages] = useState({
     width: "",
     size: ""
@@ -116,7 +108,7 @@ const ProductPageContainer = ({
     }
   }
 
-  function checkVariantQuantities() {
+  const checkVariantQuantities = () => {
     let colorsInStock = [];
     let widthsInStock = [];
 
@@ -128,7 +120,7 @@ const ProductPageContainer = ({
         (option.label === activeWidth) && widthsInStock.push(variant);
       }))
       activeColor && setFilteredInventory(colorsInStock);
-      isWidthPresent && (activeWidth && activeColor) && setFilteredInventory(widthsInStock);
+      (activeWidth && activeColor) && setFilteredInventory(widthsInStock);
     } else {
       setFilteredInventory(activeVariants)
     }
@@ -170,14 +162,14 @@ const ProductPageContainer = ({
   };
 
   useEffect(() => {
-    (activeColor || activeSize || activeWidth) && checkVariantQuantities();
     // SELECTS VARIANT WHEN COLOR, WIDTH, AND SIZE ARE SET
     (activeSize && activeWidth) && getProductVariant();
+    (activeColor || activeSize || activeWidth) && checkVariantQuantities();
     // UPDATE SIDE PHOTOS
     (activeColor && activeImagesByColor.length) && (activeColor !== activeImagesByColor[0].description && setActiveImagesByColor(() => getActiveImagesByColor()));
     // UPDATE MAIN IMAGE
     (activeImagesByColor.length && activeImagesByColor[0].description) ? selectedImage.description !== activeImagesByColor[0].description && updateSelectedImage(activeImagesByColor[0]) : updateSelectedImage(activeImagesByColor[0])
-  }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage, isWidthPresent]);
+  }, [activeColor, activeWidth, activeSize, activeImagesByColor, selectedImage]);
 
   useEffect(() => {
     //GETTING REALTIME DATA
@@ -277,7 +269,7 @@ const ProductPageContainer = ({
                   {activeVariantMessages.width !== "" && <SelectionTooltip message={activeVariantMessages.width} />}
                   {widthOptions.map((width, i) => {
                       /* Check if widthOptions has only one value so it can select that value as the default */
-                      const setActive = widthOptions.length === 1;
+                      const setActive = widthOptions.length === 1 || width === activeWidth;
 
                       return (
                         <button
@@ -300,7 +292,6 @@ const ProductPageContainer = ({
                 </div>
               </div>
             )}
-
             <div className="swatch-container">
               <label>Size</label>
               {/* TODO: make swatches into a component  */}
@@ -354,7 +345,7 @@ const ProductPageContainer = ({
 
       <section className="section container">
         <div className="product-details-container">
-          <ProductDetailsCollapsible title="Description" description={description} custom_fields={custom_fields} showVideo={true} />
+          <ProductDetailsCollapsible title="Description" description={description} custom_fields={custom_fields} showVideo={brandName.toLowerCase() === 'jb dillon reserve'} />
           <ProductDetailsCollapsible title="Features" description={description} custom_fields={custom_fields} />
           <ProductDetailsCollapsible title="Shipping and Returns" description={description} custom_fields={custom_fields} />
         </div>
