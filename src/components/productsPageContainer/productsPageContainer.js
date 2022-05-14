@@ -18,6 +18,11 @@ import caretUpDark from '../../assets/caret-up-dark.svg';
 import CloseIcon from '../../assets/close-icon.svg';
 import CloseIconWhite from '../../assets/close-icon-white.svg';
 
+//Constants
+const blackListedBCIds = [
+  178
+];
+
 //Functions
 const stateSetterLookupString = (type, useLowerCase = false) => {
   let lookupString = '';
@@ -594,7 +599,7 @@ const ProductsPageContainer = ({
               </div>
             </div>
             <div className={`bc-product-grid bc-product-grid--archive ${isMobileView ? 'bc-product-grid--4col' : 'bc-product-grid--3col'}`}>
-              {filteredProducts && filteredProducts.map(product => (
+              {filteredProducts && filteredProducts.map(product => !blackListedBCIds.includes(product.bigcommerce_id) && (
                 <ProductCard
                   key={product.id}
                   product={product}
