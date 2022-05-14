@@ -116,32 +116,33 @@ const ProductsPageContainer = ({
   const widthKey = "Width";
 
   products.forEach(product => {
-    product.variantsList = [];
-    product.variantsList.push(product.brand.name);
-    product.variants.map(variant => variant.option_values.map(option => {
-      option.option_display_name === sizeKey && sizeOptions.push(option.label);
-      option.option_display_name === widthKey && widthOptions.push(option.label);
-      if(variant.inventory_level !== 0) {
-        product.variantsList.push(option.label)
-      }
-      else {
-        product.variantsList = [...new Set(findDuplicates(product.variantsList))];
-      }
-    }));
-    product.custom_fields.map(field => {
-      field.name.toLowerCase() === "material" && materialOptions.push(field.value);
-      field.name.toLowerCase() === "toe style" && toeStyleOptions.push(field.value);
-      field.name.toLowerCase() === "boot type" && bootTypeOptions.push(field.value);
-      field.name.toLowerCase() === "feature" && featureOptions.push(field.value);
-      if (field.name === colorKey) {
-        let colors = field.value.split(',');
-        for (let i = 0; i < colors.length; i++) {
-          colorOptions.push(colors[i].trim());
-          product.variantsList = [...new Set(findDuplicates([...product.variantsList, colors[i].trim()]))];
+    if(!blackListedBCIds.includes(product.bigcommerce_id)) {
+      product.variantsList = [];
+      product.variantsList.push(product.brand.name);
+      product.variants.map(variant => variant.option_values.map(option => {
+        option.option_display_name === sizeKey && sizeOptions.push(option.label);
+        option.option_display_name === widthKey && widthOptions.push(option.label);
+        if (variant.inventory_level !== 0) {
+          product.variantsList.push(option.label)
+        } else {
+          product.variantsList = [...new Set(findDuplicates(product.variantsList))];
         }
-      }
-      product.variantsList = [...new Set(findDuplicates([...product.variantsList, field.value]))];
-    });
+      }));
+      product.custom_fields.map(field => {
+        field.name.toLowerCase() === "material" && materialOptions.push(field.value);
+        field.name.toLowerCase() === "toe style" && toeStyleOptions.push(field.value);
+        field.name.toLowerCase() === "boot type" && bootTypeOptions.push(field.value);
+        field.name.toLowerCase() === "feature" && featureOptions.push(field.value);
+        if (field.name === colorKey) {
+          let colors = field.value.split(',');
+          for (let i = 0; i < colors.length; i++) {
+            colorOptions.push(colors[i].trim());
+            product.variantsList = [...new Set(findDuplicates([...product.variantsList, colors[i].trim()]))];
+          }
+        }
+        product.variantsList = [...new Set(findDuplicates([...product.variantsList, field.value]))];
+      });
+    }
   });
 
   colorOptions = [...new Set(findDuplicates(colorOptions))]; // Unique duplicates
