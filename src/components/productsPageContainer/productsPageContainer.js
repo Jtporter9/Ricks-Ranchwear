@@ -116,9 +116,7 @@ const ProductsPageContainer = ({
   const widthKey = "Width";
 
   products.forEach(product => {
-    console.log(product.bigcommerce_id);
     if(!blackListedBCIds.includes(product.bigcommerce_id)) {
-      console.log(product.brand.name);
       product.variantsList = [];
       product.variantsList.push(product.brand.name);
       product.variants.map(variant => variant.option_values.map(option => {
