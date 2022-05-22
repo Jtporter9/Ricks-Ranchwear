@@ -110,6 +110,7 @@ export const mensPageQuery = graphql`
           sort_order
           url_zoom
         }
+        is_featured
         variants {
           product_id
           id

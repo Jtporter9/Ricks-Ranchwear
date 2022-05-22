@@ -5,11 +5,11 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 
 export const TestTemplate = ({
-                                    image,
-                                    title,
-                                    content,
-                                    contentComponent
-                                  }) => {
+   image,
+   title,
+   content,
+   contentComponent
+ }) => {
   const PageContent = contentComponent || Content
 
   return (

@@ -75,6 +75,7 @@ export const productPageQuery = graphql`
           url_thumbnail
           url_standard
         }
+        is_featured
         variants {
           product_id
           id

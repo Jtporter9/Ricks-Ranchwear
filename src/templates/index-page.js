@@ -114,6 +114,7 @@ export const pageQuery = graphql`
           is_thumbnail
           url_zoom
         }
+        is_featured
         variants {
           product_id
           id
